@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio - Infrastructure IT</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+
+        .content {
+            padding: 40px;
+        }
+
+        .section {
+            margin-bottom: 40px;
+        }
+
+        .section h2 {
+            color: #667eea;
+            font-size: 1.8em;
+            margin-bottom: 20px;
+            border-bottom: 3px solid #667eea;
+            padding-bottom: 10px;
+        }
+
+        .section p {
+            line-height: 1.8;
+            color: #333;
+            margin-bottom: 15px;
+        }
+
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .tech-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .tech-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
+        }
+
+        .tech-card h3 {
+            font-size: 1.2em;
+            margin-bottom: 10px;
+        }
+
+        .features {
+            list-style: none;
+        }
+
+        .features li {
+            padding: 10px 0;
+            padding-left: 30px;
+            position: relative;
+            color: #333;
+        }
+
+        .features li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #667eea;
+            font-weight: bold;
+            font-size: 1.2em;
+        }
+
+        .footer {
+            background: #f8f9fa;
+            padding: 20px;
+            text-align: center;
+            color: #666;
+        }
+
+        .btn {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 25px;
+            text-decoration: none;
+            margin-top: 20px;
+            transition: transform 0.3s ease;
+        }
+
+        .btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2em;
+            }
+            
+            .content {
+                padding: 20px;
+            }
+            
+            .tech-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Projet Infrastructure IT</h1>
+            <p>Déploiement et Administration de Services</p>
+        </div>
+
+        <div class="content">
+            <div class="section">
+                <h2>À propos du projet</h2>
+                <p>
+                    Ce projet présente la mise en place d'une infrastructure IT complète basée sur Windows Server 
+                    et VMware ESXi. L'environnement comprend des services d'annuaire Active Directory, des serveurs 
+                    de fichiers, ainsi que des solutions de monitoring et de documentation.
+                </p>
+                <p>
+                    L'objectif principal est de créer une infrastructure évolutive, sécurisée et facilement 
+                    administrable pour répondre aux besoins d'une organisation moderne.
+                </p>
+            </div>
+
+            <div class="section">
+                <h2>Technologies utilisées</h2>
+                <div class="tech-grid">
+                    <div class="tech-card">
+                        <h3>Windows Server</h3>
+                        <p>2022/2025</p>
+                    </div>
+                    <div class="tech-card">
+                        <h3>Active Directory</h3>
+                        <p>Annuaire & GPO</p>
+                    </div>
+                    <div class="tech-card">
+                        <h3>VMware ESXi</h3>
+                        <p>Virtualisation</p>
+                    </div>
+                    <div class="tech-card">
+                        <h3>PowerShell</h3>
+                        <p>Automatisation</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>Fonctionnalités implémentées</h2>
+                <ul class="features">
+                    <li>Configuration et déploiement d'Active Directory Domain Services (ADDS)</li>
+                    <li>Gestion des utilisateurs, groupes et unités organisationnelles (OU)</li>
+                    <li>Configuration de serveurs DHCP et DNS</li>
+                    <li>Mise en place de serveurs de fichiers avec partages réseau</li>
+                    <li>Déploiement de Group Policy Objects (GPO) personnalisés</li>
+                    <li>Infrastructure de virtualisation avec VMware ESXi 6.5</li>
+                    <li>Scripts PowerShell pour l'automatisation administrative</li>
+                    <li>Solution de monitoring avec Zabbix</li>
+                    <li>Documentation centralisée avec Wiki.js</li>
+                </ul>
+            </div>
+
+            <div class="section">
+                <h2>Architecture</h2>
+                <p>
+                    L'infrastructure est composée de plusieurs machines virtuelles hébergées sur des serveurs ESXi, 
+                    avec une séparation claire des rôles : contrôleurs de domaine, serveurs de fichiers, serveurs 
+                    de monitoring, et systèmes de documentation. La topologie réseau inclut une configuration IP 
+                    statique avec des sous-réseaux dédiés.
+                </p>
+                <a href="#" class="btn">Voir la documentation complète</a>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p>&copy; 2025 Portfolio IT Infrastructure | Réalisé avec GitHub Pages</p>
+        </div>
+    </div>
+</body>
+</html>
