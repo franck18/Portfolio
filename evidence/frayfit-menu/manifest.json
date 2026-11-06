@@ -1,0 +1,742 @@
+{
+  "schema_version": 1,
+  "created_at_utc": "2026-11-06T21:18:51.827979+00:00",
+  "source": "Pre-change local site/ snapshot; the deployment script verifies this lease against every remote file before publication.",
+  "remote_root": "www",
+  "target_href": "https://opengym.jsuisfray.blitz.cloud/",
+  "new_label": "FrayFit",
+  "original_label_counts": {
+    "Sport": 78,
+    "Training": 13
+  },
+  "files": {
+    "404.html": {
+      "sha256": "93502fb83a10fdb8ee7fbc4f9c43cc21ee917b7d17c4ebd985f35f72706bc0da",
+      "size": 9827,
+      "updated_sha256": "1bb73c9883b5bd212d767218e122fdcc2c9f69e1d91db9cbc519999f3db231cf",
+      "updated_size": 9829,
+      "original_label": "Sport",
+      "replacements": 1
+    },
+    "bloodhound.html": {
+      "sha256": "3454df23416854886ca1c0f89b297c58b95ba1bad1bc889ac5078180e237bea7",
+      "size": 18027,
+      "updated_sha256": "a01fe65a6beb899fce15533789b76a972128b13ebeb51b4177deb497b8ad09c8",
+      "updated_size": 18029,
+      "original_label": "Sport",
+      "replacements": 1
+    },
+    "dossier-technique-index.html": {
+      "sha256": "b4ebee49ca5e2dd78d15e159cd9795cab7330ff3009141773ad8a258fd7f8f9d",
+      "size": 103966,
+      "updated_sha256": "cfcdfc3e2c7d5136b8b7b440baf773488955dac9814eaa4ab3b43405044ec359",
+      "updated_size": 103968,
+      "original_label": "Sport",
+      "replacements": 1
+    },
+    "en/404.html": {
+      "sha256": "a8f61be30451fb4f6221ee997d3edf3d1f8a56eddd45836d8f9ea2416ec01c82",
+      "size": 9838,
+      "updated_sha256": "b30056c9d69f5f1262e137b66b66743437f60a2b3ae79fcd50ea2c42624e5287",
+      "updated_size": 9837,
+      "original_label": "Training",
+      "replacements": 1
+    },
+    "en/index.html": {
+      "sha256": "c4b0930aef82a1975fa0607f2bf78394e06f22828259b80ecc157ae5e599d65b",
+      "size": 25529,
+      "updated_sha256": "b09217dabf3b446460af7c10c2de58e4210a0fe92b3614da36a6e141b433af04",
+      "updated_size": 25528,
+      "original_label": "Training",
+      "replacements": 1
+    },
+    "en/merci.html": {
+      "sha256": "6838e9a0a1d07d56b613c285387021e2ce3595b56c7c836836f4fdb0833205c7",
+      "size": 9649,
+      "updated_sha256": "c7f3dc57eeb712fa08c33d104a48a5278d06cb3c9e17d4fe7e60703f0df36c39",
+      "updated_size": 9648,
+      "original_label": "Training",
+      "replacements": 1
+    },
+    "en/pages/projet-alger-medilab.html": {
+      "sha256": "32656a6ba2a55405850f5b9fa596ca90e28592dc53911fa83d96795dd67883ca",
+      "size": 19578,
+      "updated_sha256": "5b7452789fcc26411dfbd5e1f582cd84b73d36c852d6507a991d1c93c15bdb4f",
+      "updated_size": 19577,
+      "original_label": "Training",
+      "replacements": 1
+    },
+    "en/pages/projet-fail2ban-ssh.html": {
+      "sha256": "574ce382748b5c5111ed9b3d23df7cd6f3a36395685f88d2e724d40dfc3cab5b",
+      "size": 22191,
+      "updated_sha256": "2790ead75deccc77d8a0c84a207a1b485aec68d35818bfb18610139529df51a0",
+      "updated_size": 22190,
+      "original_label": "Training",
+      "replacements": 1
+    },
+    "en/pages/projet-homelab.html": {
+      "sha256": "10b26fdfd04c0a654e6a910786a41e1f1f5abe21067ec5ac2ea70aa3b30b20ed",
+      "size": 19042,
+      "updated_sha256": "636f3862ae9acb67646f2e48f65edfd58f11866ae7e9af455519f09f0d4e0d82",
+      "updated_size": 19041,
+      "original_label": "Training",
+      "replacements": 1
+    },
+    "en/pages/projet-hsrp-lacp.html": {
+      "sha256": "b092ec8a0ca477c14992314bdf1ebe4f0e6fe9c824ab83692fddde65274c3876",
+      "size": 20211,
+      "updated_sha256": "565d0f5fc427c93ae889338b355a8e3249104793cf1460aee7357e894c944dc1",
+      "updated_size": 20210,
+      "original_label": "Training",
+      "replacements": 1
+    },
+    "en/pages/projet-ia-ollama.html": {
+      "sha256": "bd0d42d94eb53f7668b1c4d15509037b01aa73b289a40d9509a91a645122d8d9",
+      "size": 23037,
+      "updated_sha256": "4c664a84d70f75f14b71a2bbbdfc31ecbf31f52105e78db35fb7ae995f410fb6",
+      "updated_size": 23036,
+      "original_label": "Training",
+      "replacements": 1
+    },
+    "en/pages/projet-linux-hardening-ansible.html": {
+      "sha256": "5aeed163e8b98a0d1152a9b7f325e979acabaf33bc3005baab3a2d12ef859cdb",
+      "size": 21293,
+      "updated_sha256": "d313d83b48a23b2ac682ca97c8d2230ef872f78b1d3ba83903fc0243b061cb5e",
+      "updated_size": 21292,
+      "original_label": "Training",
+      "replacements": 1
+    },
+    "en/pages/projet-pipeline-cicd-securisee.html": {
+      "sha256": "f3c1e1c77f64c3a5817be28cc6928493acbbdb22633a6458a4511cb84aa80b83",
+      "size": 21684,
+      "updated_sha256": "aba7d40fbb40deb01fec534fd8d670185b2c703d0af62f568912ee9056393444",
+      "updated_size": 21683,
+      "original_label": "Training",
+      "replacements": 1
+    },
+    "en/pages/projet-reseau-segmente-nftables.html": {
+      "sha256": "5646b1d4dcbf2d994d755097b9969e949d2aafddbde30e6dd3214279da0d89c8",
+      "size": 21641,
+      "updated_sha256": "d15e93108c3eac7e1455c923d2853360a3d8327edeedc2452e9b338d9656c321",
+      "updated_size": 21640,
+      "original_label": "Training",
+      "replacements": 1
+    },
+    "en/pages/projet-zabbix-r5.html": {
+      "sha256": "dacda05cd61383ded2e9ae7410c3355de1d79c709756c555f2372c21dcc29a5a",
+      "size": 22342,
+      "updated_sha256": "13d8d6a5c29a8a77eb43e6ee6d068bcde07dd4b6b7509ecfea65cb617fc4b62e",
+      "updated_size": 22341,
+      "original_label": "Training",
+      "replacements": 1
+    },
+    "en/projets.html": {
+      "sha256": "84759e0e0245631dc5d2b657c32e9f75ecc6d10de67652b030a2a5f44aa95552",
+      "size": 22402,
+      "updated_sha256": "c4f677dc8d817b7d63b1c6ad7f7684fff76be37f3d153845e2557cd33929257a",
+      "updated_size": 22401,
+      "original_label": "Training",
+      "replacements": 1
+    },
+    "exp-auchan.html": {
+      "sha256": "8362dba35ff72f57dc02558c2b082939e60839b10caa88e349123257402ef50e",
+      "size": 22675,
+      "updated_sha256": "c762f2e87ed4a557d57f20b6fe69b56f8fce399a0d941535d605d66a773b70dd",
+      "updated_size": 22677,
+      "original_label": "Sport",
+      "replacements": 1
+    },
+    "exp-hopital.html": {
+      "sha256": "999649dc8cc383539971c1de6e59168fabfdd03c786f657d1dacdd4cc5bd4623",
+      "size": 28131,
+      "updated_sha256": "023a7717169623d52e51427ede262b9b2ec4074d25030645c528f67c8a5c0c41",
+      "updated_size": 28133,
+      "original_label": "Sport",
+      "replacements": 1
+    },
+    "exp-mairie.html": {
+      "sha256": "271b2263f8af0a7ced9655446d457ba61a8326d7d35bf29d9bf8c422d1b8c338",
+      "size": 26312,
+      "updated_sha256": "297a422d210aa262f72ded0bb9bc26d12e7a7966ae4cf63a6cda7556c9999bcc",
+      "updated_size": 26314,
+      "original_label": "Sport",
+      "replacements": 1
+    },
+    "experience.html": {
+      "sha256": "972f09b7d4d37628d2fe8401c3400a75f176af18fba4b57acd26af4647fa7fdb",
+      "size": 29522,
+      "updated_sha256": "ec4d713ac75217bfd1e46c55f65dc89da939038bf8c4ae657ad09d19d8e8ab2b",
+      "updated_size": 29524,
+      "original_label": "Sport",
+      "replacements": 1
+    },
+    "index.html": {
+      "sha256": "89f5e70c7356fe626f851de3e763571a5ec8821af4773466ee7dd1de853ffc40",
+      "size": 30546,
+      "updated_sha256": "b61f53fbc4e902893e8b080e9d72a3e55f666fe143dc7bd487e962bfcc70f902",
+      "updated_size": 30548,
+      "original_label": "Sport",
+      "replacements": 1
+    },
+    "logs.html": {
+      "sha256": "3411da95fc1303e59d123e73a98ab945925596522ec192e8cb967c76f25a153f",
+      "size": 16822,
+      "updated_sha256": "5d20e994085763898e16ea8df0da0805f9fe63676433783736d729fe09a3b103",
+      "updated_size": 16824,
+      "original_label": "Sport",
+      "replacements": 1
+    },
+    "merci.html": {
+      "sha256": "d8209273f6a3fcb941b04f2cd1e3b804485464a8aef74d608a7f1e84bc83fc1b",
+      "size": 9143,
+      "updated_sha256": "6d205eb0d4fa2e3687128e3413f12f52ec417af654ba2837d80741ba29cb6f31",
+      "updated_size": 9145,
+      "original_label": "Sport",
+      "replacements": 1
+    },
+    "pages/accompagner-utilisateurs.html": {
+      "sha256": "889813699cf36926e24a8b84386ec3f51bd9be4a2e8ac7d7f5e0599dfdc1163c",
+      "size": 22223,
+      "updated_sha256": "e373983b460b48236850ec466ed6878f1ce98081ed71cbcdae4e9fb49818a655",
+      "updated_size": 22225,
+      "original_label": "Sport",
+      "replacements": 1
+    },
+    "pages/analyser-objectifs.html": {
+      "sha256": "ca26593b795a44a78e26b931d52badb310b3b3f802c38a276e32a3deb9b3ef9b",
+      "size": 19459,
+      "updated_sha256": "bf45199e8c6069f8152e9a86eb5efc5c4cc35deb5f54f42919f133d1fd297c96",
+      "updated_size": 19461,
+      "original_label": "Sport",
+      "replacements": 1
+    },
+    "pages/bloodhound-ad.html": {
+      "sha256": "26e99db1b335726d4045c6ee562f3bd1a8a877b4f81f17d1790748a067a13121",
+      "size": 10906,
+      "updated_sha256": "3dfec5a714c4098574231fde23ccbd0c3cfa4534eb748b9c1be971757be125be",
+      "updated_size": 10908,
+      "original_label": "Sport",
+      "replacements": 1
+    },
+    "pages/bloodhound.html": {
+      "sha256": "b49f69044fa2e16c790d6f341f067d62fa182303e442a2f416d598583495b4dd",
+      "size": 12887,
+      "updated_sha256": "1fb635dd76fb5b4cb23cb7272222c028c56b2c4ce7177ac87262a2d0aedf6b8f",
+      "updated_size": 12889,
+      "original_label": "Sport",
+      "replacements": 1
+    },
+    "pages/collecter-demandes.html": {
+      "sha256": "74dd434622249e70a6a9492854069bbd3410e4a2bb4c2143465f5f7d6816de1a",
+      "size": 21589,
+      "updated_sha256": "6f96147b5cf9b0ab48cc42917cba12cc66b644e7723a8a746e8e1a840319bc95",
+      "updated_size": 21591,
+      "original_label": "Sport",
+      "replacements": 1
+    },
+    "pages/deployer-service.html": {
+      "sha256": "1a14757bf38c1adbd44e517e42ebb8d80cf87961912f58f59cb666bb52ee32f6",
+      "size": 23115,
+      "updated_sha256": "080aac0df8801ad4b9038917a0ff2e472bb74e6f45e148fca563c00ae26a47b4",
+      "updated_size": 23117,
+      "original_label": "Sport",
+      "replacements": 1
+    },
+    "pages/developper-projet.html": {
+      "sha256": "38e36ac27b49e1499d02816697b52dfbf1a0e8b3be09690ac42e12c42861007f",
+      "size": 19244,
+      "updated_sha256": "29a119ba723a2b5398710b3eacc1738297afa66af49153a416b3a3e722480871",
+      "updated_size": 19246,
+      "original_label": "Sport",
+      "replacements": 1
+    },
+    "pages/dns-dhcp.html": {
+      "sha256": "56507007aa9dfd74933f658a0a432a797f3e251937c2144d3a88a34227941e7a",
+      "size": 17229,
+      "updated_sha256": "34f7cc1e1d9595cf13fa3b62523f4fa75023e2f498abbfc71002eaf361e42159",
+      "updated_size": 17231,
+      "original_label": "Sport",
+      "replacements": 1
+    },
+    "pages/dossier-technique-projet-alger-medilab.html": {
+      "sha256": "45d1aeb372bdf11bb8fff9d4e59cc22b8ad5d7defd9ca5c9b785ae0894d7bd1d",
+      "size": 26666,
+      "updated_sha256": "86a370a3b40843dcc3317b7f4d2b2407b0f8e485453bf585b1536699e4cd50b9",
+      "updated_size": 26668,
+      "original_label": "Sport",
+      "replacements": 1
+    },
+    "pages/dossier-technique-projet-fail2ban-ssh.html": {
+      "sha256": "4e2098360f460d8e35734a05882222a776beef38aaed2543d69021468541c7ae",
+      "size": 70285,
+      "updated_sha256": "1bb0d58774d6627819a39826b2941d388de90d63733a6b50681ab4ed85168c38",
+      "updated_size": 70287,
+      "original_label": "Sport",
+      "replacements": 1
+    },
+    "pages/dossier-technique-projet-homelab.html": {
+      "sha256": "6df9920ef87546cfc55dc0ad81639e760394c1be20bbcc091dadedfe6685f21c",
+      "size": 19494,
+      "updated_sha256": "ff21a50dc5982fe358aa8463e8d1988b97ae606d29b7d2e14d4811f764849d3c",
+      "updated_size": 19496,
+      "original_label": "Sport",
+      "replacements": 1
+    },
+    "pages/dossier-technique-projet-hsrp-lacp.html": {
+      "sha256": "81873f666827189651481d89952a62dd715876db96faa3fedb5d62b6747c6917",
+      "size": 21786,
+      "updated_sha256": "3ba28db8c68e0fcc7e4a415b3a9c8eea58b35f7b023714a199f4b924ef0b34fe",
+      "updated_size": 21788,
+      "original_label": "Sport",
+      "replacements": 1
+    },
+    "pages/dossier-technique-projet-ia-ollama.html": {
+      "sha256": "d927ead1338a98efff9801aea4127e1876f4eb2c41e913bcf32ec4b686724525",
+      "size": 44184,
+      "updated_sha256": "44279fe1437ac8e382985cb933fa8e2b878b955324e18526cd43945eca078969",
+      "updated_size": 44186,
+      "original_label": "Sport",
+      "replacements": 1
+    },
+    "pages/dossier-technique-projet-zabbix-r5.html": {
+      "sha256": "4a7a7b90c2e4c1c8b9ab16cb3bf144d9444b84dabb48ad53bfbc1a62fb01377c",
+      "size": 44553,
+      "updated_sha256": "886dcbc2d44ba69a9c354637ab7bad5f67168ccced2a501359f1e3d322f49893",
+      "updated_size": 44555,
+      "original_label": "Sport",
+      "replacements": 1
+    },
+    "pages/epreuve-e4.html": {
+      "sha256": "fc30be1e90c3e5022d1e5763a1d0e96fd6264a5736821b8f4a04aee711e81016",
+      "size": 22683,
+      "updated_sha256": "27c0d3df79f5ab67b987ac49d745f2c9ed5307b9fab804572d19f85c54e5c6ae",
+      "updated_size": 22685,
+      "original_label": "Sport",
+      "replacements": 1
+    },
+    "pages/epreuve-e5.html": {
+      "sha256": "b704592a62f90031a01a4b887f1d2f54fe0e005dc3218dd6f3dee7737540ca66",
+      "size": 83027,
+      "updated_sha256": "5aca7f11422c42f405ab9b941fd02712eed299197b1e006cac6ae229772e768c",
+      "updated_size": 83029,
+      "original_label": "Sport",
+      "replacements": 1
+    },
+    "pages/evaluer-indicateurs.html": {
+      "sha256": "faef44fe42da57ec2c089641f3545cdae7d919a24fac83b17e6a706910f2f0c3",
+      "size": 18336,
+      "updated_sha256": "523c6bef5da8060cd2dfa79220abe9ad9f2bb6bd0ce458ffb7c854d0c53c4435",
+      "updated_size": 18338,
+      "original_label": "Sport",
+      "replacements": 1
+    },
+    "pages/exploiter-referentiels.html": {
+      "sha256": "7fab9417dd7364d2920fff7b7a9a67be51e2ee2cc1af1f913b529f9b5158c67d",
+      "size": 18862,
+      "updated_sha256": "5804c99115cbfcb3b765ed1a06d29dd8311f6b868d9027e7ede32191338bd2de",
+      "updated_size": 18864,
+      "original_label": "Sport",
+      "replacements": 1
+    },
+    "pages/extreme-networks.html": {
+      "sha256": "e49e130b261a532afd08c653589c497c28a6794b9b9491bcc0a608b15d7f56a1",
+      "size": 54682,
+      "updated_sha256": "358bdd75f7c6954680b5da18f5748e096f340bc09afd7e583d0070b43905b4f0",
+      "updated_size": 54684,
+      "original_label": "Sport",
+      "replacements": 1
+    },
+    "pages/gerer-identite.html": {
+      "sha256": "4cae1d7860fd7a6e9e3a77f3f9cb67e514927cc18b78b5ea04492ec345fd6ea8",
+      "size": 19672,
+      "updated_sha256": "851f25116659bb1edd1a238303d19f0851d9d1bf51ed597f6b9307c699245700",
+      "updated_size": 19674,
+      "original_label": "Sport",
+      "replacements": 1
+    },
+    "pages/gerer-sauvegardes.html": {
+      "sha256": "bf102efdd03c24d32f92cdf9be76daceea6439df58e97301df38f6ffe4d8b8e3",
+      "size": 19963,
+      "updated_sha256": "cc8e5dd35e445daee0e6d135d828d2d72a8e5fc6330873842a16e2d3720aa396",
+      "updated_size": 19965,
+      "original_label": "Sport",
+      "replacements": 1
+    },
+    "pages/incident-vcenter-certificats.html": {
+      "sha256": "48440623d9d775b9e224440cf696b855f3033eecd1391032ad1dc5de5db0abf1",
+      "size": 21470,
+      "updated_sha256": "3495188629136da1f49a48bf2788f845a6641fe25dd87d32a4e64302d476310b",
+      "updated_size": 21472,
+      "original_label": "Sport",
+      "replacements": 1
+    },
+    "pages/linux-rocky-debian.html": {
+      "sha256": "4fc3a04d7e6113ec194b24b1ad4ef31c1b73a40d2c5604abdf03ea4e8da50b4c",
+      "size": 14892,
+      "updated_sha256": "574e0d6785212e50fd2201c27049960e65e76ca57b09be88954af5413e164c71",
+      "updated_size": 14894,
+      "original_label": "Sport",
+      "replacements": 1
+    },
+    "pages/mettre-environnement.html": {
+      "sha256": "a8f27a102505b9784248f0515203be159ff970f0452ca7234643899c8497135e",
+      "size": 20900,
+      "updated_sha256": "971b23b8fa920551e34cd354d58605daf740f831e02ddb42b74ed0ae9ee66bf8",
+      "updated_size": 20902,
+      "original_label": "Sport",
+      "replacements": 1
+    },
+    "pages/mettre-habilitation.html": {
+      "sha256": "ef1def09a322186cb18602e85453f290a1fcf7adba4688ce380542bf45325c83",
+      "size": 20407,
+      "updated_sha256": "b0c05148c6982f1b04b6a56ed4b46571dc574829640e1ebfac1c5e70bedc3eba",
+      "updated_size": 20409,
+      "original_label": "Sport",
+      "replacements": 1
+    },
+    "pages/mettre-veille.html": {
+      "sha256": "0e95726dfd03bbb2c2d0cd641349a0f72fcc2c66bd53f0cd2cce426bcf3af63c",
+      "size": 18922,
+      "updated_sha256": "704f4bec774351aa2ffdeee458b9032ef4ed77afef2a7d73987c48373e64bcc8",
+      "updated_size": 18924,
+      "original_label": "Sport",
+      "replacements": 1
+    },
+    "pages/participer-evolution-site.html": {
+      "sha256": "22c81768d504c4cec76899d9b92d1aa11cb3882fe3940bfa73281c6b45975f6c",
+      "size": 53812,
+      "updated_sha256": "717eaa769638fe620b61c8906f5cef0a945790c6e644650135c0d9bd0d55b89c",
+      "updated_size": 53814,
+      "original_label": "Sport",
+      "replacements": 1
+    },
+    "pages/planifier-activites.html": {
+      "sha256": "05e7790640e74d5b135f6f872ec68f3877bde8ed2c41ea59d71f7df1f6269b79",
+      "size": 17930,
+      "updated_sha256": "49c0ca67f3fa30303a33f5a80e32e3670f48b9d081ed8211c9168dc76acee0d3",
+      "updated_size": 17932,
+      "original_label": "Sport",
+      "replacements": 1
+    },
+    "pages/projet-ad-dhcp-dns-gpo.html": {
+      "sha256": "200cbde148c10413865aa0edc9ed5ab03ea507f81bbba666c265967248b2b497",
+      "size": 45841,
+      "updated_sha256": "733025f3957be4dd6c15fe29407e977eeadd7284a04af12a33e416b34e803fcd",
+      "updated_size": 45843,
+      "original_label": "Sport",
+      "replacements": 1
+    },
+    "pages/projet-alger-medilab.html": {
+      "sha256": "049e140c0a4b84f295b63d099144769dc99c2a81e1fb68b2643b1ae8556f7b75",
+      "size": 20020,
+      "updated_sha256": "552165f0b6fe0f98246446ae21fda407cd766eda33e7e73a79885c02538853c3",
+      "updated_size": 20022,
+      "original_label": "Sport",
+      "replacements": 1
+    },
+    "pages/projet-auchan-plan.html": {
+      "sha256": "22ca467ad67ee58d2043879f91eda28d2f60ade2117ab1a0e4c8c90e4e611df4",
+      "size": 17967,
+      "updated_sha256": "bc43f2df3e5663c987ce48826da18a27706da1716af4a49dbd5c39c89347d968",
+      "updated_size": 17969,
+      "original_label": "Sport",
+      "replacements": 1
+    },
+    "pages/projet-fail2ban-ssh.html": {
+      "sha256": "3e6b05b2388cc2b1e796c94725f0bb699ae5bd7fd8dcce23ab07b57705f487bf",
+      "size": 22941,
+      "updated_sha256": "182b7a05880aa6a96f479a932c60c8e435721b80f7b031c661f29026fbe7f1c1",
+      "updated_size": 22943,
+      "original_label": "Sport",
+      "replacements": 1
+    },
+    "pages/projet-glpi.html": {
+      "sha256": "49d4dcbff5c7fd760ace6833119c45f7b82540ccf1803fee464e57f6f4b40905",
+      "size": 48292,
+      "updated_sha256": "93c6decdcd91de41f6148505a851913ddb686c8ec32c64f62bba5f4d045cc080",
+      "updated_size": 48294,
+      "original_label": "Sport",
+      "replacements": 1
+    },
+    "pages/projet-graylog-syslog.html": {
+      "sha256": "ef6df0c49d2add900962ef4be39ef75c7a8a7f368c7139da5e9c871fc1b68940",
+      "size": 21121,
+      "updated_sha256": "f10cb25932769b8b6c08a570febe63dcd1ff2e7dfeb1083e19233d04ee78005c",
+      "updated_size": 21123,
+      "original_label": "Sport",
+      "replacements": 1
+    },
+    "pages/projet-homelab.html": {
+      "sha256": "a13f6c31699a32e363a9d37b2d1b0db24eff67fdcde2e85b04c442f450af5fea",
+      "size": 19714,
+      "updated_sha256": "564710fbbc8f31f7ac987251a8d0269969c128437f483c0eb7734abe80ffbc37",
+      "updated_size": 19716,
+      "original_label": "Sport",
+      "replacements": 1
+    },
+    "pages/projet-hsrp-lacp.html": {
+      "sha256": "e597d9633cde0e1d2bcdc3172882e5480e3f1d7588eee81d020542085365f832",
+      "size": 20793,
+      "updated_sha256": "cf05f332418ac90ca3141d1f6fa158f9387cf0d7a17ffad9155e7615d924aa39",
+      "updated_size": 20795,
+      "original_label": "Sport",
+      "replacements": 1
+    },
+    "pages/projet-ia-ollama.html": {
+      "sha256": "1d811c8f825f387cb1f74a475770ef62776ea0aa6ad56694e789f219700c9f7b",
+      "size": 23536,
+      "updated_sha256": "9c26ae13c486cc6732986c6f5803c55cfa89011ebd7c1b698774e8debfc78ee3",
+      "updated_size": 23538,
+      "original_label": "Sport",
+      "replacements": 1
+    },
+    "pages/projet-linux-hardening-ansible.html": {
+      "sha256": "1b9437887090041ff4365b1b0125690a0a4efb038ebc7bee1d2576e26572517f",
+      "size": 25606,
+      "updated_sha256": "a23963b57a0ad1e2d9b8e082c7d13f15c438f561e954ac4d1060fa7f26f93bae",
+      "updated_size": 25608,
+      "original_label": "Sport",
+      "replacements": 1
+    },
+    "pages/projet-openclaw.html": {
+      "sha256": "264908b873df054e234c49fdaff4a40680778f59cb3d7f83e18aa9815e21f3c1",
+      "size": 23720,
+      "updated_sha256": "d385464b0ae60148586cf7c00297857a857a75bc5809a62d2e89ba313ff97c62",
+      "updated_size": 23722,
+      "original_label": "Sport",
+      "replacements": 1
+    },
+    "pages/projet-pipeline-cicd-securisee.html": {
+      "sha256": "2af3c86cb980e068890467527262acea40237c05036047aea494b725a7f1ac0d",
+      "size": 22220,
+      "updated_sha256": "35f49f7f4c48383777961cdf0962745b8e922835237938c7d0d2a789c40c9822",
+      "updated_size": 22222,
+      "original_label": "Sport",
+      "replacements": 1
+    },
+    "pages/projet-r5-web-ha.html": {
+      "sha256": "4081787563a03235fe6eab538fbab55a42322c35c428a6a6e0674878fda3a235",
+      "size": 43143,
+      "updated_sha256": "f2192b7e278829918d786b13c61c707edd21c65e76dcbf89814aa2d42e9f0d6e",
+      "updated_size": 43145,
+      "original_label": "Sport",
+      "replacements": 1
+    },
+    "pages/projet-reseau-segmente-nftables.html": {
+      "sha256": "2283682de5ca0a23ecb280769078228fb3acac7d112907d3cd5b1245f8b39c56",
+      "size": 22029,
+      "updated_sha256": "3a630cc30144909c4233ea43622aae23cd723dd006ef28e50243866bb0fb42c7",
+      "updated_size": 22031,
+      "original_label": "Sport",
+      "replacements": 1
+    },
+    "pages/projet-scripting.html": {
+      "sha256": "f28f6f0492d3693886f785febb34c3b4a2a8b0a6d127e253a2a88b035e8987a2",
+      "size": 21091,
+      "updated_sha256": "5f4a46b753283862eb3dac0ce26868b8d887935accba0dac25a52d72231aa86a",
+      "updated_size": 21093,
+      "original_label": "Sport",
+      "replacements": 1
+    },
+    "pages/projet-spacefarm-2080.html": {
+      "sha256": "d2e146810f1bfb30a5f4ca1a7e084439ae537ab6a782a1482a0ab8040c31e3e1",
+      "size": 17497,
+      "updated_sha256": "99070cdfd52c073ed0749028a290cf6867c3679f323d97ef6d0481ceecc9f1b2",
+      "updated_size": 17499,
+      "original_label": "Sport",
+      "replacements": 1
+    },
+    "pages/projet-vmware-vlan.html": {
+      "sha256": "4dd43640c7753c035d2e7b2f85d17983ea6d280f9fc49dcfe075eef55481d306",
+      "size": 19425,
+      "updated_sha256": "0bdac530c1c22e595ba3c4dfc2da4cc0ab08ebd69278258797f22c250a48c2a7",
+      "updated_size": 19427,
+      "original_label": "Sport",
+      "replacements": 1
+    },
+    "pages/projet-zabbix-r5.html": {
+      "sha256": "3733b5f72fc18bb433f6c6ff64935d14d04ad1da69d16bdd75f3a18289d41784",
+      "size": 24048,
+      "updated_sha256": "9559310690bda8b5f47081095693b4a284937033cf66975850d4291f2d297a0c",
+      "updated_size": 24050,
+      "original_label": "Sport",
+      "replacements": 1
+    },
+    "pages/realiser-tests.html": {
+      "sha256": "f3bfad669c01a9b4d29d01b1691632ae3a8b890748e6c8574db5f7768a789fe1",
+      "size": 21418,
+      "updated_sha256": "11e54bb606630d0f52163ce1f33b5c978ed80390e81d05e6c40d1596b29b85d8",
+      "updated_size": 21420,
+      "original_label": "Sport",
+      "replacements": 1
+    },
+    "pages/recenser-ressources.html": {
+      "sha256": "580b7d06867eed339da19c8ac780b254c9e6afc90adedac9e0f8dfb73bff86d4",
+      "size": 20912,
+      "updated_sha256": "1d372e1a804a23ef07df04645e19075bbcc57465a477b4e474bf1c1b74690fbf",
+      "updated_size": 20914,
+      "original_label": "Sport",
+      "replacements": 1
+    },
+    "pages/referencier-mesurer.html": {
+      "sha256": "4ec41a7a2571a60c08c08102cd049c62848f4f0b01a7c16ab49e50a8f5cde20d",
+      "size": 17733,
+      "updated_sha256": "7a7fe6dea23109a888affe6883938f0527e8a934f7c2d06cbf86b2fc002ac987",
+      "updated_size": 17735,
+      "original_label": "Sport",
+      "replacements": 1
+    },
+    "pages/securite-ad.html": {
+      "sha256": "ee00df933168f3d0909c817d2f316f5c50dc1c0c7f0caa54875e506a209120a3",
+      "size": 34206,
+      "updated_sha256": "de2f25ccce706005629d7274baf9abe270936c1826d251fbf039e85b1c9da6a4",
+      "updated_size": 34208,
+      "original_label": "Sport",
+      "replacements": 1
+    },
+    "pages/syslog-graylog.html": {
+      "sha256": "5596eb497329d47da062585fa2d19e69e95417da754c5bd280a23a9e0593c6a0",
+      "size": 15517,
+      "updated_sha256": "13d9eaf4788fa39ef22da471632ee57be3112bd0ba393e4d66a731f2604259be",
+      "updated_size": 15519,
+      "original_label": "Sport",
+      "replacements": 1
+    },
+    "pages/traiter-demandes-applications.html": {
+      "sha256": "7bc099a48dcd91ec9b89af7236db75ab968ff585c7da857b017222c447907c5f",
+      "size": 23703,
+      "updated_sha256": "6c3f7d36feaf81e82307f91345b96d300993fc64397526e468395fa0504ab9c5",
+      "updated_size": 23705,
+      "original_label": "Sport",
+      "replacements": 1
+    },
+    "pages/traiter-demandes-services.html": {
+      "sha256": "cf2989a75ec5af7fb4488b2091cc342683401a3bfa5eafce4c4633b3b30cd5a8",
+      "size": 25424,
+      "updated_sha256": "7fd6a0178854e0ce24f5b86fe83a56753428b0a979ebb3ae430dd0b7dad317fd",
+      "updated_size": 25426,
+      "original_label": "Sport",
+      "replacements": 1
+    },
+    "pages/valoriser-image.html": {
+      "sha256": "c0f369d559894b56e286571618de7fc55863f8b9e8a0ade3068544941686ea94",
+      "size": 19111,
+      "updated_sha256": "1d3c79c2f5d77031b5353c2b225365d0bb5a3dbf8c7326642621ab6459c8f053",
+      "updated_size": 19113,
+      "original_label": "Sport",
+      "replacements": 1
+    },
+    "pages/verifier-continuite.html": {
+      "sha256": "2add84042f8e4bcb7f51ba392c0965aa414ac017e0d819ef1e9c145d8aa68086",
+      "size": 21110,
+      "updated_sha256": "a0d0c29c7246bd4a36a99f3db8a965c833f3a499d5a8664122031c29c0554c36",
+      "updated_size": 21112,
+      "original_label": "Sport",
+      "replacements": 1
+    },
+    "pages/verifier-utilisation.html": {
+      "sha256": "59bf2b178823d9f191ab95aa87109c57d65746716927612c3a11f731e756d329",
+      "size": 30416,
+      "updated_sha256": "7bfb230b8953073b6cf60151cc0daabe388179b0e4ddb0f124efaeea0ccf31c2",
+      "updated_size": 30418,
+      "original_label": "Sport",
+      "replacements": 1
+    },
+    "pages/vlan-routage.html": {
+      "sha256": "9b807cef128d766b37b7cece875cdc145089264a85c4e9cd635dfd059edbba9b",
+      "size": 20161,
+      "updated_sha256": "a4f67efe1f5d5897dc64eaaa388f82f234d3c158819f1065b29c57a454773910",
+      "updated_size": 20163,
+      "original_label": "Sport",
+      "replacements": 1
+    },
+    "pages/windows-server-ad.html": {
+      "sha256": "abd41542ed57d09f0e4bb6682cf4812bbd5b87287992345225a3f1fb01525824",
+      "size": 17298,
+      "updated_sha256": "c1a8bdf369fc6a5a5544ade56d24f69171059b3ac3dbc3b102b44068f881e9da",
+      "updated_size": 17300,
+      "original_label": "Sport",
+      "replacements": 1
+    },
+    "pages/zabbix.html": {
+      "sha256": "a64144ef4bf0e67bf617d85997ffa2f228604f07d84320e724b1e6274b03cadd",
+      "size": 24376,
+      "updated_sha256": "13f476a2036fd9446008eb2eeac581e3f924f8768a3558a0519147def47c4f22",
+      "updated_size": 24378,
+      "original_label": "Sport",
+      "replacements": 1
+    },
+    "presentation.html": {
+      "sha256": "933d33d8a6415ac5861af7f874bfe69ee2513203d1fcbe2c8098181dbb369d9c",
+      "size": 47902,
+      "updated_sha256": "1112a2ae2f0e2e63d7c60ed0f64ccd6b3fc40938e2fb3798e7305bc081ec8b82",
+      "updated_size": 47904,
+      "original_label": "Sport",
+      "replacements": 1
+    },
+    "profil.html": {
+      "sha256": "717b0a7b8e2bdbd281173ce4bedcdb92c1c83b9b401977f589e5b389eb6f2082",
+      "size": 22212,
+      "updated_sha256": "34c0963a47fd0f8b316d1938681b58af96d5fc2c13bb588a201b97ed65eae17d",
+      "updated_size": 22214,
+      "original_label": "Sport",
+      "replacements": 1
+    },
+    "projets.html": {
+      "sha256": "23b64593b5a600e8adeea73be0b9325beb9d84e5c5b6ab6a144fb07bccfead05",
+      "size": 21803,
+      "updated_sha256": "a0bf73e654b1c8ae90f667835739ba8b3cedb6a013f5cc1f56333557321b8388",
+      "updated_size": 21805,
+      "original_label": "Sport",
+      "replacements": 1
+    },
+    "securite-ad.html": {
+      "sha256": "7592ce4b9904eeb6367388a25262cb0906587ae5c953699d3543a2bef7663eb1",
+      "size": 22676,
+      "updated_sha256": "4173636a0de780cd8f66b918591d0c2b5c3ed94182d1822980aee6b424b3bcf8",
+      "updated_size": 22678,
+      "original_label": "Sport",
+      "replacements": 1
+    },
+    "veille-cloud.html": {
+      "sha256": "ce8b24a2ac27c6ddbb37d53ee94f739797331476b5b3b02344d1df5d297131ed",
+      "size": 25557,
+      "updated_sha256": "7aca72dd94b94573cf5478228d599c21a05f63f2aa0cbdc03eb280bf50e8dbb0",
+      "updated_size": 25559,
+      "original_label": "Sport",
+      "replacements": 1
+    },
+    "veille-cybersecurite.html": {
+      "sha256": "f22b4e8e74c16b7d5ddb167a9d32e6fa387229d1dcdf79fac9b26a2f1228a06e",
+      "size": 27613,
+      "updated_sha256": "1cb75385fafe979bea364991bc0e6be271a7b9bca5d6d7f38f3828e955f9884c",
+      "updated_size": 27615,
+      "original_label": "Sport",
+      "replacements": 1
+    },
+    "veille-ia.html": {
+      "sha256": "c792a0acb53c9d4c8832a5a0d423a70be895c1e79162c301aedd439a2ccbeebd",
+      "size": 29366,
+      "updated_sha256": "9f64345710ed7a65d2f6d5b597232d3067f8a181a1392eaa54834f1dfd3a3895",
+      "updated_size": 29368,
+      "original_label": "Sport",
+      "replacements": 1
+    },
+    "virtualisation.html": {
+      "sha256": "1935cbe10a28b20138717cf3ad656aad576c047cdddee35d493b34c6123fde81",
+      "size": 31943,
+      "updated_sha256": "ceae7a78feed2401232f22168cd738b0f625a7391740f85fb0b11d7ee0445368",
+      "updated_size": 31945,
+      "original_label": "Sport",
+      "replacements": 1
+    },
+    "zabbix.html": {
+      "sha256": "9e27b40cb813a95669a5193fb0108734c8eef6f11181ebb3fa48fe2b33ec03c0",
+      "size": 17820,
+      "updated_sha256": "a9ef14fdaf6dd183b8aaa4ac324dccf3af321811666cfc8a8e0caa83629d8e02",
+      "updated_size": 17822,
+      "original_label": "Sport",
+      "replacements": 1
+    }
+  }
+}

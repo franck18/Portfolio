@@ -5,6 +5,7 @@ import json
 import re
 from pathlib import Path
 from bs4 import BeautifulSoup
+from menu_labels import NEW_LABEL, TARGET_HREF, rename_menu
 
 root=Path(__file__).resolve().parents[1]
 manifest=json.loads((root/'deployment-manifest.json').read_text(encoding='utf-8'))
@@ -14,6 +15,13 @@ for name in manifest['files']:
     new=(root/'site'/name).read_text(encoding='utf-8')
     if not name.endswith('.html'):continue
     before=BeautifulSoup(old,'html.parser');after=BeautifulSoup(new,'html.parser')
+    old_menu=before.select(f'a.nav-link[href="{TARGET_HREF}"]')
+    new_menu=after.select(f'a.nav-link[href="{TARGET_HREF}"]')
+    assert len(old_menu)==len(new_menu),(name,'FrayFit menu count')
+    assert all(link.select_one('.nav-text') is not None and
+               link.select_one('.nav-text').get_text()==NEW_LABEL
+               for link in new_menu),(name,'FrayFit menu label')
+    checks+=2
     for tag,attribute in [('a','href'),('img','src'),('script','src'),('form','action')]:
         assert Counter(n.get(attribute) for n in before.select(tag))==Counter(n.get(attribute) for n in after.select(tag)),(name,tag,attribute)
         checks+=1
@@ -21,7 +29,8 @@ for name in manifest['files']:
     assert Counter(n.get('id') for n in before.select('[id]'))==Counter(n.get('id') for n in after.select('[id]')),(name,'IDs')
     checks+=2
     if name not in ['index.html','en/index.html']:
-        normalized=re.sub(r'(editorial(?:-tokens)?\.css)\?v=[^"\s>]+',r'\1?v=VERSION',old)
+        authorized=rename_menu(old.encode('utf-8')).decode('utf-8')
+        normalized=re.sub(r'(editorial(?:-tokens)?\.css)\?v=[^"\s>]+',r'\1?v=VERSION',authorized)
         changed=re.sub(r'(editorial(?:-tokens)?\.css)\?v=[^"\s>]+',r'\1?v=VERSION',new)
         assert normalized==changed,(name,'unexpected content modification')
         checks+=1

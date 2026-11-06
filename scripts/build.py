@@ -5,6 +5,7 @@ import re
 import shutil
 from pathlib import Path
 from bs4 import BeautifulSoup
+from menu_labels import rename_menu
 
 root=Path(__file__).resolve().parents[1]
 baseline=root/'baseline'; site=root/'site'
@@ -47,6 +48,7 @@ manifest=json.loads((baseline/'manifest.json').read_text(encoding='utf-8'))
 for path in site.rglob('*.html'):
     text=path.read_text(encoding='utf-8')
     text=re.sub(r'(editorial(?:-tokens)?\.css)\?v=[^"\s>]+',rf'\1?v={version}',text)
+    text=rename_menu(text.encode('utf-8')).decode('utf-8')
     path.write_text(text,encoding='utf-8')
 for name,record in manifest.items():
     path=site/name
