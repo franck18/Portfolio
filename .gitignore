@@ -4,3 +4,4 @@ backups/
 evidence/
 __pycache__/
 deployment-manifest.json
+github-entries.json
