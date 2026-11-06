@@ -1,0 +1,281 @@
+<!DOCTYPE html><html lang="fr" dir="ltr" data-theme="light"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Déploiement d&amp;#39;une plateforme de modèles de langage locale sur Rocky Linux 9 avec Ollama, Docker et Open WebUI.">
+  <meta name="author" content="Franck Raymond">
+  <meta name="robots" content="index,follow,max-image-preview:large">
+  <meta name="theme-color" content="#111214">
+  <title>IA locale avec Ollama &amp;amp; Open WebUI | Portfolio Franck Raymond</title>
+  <link rel="canonical" href="https://franckraymond.tech/pages/projet-ia-ollama.html">
+  <link rel="alternate" hreflang="fr" href="https://franckraymond.tech/pages/projet-ia-ollama.html">
+  <link rel="alternate" hreflang="en" href="https://franckraymond.tech/en/pages/projet-ia-ollama.html">
+  <link rel="alternate" hreflang="x-default" href="https://franckraymond.tech/pages/projet-ia-ollama.html">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Portfolio de Franck Raymond">
+  <meta property="og:title" content="IA locale avec Ollama &amp;amp; Open WebUI | Portfolio Franck Raymond">
+  <meta property="og:description" content="Déploiement d&amp;#39;une plateforme de modèles de langage locale sur Rocky Linux 9 avec Ollama, Docker et Open WebUI.">
+  <meta property="og:url" content="https://franckraymond.tech/pages/projet-ia-ollama.html">
+  <meta property="og:image" content="https://franckraymond.tech/franck.webp">
+  <meta property="og:image:alt" content="Portrait professionnel de Franck Raymond">
+  <meta property="og:image:width" content="1024">
+  <meta property="og:image:height" content="1024">
+  <meta property="og:locale" content="fr_FR">
+  <meta property="og:locale:alternate" content="en_GB">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="IA locale avec Ollama &amp;amp; Open WebUI | Portfolio Franck Raymond">
+  <meta name="twitter:description" content="Déploiement d&amp;#39;une plateforme de modèles de langage locale sur Rocky Linux 9 avec Ollama, Docker et Open WebUI.">
+  <meta name="twitter:image" content="https://franckraymond.tech/franck.webp">
+  <meta name="twitter:image:alt" content="Portrait professionnel de Franck Raymond">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Person",
+        "@id": "https://franckraymond.tech/#person",
+        "name": "Franck Raymond",
+        "url": "https://franckraymond.tech/",
+        "image": "https://franckraymond.tech/franck.webp",
+        "jobTitle": "Administrateur systèmes et réseaux",
+        "description": "Administrateur systèmes et réseaux chez Delannoy Dewailly, en alternance d’un an dans le cadre du Bachelor ASRBD à l’EPSI Lille.",
+        "email": "mailto:franckrmnd@gmail.com",
+        "sameAs": ["https://www.linkedin.com/in/franck-r-21a8a4184", "https://github.com/franckraymond"],
+        "knowsAbout": ["Administration systèmes", "Réseaux informatiques", "Cybersécurité", "Supervision", "Linux", "Windows Server"]
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://franckraymond.tech/#website",
+        "url": "https://franckraymond.tech/",
+        "name": "Portfolio de Franck Raymond",
+        "inLanguage": ["fr-FR", "en-GB"],
+        "publisher": { "@id": "https://franckraymond.tech/#person" }
+      },
+      {
+        "@type": "WebPage",
+        "@id": "https://franckraymond.tech/pages/projet-ia-ollama.html#webpage",
+        "url": "https://franckraymond.tech/pages/projet-ia-ollama.html",
+        "name": "IA locale avec Ollama &amp; Open WebUI | Portfolio Franck Raymond",
+        "description": "Déploiement d&#39;une plateforme de modèles de langage locale sur Rocky Linux 9 avec Ollama, Docker et Open WebUI.",
+        "isPartOf": { "@id": "https://franckraymond.tech/#website" },
+        "about": { "@id": "https://franckraymond.tech/#person" }
+      }
+    ]
+  }
+  </script>
+  <link rel="stylesheet" href="../tailwind-output.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&amp;family=Outfit:wght@400;500;600;700;800&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../style.css">
+  <link rel="stylesheet" href="../assets/portfolio-v2.css?v=20260831-2">
+  
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,400&amp;family=Geist:wght@400;500;600&amp;display=swap">
+<link rel="stylesheet" href="/assets/editorial-tokens.css?v=20261106-modern">
+<link rel="stylesheet" href="/assets/editorial.css?v=20261106-modern">
+<script src="/assets/editorial-theme.js?v=20261028-1fe0ee8c9d"></script>
+</head>
+<body data-theme="light" class="portfolio-v2 editorial-site">
+  
+  <a class="skip-link" href="#main-content">Aller au contenu principal</a>
+  <div class="bg-mesh" aria-hidden="true"></div>
+  <div class="noise-overlay" aria-hidden="true"></div>
+  <div class="grid-lines" aria-hidden="true"></div>
+
+  <header class="main-header" id="header">
+    <nav class="nav-container" aria-label="Navigation principale">
+      <a href="/index.html" class="brand-logo" aria-label="Accueil — Franck Raymond">
+        <span class="logo-bracket" aria-hidden="true">&lt;</span>
+        <span class="logo-text">FR</span>
+        <span class="logo-bracket" aria-hidden="true">/&gt;</span>
+      </a>
+      <div class="nav-menu" id="navMenu">
+        <a href="/index.html" class="nav-link"><i class="fas fa-home" aria-hidden="true"></i><span class="nav-text">Accueil</span></a>
+        <a href="/projets.html" class="nav-link"><i class="fas fa-diagram-project" aria-hidden="true"></i><span class="nav-text">Projets</span></a>
+        <a href="/index.html#skills" class="nav-link"><i class="fas fa-code" aria-hidden="true"></i><span class="nav-text">Compétences</span></a>
+        <a href="/index.html#experience" class="nav-link"><i class="fas fa-briefcase" aria-hidden="true"></i><span class="nav-text">Expériences</span></a>
+        <a href="/index.html#contact" class="nav-link"><i class="fas fa-envelope" aria-hidden="true"></i><span class="nav-text">Contact</span></a>
+      
+<a class="nav-link" href="https://opengym.jsuisfray.blitz.cloud/"><span class="nav-text">Sport</span></a></div>
+      <div class="nav-controls">
+        <div class="language-switcher">
+          <button class="language-toggle" id="languageToggle" type="button" aria-label="Choisir la langue" aria-controls="languageMenu" aria-expanded="false" data-open-label="Choisir la langue" data-close-label="Fermer le choix de langue">
+            <i class="fas fa-globe" aria-hidden="true"></i><span>FR</span>
+          </button>
+          <div class="language-menu" id="languageMenu" aria-label="Choix de la langue" hidden="">
+            <a href="/pages/projet-ia-ollama.html" lang="fr" hreflang="fr" data-language="fr" aria-current="page">FR <span>Français</span></a>
+            <a href="/en/pages/projet-ia-ollama.html" lang="en" hreflang="en" data-language="en">EN <span>English</span></a>
+          </div>
+        </div>
+        <button class="theme-toggle" id="themeToggle" type="button" aria-label="Activer le thème clair" data-light-label="Activer le thème clair" data-dark-label="Activer le thème sombre">
+          <i class="fas fa-sun" aria-hidden="true"></i>
+        </button>
+        <button class="menu-toggle" id="menuToggle" type="button" aria-label="Ouvrir le menu" aria-controls="navMenu" aria-expanded="false" data-open-label="Ouvrir le menu" data-close-label="Fermer le menu">
+          <span aria-hidden="true"></span><span aria-hidden="true"></span><span aria-hidden="true"></span>
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <main id="main-content">
+    
+<article class="case-study">
+  <header class="case-hero">
+    <div class="case-container case-hero-grid">
+      <div>
+        <p class="case-kicker"><i class="fas fa-brain" aria-hidden="true"></i>Systèmes &amp; intelligence artificielle</p>
+        <h1>IA locale avec Ollama &amp; Open WebUI</h1>
+        <p class="case-lead">Déploiement sur VMware ESXi d'une VM Rocky Linux capable d'exécuter Phi-3 et Llama 3.2 3B localement, depuis le terminal comme depuis Open WebUI.</p>
+        <div class="case-tags" aria-label="Outils et technologies utilisés">
+          <span>Rocky Linux 9</span><span>VMware ESXi</span><span>Ollama</span><span>Open WebUI</span><span>Docker</span><span>Phi-3</span><span>Llama 3.2 3B</span>
+        </div>
+      </div>
+      <dl class="case-facts" aria-label="Informations principales">
+        
+        <div><dt>Ressources VM</dt><dd>2 vCPU — 8 Go RAM — 60 Go</dd></div>
+        
+        <div><dt>API Ollama</dt><dd>Port 11434</dd></div>
+        
+        <div><dt>Interface web</dt><dd>Open WebUI sur le port 8080</dd></div>
+        
+        <div><dt>Modèles testés</dt><dd>Phi-3 et Llama 3.2 3B</dd></div>
+        
+      </dl>
+    </div>
+  </header>
+
+  <nav class="case-nav" aria-label="Sommaire du projet">
+    <div class="case-container">
+      <a href="#analyse">Besoin</a>
+      <a href="#architecture">Solution</a>
+      <a href="#realisation">Réalisation</a>
+      <a href="#validation">Vérification</a>
+      <a href="#recul">Améliorations</a>
+      <a href="#preuves">Preuves</a>
+    </div>
+  </nav>
+
+  <section class="case-band" id="analyse">
+    <div class="case-container">
+      <div class="case-section-heading"><span>01</span><div><p>Avant de commencer</p><h2>Le besoin et mon rôle</h2></div></div>
+      <div class="case-two-columns">
+        <div class="case-copy"><h3>Le besoin</h3><p>Rendre des modèles de langage utilisables sans service cloud, avec des ressources matérielles limitées, tout en comprenant les interactions entre virtualisation, service Linux, conteneur, réseau et API.</p></div>
+        <div class="case-copy"><h3>Mon rôle</h3><p>Dimensionnement et installation de la VM Rocky Linux, déploiement d'Ollama et des modèles, installation de Docker, raccordement d'Open WebUI, configuration des flux réseau puis validation en ligne de commande et dans le navigateur.</p></div>
+      </div>
+      <div class="case-list-grid">
+        <div class="case-list-item"><i class="fas fa-diamond" aria-hidden="true"></i><span>Faire fonctionner l'ensemble avec 2 vCPU et 8 Go de mémoire vive.</span></div><div class="case-list-item"><i class="fas fa-diamond" aria-hidden="true"></i><span>Choisir des modèles compatibles avec les ressources disponibles.</span></div><div class="case-list-item"><i class="fas fa-diamond" aria-hidden="true"></i><span>Rendre l'API Ollama accessible au conteneur Open WebUI.</span></div><div class="case-list-item"><i class="fas fa-diamond" aria-hidden="true"></i><span>Éviter de présenter une exposition réseau de laboratoire comme une architecture de production.</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="case-band case-band-alt" id="architecture">
+    <div class="case-container">
+      <div class="case-section-heading"><span>02</span><div><p>Pourquoi cette méthode</p><h2>La solution choisie</h2></div></div>
+      <div class="case-decision">
+        <h3>Ollama comme moteur local, Open WebUI comme client conteneurisé</h3>
+        <p>Ollama fournit un service simple pour télécharger et exécuter localement des modèles, tandis qu'Open WebUI apporte une interface navigateur séparée du moteur. Des modèles compacts ont été retenus pour rester cohérents avec les 8 Go de RAM disponibles.</p>
+      </div>
+      <div class="case-list-grid case-list-grid-wide">
+        <div class="case-list-item"><i class="fas fa-arrow-right" aria-hidden="true"></i><span>Une machine virtuelle Rocky Linux 9 est hébergée par VMware ESXi.</span></div><div class="case-list-item"><i class="fas fa-arrow-right" aria-hidden="true"></i><span>Ollama s'exécute comme service Linux et expose son API sur le port 11434.</span></div><div class="case-list-item"><i class="fas fa-arrow-right" aria-hidden="true"></i><span>Phi-3 et Llama 3.2 3B sont stockés et exécutés localement.</span></div><div class="case-list-item"><i class="fas fa-arrow-right" aria-hidden="true"></i><span>Open WebUI s'exécute dans un conteneur Docker et écoute sur le port 8080.</span></div><div class="case-list-item"><i class="fas fa-arrow-right" aria-hidden="true"></i><span>Le conteneur appelle l'API Ollama pour lister et interroger les modèles.</span></div><div class="case-list-item"><i class="fas fa-arrow-right" aria-hidden="true"></i><span>FirewallD limite l'ouverture aux flux nécessaires au laboratoire.</span></div>
+      </div>
+      
+      <figure class="case-architecture">
+        <img src="projet-ia-ollama_assets/architecture-ia.svg" alt="Architecture de la plateforme IA locale Ollama et Open WebUI" loading="lazy">
+        <figcaption>Chaîne locale entre l'utilisateur, Open WebUI, l'API Ollama et les modèles.</figcaption>
+      </figure>
+      
+    </div>
+  </section>
+
+  <section class="case-band" id="realisation">
+    <div class="case-container">
+      <div class="case-section-heading"><span>03</span><div><p>Passer du plan à la pratique</p><h2>Ce que j’ai réalisé</h2></div></div>
+      <ol class="case-steps">
+        <li><span>01</span><p>Création puis mise à jour de la VM Rocky Linux 9 sur VMware ESXi.</p></li><li><span>02</span><p>Installation d'Ollama et vérification de son service système.</p></li><li><span>03</span><p>Téléchargement de Phi-3 et Llama 3.2 3B, puis tests depuis le client en ligne de commande.</p></li><li><span>04</span><p>Configuration de `OLLAMA_HOST=0.0.0.0:11434` pour le raccordement du conteneur dans le laboratoire.</p></li><li><span>05</span><p>Installation de Docker et déploiement d'Open WebUI sur le port 8080.</p></li><li><span>06</span><p>Ouverture ciblée des ports avec FirewallD et tests de conversation depuis l'interface web.</p></li>
+      </ol>
+      <p class="case-technical-link"><a href="dossier-technique-projet-ia-ollama.html"><i class="fas fa-terminal" aria-hidden="true"></i>Consulter le dossier technique complet</a></p>
+    </div>
+  </section>
+
+  <section class="case-band case-band-alt" id="validation">
+    <div class="case-container">
+      <div class="case-section-heading"><span>04</span><div><p>Contrôler le fonctionnement</p><h2>Comment j’ai vérifié</h2></div></div>
+      <div class="case-two-columns">
+        <div><h3>Tests réalisés</h3><ul class="case-check-list"><li><i class="fas fa-check" aria-hidden="true"></i>Contrôle du service Ollama et de l'écoute sur le port attendu.</li><li><i class="fas fa-check" aria-hidden="true"></i>Téléchargement puis chargement de chaque modèle depuis le terminal.</li><li><i class="fas fa-check" aria-hidden="true"></i>Génération d'une réponse avec Phi-3 en ligne de commande.</li><li><i class="fas fa-check" aria-hidden="true"></i>Contrôle de l'état du conteneur Open WebUI et de l'accès HTTP sur le port 8080.</li><li><i class="fas fa-check" aria-hidden="true"></i>Sélection d'un modèle et génération d'une réponse depuis l'interface web.</li></ul></div>
+        <div><h3>Résultats observés</h3><ul class="case-check-list case-results"><li><i class="fas fa-circle-check" aria-hidden="true"></i>Ollama fonctionne comme service sur la VM Rocky Linux.</li><li><i class="fas fa-circle-check" aria-hidden="true"></i>Phi-3 et Llama 3.2 3B sont installés et peuvent être interrogés localement.</li><li><i class="fas fa-circle-check" aria-hidden="true"></i>Open WebUI est accessible dans le navigateur sur le port 8080.</li><li><i class="fas fa-circle-check" aria-hidden="true"></i>Les conversations fonctionnent depuis le terminal et depuis l'interface web.</li></ul></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="case-band" id="recul">
+    <div class="case-container">
+      <div class="case-section-heading"><span>05</span><div><p>Prendre du recul</p><h2>Limites et améliorations</h2></div></div>
+      <div class="case-two-columns">
+        <div><h3>Sécurité et utilisation</h3><ul class="case-check-list"><li><i class="fas fa-shield-halved" aria-hidden="true"></i>L'ouverture de l'API sur `0.0.0.0` facilite le laboratoire mais augmente la surface exposée.</li><li><i class="fas fa-shield-halved" aria-hidden="true"></i>En production, l'API devrait rester privée ou passer derrière un proxy authentifié avec TLS et filtrage réseau strict.</li><li><i class="fas fa-shield-halved" aria-hidden="true"></i>SELinux doit rester en mode Enforcing ; un passage en permissif ne peut être qu'un diagnostic temporaire documenté.</li><li><i class="fas fa-shield-halved" aria-hidden="true"></i>L'interface web et les modèles doivent être mis à jour et sauvegardés selon une politique d'exploitation.</li></ul></div>
+        <div><h3>Ce que j’améliorerais</h3><ul class="case-check-list case-limitations"><li><i class="fas fa-triangle-exclamation" aria-hidden="true"></i>La latence, le débit en tokens par seconde et le pic de mémoire n'ont pas encore été mesurés.</li><li><i class="fas fa-triangle-exclamation" aria-hidden="true"></i>Les ressources choisies limitent la taille et le nombre de modèles utilisables simultanément.</li><li><i class="fas fa-triangle-exclamation" aria-hidden="true"></i>Le laboratoire ne couvre ni accélération GPU, ni haute disponibilité, ni authentification fédérée.</li><li><i class="fas fa-triangle-exclamation" aria-hidden="true"></i>La qualité des réponses n'a pas fait l'objet d'un jeu d'évaluation reproductible.</li></ul></div>
+      </div>
+    </div>
+  </section>
+
+  
+  <section class="case-band case-band-alt" id="preuves">
+    <div class="case-container">
+      <div class="case-section-heading"><span>06</span><div><p>Éléments visibles</p><h2>Preuves du fonctionnement</h2></div></div>
+      <div class="case-gallery">
+        
+        <figure><button type="button" data-lightbox-src="projet-ia-ollama_assets/architecture-ia.svg" data-lightbox-alt="Schéma de l'architecture IA locale"><img src="projet-ia-ollama_assets/architecture-ia.svg" alt="Schéma de l'architecture IA locale" loading="lazy"></button><figcaption>Architecture fonctionnelle de la plateforme.</figcaption></figure>
+        
+        <figure><button type="button" data-lightbox-src="projet-ia-ollama_assets/04-install-ollama.png" data-lightbox-alt="Installation du service Ollama sur Rocky Linux"><img src="projet-ia-ollama_assets/04-install-ollama.png" alt="Installation du service Ollama sur Rocky Linux" loading="lazy"></button><figcaption>Installation du moteur local.</figcaption></figure>
+        
+        <figure><button type="button" data-lightbox-src="projet-ia-ollama_assets/06-pull-phi3.png" data-lightbox-alt="Téléchargement du modèle Phi-3 avec Ollama"><img src="projet-ia-ollama_assets/06-pull-phi3.png" alt="Téléchargement du modèle Phi-3 avec Ollama" loading="lazy"></button><figcaption>Mise à disposition d'un modèle adapté aux ressources.</figcaption></figure>
+        
+        <figure><button type="button" data-lightbox-src="projet-ia-ollama_assets/07-chat-exemple.png" data-lightbox-alt="Conversation de test dans le terminal avec Ollama"><img src="projet-ia-ollama_assets/07-chat-exemple.png" alt="Conversation de test dans le terminal avec Ollama" loading="lazy"></button><figcaption>Validation du modèle en ligne de commande.</figcaption></figure>
+        
+        <figure><button type="button" data-lightbox-src="projet-ia-ollama_assets/09-deploiement-openwebui.png" data-lightbox-alt="Déploiement du conteneur Open WebUI"><img src="projet-ia-ollama_assets/09-deploiement-openwebui.png" alt="Déploiement du conteneur Open WebUI" loading="lazy"></button><figcaption>Déploiement de l'interface avec Docker.</figcaption></figure>
+        
+        <figure><button type="button" data-lightbox-src="projet-ia-ollama_assets/10-openwebui-interface.png" data-lightbox-alt="Interface d'Open WebUI accessible dans le navigateur"><img src="projet-ia-ollama_assets/10-openwebui-interface.png" alt="Interface d'Open WebUI accessible dans le navigateur" loading="lazy"></button><figcaption>Accès à l'interface locale.</figcaption></figure>
+        
+        <figure><button type="button" data-lightbox-src="projet-ia-ollama_assets/11-chat-openwebui.png" data-lightbox-alt="Conversation de test dans Open WebUI"><img src="projet-ia-ollama_assets/11-chat-openwebui.png" alt="Conversation de test dans Open WebUI" loading="lazy"></button><figcaption>Validation d'une réponse depuis l'interface web.</figcaption></figure>
+        
+      </div>
+    </div>
+  </section>
+  
+
+  <section class="case-band case-sources">
+    <div class="case-container case-two-columns">
+      <div><h2>Compétences démontrées</h2><ul class="case-compact-list"><li>Dimensionner une VM pour une charge IA locale limitée.</li><li>Administrer des services Linux et des conteneurs Docker.</li><li>Raccorder une interface web à une API locale.</li><li>Analyser les compromis entre accessibilité réseau, ressources et sécurité.</li></ul></div>
+      <div><h2>Sources utilisées</h2><ul class="case-compact-list"><li><a href="https://docs.ollama.com/faq" target="_blank" rel="noopener noreferrer">Ollama — FAQ et configuration réseau</a></li><li><a href="https://docs.openwebui.com/" target="_blank" rel="noopener noreferrer">Open WebUI — Documentation</a></li><li><a href="https://docs.docker.com/compose/" target="_blank" rel="noopener noreferrer">Docker — Documentation Compose</a></li></ul></div>
+    </div>
+  </section>
+</article>
+
+<dialog class="case-lightbox" id="caseLightbox" aria-label="Agrandissement de la preuve">
+  <button type="button" data-lightbox-close="" aria-label="Fermer l’image"><i class="fas fa-xmark" aria-hidden="true"></i></button>
+  <img src="" alt="">
+</dialog>
+
+  </main>
+
+  <footer class="main-footer">
+    <div class="footer-container">
+      <div class="footer-content">
+        <p class="footer-text">© 2026 <span class="footer-copyright">Franck Raymond</span>. Tous droits réservés.</p>
+        <div class="footer-socials" aria-label="Réseaux professionnels">
+          <a href="https://github.com/franckraymond" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><i class="fab fa-github" aria-hidden="true"></i></a>
+          <a href="https://www.linkedin.com/in/franck-r-21a8a4184" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fab fa-linkedin" aria-hidden="true"></i></a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../assets/portfolio-glossary.js?v=20260831-2" defer=""></script>
+  <script src="../assets/portfolio-v2.js?v=20261028-493b8041ab" defer=""></script>
+  
+
+
+</body></html>

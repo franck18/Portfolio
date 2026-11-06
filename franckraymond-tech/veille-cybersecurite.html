@@ -1,0 +1,491 @@
+<!DOCTYPE html><html lang="fr"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cybersécurité &amp; Menaces | Portfolio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&amp;family=Outfit:wght@300;400;500;600;700;800;900&amp;family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .veille-hero { padding: 8rem 0 4rem; position: relative; }
+        .veille-icon-frame {
+            width: 200px; height: 200px;
+            background: linear-gradient(135deg, rgba(239, 68, 68, 0.2), rgba(249, 115, 22, 0.2));
+            border: 2px solid rgba(239, 68, 68, 0.3);
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 5rem; color: #ef4444;
+        }
+        .threat-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 1.5rem;
+            transition: all 0.3s;
+        }
+        .threat-card:hover {
+            border-color: #ef4444;
+            transform: translateY(-5px);
+        }
+        .threat-card h4 {
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+            display: flex; align-items: center; gap: 0.5rem;
+        }
+        .threat-badge {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: 50px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+        }
+        .threat-badge.critical { background: rgba(239, 68, 68, 0.2); color: #ef4444; }
+        .threat-badge.high { background: rgba(249, 115, 22, 0.2); color: #f97316; }
+        .threat-badge.medium { background: rgba(245, 158, 11, 0.2); color: #f59e0b; }
+        .stat-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+        .stat-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1.5rem;
+            text-align: center;
+        }
+        .stat-number {
+            font-family: var(--font-code);
+            font-size: 2.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #ef4444, #f97316);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .stat-label {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+        }
+        .source-card {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem 1.5rem;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+        .source-card:hover {
+            border-color: var(--primary);
+            background: var(--bg-hover);
+        }
+        .source-icon {
+            width: 48px; height: 48px;
+            background: linear-gradient(135deg, #ef4444, #f97316);
+            border-radius: 12px;
+            display: flex; align-items: center; justify-content: center;
+            color: white; font-size: 1.25rem;
+        }
+        .defense-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            padding: 1rem;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            margin-bottom: 1rem;
+        }
+        .defense-icon {
+            width: 48px; height: 48px;
+            background: rgba(16, 185, 129, 0.2);
+            border-radius: 12px;
+            display: flex; align-items: center; justify-content: center;
+            color: #10b981; font-size: 1.25rem;
+            flex-shrink: 0;
+        }
+    
+        /* Tooltips termes techniques */
+        .term {
+            border-bottom: 1px dashed var(--primary);
+            cursor: help;
+            position: relative;
+            display: inline;
+        }
+        .term::after {
+            content: attr(data-def);
+            position: absolute;
+            bottom: calc(100% + 8px);
+            left: 50%;
+            transform: translateX(-50%);
+            background: #1e293b;
+            color: #f8fafc;
+            font-size: 0.78rem;
+            line-height: 1.5;
+            padding: 0.6rem 0.9rem;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            white-space: normal;
+            width: 220px;
+            text-align: left;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.2s;
+            z-index: 100;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+        }
+        .term:hover::after { opacity: 1; }
+</style>
+<meta name="theme-color" content="#111214"><link rel="stylesheet" href="/assets/legacy-unified.css?v=20260831-2"><meta name="description" content="Portfolio de Franck Raymond : projets en administration systèmes, réseaux, supervision et cybersécurité."><meta name="author" content="Franck Raymond"><meta name="robots" content="index,follow,max-image-preview:large"><meta property="og:type" content="website"><meta property="og:site_name" content="Portfolio de Franck Raymond"><meta property="og:title" content="Cybersécurité &amp; Menaces | Portfolio"><meta property="og:description" content="Portfolio de Franck Raymond : projets en administration systèmes, réseaux, supervision et cybersécurité."><meta property="og:url" content="https://franckraymond.tech/veille-cybersecurite.html"><meta property="og:image" content="https://franckraymond.tech/franck.webp"><meta property="og:image:alt" content="Portrait professionnel de Franck Raymond"><meta property="og:locale" content="fr_FR"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Cybersécurité &amp; Menaces | Portfolio"><meta name="twitter:description" content="Portfolio de Franck Raymond : projets en administration systèmes, réseaux, supervision et cybersécurité."><meta name="twitter:image" content="https://franckraymond.tech/franck.webp"><link rel="canonical" href="https://franckraymond.tech/veille-cybersecurite.html"><link rel="icon" href="/favicon-32x32.png" sizes="32x32" type="image/png"><link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180"><link rel="manifest" href="/site.webmanifest"><script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"Cybersécurité & Menaces | Portfolio","url":"https://franckraymond.tech/veille-cybersecurite.html","description":"Portfolio de Franck Raymond : projets en administration systèmes, réseaux, supervision et cybersécurité.","isPartOf":{"@type":"WebSite","name":"Portfolio de Franck Raymond","url":"https://franckraymond.tech/"},"about":{"@type":"Person","name":"Franck Raymond","url":"https://franckraymond.tech/"}}</script>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,400&amp;family=Geist:wght@400;500;600&amp;display=swap">
+<link rel="stylesheet" href="/assets/editorial-tokens.css?v=20261106-modern">
+<link rel="stylesheet" href="/assets/editorial.css?v=20261106-modern">
+<script src="/assets/editorial-theme.js?v=20261028-1fe0ee8c9d"></script>
+</head>
+<body data-theme="light" class="portfolio-legacy editorial-site">
+    <div class="bg-mesh"></div>
+    <div class="noise-overlay"></div>
+    <div class="grid-lines"></div>
+
+    <header class="main-header" id="header">
+        <nav class="nav-container" aria-label="Navigation principale">
+            <div class="nav-brand">
+                <a href="index.html" class="brand-logo">
+                    <span class="logo-bracket">&lt;</span>
+                    <span class="logo-text">FR</span>
+                    <span class="logo-bracket">/&gt;</span>
+                </a>
+            </div>
+            <div class="nav-menu" id="navMenu">
+                <a href="index.html" class="nav-link">
+                    <i class="fas fa-home"></i>
+                    <span class="nav-text">Accueil</span>
+                </a>
+                <a href="index.html#skills" class="nav-link">
+                    <i class="fas fa-code"></i>
+                    <span class="nav-text">Compétences</span>
+                </a>
+                <a href="/projets.html#veille" class="nav-link active">
+                    <i class="fas fa-rss"></i>
+                    <span class="nav-text">Veille</span>
+                </a>
+                <a href="index.html#contact" class="nav-link">
+                    <i class="fas fa-envelope"></i>
+                    <span class="nav-text">Contact</span>
+                </a>
+            
+<a class="nav-link" href="https://opengym.jsuisfray.blitz.cloud/"><span class="nav-text">Sport</span></a></div>
+            <div class="nav-controls">
+                <button class="theme-toggle" id="themeToggle" aria-label="Changer le thème">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <button class="menu-toggle" id="menuToggle" aria-label="Menu">
+                    <span></span><span></span><span></span>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="veille-hero">
+            <div class="section-container">
+                <div class="hero-container">
+                    <div class="hero-content">
+                        <div class="hero-greeting" style="color: #ef4444;">VEILLE TECHNOLOGIQUE BTS SIO</div>
+                        <h1 class="hero-name">
+                            Cybersécurité <span class="name-value" style="background: linear-gradient(135deg, #ef4444, #f97316); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">&amp; Menaces</span>
+                        </h1>
+                        <p class="hero-description">
+                            Ransomwares, phishing, Zero Trust Architecture et stratégies de réponse aux incidents de sécurité.
+                        </p>
+                        <div class="hero-buttons">
+                            <a href="#menaces" class="btn btn-primary" style="background: linear-gradient(135deg, #ef4444, #f97316);">
+                                <i class="fas fa-skull-crossbones"></i> Menaces
+                            </a>
+                            <a href="#defense" class="btn btn-secondary">
+                                <i class="fas fa-shield-alt"></i> Défenses
+                            </a>
+                        </div>
+                    </div>
+                    <div class="hero-image-wrapper">
+                        <div class="veille-icon-frame">
+                            <i class="fas fa-user-secret"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contexte" class="section">
+            <div class="section-container">
+                <div class="section-header">
+                    <span class="section-number">01</span>
+                    <h2 class="section-title">Pourquoi <span class="title-gradient">cette Veille ?</span></h2>
+                    <div class="section-line"></div>
+                </div>
+
+                <div class="about-content">
+                    <div>
+                        <p class="about-text">
+                            Les cyberattaques sont en constante augmentation. En France, l'ANSSI a traité 330 incidents majeurs en 2023, soit une hausse de 30% par rapport à 2022. Les ransomwares restent la menace n°1 pour les entreprises et collectivités.
+                        </p>
+                        <p class="about-text">
+                            En tant que futur administrateur systèmes, comprendre les menaces actuelles et les bonnes pratiques de défense est indispensable pour protéger les infrastructures dont j'aurai la charge.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="stat-grid">
+                    <div class="stat-card">
+                        <div class="stat-number">330</div>
+                        <div class="stat-label">Incidents majeurs ANSSI (2023)</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">1.8M€</div>
+                        <div class="stat-label">Coût moyen ransomware</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">91%</div>
+                        <div class="stat-label">Attaques via phishing</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">23j</div>
+                        <div class="stat-label">Temps moyen de détection</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="menaces" class="section" style="background: var(--bg-card-solid);">
+            <div class="section-container">
+                <div class="section-header">
+                    <span class="section-number">02</span>
+                    <h2 class="section-title">Menaces <span class="title-gradient">Actuelles</span></h2>
+                    <div class="section-line"></div>
+                </div>
+
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem;">
+                    <div class="threat-card">
+                        <span class="threat-badge critical">Critique</span>
+                        <h4><i class="fas fa-lock"></i> Ransomware</h4>
+                        <p style="color: var(--text-secondary); font-size: 0.9rem;">
+                            Chiffrement des données avec demande de rançon. Groupes actifs : LockBit 3.0, BlackCat/ALPHV, Cl0p. Double extorsion : chiffrement + vol de données.
+                        </p>
+                        <div style="margin-top: 1rem;">
+                            <span class="tag">Chiffrement</span>
+                            <span class="tag">Extorsion</span>
+                        </div>
+                    </div>
+                    <div class="threat-card">
+                        <span class="threat-badge critical">Critique</span>
+                        <h4><i class="fas fa-envelope"></i> Phishing / Spear Phishing</h4>
+                        <p style="color: var(--text-secondary); font-size: 0.9rem;">
+                            Emails frauduleux ciblés. 91% des cyberattaques commencent par un phishing. Usurpation d'identité, pièces jointes malveillantes, liens vers faux sites.
+                        </p>
+                        <div style="margin-top: 1rem;">
+                            <span class="tag">Social Engineering</span>
+                            <span class="tag">BEC</span>
+                        </div>
+                    </div>
+                    <div class="threat-card">
+                        <span class="threat-badge high">Élevée</span>
+                        <h4><i class="fas fa-link"></i> Supply Chain Attack</h4>
+                        <p style="color: var(--text-secondary); font-size: 0.9rem;">
+                            Compromission vià un fournisseur ou éditeur. Exemples : SolarWinds (2020), Kaseya (2021), MOVEit (2023). Difficile à détecter.
+                        </p>
+                        <div style="margin-top: 1rem;">
+                            <span class="tag">Tiers de confiance</span>
+                        </div>
+                    </div>
+                    <div class="threat-card">
+                        <span class="threat-badge high">Élevée</span>
+                        <h4><i class="fas fa-key"></i> Credential Stuffing</h4>
+                        <p style="color: var(--text-secondary); font-size: 0.9rem;">
+                            Réutilisation de credentials volés (fuites de données) pour accéder à d'autres services. Automatisé avec des bots.
+                        </p>
+                        <div style="margin-top: 1rem;">
+                            <span class="tag">Mots de passe</span>
+                            <span class="tag">Fuites</span>
+                        </div>
+                    </div>
+                    <div class="threat-card">
+                        <span class="threat-badge medium">Moyenne</span>
+                        <h4><i class="fas fa-bug"></i> Zero-Day</h4>
+                        <p style="color: var(--text-secondary); font-size: 0.9rem;">
+                            Exploitation de vulnérabilités non connues de l'éditeur. Utilisées par des groupes avancés (APT). Patching impossible avant découverte.
+                        </p>
+                        <div style="margin-top: 1rem;">
+                            <span class="tag">APT</span>
+                            <span class="tag">CVE</span>
+                        </div>
+                    </div>
+                    <div class="threat-card">
+                        <span class="threat-badge medium">Moyenne</span>
+                        <h4><i class="fas fa-user-ninja"></i> Insider Threat</h4>
+                        <p style="color: var(--text-secondary); font-size: 0.9rem;">
+                            Menace interne : employé malveillant, négligent ou compromis. Accès légitime aux ressources. Difficile à prévenir sans surveillance.
+                        </p>
+                        <div style="margin-top: 1rem;">
+                            <span class="tag">DLP</span>
+                            <span class="tag">UEBA</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="defense" class="section">
+            <div class="section-container">
+                <div class="section-header">
+                    <span class="section-number">03</span>
+                    <h2 class="section-title">Stratégies de <span class="title-gradient">Défense</span></h2>
+                    <div class="section-line"></div>
+                </div>
+
+                <div class="defense-item">
+                    <div class="defense-icon"><i class="fas fa-ban"></i></div>
+                    <div>
+                        <h4 style="color: var(--text-primary); margin-bottom: 0.5rem;">Zero Trust Architecture</h4>
+                        <p style="color: var(--text-secondary); font-size: 0.9rem;">
+                            Principe "Ne jamais faire confiance, toujours vérifier". Authentification continue, micro-segmentation réseau, accès basé sur le contexte (identité + device + localisation).
+                        </p>
+                        <div style="margin-top: 0.75rem;">
+                            <span class="tag">MFA obligatoire</span>
+                            <span class="tag">Least Privilège</span>
+                            <span class="tag">Segmentation</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="defense-item">
+                    <div class="defense-icon"><i class="fas fa-shield-alt"></i></div>
+                    <div>
+                        <h4 style="color: var(--text-primary); margin-bottom: 0.5rem;">EDR / XDR</h4>
+                        <p style="color: var(--text-secondary); font-size: 0.9rem;">
+                            Endpoint Détection and Response : surveillance et réponse sur les postes. Extended Détection and Response (XDR) : corrélation multi-sources (endpoints, réseau, <span class="term" data-def="Serveurs distants accessibles par internet, gérés par des entreprises comme Microsoft (Azure) ou Amazon (AWS).">cloud</span>, email).
+                        </p>
+                        <div style="margin-top: 0.75rem;">
+                            <span class="tag">CrowdStrike</span>
+                            <span class="tag">Microsoft Defender</span>
+                            <span class="tag">SentinelOne</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="defense-item">
+                    <div class="defense-icon"><i class="fas fa-database"></i></div>
+                    <div>
+                        <h4 style="color: var(--text-primary); margin-bottom: 0.5rem;">Sauvegardes 3-2-1</h4>
+                        <p style="color: var(--text-secondary); font-size: 0.9rem;">
+                            3 copies des données, sur 2 supports différents, dont 1 hors site (offline ou <span class="term" data-def="Serveurs distants accessibles par internet, gérés par des entreprises comme Microsoft (Azure) ou Amazon (AWS).">cloud</span>). Sauvegardes immutables pour se protéger des ransomwares qui ciblent les backups.
+                        </p>
+                        <div style="margin-top: 0.75rem;">
+                            <span class="tag">Veeam</span>
+                            <span class="tag">Air-gapped</span>
+                            <span class="tag">Immutable</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="defense-item">
+                    <div class="defense-icon"><i class="fas fa-graduation-cap"></i></div>
+                    <div>
+                        <h4 style="color: var(--text-primary); margin-bottom: 0.5rem;">Sensibilisation Utilisateurs</h4>
+                        <p style="color: var(--text-secondary); font-size: 0.9rem;">
+                            Formation régulière anti-phishing, simulations d'attaques, culture sécurité. L'humain reste le maillon faible mais aussi la première ligne de défense.
+                        </p>
+                        <div style="margin-top: 0.75rem;">
+                            <span class="tag">Phishing Simulation</span>
+                            <span class="tag">Security Champions</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="defense-item">
+                    <div class="defense-icon"><i class="fas fa-file-alt"></i></div>
+                    <div>
+                        <h4 style="color: var(--text-primary); margin-bottom: 0.5rem;">Plan de Réponse aux Incidents (PRI)</h4>
+                        <p style="color: var(--text-secondary); font-size: 0.9rem;">
+                            Procédures documentées pour réagir rapidement : détection, confinement, éradication, récupération, retour d'expérience. Exercices de crise réguliers.
+                        </p>
+                        <div style="margin-top: 0.75rem;">
+                            <span class="tag">SOC</span>
+                            <span class="tag">CSIRT</span>
+                            <span class="tag">Playbooks</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" style="background: var(--bg-card-solid);">
+            <div class="section-container">
+                <div class="section-header">
+                    <span class="section-number">04</span>
+                    <h2 class="section-title">Sources <span class="title-gradient">de Veille</span></h2>
+                    <div class="section-line"></div>
+                </div>
+
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem;">
+                    <a href="https://www.cert.ssi.gouv.fr/" target="_blank" class="source-card">
+                        <div class="source-icon"><i class="fas fa-shield-alt"></i></div>
+                        <div>
+                            <strong style="color: var(--text-primary);">CERT-FR (ANSSI)</strong>
+                            <p style="color: var(--text-muted); font-size: 0.85rem;">Alertes sécurité officielles France</p>
+                        </div>
+                    </a>
+                    <a href="https://www.bleepingcomputer.com/" target="_blank" class="source-card">
+                        <div class="source-icon"><i class="fas fa-newspaper"></i></div>
+                        <div>
+                            <strong style="color: var(--text-primary);">BleepingComputer</strong>
+                            <p style="color: var(--text-muted); font-size: 0.85rem;">Actualités cybersécurité</p>
+                        </div>
+                    </a>
+                    <a href="https://www.reddit.com/r/netsec/" target="_blank" class="source-card">
+                        <div class="source-icon"><i class="fab fa-reddit"></i></div>
+                        <div>
+                            <strong style="color: var(--text-primary);">r/netsec</strong>
+                            <p style="color: var(--text-muted); font-size: 0.85rem;">Communauté sécurité Reddit</p>
+                        </div>
+                    </a>
+                    <a href="https://nvd.nist.gov/" target="_blank" class="source-card">
+                        <div class="source-icon"><i class="fas fa-database"></i></div>
+                        <div>
+                            <strong style="color: var(--text-primary);">NVD (NIST)</strong>
+                            <p style="color: var(--text-muted); font-size: 0.85rem;">Base CVE officielle</p>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="section-footer" style="margin-top: 4rem;">
+                    <a href="/projets.html#veille" class="btn-more">
+                        <i class="fas fa-arrow-left"></i> Retour à l'accueil
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="main-footer">
+        <div class="footer-container">
+            <div class="footer-content">
+                <p class="footer-text">© 2025 <span class="footer-copyright">Franck Raymond</span> — Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        window.addEventListener('scroll', () => {
+            document.getElementById('header').classList.toggle('scrolled', window.scrollY > 50);
+        });
+        document.getElementById('menuToggle').addEventListener('click', () => {
+            document.getElementById('navMenu').classList.toggle('active');
+        });
+    </script>
+
+
+<script src="/assets/portfolio-glossary.js?v=20260831-2" defer=""></script><script src="/assets/legacy-unified.js?v=20261028-8c422e514f" defer=""></script></body></html>

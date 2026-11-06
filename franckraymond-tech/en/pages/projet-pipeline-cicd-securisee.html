@@ -1,0 +1,286 @@
+<!DOCTYPE html><html lang="en" dir="ltr" data-theme="light"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Local and GitHub Actions delivery pipeline with tests, blocking scans, an SBOM and a hardened Docker deployment.">
+  <meta name="author" content="Franck Raymond">
+  <meta name="robots" content="index,follow,max-image-preview:large">
+  <meta name="theme-color" content="#111214">
+  <title>Secure CI/CD pipeline | Portfolio Franck Raymond</title>
+  <link rel="canonical" href="https://franckraymond.tech/en/pages/projet-pipeline-cicd-securisee.html">
+  <link rel="alternate" hreflang="fr" href="https://franckraymond.tech/pages/projet-pipeline-cicd-securisee.html">
+  <link rel="alternate" hreflang="en" href="https://franckraymond.tech/en/pages/projet-pipeline-cicd-securisee.html">
+  <link rel="alternate" hreflang="x-default" href="https://franckraymond.tech/pages/projet-pipeline-cicd-securisee.html">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Franck Raymond Portfolio">
+  <meta property="og:title" content="Secure CI/CD pipeline | Portfolio Franck Raymond">
+  <meta property="og:description" content="Local and GitHub Actions delivery pipeline with tests, blocking scans, an SBOM and a hardened Docker deployment.">
+  <meta property="og:url" content="https://franckraymond.tech/en/pages/projet-pipeline-cicd-securisee.html">
+  <meta property="og:image" content="https://franckraymond.tech/franck.webp">
+  <meta property="og:image:alt" content="Professional portrait of Franck Raymond">
+  <meta property="og:image:width" content="1024">
+  <meta property="og:image:height" content="1024">
+  <meta property="og:locale" content="en_GB">
+  <meta property="og:locale:alternate" content="fr_FR">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Secure CI/CD pipeline | Portfolio Franck Raymond">
+  <meta name="twitter:description" content="Local and GitHub Actions delivery pipeline with tests, blocking scans, an SBOM and a hardened Docker deployment.">
+  <meta name="twitter:image" content="https://franckraymond.tech/franck.webp">
+  <meta name="twitter:image:alt" content="Professional portrait of Franck Raymond">
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Person",
+      "@id": "https://franckraymond.tech/#person",
+      "name": "Franck Raymond",
+      "url": "https://franckraymond.tech/",
+      "image": "https://franckraymond.tech/franck.webp",
+      "jobTitle": "Systems and Network Administrator",
+      "description": "Systems and Network Administrator at Delannoy Dewailly, studying for the Bachelor ASRBD at EPSI Lille on a one-year work-study placement.",
+      "email": "mailto:franckrmnd@gmail.com",
+      "sameAs": [
+        "https://www.linkedin.com/in/franck-r-21a8a4184",
+        "https://github.com/franckraymond"
+      ],
+      "knowsAbout": [
+        "Systems administration",
+        "Computer networks",
+        "Cybersecurity",
+        "Monitoring",
+        "Linux",
+        "Windows Server"
+      ]
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://franckraymond.tech/#website",
+      "url": "https://franckraymond.tech/",
+      "name": "Franck Raymond Portfolio",
+      "inLanguage": [
+        "fr-FR",
+        "en-GB"
+      ],
+      "publisher": {
+        "@id": "https://franckraymond.tech/#person"
+      }
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://franckraymond.tech/en/pages/projet-pipeline-cicd-securisee.html#webpage",
+      "url": "https://franckraymond.tech/en/pages/projet-pipeline-cicd-securisee.html",
+      "name": "Secure CI/CD pipeline | Portfolio Franck Raymond",
+      "description": "Local and GitHub Actions delivery pipeline with tests, blocking scans, an SBOM and a hardened Docker deployment.",
+      "isPartOf": {
+        "@id": "https://franckraymond.tech/#website"
+      },
+      "about": {
+        "@id": "https://franckraymond.tech/#person"
+      },
+      "inLanguage": "en-GB"
+    }
+  ]
+}
+</script>
+  <link rel="stylesheet" href="../../tailwind-output.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&amp;family=Outfit:wght@400;500;600;700;800&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../style.css">
+  <link rel="stylesheet" href="../../assets/portfolio-v2.css?v=20260831-2">
+  
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,400&amp;family=Geist:wght@400;500;600&amp;display=swap">
+<link rel="stylesheet" href="/assets/editorial-tokens.css?v=20261106-modern">
+<link rel="stylesheet" href="/assets/editorial.css?v=20261106-modern">
+<script src="/assets/editorial-theme.js?v=20261028-1fe0ee8c9d"></script>
+</head>
+<body data-theme="light" class="portfolio-v2 editorial-site">
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  <div class="bg-mesh" aria-hidden="true"></div>
+  <div class="noise-overlay" aria-hidden="true"></div>
+  <div class="grid-lines" aria-hidden="true"></div>
+
+  <header class="main-header" id="header">
+    <nav class="nav-container" aria-label="Main navigation">
+      <a href="/en/index.html" class="brand-logo" aria-label="Home — Franck Raymond">
+        <span class="logo-bracket" aria-hidden="true">&lt;</span>
+        <span class="logo-text">FR</span>
+        <span class="logo-bracket" aria-hidden="true">/&gt;</span>
+      </a>
+      <div class="nav-menu" id="navMenu">
+        <a href="/en/index.html" class="nav-link"><i class="fas fa-home" aria-hidden="true"></i><span class="nav-text">Home</span></a>
+        <a href="/en/projets.html" class="nav-link"><i class="fas fa-diagram-project" aria-hidden="true"></i><span class="nav-text">Projects</span></a>
+        <a href="/en/index.html#skills" class="nav-link"><i class="fas fa-code" aria-hidden="true"></i><span class="nav-text">Skills</span></a>
+        <a href="/en/index.html#experience" class="nav-link"><i class="fas fa-briefcase" aria-hidden="true"></i><span class="nav-text">Experience</span></a>
+        <a href="/en/index.html#contact" class="nav-link"><i class="fas fa-envelope" aria-hidden="true"></i><span class="nav-text">Contact</span></a>
+              <a class="nav-link" href="https://opengym.jsuisfray.blitz.cloud/"><span class="nav-text">Training</span></a>
+      </div>
+      <div class="nav-controls">
+        <div class="language-switcher">
+          <button class="language-toggle" id="languageToggle" type="button" aria-label="Choose language" aria-controls="languageMenu" aria-expanded="false" data-open-label="Choose language" data-close-label="Close language menu">
+            <i class="fas fa-globe" aria-hidden="true"></i><span>EN</span>
+          </button>
+          <div class="language-menu" id="languageMenu" aria-label="Language selection" hidden="">
+            <a href="/pages/projet-pipeline-cicd-securisee.html" lang="fr" hreflang="fr" data-language="fr">FR <span>Français</span></a>
+            <a href="/en/pages/projet-pipeline-cicd-securisee.html" lang="en" hreflang="en" data-language="en" aria-current="page">EN <span>English</span></a>
+          </div>
+        </div>
+        <button class="theme-toggle" id="themeToggle" type="button" aria-label="Switch to light theme" data-light-label="Switch to light theme" data-dark-label="Switch to dark theme">
+          <i class="fas fa-sun" aria-hidden="true"></i>
+        </button>
+        <button class="menu-toggle" id="menuToggle" type="button" aria-label="Open menu" aria-controls="navMenu" aria-expanded="false" data-open-label="Open menu" data-close-label="Close menu">
+          <span aria-hidden="true"></span><span aria-hidden="true"></span><span aria-hidden="true"></span>
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <main id="main-content">
+    
+<article class="case-study">
+  <header class="case-hero">
+    <div class="case-container case-hero-grid">
+      <div>
+        <p class="case-kicker"><i class="fas fa-code-branch" aria-hidden="true"></i>Cloud and DevOps · cybersecurity</p>
+        <h1>Secure CI/CD pipeline</h1>
+        <p class="case-lead">A Python API passes eight controls before deployment: tests, secret detection, Trivy analysis, a reproducible build, an SBOM and live container checks.</p>
+        <div class="case-tags" aria-label="Tools and technologies used">
+          <span>Python</span><span>Docker</span><span>GitHub Actions</span><span>Trivy</span><span>CycloneDX</span><span>GHCR</span><span>Supply chain</span>
+        </div>
+      </div>
+      <dl class="case-facts" aria-label="Key information">
+        
+        <div><dt>Pipeline</dt><dd>8 automated stages</dd></div>
+        
+        <div><dt>Tests</dt><dd>4 unit tests passed</dd></div>
+        
+        <div><dt>Security</dt><dd>0 vulnerabilities detected</dd></div>
+        
+        <div><dt>Runtime</dt><dd>non-root and read-only</dd></div>
+        
+      </dl>
+    </div>
+  </header>
+
+  <nav class="case-nav" aria-label="Project contents">
+    <div class="case-container">
+      <a href="#analyse">Need</a>
+      <a href="#architecture">Solution</a>
+      <a href="#realisation">Work completed</a>
+      <a href="#validation">Checks</a>
+      <a href="#recul">Improvements</a>
+      <a href="#preuves">Evidence</a>
+    </div>
+  </nav>
+
+  <section class="case-band" id="analyse">
+    <div class="case-container">
+      <div class="case-section-heading"><span>01</span><div><p>Before starting</p><h2>The need and my role</h2></div></div>
+      <div class="case-two-columns">
+        <div class="case-copy"><h3>The need</h3><p>An image that builds successfully is not necessarily secure. I needed a delivery chain that stops when code, configuration or dependencies present a high risk, then proves that the deployed container retains the expected protections.</p></div>
+        <div class="case-copy"><h3>My role</h3><p>I developed the API and tests, wrote the local chain and GitHub Actions workflow, pinned build dependencies, configured the scans and SBOM, then hardened and inspected the deployed container.</p></div>
+      </div>
+      <div class="case-list-grid">
+        <div class="case-list-item"><i class="fas fa-diamond" aria-hidden="true"></i><span>Run on a VM limited to 2 vCPU and approximately 4 GB of RAM.</span></div><div class="case-list-item"><i class="fas fa-diamond" aria-hidden="true"></i><span>Block any HIGH or CRITICAL vulnerability found by the scanner.</span></div><div class="case-list-item"><i class="fas fa-diamond" aria-hidden="true"></i><span>Avoid root, unnecessary Linux capabilities and writes to the main filesystem.</span></div><div class="case-list-item"><i class="fas fa-diamond" aria-hidden="true"></i><span>Reduce the risk of tag replacement in pipeline dependencies.</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="case-band case-band-alt" id="architecture">
+    <div class="case-container">
+      <div class="case-section-heading"><span>02</span><div><p>Why I chose this approach</p><h2>The chosen solution</h2></div></div>
+      <div class="case-decision">
+        <h3>Local quality gates reproduced in GitHub Actions</h3>
+        <p>The local script provides executable evidence before publication, while the GitHub workflow prepares the same logic for continuous integration. External images and actions are pinned by digest or full SHA so the pipeline runs exactly the reviewed components.</p>
+      </div>
+      <div class="case-list-grid case-list-grid-wide">
+        <div class="case-list-item"><i class="fas fa-arrow-right" aria-hidden="true"></i><span>A standard-library Python HTTP API exposes a health endpoint and an information route.</span></div><div class="case-list-item"><i class="fas fa-arrow-right" aria-hidden="true"></i><span>Four unit tests check routes and security headers.</span></div><div class="case-list-item"><i class="fas fa-arrow-right" aria-hidden="true"></i><span>Trivy scans the repository, secrets, Dockerfile and built image.</span></div><div class="case-list-item"><i class="fas fa-arrow-right" aria-hidden="true"></i><span>The build uses a Python Alpine image pinned by SHA-256 digest.</span></div><div class="case-list-item"><i class="fas fa-arrow-right" aria-hidden="true"></i><span>A CycloneDX SBOM inventories the image components.</span></div><div class="case-list-item"><i class="fas fa-arrow-right" aria-hidden="true"></i><span>Docker Compose deploys the service on 127.0.0.1 with runtime protections.</span></div><div class="case-list-item"><i class="fas fa-arrow-right" aria-hidden="true"></i><span>GitHub Actions prepares immutable publication to GHCR after validation.</span></div>
+      </div>
+      
+    </div>
+  </section>
+
+  <section class="case-band" id="realisation">
+    <div class="case-container">
+      <div class="case-section-heading"><span>03</span><div><p>From plan to practice</p><h2>What I completed</h2></div></div>
+      <ol class="case-steps">
+        <li><span>01</span><p>Developed a minimal Python API with JSON responses and defensive HTTP headers.</p></li><li><span>02</span><p>Wrote unit tests for routes, errors and required headers.</p></li><li><span>03</span><p>Built a non-root Docker image from a base pinned by digest.</p></li><li><span>04</span><p>Added Trivy repository and image scans with a blocking severity threshold.</p></li><li><span>05</span><p>Generated a CycloneDX SBOM as a delivery artefact.</p></li><li><span>06</span><p>Deployed with a read-only root filesystem, no capabilities and resource limits.</p></li><li><span>07</span><p>Created a GitHub Actions workflow with dependencies pinned by SHA.</p></li><li><span>08</span><p>Checked the live health endpoint and actual settings with `docker inspect`.</p></li>
+      </ol>
+      <p class="case-technical-link"><a href="../../downloads/portfolio-projects-source.zip"><i class="fas fa-terminal" aria-hidden="true"></i>Full technical document — French</a></p>
+    </div>
+  </section>
+
+  <section class="case-band case-band-alt" id="validation">
+    <div class="case-container">
+      <div class="case-section-heading"><span>04</span><div><p>Checking that it works</p><h2>How I checked my work</h2></div></div>
+      <div class="case-two-columns">
+        <div><h3>Tests performed</h3><ul class="case-check-list"><li><i class="fas fa-check" aria-hidden="true"></i>Performed static compilation followed by four unit tests.</li><li><i class="fas fa-check" aria-hidden="true"></i>Searched the repository for secrets and misconfigurations.</li><li><i class="fas fa-check" aria-hidden="true"></i>Ran a blocking HIGH/CRITICAL scan on the final Docker image.</li><li><i class="fas fa-check" aria-hidden="true"></i>Executed HTTP smoke tests and checked the security headers.</li><li><i class="fas fa-check" aria-hidden="true"></i>Inspected the runtime and observed its health check over several cycles.</li></ul></div>
+        <div><h3>Observed results</h3><ul class="case-check-list case-results"><li><i class="fas fa-circle-check" aria-hidden="true"></i>All eight stages of the local pipeline complete successfully.</li><li><i class="fas fa-circle-check" aria-hidden="true"></i>The four unit tests pass and the API returns the expected headers.</li><li><i class="fas fa-circle-check" aria-hidden="true"></i>Trivy reports 0 vulnerabilities in the detected image components.</li><li><i class="fas fa-circle-check" aria-hidden="true"></i>The container uses UID 10001, a read-only root filesystem and no Linux capabilities.</li><li><i class="fas fa-circle-check" aria-hidden="true"></i>The service remains healthy while using approximately 12 MB of RAM at idle.</li></ul></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="case-band" id="recul">
+    <div class="case-container">
+      <div class="case-section-heading"><span>05</span><div><p>Looking back</p><h2>Limits and improvements</h2></div></div>
+      <div class="case-two-columns">
+        <div><h3>Security and operation</h3><ul class="case-check-list"><li><i class="fas fa-shield-halved" aria-hidden="true"></i>GitHub Actions are pinned by full SHA and external images by digest.</li><li><i class="fas fa-shield-halved" aria-hidden="true"></i>The runtime is non-root with `no-new-privileges` and all capabilities removed.</li><li><i class="fas fa-shield-halved" aria-hidden="true"></i>Limits are set to 128 MB, 0.25 CPU and 64 processes.</li><li><i class="fas fa-shield-halved" aria-hidden="true"></i>The service is reachable only from the VM's loopback interface.</li><li><i class="fas fa-shield-halved" aria-hidden="true"></i>CSP, X-Frame-Options, nosniff, no-referrer and no-store headers are set.</li></ul></div>
+        <div><h3>What I would improve</h3><ul class="case-check-list case-limitations"><li><i class="fas fa-triangle-exclamation" aria-hidden="true"></i>GHCR publication and remote deployment still require a GitHub repository and configured environments.</li><li><i class="fas fa-triangle-exclamation" aria-hidden="true"></i>The laboratory does not measure API load, latency or scalability.</li><li><i class="fas fa-triangle-exclamation" aria-hidden="true"></i>Local secret scanning supports the controls but does not replace a central service with history.</li></ul></div>
+      </div>
+    </div>
+  </section>
+
+  
+  <section class="case-band case-band-alt" id="preuves">
+    <div class="case-container">
+      <div class="case-section-heading"><span>06</span><div><p>Visible elements</p><h2>Evidence that it works</h2></div></div>
+      <div class="case-gallery">
+        
+        <figure><button type="button" data-lightbox-src="../../pages/projet-pipeline-cicd-securisee_assets/03-pipeline-cicd-securise.png" data-lightbox-alt="Final output from the eight secure CI/CD pipeline stages"><img src="../../pages/projet-pipeline-cicd-securisee_assets/03-pipeline-cicd-securise.png" alt="Final output from the eight secure CI/CD pipeline stages" loading="lazy"></button><figcaption>Tests, scan, SBOM, deployment and runtime checks passed.</figcaption></figure>
+        
+        <figure><button type="button" data-lightbox-src="../../pages/projet-pipeline-cicd-securisee_assets/04-conteneur-durci.png" data-lightbox-alt="Container protection inspection and Trivy scan result"><img src="../../pages/projet-pipeline-cicd-securisee_assets/04-conteneur-durci.png" alt="Container protection inspection and Trivy scan result" loading="lazy"></button><figcaption>Non-root, read-only runtime with zero detected vulnerabilities.</figcaption></figure>
+        
+      </div>
+    </div>
+  </section>
+  
+
+  <section class="case-band case-sources">
+    <div class="case-container case-two-columns">
+      <div><h2>Skills demonstrated</h2><ul class="case-compact-list"><li>Build a CI/CD chain with security quality gates.</li><li>Create and harden a Docker image and runtime.</li><li>Scan vulnerabilities, secrets and misconfigurations.</li><li>Generate an SBOM and secure supply-chain dependencies.</li></ul></div>
+      <div><h2>Sources used</h2><ul class="case-compact-list"><li><a href="https://docs.github.com/en/actions/reference/security/secure-use" target="_blank" rel="noopener noreferrer">GitHub - Secure use of GitHub Actions</a></li><li><a href="https://docs.docker.com/reference/compose-file/services/" target="_blank" rel="noopener noreferrer">Docker - Compose services reference</a></li><li><a href="https://trivy.dev/latest/docs/" target="_blank" rel="noopener noreferrer">Trivy - Official documentation</a></li><li><a href="https://cyclonedx.org/docs/1.6/json/" target="_blank" rel="noopener noreferrer">CycloneDX - JSON specification</a></li></ul></div>
+    </div>
+  </section>
+</article>
+
+<dialog class="case-lightbox" id="caseLightbox" aria-label="Enlarged evidence image">
+  <button type="button" data-lightbox-close="" aria-label="Close image"><i class="fas fa-xmark" aria-hidden="true"></i></button>
+  <img src="" alt="">
+</dialog>
+
+  </main>
+
+  <footer class="main-footer">
+    <div class="footer-container">
+      <div class="footer-content">
+        <p class="footer-text">© 2026 <span class="footer-copyright">Franck Raymond</span>. All rights reserved.</p>
+        <div class="footer-socials" aria-label="Professional profiles">
+          <a href="https://github.com/franckraymond" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><i class="fab fa-github" aria-hidden="true"></i></a>
+          <a href="https://www.linkedin.com/in/franck-r-21a8a4184" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fab fa-linkedin" aria-hidden="true"></i></a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../../assets/portfolio-glossary.js?v=20260831-2" defer=""></script>
+  <script src="../../assets/portfolio-v2.js?v=20261028-493b8041ab" defer=""></script>
+  
+
+
+</body></html>

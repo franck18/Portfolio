@@ -1,0 +1,523 @@
+<!DOCTYPE html><html lang="fr"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Expérience professionnelle - Centre Hospitalier de Tourcoing - Technicien Informatique">
+    <title>Support informatique hospitalier — CH Tourcoing | Franck Raymond</title>
+    
+    <link rel="stylesheet" href="tailwind-output.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&amp;family=Outfit:wght@300;400;500;600;700;800;900&amp;family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    
+    <style>
+        .exp-hero {
+            padding-top: 10rem;
+            padding-bottom: 3rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .exp-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: -10%;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(6, 182, 212, 0.15) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .exp-header-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            padding: 3rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .exp-header-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--cyan), var(--accent));
+        }
+
+        .exp-glow {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 200px;
+            height: 200px;
+            background: radial-gradient(circle, rgba(6, 182, 212, 0.2) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .exp-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+            color: var(--text-primary);
+        }
+
+        .exp-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--text-secondary);
+        }
+
+        .exp-meta-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .exp-meta-item i {
+            color: var(--cyan);
+        }
+
+        .content-section {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            transition: all 0.3s;
+        }
+
+        .content-section:hover {
+            border-color: var(--primary);
+        }
+
+        .content-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            color: var(--text-primary);
+        }
+
+        .content-title i {
+            color: var(--cyan);
+        }
+
+        .mission-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .mission-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            padding: 1rem;
+            background: var(--bg-card-solid);
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            transition: all 0.3s;
+        }
+
+        .mission-item:hover {
+            border-color: var(--cyan);
+            transform: translateX(5px);
+        }
+
+        .mission-item i {
+            color: var(--cyan);
+            margin-top: 0.2rem;
+        }
+
+        .video-container {
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+            background: #000;
+        }
+
+        .video-container video {
+            width: 100%;
+            display: block;
+        }
+
+        .external-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 1rem 2rem;
+            background: linear-gradient(135deg, var(--cyan), var(--accent));
+            color: white;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .external-link:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(6, 182, 212, 0.3);
+        }
+    
+        /* Tooltips termes techniques */
+        .term {
+            border-bottom: 1px dashed var(--primary);
+            cursor: help;
+            position: relative;
+            display: inline;
+        }
+        .term::after {
+            content: attr(data-def);
+            position: absolute;
+            bottom: calc(100% + 8px);
+            left: 50%;
+            transform: translateX(-50%);
+            background: #1e293b;
+            color: #f8fafc;
+            font-size: 0.78rem;
+            line-height: 1.5;
+            padding: 0.6rem 0.9rem;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            white-space: normal;
+            width: 220px;
+            text-align: left;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.2s;
+            z-index: 100;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+        }
+        .term:hover::after { opacity: 1; }
+</style>
+<meta name="theme-color" content="#111214"><link rel="stylesheet" href="/assets/legacy-unified.css?v=20260831-2"><meta name="author" content="Franck Raymond"><meta name="robots" content="index,follow,max-image-preview:large"><meta property="og:type" content="website"><meta property="og:site_name" content="Portfolio de Franck Raymond"><meta property="og:title" content="Support informatique hospitalier — CH Tourcoing | Franck Raymond"><meta property="og:description" content="Expérience professionnelle - Centre Hospitalier de Tourcoing - Technicien Informatique"><meta property="og:url" content="https://franckraymond.tech/exp-hopital.html"><meta property="og:image" content="https://franckraymond.tech/franck.webp"><meta property="og:image:alt" content="Portrait professionnel de Franck Raymond"><meta property="og:locale" content="fr_FR"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Support informatique hospitalier — CH Tourcoing | Franck Raymond"><meta name="twitter:description" content="Expérience professionnelle - Centre Hospitalier de Tourcoing - Technicien Informatique"><meta name="twitter:image" content="https://franckraymond.tech/franck.webp"><link rel="canonical" href="https://franckraymond.tech/exp-hopital.html"><link rel="icon" href="/favicon-32x32.png" sizes="32x32" type="image/png"><link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180"><link rel="manifest" href="/site.webmanifest"><script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"Support informatique hospitalier — CH Tourcoing | Franck Raymond","url":"https://franckraymond.tech/exp-hopital.html","description":"Expérience professionnelle - Centre Hospitalier de Tourcoing - Technicien Informatique","isPartOf":{"@type":"WebSite","name":"Portfolio de Franck Raymond","url":"https://franckraymond.tech/"},"about":{"@type":"Person","name":"Franck Raymond","url":"https://franckraymond.tech/"}}</script>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,400&amp;family=Geist:wght@400;500;600&amp;display=swap">
+<link rel="stylesheet" href="/assets/editorial-tokens.css?v=20261106-modern">
+<link rel="stylesheet" href="/assets/editorial.css?v=20261106-modern">
+<script src="/assets/editorial-theme.js?v=20261028-1fe0ee8c9d"></script>
+</head>
+<body data-theme="light" class="portfolio-legacy editorial-site">
+
+    <div class="bg-mesh"></div>
+    <div class="noise-overlay"></div>
+    <div class="grid-lines"></div>
+
+    <header class="main-header" id="header">
+        <nav class="nav-container">
+            <a href="index.html" class="brand-logo">
+                <span class="logo-bracket">&lt;</span>
+                <span class="logo-text">FR</span>
+                <span class="logo-bracket">/&gt;</span>
+            </a>
+            <div class="nav-menu" id="navMenu">
+                <a href="index.html" class="nav-link"><i class="fas fa-home"></i> Accueil</a>
+                <a href="profil.html" class="nav-link"><i class="fas fa-user"></i> Profil</a>
+                <a href="index.html#skills" class="nav-link"><i class="fas fa-code"></i> Compétences</a>
+                <a href="experience.html" class="nav-link active"><i class="fas fa-briefcase"></i> Expériences</a>
+                <a href="/projets.html#veille" class="nav-link"><i class="fas fa-newspaper"></i> Veille</a>
+                <a href="index.html#contact" class="nav-link"><i class="fas fa-envelope"></i> Contact</a>
+            
+<a class="nav-link" href="https://opengym.jsuisfray.blitz.cloud/"><span class="nav-text">Sport</span></a></div>
+            <div class="nav-controls">
+                <button class="theme-toggle" id="themeToggle" aria-label="Changer le thème">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <button class="menu-toggle" id="menuToggle" aria-label="Menu">
+                    <span></span><span></span><span></span>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="exp-hero">
+            <div class="section-container">
+                <a href="experience.html" class="btn-more" style="margin-bottom: 2rem;">
+                    <i class="fas fa-arrow-left"></i> Retour aux expériences
+                </a>
+
+                <div class="exp-header-card">
+                    <div class="exp-glow"></div>
+                    <h1 class="exp-title">Technicien Informatique</h1>
+                    <div class="exp-meta">
+                        <span class="exp-meta-item">
+                            <i class="fas fa-hospital"></i> Centre Hospitalier de Tourcoing (CH Dron)
+                        </span>
+                        <span class="exp-meta-item">
+                            <i class="fas fa-calendar-alt"></i> Oct 2023 — Août 2025
+                        </span>
+                        <span class="exp-meta-item">
+                            <i class="fas fa-graduation-cap"></i> Alternance BTS SIO
+                        </span>
+                    </div>
+                    <div class="timeline-tags">
+                        <span class="tag">Support N1/N2</span>
+                        <span class="tag"><span class="term" data-def="Logiciel de gestion des tickets informatiques — les utilisateurs signalent leurs problèmes et les techniciens les traitent.">GLPI</span></span>
+                        <span class="tag"><span class="term" data-def="Annuaire centralisé qui gère tous les utilisateurs et ordinateurs d'une entreprise. L'admin y crée les comptes et définit qui a accès à quoi.">Active Directory</span></span>
+                        <span class="tag">Hardware</span>
+                        <span class="tag">Milieu Critique</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="section-container" style="padding-bottom: 5rem;">
+            
+            <div class="content-section">
+                <h2 class="content-title"><i class="fas fa-info-circle"></i> Description du Poste</h2>
+                <p class="about-text">
+                    Première expérience significative en environnement critique (milieu hospitalier). J'ai assuré le maintien en condition opérationnelle du parc informatique et le support aux utilisateurs, garantissant la continuité des services de soin et l'accès aux applications métiers essentielles.
+                </p>
+            </div>
+
+            <div class="content-section">
+                <h2 class="content-title"><i class="fas fa-hospital"></i> 🏢 Environnement Professionnel</h2>
+                <div class="mission-list">
+                    <div class="mission-item">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        <div>
+                            <strong>Environnement sensible</strong>
+                            <p style="color: var(--text-secondary); margin-top: 0.25rem;">Milieu hospitalier critique avec données de santé hautement confidentielles (HDS), disponibilité 24h/24 et 7j/7, impact direct sur la prise en charge des patients</p>
+                        </div>
+                    </div>
+                    <div class="mission-item">
+                        <i class="fas fa-headset"></i>
+                        <div>
+                            <strong>Support N1/N2</strong>
+                            <p style="color: var(--text-secondary); margin-top: 0.25rem;"><strong>N1 :</strong> Prise en charge des incidents utilisateurs, résolution rapide des problèmes courants</p>
+                            <p style="color: var(--text-secondary); margin-top: 0.25rem;"><strong>N2 :</strong> Diagnostic approfondi, escalade vers les équipes spécialisées, suivi des tickets complexes</p>
+                        </div>
+                    </div>
+                    <div class="mission-item">
+                        <i class="fas fa-tools"></i>
+                        <div>
+                            <strong>Outils utilisés</strong>
+                            <p style="color: var(--text-secondary); margin-top: 0.25rem;"><strong><span class="term" data-def="Logiciel de gestion des tickets informatiques — les utilisateurs signalent leurs problèmes et les techniciens les traitent.">GLPI</span> :</strong> Gestion des tickets, inventaire du parc, suivi des interventions</p>
+                            <p style="color: var(--text-secondary); margin-top: 0.25rem;"><strong><span class="term" data-def="Annuaire centralisé qui gère tous les utilisateurs et ordinateurs d'une entreprise. L'admin y crée les comptes et définit qui a accès à quoi.">Active Directory</span> :</strong> Gestion des comptes, droits d'accès, stratégies de groupe</p>
+                            <p style="color: var(--text-secondary); margin-top: 0.25rem;"><strong>Applications métiers :</strong> DPI (Dossier Patient Informatisé), Pastel (gestion des repas patients), logiciels de soins</p>
+                            <p style="color: var(--text-secondary); margin-top: 0.25rem;"><strong>Pastel :</strong> Saisie de l'IPP (Identifiant Permanent du Patient) pour associer chaque patient à son régime alimentaire et transmettre les informations au DPI</p>
+                        </div>
+                    </div>
+                    <div class="mission-item">
+                        <i class="fas fa-lock"></i>
+                        <div>
+                            <strong>Contraintes fortes</strong>
+                            <p style="color: var(--text-secondary); margin-top: 0.25rem;"><strong>Disponibilité :</strong> Services critiques en continu, temps de résolution minimal, astreintes</p>
+                            <p style="color: var(--text-secondary); margin-top: 0.25rem;"><strong>Confidentialité :</strong> Secret médical, données HDS, conformité RGPD santé, traçabilité des accès</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="content-section">
+                <h2 class="content-title"><i class="fas fa-tasks"></i> Missions Principales</h2>
+                <div class="mission-list">
+                    <div class="mission-item">
+                        <i class="fas fa-headset"></i>
+                        <div>
+                            <strong>Support N1/N2</strong>
+                            <p style="color: var(--text-secondary); margin-top: 0.25rem;">Résolution d'incidents matériels et logiciels, assistance aux utilisateurs</p>
+                        </div>
+                    </div>
+                    <div class="mission-item">
+                        <i class="fas fa-laptop"></i>
+                        <div>
+                            <strong>Gestion de Parc</strong>
+                            <p style="color: var(--text-secondary); margin-top: 0.25rem;">Inventaire, déploiement et maintenance via <span class="term" data-def="Logiciel de gestion des tickets informatiques — les utilisateurs signalent leurs problèmes et les techniciens les traitent.">GLPI</span></p>
+                        </div>
+                    </div>
+                    <div class="mission-item">
+                        <i class="fas fa-user-cog"></i>
+                        <div>
+                            <strong>Gestion des Utilisateurs</strong>
+                            <p style="color: var(--text-secondary); margin-top: 0.25rem;">Création de comptes <span class="term" data-def="Annuaire centralisé qui gère tous les utilisateurs et ordinateurs d'une entreprise. L'admin y crée les comptes et définit qui a accès à quoi.">AD</span>, gestion des droits NTFS et accès applicatifs</p>
+                        </div>
+                    </div>
+                    <div class="mission-item">
+                        <i class="fas fa-desktop"></i>
+                        <div>
+                            <strong>Masterisation</strong>
+                            <p style="color: var(--text-secondary); margin-top: 0.25rem;">Préparation et déploiement de postes de travail standardisés</p>
+                        </div>
+                    </div>
+                    <div class="mission-item">
+                        <i class="fas fa-tools"></i>
+                        <div>
+                            <strong>Maintenance Hardware</strong>
+                            <p style="color: var(--text-secondary); margin-top: 0.25rem;">Diagnostic et remplacement de composants défectueux</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="content-section">
+                <h2 class="content-title"><i class="fas fa-video"></i> Immersion Vidéo</h2>
+                <div class="video-container">
+                    <video controls="">
+                        <source src="hopitalvideo1.mp4" type="video/mp4">
+                        Votre navigateur ne supporte pas la balise vidéo.
+                    </video>
+                </div>
+            </div>
+
+            <div class="content-section">
+                <h2 class="content-title"><i class="fas fa-utensils"></i> Logiciel Pastel — Gestion des repas patients</h2>
+                <div class="mission-item" style="margin-bottom: 1.5rem;">
+                    <i class="fas fa-info-circle"></i>
+                    <div>
+                        <strong>Rôle et utilisation</strong>
+                        <p style="color: var(--text-secondary); margin-top: 0.25rem;">
+                            Pastel est le logiciel métier utilisé au CH de Tourcoing pour la gestion des repas des patients hospitalisés. Dans le cadre de mon alternance, je devais récupérer l'<strong>IPP</strong> (Identifiant Permanent du Patient) depuis le DPI (Dossier Patient Informatisé) et le renseigner dans Pastel afin d'associer chaque patient à son régime alimentaire et à sa chambre. Cette saisie garantissait que les bons repas étaient servis aux bons patients selon leurs prescriptions médicales.
+                        </p>
+                    </div>
+                </div>
+                <div class="gallery-grid" style="grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));">
+                    <div class="gallery-item">
+                        <img src="pages/alternance_chdron/pastel_hospitalier.png" alt="Interface du logiciel Pastel - saisie IPP patient pour gestion des repas au CH Tourcoing" class="gallery-img" loading="lazy">
+                    </div>
+                </div>
+                <p style="color: var(--text-muted); font-size: 0.85rem; margin-top: 0.75rem;">
+                    <i class="fas fa-info-circle"></i> Données patient anonymisées — formulaire d'admission Pastel avec IPP, service d'hébergement et statut de séjour.
+                </p>
+            </div>
+
+            <div class="content-section">
+                <h2 class="content-title"><i class="fas fa-images"></i> Galerie Photos</h2>
+                <div class="gallery-grid">
+                    <div class="gallery-item"><img src="hopital1.webp" alt="Photo Hôpital 1" class="gallery-img" loading="lazy"></div>
+                    <div class="gallery-item"><img src="hopital2.webp" alt="Photo Hôpital 2" class="gallery-img" loading="lazy"></div>
+                    <div class="gallery-item"><img src="hopital3.webp" alt="Photo Hôpital 3" class="gallery-img" loading="lazy"></div>
+                    <div class="gallery-item"><img src="hopital4.webp" alt="Photo Hôpital 4" class="gallery-img" loading="lazy"></div>
+                    <div class="gallery-item"><img src="hopital5.webp" alt="Photo Hôpital 5" class="gallery-img" loading="lazy"></div>
+                    <div class="gallery-item"><img src="hopital6.webp" alt="Photo Hôpital 6" class="gallery-img" loading="lazy"></div>
+                    <div class="gallery-item"><img src="hopital7.webp" alt="Photo Hôpital 7" class="gallery-img" loading="lazy"></div>
+                    <div class="gallery-item"><img src="hopital8.webp" alt="Photo Hôpital 8" class="gallery-img" loading="lazy"></div>
+                    <div class="gallery-item"><img src="hopital9.webp" alt="Photo Hôpital 9" class="gallery-img" loading="lazy"></div>
+                    <div class="gallery-item"><img src="hopital10.webp" alt="Photo Hôpital 10" class="gallery-img" loading="lazy"></div>
+                    <div class="gallery-item"><img src="hopital11.webp" alt="Photo Hôpital 11" class="gallery-img" loading="lazy"></div>
+                    <div class="gallery-item"><img src="hopital12.webp" alt="Photo Hôpital 12" class="gallery-img" loading="lazy"></div>
+                </div>
+            </div>
+
+            <div style="text-align: center; padding-top: 2rem; border-top: 1px solid var(--border);">
+                <p style="color: var(--text-muted); margin-bottom: 1.5rem;">Découvrir l'établissement :</p>
+                <a href="https://www.ch-tourcoing.fr" target="_blank" class="external-link">
+                    Visiter le site officiel <i class="fas fa-external-link-alt"></i>
+                </a>
+            </div>
+        </div>
+    </main>
+
+    <!-- Lightbox -->
+    <div id="lightbox">
+        <img id="lightbox-img" src="" alt="Image agrandie">
+    </div>
+
+    <footer class="main-footer">
+        <div class="footer-container">
+            <div class="footer-content">
+                <p class="footer-text">© 2025 <span class="footer-copyright">Franck Raymond</span> — Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        window.addEventListener('scroll', () => {
+            document.getElementById('header').classList.toggle('scrolled', window.scrollY > 50);
+        });
+        
+        document.getElementById('menuToggle').addEventListener('click', () => {
+            document.getElementById('navMenu').classList.toggle('active');
+        });
+
+        // Lightbox
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightbox-img');
+        const images = document.querySelectorAll('.gallery-img');
+
+        images.forEach(img => {
+            img.addEventListener('click', () => {
+                lightboxImg.src = img.dataset.fullSrc || img.src;
+                lightbox.style.display = 'flex';
+            });
+        });
+
+        lightbox.addEventListener('click', () => {
+            lightbox.style.display = 'none';
+        });
+    </script>
+
+
+
+<script src="/assets/portfolio-glossary.js?v=20260831-2" defer=""></script><script src="/assets/legacy-unified.js?v=20261028-8c422e514f" defer=""></script><script data-gallery-accessibility>
+(() => {
+  const lightbox = document.getElementById('lightbox');
+  if (!lightbox) return;
+  const triggers = document.querySelectorAll(".gallery-img");
+  triggers.forEach(trigger => {
+    trigger.tabIndex = 0;
+    trigger.setAttribute('role', 'button');
+    const image = trigger.matches('img') ? trigger : trigger.querySelector('img');
+    trigger.setAttribute('aria-label', image ? `Agrandir : ${image.alt || 'photographie'}` : 'Lire la vidéo');
+    trigger.addEventListener('keydown', event => {
+      if (event.key === 'Enter' || event.key === ' ') {
+        event.preventDefault();
+        trigger.click();
+      }
+    });
+  });
+  let close = lightbox.querySelector('.lightbox-close');
+  if (!close) {
+    close = document.createElement('button');
+    close.type = 'button';
+    close.className = 'lightbox-close';
+    close.textContent = '×';
+    close.style.cssText = 'position:absolute;top:20px;right:24px;z-index:2;color:white;background:#202020;border:1px solid #888;padding:8px 16px;font-size:30px;line-height:1;cursor:pointer';
+    close.addEventListener('click', () => { lightbox.style.display = 'none'; });
+    lightbox.appendChild(close);
+  }
+  close.setAttribute('aria-label', 'Fermer l’image agrandie');
+  close.tabIndex = 0;
+  if (close.tagName !== 'BUTTON') {
+    close.setAttribute('role', 'button');
+    close.addEventListener('keydown', event => {
+      if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); close.click(); }
+    });
+  }
+  const previous = lightbox.querySelector('#lightboxPrev');
+  const next = lightbox.querySelector('#lightboxNext');
+  previous?.setAttribute('aria-label', 'Image précédente');
+  next?.setAttribute('aria-label', 'Image suivante');
+  lightbox.setAttribute('role', 'dialog');
+  lightbox.setAttribute('aria-modal', 'true');
+  lightbox.setAttribute('aria-label', 'Aperçu du média');
+  let wasOpen = false;
+  let returnFocus = null;
+  const isOpen = () => lightbox.classList.contains('active') || lightbox.style.display === 'flex';
+  const sync = () => {
+    const open = isOpen();
+    if (open && !wasOpen) { returnFocus = document.activeElement; close.focus(); }
+    if (!open && wasOpen && returnFocus?.isConnected) returnFocus.focus({preventScroll:true});
+    wasOpen = open;
+  };
+  new MutationObserver(sync).observe(lightbox, {attributes:true, attributeFilter:['class', 'style']});
+  document.addEventListener('keydown', event => {
+    if (!isOpen()) return;
+    if (event.key === 'Escape') { event.preventDefault(); close.click(); return; }
+    if (event.key !== 'Tab') return;
+    const controls = [...lightbox.querySelectorAll('button, [tabindex="0"], video[controls]')]
+      .filter(control => control.getClientRects().length && !control.disabled);
+    const first = controls[0] || close;
+    const last = controls[controls.length - 1] || close;
+    if (event.shiftKey && document.activeElement === first) { event.preventDefault(); last.focus(); }
+    else if (!event.shiftKey && document.activeElement === last) { event.preventDefault(); first.focus(); }
+  }, true);
+})();
+</script>
+</body></html>

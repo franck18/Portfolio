@@ -1,0 +1,341 @@
+<!DOCTYPE html><html lang="fr"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Projet Haute dispo HSRP + LACP - Portfolio BTS SIO SISR">
+  <title>Haute dispo HSRP + LACP | Portfolio</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&amp;family=Outfit:wght@300;400;500;600;700;800;900&amp;family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../style.css">
+  <style>
+        /* Tooltips termes techniques */
+        .term {
+            border-bottom: 1px dashed var(--primary);
+            cursor: help;
+            position: relative;
+            display: inline;
+        }
+        .term::after {
+            content: attr(data-def);
+            position: absolute;
+            bottom: calc(100% + 8px);
+            left: 50%;
+            transform: translateX(-50%);
+            background: #1e293b;
+            color: #f8fafc;
+            font-size: 0.78rem;
+            line-height: 1.5;
+            padding: 0.6rem 0.9rem;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            white-space: normal;
+            width: 220px;
+            text-align: left;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.2s;
+            z-index: 100;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+        }
+        .term:hover::after { opacity: 1; }
+  </style>
+<meta name="theme-color" content="#111214"><link rel="stylesheet" href="/assets/legacy-unified.css"><meta name="author" content="Franck Raymond"><meta name="robots" content="index,follow,max-image-preview:large"><meta property="og:type" content="website"><meta property="og:site_name" content="Portfolio de Franck Raymond"><meta property="og:title" content="Haute dispo HSRP + LACP | Portfolio"><meta property="og:description" content="Projet Haute dispo HSRP + LACP - Portfolio BTS SIO SISR"><meta property="og:url" content="https://franckraymond.tech/pages/dossier-technique-projet-hsrp-lacp.html"><meta property="og:image" content="https://franckraymond.tech/franck.webp"><meta property="og:image:alt" content="Portrait professionnel de Franck Raymond"><meta property="og:locale" content="fr_FR"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Haute dispo HSRP + LACP | Portfolio"><meta name="twitter:description" content="Projet Haute dispo HSRP + LACP - Portfolio BTS SIO SISR"><meta name="twitter:image" content="https://franckraymond.tech/franck.webp"><link rel="canonical" href="https://franckraymond.tech/pages/dossier-technique-projet-hsrp-lacp.html"><link rel="icon" href="/favicon-32x32.png" sizes="32x32" type="image/png"><link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180"><link rel="manifest" href="/site.webmanifest"><script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"Haute dispo HSRP + LACP | Portfolio","url":"https://franckraymond.tech/pages/dossier-technique-projet-hsrp-lacp.html","description":"Projet Haute dispo HSRP + LACP - Portfolio BTS SIO SISR","isPartOf":{"@type":"WebSite","name":"Portfolio de Franck Raymond","url":"https://franckraymond.tech/"},"about":{"@type":"Person","name":"Franck Raymond","url":"https://franckraymond.tech/"}}</script>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,400&amp;family=Geist:wght@400;500;600&amp;display=swap">
+<link rel="stylesheet" href="/assets/editorial-tokens.css?v=20261106-modern">
+<link rel="stylesheet" href="/assets/editorial.css?v=20261106-modern">
+<script src="/assets/editorial-theme.js?v=20261028-1fe0ee8c9d"></script>
+</head>
+
+<body data-theme="light" class="portfolio-legacy editorial-site">
+  <div class="bg-mesh"></div>
+  <div class="noise-overlay"></div>
+  <div class="grid-lines"></div>
+
+  <header class="main-header" id="header">
+    <nav class="nav-container" aria-label="Navigation principale">
+      <div class="nav-brand">
+        <a href="../index.html" class="brand-logo">
+          <span class="logo-bracket">&lt;</span>
+          <span class="logo-text">FR</span>
+          <span class="logo-bracket">/&gt;</span>
+        </a>
+      </div>
+      <div class="nav-menu" id="navMenu">
+        <a href="../index.html" class="nav-link">
+          <i class="fas fa-home"></i>
+          <span class="nav-text">Accueil</span>
+        </a>
+        <a href="/profil.html" class="nav-link">
+          <i class="fas fa-user"></i>
+          <span class="nav-text">Profil</span>
+        </a>
+        <a href="../index.html#skills" class="nav-link">
+          <i class="fas fa-code"></i>
+          <span class="nav-text">Compétences</span>
+        </a>
+        <a href="/projets.html" class="nav-link active">
+          <i class="fas fa-diagram-project"></i>
+          <span class="nav-text">Projets</span>
+        </a>
+        <a href="../index.html#experience" class="nav-link">
+          <i class="fas fa-briefcase"></i>
+          <span class="nav-text">Expériences</span>
+        </a>
+        <a href="/projets.html#veille" class="nav-link">
+          <i class="fas fa-newspaper"></i>
+          <span class="nav-text">Veille</span>
+        </a>
+        <a href="../index.html#contact" class="nav-link">
+          <i class="fas fa-envelope"></i>
+          <span class="nav-text">Contact</span>
+        </a>
+      
+<a class="nav-link" href="https://opengym.jsuisfray.blitz.cloud/"><span class="nav-text">Sport</span></a></div>
+      <div class="nav-controls">
+        <button class="theme-toggle" id="themeToggle" title="Changer le thème" aria-label="Basculer entre mode sombre et clair">
+          <i class="fas fa-moon"></i>
+        </button>
+        <button class="menu-toggle" id="menuToggle" aria-label="Ouvrir le menu mobile" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero-section page-hero">
+      <div class="hero-glow"></div>
+      <div class="hero-glow-2"></div>
+      <div class="hero-container">
+        <div class="hero-content">
+          <div class="hero-greeting page-badge">Réseau &amp; redondance</div>
+          <h1 class="hero-name"><span class="name-gradient">Haute dispo <span class="term" data-def="Protocole réseau qui permet à deux routeurs de fonctionner en duo : si l'un tombe, l'autre prend le relais automatiquement.">HSRP</span> + <span class="term" data-def="Technique qui regroupe plusieurs câbles réseau en un seul lien plus rapide et redondant.">LACP</span></span></h1>
+          <p class="hero-description">
+            Redondance de passerelle et agrégation de liens pour garantir la disponibilité.
+          </p>
+<div class="hero-buttons">
+            <a href="#objectifs" class="btn btn-primary"><i class="fas fa-bullseye"></i> Objectifs</a>
+            <a href="#resultats" class="btn btn-secondary"><i class="fas fa-image"></i> Captures</a>
+          </div>
+        </div>
+        <div class="hero-image-wrapper">
+          <div class="hero-image-container">
+            <div class="profile-image-frame">
+              <i class="fas fa-diagram-project page-icon"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contexte" class="section">
+      <div class="section-container">
+        <div class="section-header">
+          <span class="section-number">01</span>
+          <h2 class="section-title">Contexte <span class="title-gradient">du projet</span></h2>
+          <div class="section-line"></div>
+        </div>
+        <div class="about-content">
+          <div>
+            <p class="about-text">
+              Pour éviter la coupure d'accès réseau, l'infrastructure devait assurer une passerelle redondante et des
+              liens
+              agrégés entre les équipements. Le projet a été réalisé sur un lab Cisco avec plusieurs VLANs.
+            </p>
+            <p class="about-text"><strong>Cadre :</strong> Cisco IOS, <span class="term" data-def="Protocole réseau qui permet à deux routeurs de fonctionner en duo : si l'un tombe, l'autre prend le relais automatiquement.">HSRP</span> pour la passerelle, <span class="term" data-def="Technique qui regroupe plusieurs câbles réseau en un seul lien plus rapide et redondant.">LACP</span> pour l'agrégation.
+            </p>
+          </div>
+          <div>
+            <div class="skill-category">
+              <h3 class="category-title"><i class="fas fa-layer-group"></i> Outils et technologies</h3>
+              <div class="timeline-tags">
+                <span class="tag">Cisco IOS</span>
+                <span class="tag">HSRP</span>
+                <span class="tag">LACP</span>
+                <span class="tag"><span class="term" data-def="Réseau virtuel qui isole des groupes de machines entre elles, même si elles partagent les mêmes câbles.">VLAN</span></span>
+                <span class="tag">STP</span>
+              </div>
+            </div>
+            <div class="skill-category" style="margin-top: 1.5rem;">
+              <h3 class="category-title"><i class="fas fa-file-signature"></i> Livrables</h3>
+              <div class="timeline-tags">
+                <span class="tag">Topologie</span>
+                <span class="tag">Plan VLAN</span>
+                <span class="tag">Config HSRP</span>
+                <span class="tag">Config LACP</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="objectifs" class="section" style="background: var(--bg-card-solid);">
+      <div class="section-container">
+        <div class="section-header">
+          <span class="section-number">02</span>
+          <h2 class="section-title">Objectifs <span class="title-gradient">du projet</span></h2>
+          <div class="section-line"></div>
+        </div>
+        <div class="timeline-achievements">
+          <div class="achievement-item"><i class="fas fa-check-circle"></i><span>Mettre en place une passerelle
+              virtuelle redondante.</span></div>
+          <div class="achievement-item"><i class="fas fa-check-circle"></i><span>Augmenter la bande passante via
+              l'agrégation de liens.</span></div>
+          <div class="achievement-item"><i class="fas fa-check-circle"></i><span>Assurer une bascule automatique en cas
+              de panne.</span></div>
+          <div class="achievement-item"><i class="fas fa-check-circle"></i><span>Documenter la configuration et les
+              tests de bascule.</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="architecture" class="section">
+      <div class="section-container">
+        <div class="section-header">
+          <span class="section-number">03</span>
+          <h2 class="section-title">Architecture <span class="title-gradient">et schémas</span></h2>
+          <div class="section-line"></div>
+        </div>
+        <div class="about-content">
+          <div>
+            <p class="about-text">
+              Deux commutateurs L3 assurent le routage inter-<span class="term" data-def="Réseau virtuel qui isole des groupes de machines entre elles, même si elles partagent les mêmes câbles.">VLAN</span> et partagent une IP virtuelle <span class="term" data-def="Protocole réseau qui permet à deux routeurs de fonctionner en duo : si l'un tombe, l'autre prend le relais automatiquement.">HSRP</span>. L'accès est assuré
+              via
+              des port-channels <span class="term" data-def="Technique qui regroupe plusieurs câbles réseau en un seul lien plus rapide et redondant.">LACP</span> vers le switch d'accès.
+            </p>
+            <div class="timeline-achievements">
+              <div class="achievement-item"><i class="fas fa-network-wired"></i><span>2 switchs L3 + 1 switch
+                  d'accès</span></div>
+              <div class="achievement-item"><i class="fas fa-link"></i><span>Port-Channel LACP + VLANs trunk</span>
+              </div>
+            </div>
+          </div>
+          <div>
+            <div class="skill-category">
+              <h3 class="category-title"><i class="fas fa-link"></i> Agrégation de liens vérifiée</h3>
+              <div class="timeline-achievements">
+                <div class="achievement-item"><i class="fas fa-check-circle"></i><span>La commande <code>show etherchannel summary</code> confirme que les ports sont bien groupés et actifs</span></div>
+                <div class="achievement-item"><i class="fas fa-check-circle"></i><span>Le port-channel apparaît en statut <strong>SU</strong> (bundle actif, en service)</span></div>
+                <div class="achievement-item"><i class="fas fa-check-circle"></i><span>Les deux liens physiques contribuent ensemble à la connexion entre les switchs</span></div>
+              </div>
+            </div>
+          </div>
+      </div>
+    </div></section>
+
+    <section id="etapes" class="section" style="background: var(--bg-card-solid);">
+      <div class="section-container">
+        <div class="section-header">
+          <span class="section-number">04</span>
+          <h2 class="section-title">Étapes <span class="title-gradient">d'implémentation</span></h2>
+          <div class="section-line"></div>
+        </div>
+        <div class="timeline-achievements">
+          <div class="achievement-item"><i class="fas fa-check-circle"></i><span>Création des VLANs et des SVIs.</span>
+          </div>
+          <div class="achievement-item"><i class="fas fa-check-circle"></i><span>Configuration HSRP (priorité, preempt,
+              timers).</span></div>
+          <div class="achievement-item"><i class="fas fa-check-circle"></i><span>Création des port-channels LACP en
+              trunk.</span></div>
+          <div class="achievement-item"><i class="fas fa-check-circle"></i><span>Tests de bascule et validation des
+              chemins.</span></div>
+          <div class="achievement-item"><i class="fas fa-check-circle"></i><span>Documentation des commandes de
+              vérification.</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="difficultes" class="section">
+      <div class="section-container">
+        <div class="section-header">
+          <span class="section-number">05</span>
+          <h2 class="section-title">Difficultés <span class="title-gradient">rencontrées</span></h2>
+          <div class="section-line"></div>
+        </div>
+        <div class="timeline-achievements">
+          <div class="achievement-item"><i class="fas fa-exclamation-triangle"></i><span>Port-channel non formé à cause
+              d'un mismatch de mode.</span></div>
+          <div class="achievement-item"><i class="fas fa-exclamation-triangle"></i><span>Incohérences de paramètres
+              trunk entre équipements.</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="solutions" class="section" style="background: var(--bg-card-solid);">
+      <div class="section-container">
+        <div class="section-header">
+          <span class="section-number">06</span>
+          <h2 class="section-title">Solutions <span class="title-gradient">appliquées</span></h2>
+          <div class="section-line"></div>
+        </div>
+        <div class="timeline-achievements">
+          <div class="achievement-item"><i class="fas fa-lightbulb"></i><span>Alignement des modes LACP (active/passive)
+              et vérification des VLANs autorisés.</span></div>
+          <div class="achievement-item"><i class="fas fa-lightbulb"></i><span>Standardisation des paramètres trunk et
+              des VLANs natifs.</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="resultats" class="section">
+      <div class="section-container">
+        <div class="section-header">
+          <span class="section-number">07</span>
+          <h2 class="section-title">Résultats <span class="title-gradient">et captures</span></h2>
+          <div class="section-line"></div>
+        </div>
+        <p class="about-text">Voici ce que j'ai observé et vérifié une fois la configuration en place.</p>
+        <div class="about-content">
+          <div>
+            <div class="skill-category">
+              <h3 class="category-title"><i class="fas fa-network-wired"></i> État <span class="term" data-def="Protocole réseau qui permet à deux routeurs de fonctionner en duo : si l'un tombe, l'autre prend le relais automatiquement.">HSRP</span> (show standby)</h3>
+              <p class="about-text" style="margin-top: 0.5rem;">La commande <code>show standby</code> affiche quel routeur est actif et lequel est en attente. On voit l'adresse IP virtuelle partagée, le rôle de chaque équipement (Active / Standby) et leur priorité. Le routeur avec la priorité la plus haute prend en charge le trafic.</p>
+            </div>
+            <div class="skill-category" style="margin-top: 1.5rem;">
+              <h3 class="category-title"><i class="fas fa-link"></i> État <span class="term" data-def="Technique qui regroupe plusieurs câbles réseau en un seul lien plus rapide et redondant.">LACP</span> (show etherchannel)</h3>
+              <p class="about-text" style="margin-top: 0.5rem;">La commande <code>show etherchannel summary</code> confirme que les deux ports physiques sont bien regroupés en un seul lien logique. Si un câble tombe, l'autre continue de transporter le trafic sans interruption visible.</p>
+            </div>
+            <div class="skill-category" style="margin-top: 1.5rem;">
+              <h3 class="category-title"><i class="fas fa-sitemap"></i> Organisation des VLANs</h3>
+              <p class="about-text" style="margin-top: 0.5rem;">Chaque <span class="term" data-def="Réseau virtuel qui isole des groupes de machines entre elles, même si elles partagent les mêmes câbles.">VLAN</span> correspond à un groupe de machines (ex : VLAN 10 pour les postes, VLAN 20 pour les serveurs). Les deux switchs L3 routent le trafic entre ces VLANs et partagent la même passerelle virtuelle via <span class="term" data-def="Protocole réseau qui permet à deux routeurs de fonctionner en duo : si l'un tombe, l'autre prend le relais automatiquement.">HSRP</span>.</p>
+            </div>
+          </div>
+          <div>
+            <div class="skill-category">
+              <h3 class="category-title"><i class="fas fa-exchange-alt"></i> Test de bascule</h3>
+              <p class="about-text" style="margin-top: 0.5rem;">Pour vérifier que <span class="term" data-def="Protocole réseau qui permet à deux routeurs de fonctionner en duo : si l'un tombe, l'autre prend le relais automatiquement.">HSRP</span> fonctionne, j'ai simulé une panne en éteignant le routeur actif. Le routeur en attente a pris le relais automatiquement en quelques secondes, sans que les machines du réseau aient besoin d'être reconfigurées.</p>
+            </div>
+            <div class="skill-category" style="margin-top: 1.5rem;">
+              <h3 class="category-title"><i class="fas fa-history"></i> Temps de reprise</h3>
+              <p class="about-text" style="margin-top: 0.5rem;">Les messages de log sur la console du switch montrent exactement le moment où la bascule a eu lieu. Le réseau a repris son fonctionnement normal en moins de 10 secondes, ce qui valide la configuration des timers <span class="term" data-def="Protocole réseau qui permet à deux routeurs de fonctionner en duo : si l'un tombe, l'autre prend le relais automatiquement.">HSRP</span>.</p>
+            </div>
+            <div class="skill-category" style="margin-top: 1.5rem;">
+              <h3 class="category-title"><i class="fas fa-check-double"></i> Ce que ça a apporté</h3>
+              <div class="timeline-achievements" style="margin-top: 0.5rem;">
+                <div class="achievement-item"><i class="fas fa-check-circle"></i><span>Le réseau reste accessible même si un switch tombe en panne</span></div>
+                <div class="achievement-item"><i class="fas fa-check-circle"></i><span>Les liens agrégés offrent plus de bande passante et de tolérance aux pannes</span></div>
+                <div class="achievement-item"><i class="fas fa-check-circle"></i><span>Bascule testée et validée en lab, sans coupure visible pour les machines</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="section-footer">
+          <a href="../index.html#projets" class="btn-more"><i class="fas fa-arrow-left"></i> Retour aux projets</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="main-footer" role="contentinfo">
+    <div class="footer-container">
+      <div class="footer-content">
+        <p class="footer-text">2026 <span class="footer-copyright">Franck Raymond</span> - Tous droits réservés.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+  <script src="../script.js?v=20261028-b753f7964f"></script>
+
+
+<script src="/assets/portfolio-glossary.js" defer=""></script><script src="/assets/legacy-unified.js?v=20261028-8c422e514f" defer=""></script></body></html>

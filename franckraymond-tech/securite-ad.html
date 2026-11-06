@@ -1,0 +1,419 @@
+<!DOCTYPE html><html lang="fr"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Veille Technologique - Sécurité Active Directory - BTS SIO SISR">
+    <title>Veille sécurité Active Directory | Franck Raymond</title>
+    
+    <link rel="stylesheet" href="/tailwind-output.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&amp;family=Outfit:wght@300;400;500;600;700;800;900&amp;family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        .veille-hero {
+            min-height: 80vh;
+            display: flex;
+            align-items: center;
+            padding-top: 8rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .veille-hero::before {
+            content: '';
+            position: absolute;
+            top: 10%;
+            right: -10%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(239, 68, 68, 0.12) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .veille-icon-frame {
+            width: 180px;
+            height: 180px;
+            border-radius: 30px;
+            border: 3px solid #ef4444;
+            background: var(--bg-card);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 0 60px rgba(239, 68, 68, 0.25);
+        }
+
+        .veille-icon-frame i {
+            font-size: 4rem;
+            color: #ef4444;
+        }
+
+        .vuln-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 2rem;
+            transition: all 0.3s;
+        }
+
+        .vuln-card:hover {
+            border-color: #ef4444;
+            transform: translateY(-5px);
+        }
+
+        .vuln-card.critical {
+            border-left: 4px solid #ef4444;
+        }
+
+        .vuln-card.high {
+            border-left: 4px solid #f97316;
+        }
+
+        .vuln-card h4 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: var(--text-primary);
+        }
+
+        .vuln-badge {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: 50px;
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            margin-bottom: 0.75rem;
+        }
+
+        .vuln-badge.critical {
+            background: rgba(239, 68, 68, 0.2);
+            color: #ef4444;
+        }
+
+        .vuln-badge.high {
+            background: rgba(249, 115, 22, 0.2);
+            color: #f97316;
+        }
+
+        .source-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            transition: all 0.3s;
+        }
+
+        .source-card:hover {
+            border-color: var(--primary);
+            transform: translateX(5px);
+        }
+
+        .source-icon {
+            width: 50px;
+            height: 50px;
+            background: rgba(99, 102, 241, 0.1);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+            color: var(--primary);
+        }
+    
+        /* Tooltips termes techniques */
+        .term {
+            border-bottom: 1px dashed var(--primary);
+            cursor: help;
+            position: relative;
+            display: inline;
+        }
+        .term::after {
+            content: attr(data-def);
+            position: absolute;
+            bottom: calc(100% + 8px);
+            left: 50%;
+            transform: translateX(-50%);
+            background: #1e293b;
+            color: #f8fafc;
+            font-size: 0.78rem;
+            line-height: 1.5;
+            padding: 0.6rem 0.9rem;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            white-space: normal;
+            width: 220px;
+            text-align: left;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.2s;
+            z-index: 100;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+        }
+        .term:hover::after { opacity: 1; }
+</style>
+<meta name="theme-color" content="#111214"><link rel="stylesheet" href="/assets/legacy-unified.css?v=20260831-2"><meta name="author" content="Franck Raymond"><meta name="robots" content="index,follow,max-image-preview:large"><meta property="og:type" content="website"><meta property="og:site_name" content="Portfolio de Franck Raymond"><meta property="og:title" content="Veille sécurité Active Directory | Franck Raymond"><meta property="og:description" content="Veille Technologique - Sécurité Active Directory - BTS SIO SISR"><meta property="og:url" content="https://franckraymond.tech/securite-ad.html"><meta property="og:image" content="https://franckraymond.tech/franck.webp"><meta property="og:image:alt" content="Portrait professionnel de Franck Raymond"><meta property="og:locale" content="fr_FR"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Veille sécurité Active Directory | Franck Raymond"><meta name="twitter:description" content="Veille Technologique - Sécurité Active Directory - BTS SIO SISR"><meta name="twitter:image" content="https://franckraymond.tech/franck.webp"><link rel="canonical" href="https://franckraymond.tech/securite-ad.html"><link rel="icon" href="/favicon-32x32.png" sizes="32x32" type="image/png"><link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180"><link rel="manifest" href="/site.webmanifest"><script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"Veille sécurité Active Directory | Franck Raymond","url":"https://franckraymond.tech/securite-ad.html","description":"Veille Technologique - Sécurité Active Directory - BTS SIO SISR","isPartOf":{"@type":"WebSite","name":"Portfolio de Franck Raymond","url":"https://franckraymond.tech/"},"about":{"@type":"Person","name":"Franck Raymond","url":"https://franckraymond.tech/"}}</script>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,400&amp;family=Geist:wght@400;500;600&amp;display=swap">
+<link rel="stylesheet" href="/assets/editorial-tokens.css?v=20261106-modern">
+<link rel="stylesheet" href="/assets/editorial.css?v=20261106-modern">
+<script src="/assets/editorial-theme.js?v=20261028-1fe0ee8c9d"></script>
+</head>
+<body data-theme="light" class="portfolio-legacy editorial-site">
+
+    <div class="bg-mesh"></div>
+    <div class="noise-overlay"></div>
+    <div class="grid-lines"></div>
+
+    <header class="main-header" id="header">
+        <nav class="nav-container">
+            <a href="index.html" class="brand-logo">
+                <span class="logo-bracket">&lt;</span>
+                <span class="logo-text">FR</span>
+                <span class="logo-bracket">/&gt;</span>
+            </a>
+            <div class="nav-menu" id="navMenu">
+                <a href="index.html" class="nav-link"><i class="fas fa-home"></i> Accueil</a>
+                <a href="profil.html" class="nav-link"><i class="fas fa-user"></i> Profil</a>
+                <a href="index.html#skills" class="nav-link"><i class="fas fa-code"></i> Compétences</a>
+                <a href="experience.html" class="nav-link"><i class="fas fa-briefcase"></i> Expériences</a>
+                <a href="/projets.html#veille" class="nav-link active"><i class="fas fa-newspaper"></i> Veille</a>
+                <a href="index.html#contact" class="nav-link"><i class="fas fa-envelope"></i> Contact</a>
+            
+<a class="nav-link" href="https://opengym.jsuisfray.blitz.cloud/"><span class="nav-text">Sport</span></a></div>
+            <div class="nav-controls">
+                <button class="theme-toggle" id="themeToggle" aria-label="Changer le thème">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <button class="menu-toggle" id="menuToggle" aria-label="Menu">
+                    <span></span><span></span><span></span>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="veille-hero">
+            <div class="section-container">
+                <div class="hero-container">
+                    <div class="hero-content">
+                        <div class="hero-greeting" style="color: #ef4444;">VEILLE TECHNOLOGIQUE BTS SIO</div>
+                        <h1 class="hero-name">
+                            Sécurité <span class="name-value" style="background: linear-gradient(135deg, #ef4444, #dc2626); -webkit-background-clip: text;"><span class="term" data-def="Annuaire centralisé qui gère tous les utilisateurs et ordinateurs d'une entreprise. L'admin y crée les comptes et définit qui a accès à quoi.">Active Directory</span></span>
+                        </h1>
+                        <p class="hero-description">
+                            Suivi des vulnérabilités critiques (Zerologon, PrintNightmare, PetitPotam) et des bonnes pratiques de durcissement (Tiering Model, LAPS, Credential Guard).
+                        </p>
+                        <div class="hero-buttons">
+                            <a href="#vulnerabilites" class="btn btn-primary" style="background: linear-gradient(135deg, #ef4444, #dc2626);">
+                                <i class="fas fa-bug"></i> Vulnérabilités
+                            </a>
+                            <a href="#bonnes-pratiques" class="btn btn-secondary">
+                                <i class="fas fa-shield-alt"></i> Bonnes Pratiques
+                            </a>
+                        </div>
+                    </div>
+                    <div class="hero-image-wrapper">
+                        <div class="veille-icon-frame">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contexte" class="section">
+            <div class="section-container">
+                <div class="section-header">
+                    <span class="section-number">01</span>
+                    <h2 class="section-title">Pourquoi <span class="title-gradient">cette Veille ?</span></h2>
+                    <div class="section-line"></div>
+                </div>
+                
+                <div class="about-content">
+                    <div>
+                        <p class="about-text">
+                            <span class="term" data-def="Annuaire centralisé qui gère tous les utilisateurs et ordinateurs d'une entreprise. L'admin y crée les comptes et définit qui a accès à quoi.">Active Directory</span> est le cœur de la plupart des infrastructures Windows en entreprise. C'est également la cible n°1 des attaquants car sa compromission donne accès à l'ensemble du SI.
+                        </p>
+                        <p class="about-text">
+                            En tant que futur administrateur systèmes, il est essentiel de suivre les nouvelles vulnérabilités et les techniques de durcissement pour protéger efficacement les infrastructures.
+                        </p>
+                        <div style="display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 1.5rem;">
+                            <span class="tag">CVE Tracking</span>
+                            <span class="tag">Hardening</span>
+                            <span class="tag">Tiering Model</span>
+                            <span class="tag">Zero Trust</span>
+                        </div>
+                    </div>
+                    <div class="skills-grid" style="grid-template-columns: 1fr;">
+                        <div class="skill-category">
+                            <h3 class="category-title">Enjeux Critiques</h3>
+                            <div class="skill-items">
+                                <div class="skill-item"><i class="fas fa-key"></i> Compromission de domaine = accès total</div>
+                                <div class="skill-item"><i class="fas fa-clock"></i> Attaques de plus en plus rapides</div>
+                                <div class="skill-item"><i class="fas fa-euro-sign"></i> Coût moyen ransomware : 1.8M€</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="vulnerabilites" class="section" style="background: var(--bg-card-solid);">
+            <div class="section-container">
+                <div class="section-header">
+                    <span class="section-number">02</span>
+                    <h2 class="section-title">Vulnérabilités <span class="title-gradient">Majeures</span></h2>
+                    <div class="section-line"></div>
+                </div>
+
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem;">
+                    <div class="vuln-card critical">
+                        <span class="vuln-badge critical">Critique</span>
+                        <h4>Zerologon (CVE-2020-1472)</h4>
+                        <p style="color: var(--text-secondary); font-size: 0.9rem;">
+                            Permet de prendre le contrôle total d'un domaine <span class="term" data-def="Annuaire centralisé qui gère tous les utilisateurs et ordinateurs d'une entreprise. L'admin y crée les comptes et définit qui a accès à quoi.">AD</span> sans authentification en exploitant une faille dans Netlogon.
+                        </p>
+                    </div>
+                    <div class="vuln-card critical">
+                        <span class="vuln-badge critical">Critique</span>
+                        <h4>PrintNightmare (CVE-2021-34527)</h4>
+                        <p style="color: var(--text-secondary); font-size: 0.9rem;">
+                            Exécution de code à distance via le service Print Spooler. Vecteur d'attaque très répandu.
+                        </p>
+                    </div>
+                    <div class="vuln-card high">
+                        <span class="vuln-badge high">Élevée</span>
+                        <h4>PetitPotam</h4>
+                        <p style="color: var(--text-secondary); font-size: 0.9rem;">
+                            Coerce NTLM authentication vers un serveur contrôlé par l'attaquant via MS-EFSRPC.
+                        </p>
+                    </div>
+                    <div class="vuln-card high">
+                        <span class="vuln-badge high">Élevée</span>
+                        <h4>noPac (CVE-2021-42287)</h4>
+                        <p style="color: var(--text-secondary); font-size: 0.9rem;">
+                            Escalade de privilèges via manipulation des tickets Kerberos. Utilisateur → Domain Admin.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="bonnes-pratiques" class="section">
+            <div class="section-container">
+                <div class="section-header">
+                    <span class="section-number">03</span>
+                    <h2 class="section-title">Bonnes <span class="title-gradient">Pratiques</span></h2>
+                    <div class="section-line"></div>
+                </div>
+
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-marker"></div>
+                        <div class="timeline-content">
+                            <h3 class="timeline-title">Tiering Model (Modèle en Couches)</h3>
+                            <p class="timeline-description">
+                                Séparation stricte des comptes administratifs par niveau : Tier 0 (Domain Controllers), Tier 1 (Serveurs), Tier 2 (Postes de travail). Un admin Tier 0 ne doit jamais se connecter à un poste Tier 2.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-marker"></div>
+                        <div class="timeline-content">
+                            <h3 class="timeline-title">LAPS (Local Administrator Password Solution)</h3>
+                            <p class="timeline-description">
+                                Rotation automatique des mots de passe administrateur local. Élimine le risque de Pass-the-Hash avec un mot de passe identique sur tout le parc.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-marker"></div>
+                        <div class="timeline-content">
+                            <h3 class="timeline-title">Credential Guard</h3>
+                            <p class="timeline-description">
+                                Isolation des secrets d'authentification dans une zone sécurisée par virtualisation. Protection contre Mimikatz et les attaques de vol de credentials.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-marker"></div>
+                        <div class="timeline-content">
+                            <h3 class="timeline-title">Protected Users Group</h3>
+                            <p class="timeline-description">
+                                Groupe spécial qui désactive les protocoles d'authentification faibles (NTLM, DES) et empêche la mise en cache des credentials.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" style="background: var(--bg-card-solid);">
+            <div class="section-container">
+                <div class="section-header">
+                    <span class="section-number">04</span>
+                    <h2 class="section-title">Sources <span class="title-gradient">de Veille</span></h2>
+                    <div class="section-line"></div>
+                </div>
+
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem;">
+                    <a href="https://www.cert.ssi.gouv.fr/" target="_blank" class="source-card">
+                        <div class="source-icon"><i class="fas fa-shield-alt"></i></div>
+                        <div>
+                            <strong style="color: var(--text-primary);">CERT-FR (ANSSI)</strong>
+                            <p style="color: var(--text-muted); font-size: 0.85rem;">Alertes de sécurité officielles France</p>
+                        </div>
+                    </a>
+                    <a href="https://adsecurity.org/" target="_blank" class="source-card">
+                        <div class="source-icon"><i class="fab fa-windows"></i></div>
+                        <div>
+                            <strong style="color: var(--text-primary);">ADSecurity.org</strong>
+                            <p style="color: var(--text-muted); font-size: 0.85rem;">Blog spécialisé <span class="term" data-def="Annuaire centralisé qui gère tous les utilisateurs et ordinateurs d'une entreprise. L'admin y crée les comptes et définit qui a accès à quoi.">Active Directory</span></p>
+                        </div>
+                    </a>
+                    <a href="https://twitter.com/hashtag/ActiveDirectory" target="_blank" class="source-card">
+                        <div class="source-icon"><i class="fab fa-twitter"></i></div>
+                        <div>
+                            <strong style="color: var(--text-primary);">#ActiveDirectory</strong>
+                            <p style="color: var(--text-muted); font-size: 0.85rem;">Veille communauté Twitter/X</p>
+                        </div>
+                    </a>
+                    <a href="https://www.youracclaim.com" target="_blank" class="source-card">
+                        <div class="source-icon"><i class="fas fa-certificate"></i></div>
+                        <div>
+                            <strong style="color: var(--text-primary);">Microsoft Learn</strong>
+                            <p style="color: var(--text-muted); font-size: 0.85rem;">Documentation officielle Microsoft</p>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="section-footer" style="margin-top: 4rem;">
+                    <a href="/projets.html#veille" class="btn-more">
+                        <i class="fas fa-arrow-left"></i> Retour à l'accueil
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="main-footer">
+        <div class="footer-container">
+            <div class="footer-content">
+                <p class="footer-text">© 2026 <span class="footer-copyright">Franck Raymond</span> — Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        window.addEventListener('scroll', () => {
+            document.getElementById('header').classList.toggle('scrolled', window.scrollY > 50);
+        });
+        document.getElementById('menuToggle').addEventListener('click', () => {
+            document.getElementById('navMenu').classList.toggle('active');
+        });
+    </script>
+
+
+<script src="/assets/portfolio-glossary.js?v=20260831-2" defer=""></script><script src="/assets/legacy-unified.js?v=20261028-8c422e514f" defer=""></script></body></html>

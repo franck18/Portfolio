@@ -1,0 +1,410 @@
+<!DOCTYPE html><html lang="fr"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Experience professionnelle - Centrale d'Auchan, centre de recherche de Villeneuve-d'Ascq - Stage d'observation en informatique">
+    <title>Centrale d'Auchan - Villeneuve-d'Ascq | Franck Raymond</title>
+    
+    <link rel="stylesheet" href="tailwind-output.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&amp;family=Outfit:wght@300;400;500;600;700;800;900&amp;family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    
+    <style>
+        .exp-hero {
+            padding-top: 10rem;
+            padding-bottom: 3rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .exp-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: -10%;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(245, 158, 11, 0.16) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .exp-header-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            padding: 3rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .exp-header-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--orange), var(--primary));
+        }
+
+        .exp-glow {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 200px;
+            height: 200px;
+            background: radial-gradient(circle, rgba(245, 158, 11, 0.2) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .exp-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+            color: var(--text-primary);
+        }
+
+        .exp-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--text-secondary);
+        }
+
+        .exp-meta-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .exp-meta-item i {
+            color: var(--orange);
+        }
+
+        .content-section {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            transition: all 0.3s;
+        }
+
+        .content-section:hover {
+            border-color: var(--primary);
+        }
+
+        .content-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            color: var(--text-primary);
+        }
+
+        .content-title i {
+            color: var(--orange);
+        }
+
+        .mission-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .mission-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            padding: 1rem;
+            background: var(--bg-card-solid);
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            transition: all 0.3s;
+        }
+
+        .mission-item:hover {
+            border-color: var(--orange);
+            transform: translateX(5px);
+        }
+
+        .mission-item i {
+            color: var(--orange);
+            margin-top: 0.2rem;
+        }
+
+        .tool-detail {
+            scroll-margin-top: 140px;
+        }
+
+        .tool-detail:target {
+            border-color: var(--orange);
+            box-shadow: 0 0 0 1px rgba(245, 158, 11, 0.25), 0 18px 40px rgba(0, 0, 0, 0.22);
+        }
+    
+        /* Tooltips termes techniques */
+        .term {
+            border-bottom: 1px dashed var(--primary);
+            cursor: help;
+            position: relative;
+            display: inline;
+        }
+        .term::after {
+            content: attr(data-def);
+            position: absolute;
+            bottom: calc(100% + 8px);
+            left: 50%;
+            transform: translateX(-50%);
+            background: #1e293b;
+            color: #f8fafc;
+            font-size: 0.78rem;
+            line-height: 1.5;
+            padding: 0.6rem 0.9rem;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            white-space: normal;
+            width: 220px;
+            text-align: left;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.2s;
+            z-index: 100;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+        }
+        .term:hover::after { opacity: 1; }
+</style>
+<meta name="theme-color" content="#111214"><link rel="stylesheet" href="/assets/legacy-unified.css?v=20260831-2"><meta name="author" content="Franck Raymond"><meta name="robots" content="index,follow,max-image-preview:large"><meta property="og:type" content="website"><meta property="og:site_name" content="Portfolio de Franck Raymond"><meta property="og:title" content="Centrale d'Auchan - Villeneuve-d'Ascq | Franck Raymond"><meta property="og:description" content="Experience professionnelle - Centrale d'Auchan, centre de recherche de Villeneuve-d'Ascq - Stage d'observation en informatique"><meta property="og:url" content="https://franckraymond.tech/exp-auchan.html"><meta property="og:image" content="https://franckraymond.tech/franck.webp"><meta property="og:image:alt" content="Portrait professionnel de Franck Raymond"><meta property="og:locale" content="fr_FR"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Centrale d'Auchan - Villeneuve-d'Ascq | Franck Raymond"><meta name="twitter:description" content="Experience professionnelle - Centrale d'Auchan, centre de recherche de Villeneuve-d'Ascq - Stage d'observation en informatique"><meta name="twitter:image" content="https://franckraymond.tech/franck.webp"><link rel="canonical" href="https://franckraymond.tech/exp-auchan.html"><link rel="icon" href="/favicon-32x32.png" sizes="32x32" type="image/png"><link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180"><link rel="manifest" href="/site.webmanifest"><script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"Centrale d'Auchan - Villeneuve-d'Ascq | Franck Raymond","url":"https://franckraymond.tech/exp-auchan.html","description":"Experience professionnelle - Centrale d'Auchan, centre de recherche de Villeneuve-d'Ascq - Stage d'observation en informatique","isPartOf":{"@type":"WebSite","name":"Portfolio de Franck Raymond","url":"https://franckraymond.tech/"},"about":{"@type":"Person","name":"Franck Raymond","url":"https://franckraymond.tech/"}}</script>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,400&amp;family=Geist:wght@400;500;600&amp;display=swap">
+<link rel="stylesheet" href="/assets/editorial-tokens.css?v=20261106-modern">
+<link rel="stylesheet" href="/assets/editorial.css?v=20261106-modern">
+<script src="/assets/editorial-theme.js?v=20261028-1fe0ee8c9d"></script>
+</head>
+<body data-theme="light" class="portfolio-legacy editorial-site">
+
+    <div class="bg-mesh"></div>
+    <div class="noise-overlay"></div>
+    <div class="grid-lines"></div>
+
+    <header class="main-header" id="header">
+        <nav class="nav-container">
+            <a href="index.html" class="brand-logo">
+                <span class="logo-bracket">&lt;</span>
+                <span class="logo-text">FR</span>
+                <span class="logo-bracket">/&gt;</span>
+            </a>
+            <div class="nav-menu" id="navMenu">
+                <a href="index.html" class="nav-link"><i class="fas fa-home"></i> Accueil</a>
+                <a href="profil.html" class="nav-link"><i class="fas fa-user"></i> Profil</a>
+                <a href="index.html#skills" class="nav-link"><i class="fas fa-code"></i> Compétences</a>
+                <a href="experience.html" class="nav-link active"><i class="fas fa-briefcase"></i> Expériences</a>
+                <a href="/projets.html#veille" class="nav-link"><i class="fas fa-newspaper"></i> Veille</a>
+                <a href="index.html#contact" class="nav-link"><i class="fas fa-envelope"></i> Contact</a>
+            
+<a class="nav-link" href="https://opengym.jsuisfray.blitz.cloud/"><span class="nav-text">Sport</span></a></div>
+            <div class="nav-controls">
+                <button class="theme-toggle" id="themeToggle" aria-label="Changer le theme">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <button class="menu-toggle" id="menuToggle" aria-label="Menu">
+                    <span></span><span></span><span></span>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="exp-hero">
+            <div class="section-container">
+                <a href="experience.html" class="btn-more" style="margin-bottom: 2rem;">
+                    <i class="fas fa-arrow-left"></i> Retour aux expériences
+                </a>
+
+                <div class="exp-header-card">
+                    <div class="exp-glow"></div>
+                    <h1 class="exp-title">Stage d'observation en informatique</h1>
+                    <div class="exp-meta">
+                        <span class="exp-meta-item">
+                            <i class="fas fa-store"></i> Centrale d'Auchan, centre de recherche de Villeneuve-d'Ascq
+                        </span>
+                        <span class="exp-meta-item">
+                            <i class="fas fa-calendar-alt"></i> Avril 2019
+                        </span>
+                        <span class="exp-meta-item">
+                            <i class="fas fa-binoculars"></i> Stage d'observation
+                        </span>
+                    </div>
+                    <div class="timeline-tags">
+                        <a href="#outil-talend" class="tag">Talend</a>
+                        <a href="#outil-rms" class="tag">RMS</a>
+                        <a href="#outil-txt" class="tag">TXT</a>
+                        <a href="#outil-oracle" class="tag">Oracle</a>
+                        <a href="#outil-space" class="tag">Space</a>
+                        <a href="#outil-apollo" class="tag">Apollo</a>
+                        <a href="#outil-athena" class="tag">Athéna</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="section-container" style="padding-bottom: 5rem;">
+            <div class="content-section">
+                <h2 class="content-title"><i class="fas fa-info-circle"></i> Description du stage</h2>
+                <p class="about-text">
+                    En avril 2019, j'ai effectué un stage d'observation en informatique à la Centrale d'Auchan, au centre de recherche de Villeneuve-d'Ascq. Cette immersion m'a permis de découvrir le fonctionnement d'un environnement informatique d'entreprise, les métiers qui y sont associés et plusieurs outils utilisés au quotidien. Elle a aussi joué un rôle important dans mon orientation vers les réseaux, les systèmes et le <span class="term" data-def="Serveurs distants accessibles par internet, gérés par des entreprises comme Microsoft (Azure) ou Amazon (AWS).">cloud</span>.
+                </p>
+            </div>
+
+            <div class="content-section">
+                <h2 class="content-title"><i class="fas fa-calendar-week"></i> Organisation du stage</h2>
+                <div class="mission-list">
+                    <div class="mission-item">
+                        <i class="fas fa-clock"></i>
+                        <div>
+                            <strong>Planning réparti sur la semaine</strong>
+                            <p style="color: var(--text-secondary); margin-top: 0.25rem;">Le stage était organisé sur plusieurs créneaux et demi-journées, ce qui m'a permis d'observer différents moments de l'activité sans entrer dans le détail des personnes ou des services.</p>
+                        </div>
+                    </div>
+                    <div class="mission-item">
+                        <i class="fas fa-route"></i>
+                        <div>
+                            <strong>Observation progressive</strong>
+                            <p style="color: var(--text-secondary); margin-top: 0.25rem;">Cette organisation m'a donné une vision plus large du fonctionnement quotidien, avec une découverte progressive des outils et des usages.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="content-section">
+                <h2 class="content-title"><i class="fas fa-binoculars"></i> Découvertes principales</h2>
+                <div class="mission-list">
+                    <div class="mission-item">
+                        <i class="fas fa-users"></i>
+                        <div>
+                            <strong>Découverte des métiers</strong>
+                            <p style="color: var(--text-secondary); margin-top: 0.25rem;">Observation des différents métiers de l'entreprise et du rôle du service informatique dans l'organisation.</p>
+                        </div>
+                    </div>
+                    <div class="mission-item">
+                        <i class="fas fa-code"></i>
+                        <div>
+                            <strong>Premiers repères techniques</strong>
+                            <p style="color: var(--text-secondary); margin-top: 0.25rem;">Découverte de langages et environnements informatiques comme Talend, RMS et TXT.</p>
+                        </div>
+                    </div>
+                    <div class="mission-item">
+                        <i class="fas fa-desktop"></i>
+                        <div>
+                            <strong>Outils métiers</strong>
+                            <p style="color: var(--text-secondary); margin-top: 0.25rem;">Prise de connaissance des logiciels Oracle, Space, Apollo et Athéna utilisés dans l'entreprise.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="content-section">
+                <h2 class="content-title"><i class="fas fa-book-open"></i> Détails des outils découverts</h2>
+                <div class="mission-list">
+                    <div class="mission-item tool-detail" id="outil-talend">
+                        <i class="fas fa-database"></i>
+                        <div>
+                            <strong>Talend</strong>
+                            <p style="color: var(--text-secondary); margin-top: 0.25rem;">Talend est une plateforme d'intégration de données. Elle sert à extraire, transformer et charger des données entre plusieurs applications ou bases, afin de faire circuler l'information entre différents systèmes.</p>
+                        </div>
+                    </div>
+                    <div class="mission-item tool-detail" id="outil-rms">
+                        <i class="fas fa-layer-group"></i>
+                        <div>
+                            <strong>RMS</strong>
+                            <p style="color: var(--text-secondary); margin-top: 0.25rem;">RMS m'a été présenté comme un environnement utilisé dans les traitements internes. Pendant le stage, j'y ai surtout vu une logique d'organisation, de consultation et de circulation des données dans l'entreprise.</p>
+                        </div>
+                    </div>
+                    <div class="mission-item tool-detail" id="outil-txt">
+                        <i class="fas fa-file-lines"></i>
+                        <div>
+                            <strong>TXT</strong>
+                            <p style="color: var(--text-secondary); margin-top: 0.25rem;">Le format TXT correspond à des fichiers texte simples. Ils sont souvent utilisés pour stocker ou échanger des données brutes entre logiciels de manière lisible et légère.</p>
+                        </div>
+                    </div>
+                    <div class="mission-item tool-detail" id="outil-oracle">
+                        <i class="fas fa-server"></i>
+                        <div>
+                            <strong>Oracle</strong>
+                            <p style="color: var(--text-secondary); margin-top: 0.25rem;">Oracle est un système de gestion de base de données très utilisé en entreprise. Il permet de stocker, structurer et interroger de grands volumes d'informations de manière fiable.</p>
+                        </div>
+                    </div>
+                    <div class="mission-item tool-detail" id="outil-space">
+                        <i class="fas fa-cubes"></i>
+                        <div>
+                            <strong>Space</strong>
+                            <p style="color: var(--text-secondary); margin-top: 0.25rem;">Space faisait partie des logiciels métier observés. Je l'ai retenu comme un outil servant à consulter ou organiser certaines informations utiles aux équipes dans leur activité quotidienne.</p>
+                        </div>
+                    </div>
+                    <div class="mission-item tool-detail" id="outil-apollo">
+                        <i class="fas fa-satellite-dish"></i>
+                        <div>
+                            <strong>Apollo</strong>
+                            <p style="color: var(--text-secondary); margin-top: 0.25rem;">Apollo était un autre logiciel découvert pendant le stage. Il m'a surtout aidé à comprendre qu'un système d'information d'entreprise repose sur plusieurs applications spécialisées qui communiquent entre elles.</p>
+                        </div>
+                    </div>
+                    <div class="mission-item tool-detail" id="outil-athena">
+                        <i class="fas fa-brain"></i>
+                        <div>
+                            <strong>Athéna</strong>
+                            <p style="color: var(--text-secondary); margin-top: 0.25rem;">Athéna faisait partie des logiciels utilisés dans l'environnement observé. Je l'ai identifié comme un outil de consultation et de suivi d'informations métier, utile pour accéder rapidement à des données selon les besoins des services.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="content-section">
+                <h2 class="content-title"><i class="fas fa-lightbulb"></i> Ce que j'en retiens</h2>
+                <div class="mission-list">
+                    <div class="mission-item">
+                        <i class="fas fa-sitemap"></i>
+                        <div>
+                            <strong>Compréhension d'un SI d'entreprise</strong>
+                            <p style="color: var(--text-secondary); margin-top: 0.25rem;">Ce stage m'a donné une première vision concrète de l'organisation, des outils et des échanges entre services autour de l'informatique.</p>
+                        </div>
+                    </div>
+                    <div class="mission-item">
+                        <i class="fas fa-seedling"></i>
+                        <div>
+                            <strong>Orientation de mon projet professionnel</strong>
+                            <p style="color: var(--text-secondary); margin-top: 0.25rem;">Au départ, je m'orientais plutôt vers le développement, avec l'idée de devenir développeur full-stack ou de travailler en frontend / backend. Ce stage m'a progressivement montré que j'étais davantage attiré par les environnements réseaux, systèmes et <span class="term" data-def="Serveurs distants accessibles par internet, gérés par des entreprises comme Microsoft (Azure) ou Amazon (AWS).">cloud</span>, qui correspondent aujourd'hui beaucoup plus à mon projet.</p>
+                        </div>
+                    </div>
+                    <div class="mission-item">
+                        <i class="fas fa-server"></i>
+                        <div>
+                            <strong>Préférence pour l'infrastructure</strong>
+                            <p style="color: var(--text-secondary); margin-top: 0.25rem;">La découverte d'outils, de flux de données et d'environnements d'entreprise m'a davantage marqué que l'idée de produire des interfaces ou des applications. C'est ce premier contact qui m'a poussé à explorer ensuite les domaines systèmes, réseaux et <span class="term" data-def="Serveurs distants accessibles par internet, gérés par des entreprises comme Microsoft (Azure) ou Amazon (AWS).">cloud</span>.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="main-footer">
+        <div class="footer-container">
+            <div class="footer-content">
+                <p class="footer-text">© 2026 <span class="footer-copyright">Franck Raymond</span> — Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        window.addEventListener('scroll', () => {
+            document.getElementById('header').classList.toggle('scrolled', window.scrollY > 50);
+        });
+        
+        document.getElementById('menuToggle').addEventListener('click', () => {
+            document.getElementById('navMenu').classList.toggle('active');
+        });
+    </script>
+
+
+<script src="/assets/portfolio-glossary.js?v=20260831-2" defer=""></script><script src="/assets/legacy-unified.js?v=20261028-8c422e514f" defer=""></script></body></html>

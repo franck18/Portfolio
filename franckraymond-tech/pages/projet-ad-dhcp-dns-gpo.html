@@ -1,0 +1,1512 @@
+<!DOCTYPE html><html lang="fr"><head>
+
+  <meta charset="UTF-8">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta name="description" content="Projet AD + DHCP + DNS + GPO - Infrastructure Windows Server - Portfolio BTS SIO SISR">
+
+  <title>AD + DHCP + DNS + GPO | Portfolio</title>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&amp;family=Outfit:wght@300;400;500;600;700;800;900&amp;family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="../style.css">
+
+  <style>
+
+    .project-gallery {
+
+      display: grid;
+
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+
+      gap: 1.5rem;
+
+      margin-top: 2rem;
+
+    }
+
+    .gallery-item {
+
+      background: var(--bg-card);
+
+      border: 1px solid var(--border);
+
+      border-radius: 12px;
+
+      overflow: hidden;
+
+      transition: all 0.3s;
+
+      cursor: pointer;
+
+      position: relative;
+
+    }
+
+    .gallery-item:hover {
+
+      border-color: var(--primary);
+
+      transform: translateY(-4px);
+
+      box-shadow: 0 12px 40px rgba(56, 189, 248, 0.12);
+
+    }
+
+    .gallery-item::after {
+
+      content: '\f00e';
+
+      font-family: 'Font Awesome 6 Free';
+
+      font-weight: 900;
+
+      position: absolute;
+
+      top: 1rem;
+
+      right: 1rem;
+
+      background: rgba(0, 0, 0, 0.7);
+
+      color: white;
+
+      width: 36px;
+
+      height: 36px;
+
+      border-radius: 50%;
+
+      display: flex;
+
+      align-items: center;
+
+      justify-content: center;
+
+      opacity: 0;
+
+      transition: opacity 0.3s;
+
+    }
+
+    .gallery-item:hover::after {
+
+      opacity: 1;
+
+    }
+
+    .gallery-item img {
+
+      width: 100%;
+
+      height: 200px;
+
+      object-fit: cover;
+
+      border-bottom: 1px solid var(--border);
+
+    }
+
+    .gallery-item-content {
+
+      padding: 1rem;
+
+    }
+
+    .gallery-item-title {
+
+      font-weight: 600;
+
+      color: var(--text-primary);
+
+      margin-bottom: 0.5rem;
+
+    }
+
+    .gallery-item-desc {
+
+      font-size: 0.85rem;
+
+      color: var(--text-muted);
+
+    }
+
+    .infra-table {
+
+      width: 100%;
+
+      border-collapse: collapse;
+
+      margin: 1.5rem 0;
+
+      background: var(--bg-card);
+
+      border-radius: 12px;
+
+      overflow: hidden;
+
+    }
+
+    .infra-table th, .infra-table td {
+
+      padding: 1rem;
+
+      text-align: left;
+
+      border-bottom: 1px solid var(--border);
+
+    }
+
+    .infra-table th {
+
+      background: rgba(56, 189, 248, 0.1);
+
+      color: var(--primary);
+
+      font-weight: 600;
+
+    }
+
+    .infra-table tr:last-child td {
+
+      border-bottom: none;
+
+    }
+
+    .tp-card {
+
+      background: var(--bg-card);
+
+      border: 1px solid var(--border);
+
+      border-radius: 16px;
+
+      padding: 2rem;
+
+      margin-bottom: 2rem;
+
+    }
+
+    .tp-card h3 {
+
+      color: var(--primary);
+
+      margin-bottom: 1rem;
+
+      display: flex;
+
+      align-items: center;
+
+      gap: 0.75rem;
+
+    }
+
+    .code-block {
+
+      background: #1e1e2e;
+
+      border-radius: 8px;
+
+      padding: 1rem;
+
+      margin: 1rem 0;
+
+      overflow-x: auto;
+
+      font-family: 'JetBrains Mono', monospace;
+
+      font-size: 0.85rem;
+
+      color: #cdd6f4;
+
+    }
+
+    .validation-box {
+
+      background: rgba(134, 239, 172, 0.1);
+
+      border: 1px solid rgba(134, 239, 172, 0.3);
+
+      border-radius: 8px;
+
+      padding: 1rem;
+
+      margin: 1rem 0;
+
+    }
+
+    .validation-box h4 {
+
+      color: #86efac;
+
+      margin-bottom: 0.5rem;
+
+    }
+
+    .architecture-visual {
+
+      display: flex;
+
+      flex-wrap: wrap;
+
+      justify-content: center;
+
+      align-items: center;
+
+      gap: 1rem;
+
+      padding: 2rem;
+
+      background: var(--bg-card);
+
+      border-radius: 12px;
+
+      margin: 2rem 0;
+
+    }
+
+    .arch-box {
+
+      background: linear-gradient(135deg, var(--primary), #8b5cf6);
+
+      color: white;
+
+      padding: 1.25rem 2rem;
+
+      border-radius: 12px;
+
+      text-align: center;
+
+      min-width: 120px;
+
+    }
+
+    .arch-box.ad { background: linear-gradient(135deg, #3b82f6, #1d4ed8); }
+
+    .arch-box.dhcp { background: linear-gradient(135deg, #22c55e, #16a34a); }
+
+    .arch-box.dns { background: linear-gradient(135deg, #f59e0b, #d97706); }
+
+    .arch-box.gpo { background: linear-gradient(135deg, #ef4444, #dc2626); }
+
+    .arch-arrow {
+
+      font-size: 1.5rem;
+
+      color: var(--text-muted);
+
+    }
+
+    @media (max-width: 768px) {
+
+      .architecture-visual { flex-direction: column; }
+
+    }
+
+    .ou-tree {
+
+      background: var(--bg-card);
+
+      border: 1px solid var(--border);
+
+      border-radius: 12px;
+
+      padding: 1.5rem;
+
+      font-family: 'JetBrains Mono', monospace;
+
+      font-size: 0.9rem;
+
+    }
+
+    .ou-tree ul {
+
+      list-style: none;
+
+      padding-left: 1.5rem;
+
+    }
+
+    .ou-tree > ul {
+
+      padding-left: 0;
+
+    }
+
+    .ou-tree li {
+
+      position: relative;
+
+      padding: 0.25rem 0;
+
+    }
+
+    .ou-tree li::before {
+
+      content: '├── ';
+
+      color: var(--text-muted);
+
+    }
+
+    .ou-tree li:last-child::before {
+
+      content: '└── ';
+
+    }
+
+    .ou-folder { color: #60a5fa; }
+
+    .ou-user { color: #34d399; }
+
+    .ou-group { color: #fbbf24; }
+
+
+
+    /* Lightbox */
+
+    .lightbox {
+
+      display: none;
+
+      position: fixed;
+
+      top: 0;
+
+      left: 0;
+
+      width: 100%;
+
+      height: 100%;
+
+      background: rgba(0, 0, 0, 0.95);
+
+      z-index: 9999;
+
+      justify-content: center;
+
+      align-items: center;
+
+      padding: 2rem;
+
+    }
+
+    .lightbox.active {
+
+      display: flex;
+
+    }
+
+    .lightbox-content {
+
+      position: relative;
+
+      max-width: 90vw;
+
+      max-height: 90vh;
+
+    }
+
+    .lightbox-content img {
+
+      max-width: 100%;
+
+      max-height: 85vh;
+
+      border-radius: 12px;
+
+    }
+
+    .lightbox-caption {
+
+      text-align: center;
+
+      color: white;
+
+      margin-top: 1rem;
+
+    }
+
+    .lightbox-caption .title {
+
+      font-weight: 600;
+
+      color: var(--primary);
+
+    }
+
+    .lightbox-caption .desc {
+
+      color: rgba(255, 255, 255, 0.7);
+
+      font-size: 0.95rem;
+
+    }
+
+    .lightbox-close {
+
+      position: absolute;
+
+      top: -40px;
+
+      right: 0;
+
+      background: none;
+
+      border: none;
+
+      color: white;
+
+      font-size: 2rem;
+
+      cursor: pointer;
+
+    }
+
+    .lightbox-close:hover {
+
+      color: var(--primary);
+
+    }
+
+    .lightbox-nav {
+
+      position: absolute;
+
+      top: 50%;
+
+      transform: translateY(-50%);
+
+      background: rgba(255, 255, 255, 0.1);
+
+      border: none;
+
+      color: white;
+
+      font-size: 1.5rem;
+
+      padding: 1rem;
+
+      cursor: pointer;
+
+      border-radius: 50%;
+
+    }
+
+    .lightbox-nav:hover {
+
+      background: var(--primary);
+
+    }
+
+    .lightbox-nav.prev { left: 2rem; }
+
+    .lightbox-nav.next { right: 2rem; }
+
+    .lightbox-counter {
+
+      position: absolute;
+
+      bottom: 1rem;
+
+      left: 50%;
+
+      transform: translateX(-50%);
+
+      color: rgba(255, 255, 255, 0.6);
+
+      font-family: 'JetBrains Mono', monospace;
+
+    }
+
+  
+        /* Tooltips termes techniques */
+        .term {
+            border-bottom: 1px dashed var(--primary);
+            cursor: help;
+            position: relative;
+            display: inline;
+        }
+        .term::after {
+            content: attr(data-def);
+            position: absolute;
+            bottom: calc(100% + 8px);
+            left: 50%;
+            transform: translateX(-50%);
+            background: #1e293b;
+            color: #f8fafc;
+            font-size: 0.78rem;
+            line-height: 1.5;
+            padding: 0.6rem 0.9rem;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            white-space: normal;
+            width: 220px;
+            text-align: left;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.2s;
+            z-index: 100;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+        }
+        .term:hover::after { opacity: 1; }
+</style>
+
+<meta name="theme-color" content="#111214"><link rel="stylesheet" href="/assets/legacy-unified.css?v=20260831-2"><meta name="author" content="Franck Raymond"><meta name="robots" content="index,follow,max-image-preview:large"><meta property="og:type" content="website"><meta property="og:site_name" content="Portfolio de Franck Raymond"><meta property="og:title" content="AD + DHCP + DNS + GPO | Portfolio"><meta property="og:description" content="Projet AD + DHCP + DNS + GPO - Infrastructure Windows Server - Portfolio BTS SIO SISR"><meta property="og:url" content="https://franckraymond.tech/pages/projet-ad-dhcp-dns-gpo.html"><meta property="og:image" content="https://franckraymond.tech/franck.webp"><meta property="og:image:alt" content="Portrait professionnel de Franck Raymond"><meta property="og:locale" content="fr_FR"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="AD + DHCP + DNS + GPO | Portfolio"><meta name="twitter:description" content="Projet AD + DHCP + DNS + GPO - Infrastructure Windows Server - Portfolio BTS SIO SISR"><meta name="twitter:image" content="https://franckraymond.tech/franck.webp"><link rel="canonical" href="https://franckraymond.tech/pages/projet-ad-dhcp-dns-gpo.html"><link rel="icon" href="/favicon-32x32.png" sizes="32x32" type="image/png"><link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180"><link rel="manifest" href="/site.webmanifest"><script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"AD + DHCP + DNS + GPO | Portfolio","url":"https://franckraymond.tech/pages/projet-ad-dhcp-dns-gpo.html","description":"Projet AD + DHCP + DNS + GPO - Infrastructure Windows Server - Portfolio BTS SIO SISR","isPartOf":{"@type":"WebSite","name":"Portfolio de Franck Raymond","url":"https://franckraymond.tech/"},"about":{"@type":"Person","name":"Franck Raymond","url":"https://franckraymond.tech/"}}</script>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,400&amp;family=Geist:wght@400;500;600&amp;display=swap">
+<link rel="stylesheet" href="/assets/editorial-tokens.css?v=20261106-modern">
+<link rel="stylesheet" href="/assets/editorial.css?v=20261106-modern">
+<script src="/assets/editorial-theme.js?v=20261028-1fe0ee8c9d"></script>
+</head>
+
+
+
+<body data-theme="light" class="portfolio-legacy editorial-site">
+
+  <div class="bg-mesh"></div>
+
+  <div class="noise-overlay"></div>
+
+  <div class="grid-lines"></div>
+
+
+
+  <header class="main-header" id="header">
+
+    <nav class="nav-container">
+
+      <div class="nav-brand">
+
+        <a href="../index.html" class="brand-logo">
+
+          <span class="logo-bracket">&lt;</span>
+
+          <span class="logo-text">FR</span>
+
+          <span class="logo-bracket">/&gt;</span>
+
+        </a>
+
+      </div>
+
+      <div class="nav-menu" id="navMenu">
+
+        <a href="../index.html" class="nav-link"><i class="fas fa-home"></i><span class="nav-text">Accueil</span></a>
+
+        <a href="../index.html#skills" class="nav-link"><i class="fas fa-server"></i><span class="nav-text">Compétences</span></a>
+
+        <a href="/projets.html" class="nav-link active"><i class="fas fa-project-diagram"></i><span class="nav-text">Projets</span></a>
+
+        <a href="epreuve-e5.html" class="nav-link"><i class="fas fa-graduation-cap"></i><span class="nav-text">épreuve E5</span></a>
+
+        <a href="../index.html#experience" class="nav-link"><i class="fas fa-briefcase"></i><span class="nav-text">Expériences</span></a>
+
+        <a href="../index.html#contact" class="nav-link"><i class="fas fa-envelope"></i><span class="nav-text">Contact</span></a>
+
+      
+<a class="nav-link" href="https://opengym.jsuisfray.blitz.cloud/"><span class="nav-text">Sport</span></a></div>
+
+      <div class="nav-controls">
+
+        <button class="theme-toggle" id="themeToggle"><i class="fas fa-moon"></i></button>
+
+        <button class="menu-toggle" id="menuToggle"><span></span><span></span><span></span></button>
+
+      </div>
+
+    </nav>
+
+  </header>
+
+
+
+  <main>
+
+    <!-- HERO -->
+
+    <section class="hero-section page-hero">
+
+      <div class="hero-glow"></div>
+
+      <div class="hero-glow-2"></div>
+
+      <div class="hero-container">
+
+        <div class="hero-content">
+
+          <div class="hero-greeting page-badge">Infrastructure Windows Server</div>
+
+          <h1 class="hero-name"><span class="name-gradient"><span class="term" data-def="Annuaire centralisé qui gère tous les utilisateurs et ordinateurs d'une entreprise. L'admin y crée les comptes et définit qui a accès à quoi.">AD</span> + <span class="term" data-def="Service qui attribue automatiquement une adresse réseau à chaque appareil qui se connecte.">DHCP</span> + <span class="term" data-def="Système qui traduit un nom de site (ex: google.com) en adresse réseau compréhensible par les machines.">DNS</span> + <span class="term" data-def="Règles appliquées automatiquement à tous les ordinateurs d'une entreprise (ex: fond d'écran imposé, logiciels installés d'office).">GPO</span></span></h1>
+
+          <p class="hero-description">
+
+            J'ai déployé une infrastructure Windows Server complète avec <span class="term" data-def="Annuaire centralisé qui gère tous les utilisateurs et ordinateurs d'une entreprise. L'admin y crée les comptes et définit qui a accès à quoi.">Active Directory</span>, <span class="term" data-def="Service qui attribue automatiquement une adresse réseau à chaque appareil qui se connecte.">DHCP</span>, <span class="term" data-def="Système qui traduit un nom de site (ex: google.com) en adresse réseau compréhensible par les machines.">DNS</span> et stratégie de groupe (<span class="term" data-def="Règles appliquées automatiquement à tous les ordinateurs d'une entreprise (ex: fond d'écran imposé, logiciels installés d'office).">GPO</span>) pour gerer les utilisateurs et les postes du domaine.
+
+          </p>
+
+<div class="hero-buttons">
+
+            <a href="#ad" class="btn btn-primary"><i class="fab fa-windows"></i> <span class="term" data-def="Annuaire centralisé qui gère tous les utilisateurs et ordinateurs d'une entreprise. L'admin y crée les comptes et définit qui a accès à quoi.">Active Directory</span></a>
+
+            <a href="#dhcp" class="btn btn-secondary"><i class="fas fa-network-wired"></i> <span class="term" data-def="Service qui attribue automatiquement une adresse réseau à chaque appareil qui se connecte.">DHCP</span> / <span class="term" data-def="Système qui traduit un nom de site (ex: google.com) en adresse réseau compréhensible par les machines.">DNS</span></a>
+
+          </div>
+
+        </div>
+
+        <div class="hero-image-wrapper">
+
+          <div class="hero-image-container">
+
+            <div class="profile-image-frame">
+
+              <i class="fab fa-windows page-icon"></i>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- CONTEXTE -->
+
+    <section id="contexte" class="section">
+
+      <div class="section-container">
+
+        <div class="section-header">
+
+          <span class="section-number">01</span>
+
+          <h2 class="section-title">Contexte <span class="title-gradient">du projet</span></h2>
+
+          <div class="section-line"></div>
+
+        </div>
+
+        <div class="about-content">
+
+          <div>
+
+            <p class="about-text">
+
+              Dans le cadre du module R5, j'ai déployé une infrastructure Windows Server complète pour le domaine ordiglobal.local. Mon objectif etait de mettre en place <span class="term" data-def="Annuaire centralisé qui gère tous les utilisateurs et ordinateurs d'une entreprise. L'admin y crée les comptes et définit qui a accès à quoi.">Active Directory</span> avec une structure OU, des utilisateurs métiers, des <span class="term" data-def="Règles appliquées automatiquement à tous les ordinateurs d'une entreprise (ex: fond d'écran imposé, logiciels installés d'office).">GPO</span> de restriction et les services <span class="term" data-def="Service qui attribue automatiquement une adresse réseau à chaque appareil qui se connecte.">DHCP</span>/<span class="term" data-def="Système qui traduit un nom de site (ex: google.com) en adresse réseau compréhensible par les machines.">DNS</span>.
+
+            </p>
+
+            <p class="about-text">
+
+              <strong>Cadre :</strong> Windows Server avec les roles <span class="term" data-def="Annuaire centralisé qui gère tous les utilisateurs et ordinateurs d'une entreprise. L'admin y crée les comptes et définit qui a accès à quoi.">AD</span> DS, <span class="term" data-def="Service qui attribue automatiquement une adresse réseau à chaque appareil qui se connecte.">DHCP</span>, <span class="term" data-def="Système qui traduit un nom de site (ex: google.com) en adresse réseau compréhensible par les machines.">DNS</span> et GPMC. Structure organisationnelle avec separation IT/RH et politiques de groupe différenciées.
+
+            </p>
+
+          </div>
+
+          <div>
+
+            <div class="skill-category">
+
+              <h3 class="category-title"><i class="fas fa-layer-group"></i> Roles déployés</h3>
+
+              <div class="timeline-tags">
+
+                <span class="tag"><span class="term" data-def="Annuaire centralisé qui gère tous les utilisateurs et ordinateurs d'une entreprise. L'admin y crée les comptes et définit qui a accès à quoi.">AD</span>-Domain-Services</span>
+
+                <span class="tag"><span class="term" data-def="Service qui attribue automatiquement une adresse réseau à chaque appareil qui se connecte.">DHCP</span></span>
+
+                <span class="tag"><span class="term" data-def="Système qui traduit un nom de site (ex: google.com) en adresse réseau compréhensible par les machines.">DNS</span></span>
+
+                <span class="tag">GPMC</span>
+
+              </div>
+
+            </div>
+
+            <div class="skill-category" style="margin-top: 1.5rem;">
+
+              <h3 class="category-title"><i class="fas fa-sitemap"></i> Structure</h3>
+
+              <div class="timeline-tags">
+
+                <span class="tag">OU OrdiGlobal</span>
+
+                <span class="tag">OU IT / RH</span>
+
+                <span class="tag"><span class="term" data-def="Règles appliquées automatiquement à tous les ordinateurs d'une entreprise (ex: fond d'écran imposé, logiciels installés d'office).">GPO</span> Restrictions</span>
+
+                <span class="tag">Scope <span class="term" data-def="Service qui attribue automatiquement une adresse réseau à chaque appareil qui se connecte.">DHCP</span></span>
+
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- POURQUOI CETTE SOLUTION -->
+
+    <section id="pourquoi" class="section" style="background: var(--bg-card-solid);">
+
+      <div class="section-container">
+
+        <div class="section-header">
+
+          <span class="section-number">02</span>
+
+          <h2 class="section-title">Pourquoi <span class="title-gradient">cette solution ?</span></h2>
+
+          <div class="section-line"></div>
+
+        </div>
+
+        <div class="validation-box">
+
+          <h4><i class="fas fa-lightbulb"></i> Choix de Windows Server avec <span class="term" data-def="Annuaire centralisé qui gère tous les utilisateurs et ordinateurs d'une entreprise. L'admin y crée les comptes et définit qui a accès à quoi.">AD</span></h4>
+
+          <p style="color: var(--text-secondary); margin-top: 0.5rem;">
+
+            J'ai choisi <strong>Windows Server avec <span class="term" data-def="Annuaire centralisé qui gère tous les utilisateurs et ordinateurs d'une entreprise. L'admin y crée les comptes et définit qui a accès à quoi.">Active Directory</span></strong> pour sa <strong>maturité</strong> et son <strong>adoption massive en entreprise</strong>. AD offre une gestion centralisée des identités, des stratégies de groupe (<span class="term" data-def="Règles appliquées automatiquement à tous les ordinateurs d'une entreprise (ex: fond d'écran imposé, logiciels installés d'office).">GPO</span>) puissantes et une intégration native avec les services <span class="term" data-def="Service qui attribue automatiquement une adresse réseau à chaque appareil qui se connecte.">DHCP</span>/<span class="term" data-def="Système qui traduit un nom de site (ex: google.com) en adresse réseau compréhensible par les machines.">DNS</span>. Cette solution est le standard dans les environnements professionnels, ce qui en fait une compétence essentielle à maîtriser pour un technicien systèmes et réseaux.
+
+          </p>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- INFRASTRUCTURE -->
+
+    <section id="infrastructure" class="section">
+
+      <div class="section-container">
+
+        <div class="section-header">
+
+          <span class="section-number">03</span>
+
+          <h2 class="section-title">Infrastructure <span class="title-gradient">déployée</span></h2>
+
+          <div class="section-line"></div>
+
+        </div>
+
+
+
+        <table class="infra-table">
+
+          <thead>
+
+            <tr>
+
+              <th>Role</th>
+
+              <th>Hostname</th>
+
+              <th>IP</th>
+
+              <th>Description</th>
+
+            </tr>
+
+          </thead>
+
+          <tbody>
+
+            <tr><td><strong>DC + <span class="term" data-def="Système qui traduit un nom de site (ex: google.com) en adresse réseau compréhensible par les machines.">DNS</span> + <span class="term" data-def="Service qui attribue automatiquement une adresse réseau à chaque appareil qui se connecte.">DHCP</span></strong></td><td>WIN-JBIDVUF39PM</td><td>172.20.10.12/28</td><td>Windows Server - Contrôleur de domaine</td></tr>
+
+            <tr><td><strong>Domaine</strong></td><td>ordiglobal.local</td><td>-</td><td>Foret <span class="term" data-def="Annuaire centralisé qui gère tous les utilisateurs et ordinateurs d'une entreprise. L'admin y crée les comptes et définit qui a accès à quoi.">Active Directory</span></td></tr>
+
+          </tbody>
+
+        </table>
+
+
+
+        <div class="architecture-visual">
+
+          <div class="arch-box ad">
+
+            <i class="fas fa-sitemap"></i>
+
+            <div><span class="term" data-def="Annuaire centralisé qui gère tous les utilisateurs et ordinateurs d'une entreprise. L'admin y crée les comptes et définit qui a accès à quoi.">Active Directory</span></div>
+
+            <small>ordiglobal.local</small>
+
+          </div>
+
+          <div class="arch-box dns">
+
+            <i class="fas fa-globe"></i>
+
+            <div><span class="term" data-def="Système qui traduit un nom de site (ex: google.com) en adresse réseau compréhensible par les machines.">DNS</span></div>
+
+            <small>Résolution noms</small>
+
+          </div>
+
+          <div class="arch-box dhcp">
+
+            <i class="fas fa-network-wired"></i>
+
+            <div><span class="term" data-def="Service qui attribue automatiquement une adresse réseau à chaque appareil qui se connecte.">DHCP</span></div>
+
+            <small>172.20.10.5-10</small>
+
+          </div>
+
+          <div class="arch-box gpo">
+
+            <i class="fas fa-shield-alt"></i>
+
+            <div><span class="term" data-def="Règles appliquées automatiquement à tous les ordinateurs d'une entreprise (ex: fond d'écran imposé, logiciels installés d'office).">GPO</span></div>
+
+            <small>Restrictions</small>
+
+          </div>
+
+        </div>
+
+
+
+        <div class="project-gallery">
+
+          <div class="gallery-item">
+
+            <img src="projet-ad-dhcp-dns-gpo_assets/image1.png" alt="Configuration réseau">
+
+            <div class="gallery-item-content">
+
+              <div class="gallery-item-title">Configuration réseau</div>
+
+              <div class="gallery-item-desc">IP statique 172.20.10.12/28, <span class="term" data-def="Système qui traduit un nom de site (ex: google.com) en adresse réseau compréhensible par les machines.">DNS</span> 127.0.0.1</div>
+
+            </div>
+
+          </div>
+
+          <div class="gallery-item">
+
+            <img src="projet-ad-dhcp-dns-gpo_assets/image2.png" alt="Roles installes">
+
+            <div class="gallery-item-content">
+
+              <div class="gallery-item-title">Roles Windows installes</div>
+
+              <div class="gallery-item-desc"><span class="term" data-def="Service qui attribue automatiquement une adresse réseau à chaque appareil qui se connecte.">DHCP</span>, <span class="term" data-def="Système qui traduit un nom de site (ex: google.com) en adresse réseau compréhensible par les machines.">DNS</span>, <span class="term" data-def="Annuaire centralisé qui gère tous les utilisateurs et ordinateurs d'une entreprise. L'admin y crée les comptes et définit qui a accès à quoi.">AD</span>-Domain-Services, GPMC</div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- ACTIVE DIRECTORY -->
+
+    <section id="ad" class="section">
+
+      <div class="section-container">
+
+        <div class="section-header">
+
+          <span class="section-number">04</span>
+
+          <h2 class="section-title"><span class="term" data-def="Annuaire centralisé qui gère tous les utilisateurs et ordinateurs d'une entreprise. L'admin y crée les comptes et définit qui a accès à quoi.">Active Directory</span> <span class="title-gradient">&amp; OUs</span></h2>
+
+          <div class="section-line"></div>
+
+        </div>
+
+
+
+        <div class="tp-card">
+
+          <h3><i class="fas fa-sitemap"></i> Structure des OUs</h3>
+
+          <p class="about-text">J'ai créé une arborescence d'unites organisationnelles pour structurer le domaine par service.</p>
+
+          <div class="ou-tree">
+
+            <ul>
+
+              <li><span class="ou-folder">OU=OrdiGlobal</span>
+
+                <ul>
+
+                  <li><span class="ou-folder">OU=Users</span>
+
+                    <ul>
+
+                      <li><span class="ou-folder">OU=IT</span> <span style="color: var(--text-muted);">← <span class="term" data-def="Règles appliquées automatiquement à tous les ordinateurs d'une entreprise (ex: fond d'écran imposé, logiciels installés d'office).">GPO</span>-IT-Restrictions</span>
+
+                        <ul>
+
+                          <li><span class="ou-user">alice.it</span></li>
+
+                          <li><span class="ou-user">bob.it</span></li>
+
+                        </ul>
+
+                      </li>
+
+                      <li><span class="ou-folder">OU=RH</span> <span style="color: var(--text-muted);">← <span class="term" data-def="Règles appliquées automatiquement à tous les ordinateurs d'une entreprise (ex: fond d'écran imposé, logiciels installés d'office).">GPO</span>-RH-Restrictions</span>
+
+                        <ul>
+
+                          <li><span class="ou-user">claire.rh</span></li>
+
+                          <li><span class="ou-user">david.rh</span></li>
+
+                        </ul>
+
+                      </li>
+
+                    </ul>
+
+                  </li>
+
+                  <li><span class="ou-folder">OU=Computers</span></li>
+
+                  <li><span class="ou-folder">OU=Groups</span>
+
+                    <ul>
+
+                      <li><span class="ou-group">GRP_IT_Users</span></li>
+
+                      <li><span class="ou-group">GRP_RH_Users</span></li>
+
+                    </ul>
+
+                  </li>
+
+                  <li><span class="ou-folder">OU=ServiceAccounts</span></li>
+
+                </ul>
+
+              </li>
+
+            </ul>
+
+          </div>
+
+        </div>
+
+
+
+        <div class="tp-card">
+
+          <h3><i class="fas fa-users"></i> Utilisateurs et Groupes</h3>
+
+          <p class="about-text">J'ai créé les utilisateurs métiers et les groupes de sécurité correspondants.</p>
+
+          <div class="timeline-achievements">
+
+            <div class="achievement-item"><i class="fas fa-check-circle"></i><span>GRP_IT_Users : alice.it, bob.it</span></div>
+
+            <div class="achievement-item"><i class="fas fa-check-circle"></i><span>GRP_RH_Users : claire.rh, david.rh</span></div>
+
+          </div>
+
+        </div>
+
+
+
+        <div class="project-gallery">
+
+          <div class="gallery-item">
+
+            <img src="projet-ad-dhcp-dns-gpo_assets/image3.png" alt="OU RH">
+
+            <div class="gallery-item-content">
+
+              <div class="gallery-item-title">OU RH avec <span class="term" data-def="Règles appliquées automatiquement à tous les ordinateurs d'une entreprise (ex: fond d'écran imposé, logiciels installés d'office).">GPO</span></div>
+
+              <div class="gallery-item-desc">LinkedGroupPolicyObjects visible</div>
+
+            </div>
+
+          </div>
+
+          <div class="gallery-item">
+
+            <img src="projet-ad-dhcp-dns-gpo_assets/image4.png" alt="OU IT">
+
+            <div class="gallery-item-content">
+
+              <div class="gallery-item-title">OU IT avec <span class="term" data-def="Règles appliquées automatiquement à tous les ordinateurs d'une entreprise (ex: fond d'écran imposé, logiciels installés d'office).">GPO</span></div>
+
+              <div class="gallery-item-desc">LinkedGroupPolicyObjects visible</div>
+
+            </div>
+
+          </div>
+
+          <div class="gallery-item">
+
+            <img src="projet-ad-dhcp-dns-gpo_assets/image5.png" alt="Membres groupes">
+
+            <div class="gallery-item-content">
+
+              <div class="gallery-item-title">Membres des groupes</div>
+
+              <div class="gallery-item-desc">GRP_IT_Users et GRP_RH_Users</div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- GPO -->
+
+    <section id="gpo" class="section" style="background: var(--bg-card-solid);">
+
+      <div class="section-container">
+
+        <div class="section-header">
+
+          <span class="section-number">05</span>
+
+          <h2 class="section-title">Strategies de groupe <span class="title-gradient">(<span class="term" data-def="Règles appliquées automatiquement à tous les ordinateurs d'une entreprise (ex: fond d'écran imposé, logiciels installés d'office).">GPO</span>)</span></h2>
+
+          <div class="section-line"></div>
+
+        </div>
+
+
+
+        <div class="tp-card">
+
+          <h3><i class="fas fa-shield-alt"></i> <span class="term" data-def="Règles appliquées automatiquement à tous les ordinateurs d'une entreprise (ex: fond d'écran imposé, logiciels installés d'office).">GPO</span>-IT-Restrictions</h3>
+
+          <p class="about-text">J'ai créé une <span class="term" data-def="Règles appliquées automatiquement à tous les ordinateurs d'une entreprise (ex: fond d'écran imposé, logiciels installés d'office).">GPO</span> pour les utilisateurs IT qui desactive la commande Executer.</p>
+
+          <div class="code-block">
+
+# Registre applique
+
+HKCU\Software\Microsoft\Windows\CurrentVersion\Policies\Explorer
+
+NoRun = 1
+
+          </div>
+
+        </div>
+
+
+
+        <div class="tp-card">
+
+          <h3><i class="fas fa-user-shield"></i> <span class="term" data-def="Règles appliquées automatiquement à tous les ordinateurs d'une entreprise (ex: fond d'écran imposé, logiciels installés d'office).">GPO</span>-RH-Restrictions</h3>
+
+          <p class="about-text">J'ai créé une <span class="term" data-def="Règles appliquées automatiquement à tous les ordinateurs d'une entreprise (ex: fond d'écran imposé, logiciels installés d'office).">GPO</span> pour les utilisateurs RH qui desactive l'accès au Panneau de configuration.</p>
+
+          <div class="code-block">
+
+# Registre applique
+
+HKCU\Software\Microsoft\Windows\CurrentVersion\Policies\Explorer
+
+NoControlPanel = 1
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- DHCP / DNS -->
+
+    <section id="dhcp" class="section">
+
+      <div class="section-container">
+
+        <div class="section-header">
+
+          <span class="section-number">06</span>
+
+          <h2 class="section-title"><span class="term" data-def="Service qui attribue automatiquement une adresse réseau à chaque appareil qui se connecte.">DHCP</span> <span class="title-gradient">&amp; <span class="term" data-def="Système qui traduit un nom de site (ex: google.com) en adresse réseau compréhensible par les machines.">DNS</span></span></h2>
+
+          <div class="section-line"></div>
+
+        </div>
+
+
+
+        <div class="tp-card">
+
+          <h3><i class="fas fa-network-wired"></i> Configuration <span class="term" data-def="Service qui attribue automatiquement une adresse réseau à chaque appareil qui se connecte.">DHCP</span></h3>
+
+          <p class="about-text">J'ai installe et configure le role <span class="term" data-def="Service qui attribue automatiquement une adresse réseau à chaque appareil qui se connecte.">DHCP</span> avec un scope pour le réseau 172.20.10.0/28.</p>
+
+          <div class="timeline-achievements">
+
+            <div class="achievement-item"><i class="fas fa-check-circle"></i><span>Serveur <span class="term" data-def="Service qui attribue automatiquement une adresse réseau à chaque appareil qui se connecte.">DHCP</span> autorise dans <span class="term" data-def="Annuaire centralisé qui gère tous les utilisateurs et ordinateurs d'une entreprise. L'admin y crée les comptes et définit qui a accès à quoi.">AD</span></span></div>
+
+            <div class="achievement-item"><i class="fas fa-check-circle"></i><span>Scope: 172.20.10.5 - 172.20.10.10</span></div>
+
+            <div class="achievement-item"><i class="fas fa-check-circle"></i><span>Option 003 Routeur: 172.20.10.1</span></div>
+
+            <div class="achievement-item"><i class="fas fa-check-circle"></i><span>Option 006 <span class="term" data-def="Système qui traduit un nom de site (ex: google.com) en adresse réseau compréhensible par les machines.">DNS</span>: 172.20.10.12</span></div>
+
+            <div class="achievement-item"><i class="fas fa-check-circle"></i><span>Option 015 Domaine: ordiglobal.local</span></div>
+
+          </div>
+
+        </div>
+
+
+
+        <div class="tp-card">
+
+          <h3><i class="fas fa-globe"></i> Configuration <span class="term" data-def="Système qui traduit un nom de site (ex: google.com) en adresse réseau compréhensible par les machines.">DNS</span></h3>
+
+          <p class="about-text">J'ai configuré la zone <span class="term" data-def="Système qui traduit un nom de site (ex: google.com) en adresse réseau compréhensible par les machines.">DNS</span> pour le domaine ordiglobal.local.</p>
+
+          <div class="code-block">
+
+# Zone principale
+
+ordiglobal.local
+
+
+
+# Enregistrement À ad.ordiglobal.local -&gt; 172.20.10.12
+
+
+
+# Test résolution
+
+Resolve-DnsName ad.ordiglobal.local
+
+# Resultat: 172.20.10.12
+
+          </div>
+
+        </div>
+
+
+
+        <div class="project-gallery">
+
+          <div class="gallery-item" style="grid-column: span 2;">
+
+            <img src="projet-ad-dhcp-dns-gpo_assets/image6.png" alt="Configuration DHCP">
+
+            <div class="gallery-item-content">
+
+              <div class="gallery-item-title"><span class="term" data-def="Service qui attribue automatiquement une adresse réseau à chaque appareil qui se connecte.">DHCP</span> - Serveur autorise, Scope actif, Options</div>
+
+              <div class="gallery-item-desc">Get-DhcpServerInDC, Get-DhcpServerv4Scope, Get-DhcpServerv4OptionValue</div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- BILAN -->
+
+    <section id="bilan" class="section" style="background: var(--bg-card-solid);">
+
+      <div class="section-container">
+
+        <div class="section-header">
+
+          <span class="section-number">07</span>
+
+          <h2 class="section-title">Bilan <span class="title-gradient">du projet</span></h2>
+
+          <div class="section-line"></div>
+
+        </div>
+
+
+
+        <div class="validation-box">
+
+          <h4><i class="fas fa-check-circle"></i> Ce que j'ai validé</h4>
+
+          <ul style="margin-left: 1.5rem; color: var(--text-secondary);">
+
+            <li>Roles <span class="term" data-def="Annuaire centralisé qui gère tous les utilisateurs et ordinateurs d'une entreprise. L'admin y crée les comptes et définit qui a accès à quoi.">AD</span>-Domain-Services, <span class="term" data-def="Service qui attribue automatiquement une adresse réseau à chaque appareil qui se connecte.">DHCP</span>, <span class="term" data-def="Système qui traduit un nom de site (ex: google.com) en adresse réseau compréhensible par les machines.">DNS</span>, GPMC operationnels</li>
+
+            <li>Services <span class="term" data-def="Système qui traduit un nom de site (ex: google.com) en adresse réseau compréhensible par les machines.">DNS</span> et DHCPServer en Running</li>
+
+            <li>Structure OU avec IT et RH</li>
+
+            <li>Utilisateurs et groupes crees et affectes</li>
+
+            <li><span class="term" data-def="Règles appliquées automatiquement à tous les ordinateurs d'une entreprise (ex: fond d'écran imposé, logiciels installés d'office).">GPO</span> liees aux OUs avec restrictions différenciées</li>
+
+            <li>Scope <span class="term" data-def="Service qui attribue automatiquement une adresse réseau à chaque appareil qui se connecte.">DHCP</span> actif avec options configurees</li>
+
+            <li>Résolution <span class="term" data-def="Système qui traduit un nom de site (ex: google.com) en adresse réseau compréhensible par les machines.">DNS</span> ad.ordiglobal.local fonctionnelle</li>
+
+          </ul>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- COMPETENCES -->
+
+    <section id="competences" class="section">
+
+      <div class="section-container">
+
+        <div class="section-header">
+
+          <span class="section-number">08</span>
+
+          <h2 class="section-title">Compétences <span class="title-gradient">mobilisees</span></h2>
+
+          <div class="section-line"></div>
+
+        </div>
+
+
+
+        <div class="skills-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem;">
+
+          <div class="skill-category">
+
+            <h3 class="category-title"><i class="fab fa-windows"></i> Windows Server</h3>
+
+            <p class="about-text">J'ai installe et configure les roles <span class="term" data-def="Annuaire centralisé qui gère tous les utilisateurs et ordinateurs d'une entreprise. L'admin y crée les comptes et définit qui a accès à quoi.">AD</span> DS, <span class="term" data-def="Service qui attribue automatiquement une adresse réseau à chaque appareil qui se connecte.">DHCP</span>, <span class="term" data-def="Système qui traduit un nom de site (ex: google.com) en adresse réseau compréhensible par les machines.">DNS</span> sur Windows Server.</p>
+
+          </div>
+
+          <div class="skill-category">
+
+            <h3 class="category-title"><i class="fas fa-users"></i> Gestion des identités</h3>
+
+            <p class="about-text">J'ai créé une structure <span class="term" data-def="Annuaire centralisé qui gère tous les utilisateurs et ordinateurs d'une entreprise. L'admin y crée les comptes et définit qui a accès à quoi.">AD</span> avec OUs, utilisateurs et groupes métiers.</p>
+
+          </div>
+
+          <div class="skill-category">
+
+            <h3 class="category-title"><i class="fas fa-shield-alt"></i> Sécurité</h3>
+
+            <p class="about-text">J'ai applique des <span class="term" data-def="Règles appliquées automatiquement à tous les ordinateurs d'une entreprise (ex: fond d'écran imposé, logiciels installés d'office).">GPO</span> de restriction différenciées par service.</p>
+
+          </div>
+
+          <div class="skill-category">
+
+            <h3 class="category-title"><i class="fas fa-network-wired"></i> Services réseau</h3>
+
+            <p class="about-text">J'ai configuré <span class="term" data-def="Service qui attribue automatiquement une adresse réseau à chaque appareil qui se connecte.">DHCP</span> et <span class="term" data-def="Système qui traduit un nom de site (ex: google.com) en adresse réseau compréhensible par les machines.">DNS</span> pour l'adressage et la résolution de noms.</p>
+
+          </div>
+
+        </div>
+
+
+
+        <div style="text-align: center; margin-top: 3rem;">
+
+          <a href="epreuve-e5.html" class="btn btn-primary"><i class="fas fa-graduation-cap"></i> Voir toutes les compétences E5</a>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+
+  </main>
+
+
+
+  <footer class="main-footer">
+
+    <div class="footer-container">
+
+      <div class="footer-content">
+
+        <p class="footer-text">© 2025 <span class="footer-copyright">Franck Raymond</span> - Tous droits réservés.</p>
+
+      </div>
+
+    </div>
+
+  </footer>
+
+
+
+  <!-- Lightbox -->
+
+  <div class="lightbox" id="lightbox">
+
+    <div class="lightbox-content">
+
+      <button class="lightbox-close" id="lightboxClose"><i class="fas fa-times"></i></button>
+
+      <img src="" alt="" id="lightboxImg">
+
+      <div class="lightbox-caption">
+
+        <div class="title" id="lightboxTitle"></div>
+
+        <div class="desc" id="lightboxDesc"></div>
+
+      </div>
+
+    </div>
+
+    <button class="lightbox-nav prev" id="lightboxPrev"><i class="fas fa-chevron-left"></i></button>
+
+    <button class="lightbox-nav next" id="lightboxNext"><i class="fas fa-chevron-right"></i></button>
+
+    <div class="lightbox-counter" id="lightboxCounter"></div>
+
+  </div>
+
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+
+  <script src="../script.js?v=20261028-b753f7964f"></script>
+
+  <script>
+
+    const lightbox = document.getElementById('lightbox');
+
+    const lightboxImg = document.getElementById('lightboxImg');
+
+    const lightboxTitle = document.getElementById('lightboxTitle');
+
+    const lightboxDesc = document.getElementById('lightboxDesc');
+
+    const lightboxCounter = document.getElementById('lightboxCounter');
+
+    const galleryItems = document.querySelectorAll('.gallery-item');
+
+    let currentIndex = 0;
+
+    const images = [];
+
+
+
+    galleryItems.forEach((item, index) => {
+
+      const img = item.querySelector('img');
+
+      const title = item.querySelector('.gallery-item-title')?.textContent || '';
+
+      const desc = item.querySelector('.gallery-item-desc')?.textContent || '';
+
+      images.push({ src: img.src, title, desc });
+
+      item.addEventListener('click', () => { currentIndex = index; openLightbox(); });
+
+    });
+
+
+
+    function openLightbox() {
+
+      const image = images[currentIndex];
+
+      lightboxImg.src = image.src;
+
+      lightboxTitle.textContent = image.title;
+
+      lightboxDesc.textContent = image.desc;
+
+      lightboxCounter.textContent = `${currentIndex + 1} / ${images.length}`;
+
+      lightbox.classList.add('active');
+
+      document.body.style.overflow = 'hidden';
+
+    }
+
+
+
+    function closeLightbox() { lightbox.classList.remove('active'); document.body.style.overflow = ''; }
+
+    function nextImage() { currentIndex = (currentIndex + 1) % images.length; openLightbox(); }
+
+    function prevImage() { currentIndex = (currentIndex - 1 + images.length) % images.length; openLightbox(); }
+
+
+
+    document.getElementById('lightboxClose').addEventListener('click', closeLightbox);
+
+    document.getElementById('lightboxNext').addEventListener('click', nextImage);
+
+    document.getElementById('lightboxPrev').addEventListener('click', prevImage);
+
+    lightbox.addEventListener('click', (e) => { if (e.target === lightbox) closeLightbox(); });
+
+    document.addEventListener('keydown', (e) => {
+
+      if (!lightbox.classList.contains('active')) return;
+
+      if (e.key === 'Escape') closeLightbox();
+
+      if (e.key === 'ArrowRight') nextImage();
+
+      if (e.key === 'ArrowLeft') prevImage();
+
+    });
+
+  </script>
+
+
+
+
+
+
+
+
+
+<script src="/assets/portfolio-glossary.js?v=20260831-2" defer=""></script><script src="/assets/legacy-unified.js?v=20261028-8c422e514f" defer=""></script></body></html>

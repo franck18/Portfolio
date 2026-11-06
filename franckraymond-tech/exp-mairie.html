@@ -1,0 +1,527 @@
+<!DOCTYPE html><html lang="fr"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Expérience professionnelle - Mairie de La Madeleine - Technicien Systèmes et Réseaux">
+    <title>Technicien systèmes et réseaux — Mairie de La Madeleine | Franck Raymond</title>
+    
+    <link rel="stylesheet" href="/tailwind-output.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&amp;family=Outfit:wght@300;400;500;600;700;800;900&amp;family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    
+    <style>
+        .exp-hero {
+            padding-top: 10rem;
+            padding-bottom: 3rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .exp-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: -10%;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(168, 85, 247, 0.15) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .exp-header-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            padding: 3rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .exp-header-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--purple), var(--primary));
+        }
+
+        .exp-glow {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 200px;
+            height: 200px;
+            background: radial-gradient(circle, rgba(168, 85, 247, 0.2) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .exp-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+            color: var(--text-primary);
+        }
+
+        .exp-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--text-secondary);
+        }
+
+        .exp-meta-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .exp-meta-item i {
+            color: var(--purple);
+        }
+
+        .content-section {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            transition: all 0.3s;
+        }
+
+        .content-section:hover {
+            border-color: var(--primary);
+        }
+
+        .content-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            color: var(--text-primary);
+        }
+
+        .content-title i {
+            color: var(--primary);
+        }
+
+        .mission-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .mission-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            padding: 1rem;
+            background: var(--bg-card-solid);
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            transition: all 0.3s;
+        }
+
+        .mission-item:hover {
+            border-color: var(--purple);
+            transform: translateX(5px);
+        }
+
+        .mission-item i {
+            color: var(--purple);
+            margin-top: 0.2rem;
+        }
+
+        .external-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 1rem 2rem;
+            background: linear-gradient(135deg, var(--purple), var(--primary));
+            color: white;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .external-link:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(168, 85, 247, 0.3);
+        }
+
+        /* Galerie */
+        .gallery-grid {
+            display: grid;
+            gap: 1rem;
+        }
+
+        @media (max-width: 768px) {
+            .gallery-grid {
+                grid-template-columns: repeat(2, 1fr) !important;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .gallery-grid {
+                grid-template-columns: 1fr !important;
+            }
+        }
+
+        .gallery-item {
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+            aspect-ratio: 4/3;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .gallery-item:hover {
+            transform: scale(1.03);
+            border-color: var(--primary);
+            box-shadow: 0 10px 30px rgba(99, 102, 241, 0.2);
+        }
+
+        .gallery-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Lightbox */
+        #lightbox {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 2000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            padding: 2rem;
+        }
+
+        #lightbox.active {
+            display: flex;
+        }
+
+        #lightbox-img {
+            max-width: 95%;
+            max-height: 90vh;
+            border-radius: 8px;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.5);
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 1.5rem;
+            right: 2rem;
+            font-size: 2.5rem;
+            color: white;
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+
+        .lightbox-close:hover {
+            color: var(--primary);
+        }
+    
+        /* Tooltips termes techniques */
+        .term {
+            border-bottom: 1px dashed var(--primary);
+            cursor: help;
+            position: relative;
+            display: inline;
+        }
+        .term::after {
+            content: attr(data-def);
+            position: absolute;
+            bottom: calc(100% + 8px);
+            left: 50%;
+            transform: translateX(-50%);
+            background: #1e293b;
+            color: #f8fafc;
+            font-size: 0.78rem;
+            line-height: 1.5;
+            padding: 0.6rem 0.9rem;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            white-space: normal;
+            width: 220px;
+            text-align: left;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.2s;
+            z-index: 100;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+        }
+        .term:hover::after { opacity: 1; }
+</style>
+<meta name="theme-color" content="#111214"><link rel="stylesheet" href="/assets/legacy-unified.css?v=20260831-2"><meta name="author" content="Franck Raymond"><meta name="robots" content="index,follow,max-image-preview:large"><meta property="og:type" content="website"><meta property="og:site_name" content="Portfolio de Franck Raymond"><meta property="og:title" content="Technicien systèmes et réseaux — Mairie de La Madeleine | Franck Raymond"><meta property="og:description" content="Expérience professionnelle - Mairie de La Madeleine - Technicien Systèmes et Réseaux"><meta property="og:url" content="https://franckraymond.tech/exp-mairie.html"><meta property="og:image" content="https://franckraymond.tech/franck.webp"><meta property="og:image:alt" content="Portrait professionnel de Franck Raymond"><meta property="og:locale" content="fr_FR"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Technicien systèmes et réseaux — Mairie de La Madeleine | Franck Raymond"><meta name="twitter:description" content="Expérience professionnelle - Mairie de La Madeleine - Technicien Systèmes et Réseaux"><meta name="twitter:image" content="https://franckraymond.tech/franck.webp"><link rel="canonical" href="https://franckraymond.tech/exp-mairie.html"><link rel="icon" href="/favicon-32x32.png" sizes="32x32" type="image/png"><link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180"><link rel="manifest" href="/site.webmanifest"><script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"Technicien systèmes et réseaux — Mairie de La Madeleine | Franck Raymond","url":"https://franckraymond.tech/exp-mairie.html","description":"Expérience professionnelle - Mairie de La Madeleine - Technicien Systèmes et Réseaux","isPartOf":{"@type":"WebSite","name":"Portfolio de Franck Raymond","url":"https://franckraymond.tech/"},"about":{"@type":"Person","name":"Franck Raymond","url":"https://franckraymond.tech/"}}</script>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,400&amp;family=Geist:wght@400;500;600&amp;display=swap">
+<link rel="stylesheet" href="/assets/editorial-tokens.css?v=20261106-modern">
+<link rel="stylesheet" href="/assets/editorial.css?v=20261106-modern">
+<script src="/assets/editorial-theme.js?v=20261028-1fe0ee8c9d"></script>
+</head>
+<body data-theme="light" class="portfolio-legacy editorial-site">
+
+    <div class="bg-mesh"></div>
+    <div class="noise-overlay"></div>
+    <div class="grid-lines"></div>
+
+    <header class="main-header" id="header">
+        <nav class="nav-container">
+            <a href="index.html" class="brand-logo">
+                <span class="logo-bracket">&lt;</span>
+                <span class="logo-text">FR</span>
+                <span class="logo-bracket">/&gt;</span>
+            </a>
+            <div class="nav-menu" id="navMenu">
+                <a href="index.html" class="nav-link"><i class="fas fa-home"></i> Accueil</a>
+                <a href="profil.html" class="nav-link"><i class="fas fa-user"></i> Profil</a>
+                <a href="index.html#skills" class="nav-link"><i class="fas fa-code"></i> Compétences</a>
+                <a href="experience.html" class="nav-link active"><i class="fas fa-briefcase"></i> Expériences</a>
+                <a href="/projets.html#veille" class="nav-link"><i class="fas fa-newspaper"></i> Veille</a>
+                <a href="index.html#contact" class="nav-link"><i class="fas fa-envelope"></i> Contact</a>
+            
+<a class="nav-link" href="https://opengym.jsuisfray.blitz.cloud/"><span class="nav-text">Sport</span></a></div>
+            <div class="nav-controls">
+                <button class="theme-toggle" id="themeToggle" aria-label="Changer le thème">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <button class="menu-toggle" id="menuToggle" aria-label="Menu">
+                    <span></span><span></span><span></span>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="exp-hero">
+            <div class="section-container">
+                <a href="experience.html" class="btn-more" style="margin-bottom: 2rem;">
+                    <i class="fas fa-arrow-left"></i> Retour aux expériences
+                </a>
+
+                <div class="exp-header-card">
+                    <div class="exp-glow"></div>
+                    <h1 class="exp-title">Technicien Systèmes et Réseaux</h1>
+                    <div class="exp-meta">
+                        <span class="exp-meta-item">
+                            <i class="fas fa-building"></i> Mairie de La Madeleine
+                        </span>
+                        <span class="exp-meta-item">
+                            <i class="fas fa-calendar-alt"></i> Sept 2025 — Présent
+                        </span>
+                        <span class="exp-meta-item">
+                            <i class="fas fa-graduation-cap"></i> Alternance BTS SIO
+                        </span>
+                    </div>
+                    <div class="timeline-tags">
+                        <span class="tag">Windows Server</span>
+                        <span class="tag">Linux</span>
+                        <span class="tag"><span class="term" data-def="Logiciel de surveillance qui vérifie en temps réel que les serveurs et équipements réseau fonctionnent correctement.">Zabbix</span></span>
+                        <span class="tag"><span class="term" data-def="Outil qui collecte et centralise les journaux (logs) de tous les serveurs pour les analyser facilement.">Graylog</span></span>
+                        <span class="tag"><span class="term" data-def="Annuaire centralisé qui gère tous les utilisateurs et ordinateurs d'une entreprise. L'admin y crée les comptes et définit qui a accès à quoi.">Active Directory</span></span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="section-container" style="padding-bottom: 5rem;">
+            
+            <div class="content-section">
+                <h2 class="content-title"><i class="fas fa-info-circle"></i> Description du Poste</h2>
+                <p class="about-text">
+                    En tant qu’alternant au service informatique de la Mairie de La Madeleine, je participe aux opérations d’exploitation, de support et d’évolution du système d’information. Mes missions sont réalisées avec l’équipe : suivi de la supervision, analyse de journaux, préparation de matériels réseau, diagnostic et documentation des interventions.
+                </p>
+            </div>
+
+            <div class="content-section">
+                <h2 class="content-title"><i class="fas fa-tasks"></i> Missions Réalisées</h2>
+                <div class="mission-list">
+                    <div class="mission-item">
+                        <i class="fas fa-server"></i>
+                        <div>
+                            <strong>Administration <span class="term" data-def="Annuaire centralisé qui gère tous les utilisateurs et ordinateurs d'une entreprise. L'admin y crée les comptes et définit qui a accès à quoi.">Active Directory</span></strong>
+                            <p style="color: var(--text-secondary); margin-top: 0.25rem;">Gestion des <span class="term" data-def="Règles appliquées automatiquement à tous les ordinateurs d'une entreprise (ex: fond d'écran imposé, logiciels installés d'office).">GPO</span>, <span class="term" data-def="Système qui traduit un nom de site (ex: google.com) en adresse réseau compréhensible par les machines.">DNS</span>, <span class="term" data-def="Service qui attribue automatiquement une adresse réseau à chaque appareil qui se connecte.">DHCP</span> et structure organisationnelle</p>
+                        </div>
+                    </div>
+                    <div class="mission-item">
+                        <i class="fas fa-eye"></i>
+                        <div>
+                            <strong>Supervision <span class="term" data-def="Logiciel de surveillance qui vérifie en temps réel que les serveurs et équipements réseau fonctionnent correctement.">Zabbix</span></strong>
+                            <p style="color: var(--text-secondary); margin-top: 0.25rem;">Exploitation et audit en lecture seule de la plateforme de supervision existante (139 hôtes actifs) ; le déploiement complet de Zabbix 7.0 a été réalisé en laboratoire. <a href="pages/projet-zabbix-r5.html" style="color: var(--accent);">Voir le détail</a></p>
+                        </div>
+                    </div>
+                    <div class="mission-item">
+                        <i class="fas fa-file-alt"></i>
+                        <div>
+                            <strong>Centralisation des <span class="term" data-def="Fichiers de journaux qui enregistrent tout ce qui se passe sur un serveur (connexions, erreurs, actions).">Logs</span></strong>
+                            <p style="color: var(--text-secondary); margin-top: 0.25rem;">Audit en lecture seule de la plateforme <span class="term" data-def="Outil qui collecte et centralise les journaux (logs) de tous les serveurs pour les analyser facilement.">Graylog</span> existante (collecte et analyse des journaux) ; le déploiement complet a été réalisé en laboratoire.</p>
+                        </div>
+                    </div>
+                    <div class="mission-item">
+                        <i class="fas fa-shield-alt"></i>
+                        <div>
+                            <strong>Audit de Sécurité <span class="term" data-def="Annuaire centralisé qui gère tous les utilisateurs et ordinateurs d'une entreprise. L'admin y crée les comptes et définit qui a accès à quoi.">AD</span></strong>
+                            <p style="color: var(--text-secondary); margin-top: 0.25rem;">Analyse des droits et remédiation <span class="term" data-def="Annuaire centralisé qui gère tous les utilisateurs et ordinateurs d'une entreprise. L'admin y crée les comptes et définit qui a accès à quoi.">Active Directory</span></p>
+                        </div>
+                    </div>
+                    <div class="mission-item">
+                        <i class="fas fa-desktop"></i>
+                        <div>
+                            <strong>Déploiement Automatisé</strong>
+                            <p style="color: var(--text-secondary); margin-top: 0.25rem;">Automatisation via WDS/MDT pour le déploiement de postes</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="content-section">
+                <h2 class="content-title"><i class="fas fa-images"></i> Galerie Photos</h2>
+                <div class="gallery-grid" style="grid-template-columns: repeat(3, 1fr);">
+                    <div class="gallery-item" onclick="openLightbox(this)">
+                        <img src="photos-technicien-sr/image-optimized.webp" data-full-src="photos-technicien-sr/image.jpg" alt="Salle de conférence" class="gallery-img" loading="lazy" width="2560" height="1920" decoding="async">
+                    </div>
+                    <div class="gallery-item" onclick="openLightbox(this)">
+                        <img src="photos-technicien-sr/image2-optimized.webp" data-full-src="photos-technicien-sr/image2.jpg" alt="Interface de contrôle conférence" class="gallery-img" loading="lazy" width="1920" height="2560" decoding="async">
+                    </div>
+                    <div class="gallery-item" onclick="openLightbox(this)">
+                        <img src="photos-technicien-sr/image3-optimized.webp" data-full-src="photos-technicien-sr/image3.jpg" alt="Poste délégué Sennheiser" class="gallery-img" loading="lazy" width="1920" height="2560" decoding="async">
+                    </div>
+                    <div class="gallery-item" onclick="openLightbox(this)">
+                        <img src="photos-technicien-sr/image4-optimized.webp" data-full-src="photos-technicien-sr/image4.jpg" alt="Centrales ADN Sennheiser" class="gallery-img" loading="lazy" width="2560" height="1920" decoding="async">
+                    </div>
+                    <div class="gallery-item" onclick="openLightbox(this)">
+                        <img src="photos-technicien-sr/image5-optimized.webp" data-full-src="photos-technicien-sr/image5.jpg" alt="Services et stockage serveurs" class="gallery-img" loading="lazy" width="1920" height="2560" decoding="async">
+                    </div>
+                    <div class="gallery-item" onclick="openLightbox(this)">
+                        <img src="photos-technicien-sr/image6-optimized.webp" data-full-src="photos-technicien-sr/image6.jpg" alt="Baie de brassage réseau" class="gallery-img" loading="lazy" width="1920" height="2560" decoding="async">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Lightbox -->
+            <div id="lightbox" onclick="closeLightbox()">
+                <span class="lightbox-close">×</span>
+                <img id="lightbox-img" src="" alt="Image agrandie">
+            </div>
+
+            <div style="text-align: center; padding-top: 2rem; border-top: 1px solid var(--border);">
+                <p style="color: var(--text-muted); margin-bottom: 1.5rem;">Découvrir la collectivité :</p>
+                <a href="https://www.ville-lamadeleine.fr" target="_blank" class="external-link">
+                    Visiter le site officiel <i class="fas fa-external-link-alt"></i>
+                </a>
+            </div>
+        </div>
+    </main>
+
+    <footer class="main-footer">
+        <div class="footer-container">
+            <div class="footer-content">
+                <p class="footer-text">© 2026 <span class="footer-copyright">Franck Raymond</span> — Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        window.addEventListener('scroll', () => {
+            document.getElementById('header').classList.toggle('scrolled', window.scrollY > 50);
+        });
+        document.getElementById('menuToggle').addEventListener('click', () => {
+            document.getElementById('navMenu').classList.toggle('active');
+        });
+
+        // Lightbox
+        function openLightbox(element) {
+            const img = element.querySelector('img');
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImg = document.getElementById('lightbox-img');
+            lightboxImg.src = img.dataset.fullSrc || img.src;
+            lightboxImg.alt = img.alt;
+            lightbox.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeLightbox() {
+            document.getElementById('lightbox').classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') closeLightbox();
+        });
+    </script>
+
+
+<script src="/assets/portfolio-glossary.js?v=20260831-2" defer=""></script><script src="/assets/legacy-unified.js?v=20261028-8c422e514f" defer=""></script><script data-gallery-accessibility>
+(() => {
+  const lightbox = document.getElementById('lightbox');
+  if (!lightbox) return;
+  const triggers = document.querySelectorAll("[onclick^=\"openLightbox\"]");
+  triggers.forEach(trigger => {
+    trigger.tabIndex = 0;
+    trigger.setAttribute('role', 'button');
+    const image = trigger.matches('img') ? trigger : trigger.querySelector('img');
+    trigger.setAttribute('aria-label', image ? `Agrandir : ${image.alt || 'photographie'}` : 'Lire la vidéo');
+    trigger.addEventListener('keydown', event => {
+      if (event.key === 'Enter' || event.key === ' ') {
+        event.preventDefault();
+        trigger.click();
+      }
+    });
+  });
+  let close = lightbox.querySelector('.lightbox-close');
+  if (!close) {
+    close = document.createElement('button');
+    close.type = 'button';
+    close.className = 'lightbox-close';
+    close.textContent = '×';
+    close.style.cssText = 'position:absolute;top:20px;right:24px;z-index:2;color:white;background:#202020;border:1px solid #888;padding:8px 16px;font-size:30px;line-height:1;cursor:pointer';
+    close.addEventListener('click', () => { lightbox.style.display = 'none'; });
+    lightbox.appendChild(close);
+  }
+  close.setAttribute('aria-label', 'Fermer l’image agrandie');
+  close.tabIndex = 0;
+  if (close.tagName !== 'BUTTON') {
+    close.setAttribute('role', 'button');
+    close.addEventListener('keydown', event => {
+      if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); close.click(); }
+    });
+  }
+  const previous = lightbox.querySelector('#lightboxPrev');
+  const next = lightbox.querySelector('#lightboxNext');
+  previous?.setAttribute('aria-label', 'Image précédente');
+  next?.setAttribute('aria-label', 'Image suivante');
+  lightbox.setAttribute('role', 'dialog');
+  lightbox.setAttribute('aria-modal', 'true');
+  lightbox.setAttribute('aria-label', 'Aperçu du média');
+  let wasOpen = false;
+  let returnFocus = null;
+  const isOpen = () => lightbox.classList.contains('active') || lightbox.style.display === 'flex';
+  const sync = () => {
+    const open = isOpen();
+    if (open && !wasOpen) { returnFocus = document.activeElement; close.focus(); }
+    if (!open && wasOpen && returnFocus?.isConnected) returnFocus.focus({preventScroll:true});
+    wasOpen = open;
+  };
+  new MutationObserver(sync).observe(lightbox, {attributes:true, attributeFilter:['class', 'style']});
+  document.addEventListener('keydown', event => {
+    if (!isOpen()) return;
+    if (event.key === 'Escape') { event.preventDefault(); close.click(); return; }
+    if (event.key !== 'Tab') return;
+    const controls = [...lightbox.querySelectorAll('button, [tabindex="0"], video[controls]')]
+      .filter(control => control.getClientRects().length && !control.disabled);
+    const first = controls[0] || close;
+    const last = controls[controls.length - 1] || close;
+    if (event.shiftKey && document.activeElement === first) { event.preventDefault(); last.focus(); }
+    else if (!event.shiftKey && document.activeElement === last) { event.preventDefault(); first.focus(); }
+  }, true);
+})();
+</script>
+</body></html>

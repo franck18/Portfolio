@@ -1,0 +1,1688 @@
+<!DOCTYPE html><html lang="fr"><head>
+
+  <meta charset="UTF-8">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta name="description" content="Projet Zabbix - Supervision d'infrastructure sur Rocky Linux avec notifications Discord - Portfolio BTS SIO SISR">
+
+  <title>Zabbix - Supervision Infrastructure | Portfolio</title>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&amp;family=Outfit:wght@300;400;500;600;700;800;900&amp;family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="../style.css">
+
+  <style>
+
+    .project-gallery {
+
+      display: grid;
+
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+
+      gap: 1.5rem;
+
+      margin-top: 2rem;
+
+    }
+
+    .gallery-item {
+
+      background: var(--bg-card);
+
+      border: 1px solid var(--border);
+
+      border-radius: 12px;
+
+      overflow: hidden;
+
+      transition: all 0.3s;
+
+    }
+
+    .gallery-item:hover {
+
+      border-color: var(--primary);
+
+      transform: translateY(-4px);
+
+      box-shadow: 0 12px 40px rgba(56, 189, 248, 0.12);
+
+    }
+
+    .gallery-item img {
+
+      width: 100%;
+
+      height: 200px;
+
+      object-fit: cover;
+
+      border-bottom: 1px solid var(--border);
+
+    }
+
+    .gallery-item-content {
+
+      padding: 1rem;
+
+    }
+
+    .gallery-item-title {
+
+      font-weight: 600;
+
+      color: var(--text-primary);
+
+      margin-bottom: 0.5rem;
+
+    }
+
+    .gallery-item-desc {
+
+      font-size: 0.85rem;
+
+      color: var(--text-muted);
+
+    }
+
+    .infra-table {
+
+      width: 100%;
+
+      border-collapse: collapse;
+
+      margin: 1.5rem 0;
+
+      background: var(--bg-card);
+
+      border-radius: 12px;
+
+      overflow: hidden;
+
+    }
+
+    .infra-table th, .infra-table td {
+
+      padding: 1rem;
+
+      text-align: left;
+
+      border-bottom: 1px solid var(--border);
+
+    }
+
+    .infra-table th {
+
+      background: rgba(56, 189, 248, 0.1);
+
+      color: var(--primary);
+
+      font-weight: 600;
+
+    }
+
+    .infra-table tr:last-child td {
+
+      border-bottom: none;
+
+    }
+
+    .tp-card {
+
+      background: var(--bg-card);
+
+      border: 1px solid var(--border);
+
+      border-radius: 16px;
+
+      padding: 2rem;
+
+      margin-bottom: 2rem;
+
+    }
+
+    .tp-card h3 {
+
+      color: var(--primary);
+
+      margin-bottom: 1rem;
+
+      display: flex;
+
+      align-items: center;
+
+      gap: 0.75rem;
+
+    }
+
+    .tp-card h3 i {
+
+      font-size: 1.2rem;
+
+    }
+
+    .code-block {
+
+      background: #1e1e2e;
+
+      border-radius: 8px;
+
+      padding: 1rem;
+
+      margin: 1rem 0;
+
+      overflow-x: auto;
+
+      font-family: 'JetBrains Mono', monospace;
+
+      font-size: 0.85rem;
+
+      color: #cdd6f4;
+
+    }
+
+    .validation-box {
+
+      background: rgba(134, 239, 172, 0.1);
+
+      border: 1px solid rgba(134, 239, 172, 0.3);
+
+      border-radius: 8px;
+
+      padding: 1rem;
+
+      margin: 1rem 0;
+
+    }
+
+    .validation-box h4 {
+
+      color: #86efac;
+
+      margin-bottom: 0.5rem;
+
+    }
+
+    .info-box {
+
+      background: rgba(59, 130, 246, 0.1);
+
+      border: 1px solid rgba(59, 130, 246, 0.3);
+
+      border-radius: 8px;
+
+      padding: 1rem;
+
+      margin: 1rem 0;
+
+    }
+
+    .info-box h4 {
+
+      color: #60a5fa;
+
+      margin-bottom: 0.5rem;
+
+    }
+
+    .architecture-visual {
+
+      display: flex;
+
+      flex-wrap: wrap;
+
+      justify-content: center;
+
+      align-items: center;
+
+      gap: 1rem;
+
+      padding: 2rem;
+
+      background: var(--bg-card);
+
+      border-radius: 12px;
+
+      margin: 2rem 0;
+
+    }
+
+    .arch-box {
+
+      background: linear-gradient(135deg, var(--primary), #8b5cf6);
+
+      color: white;
+
+      padding: 1.25rem 2rem;
+
+      border-radius: 12px;
+
+      text-align: center;
+
+      min-width: 150px;
+
+    }
+
+    .arch-box.zabbix { background: linear-gradient(135deg, #d32f2f, #b71c1c); }
+
+    .arch-box.agent { background: linear-gradient(135deg, #22c55e, #16a34a); }
+
+    .arch-box.db { background: linear-gradient(135deg, #3b82f6, #1d4ed8); }
+
+    .arch-box.discord { background: linear-gradient(135deg, #5865F2, #4752c4); }
+
+    .arch-arrow {
+
+      font-size: 1.5rem;
+
+      color: var(--text-muted);
+
+    }
+
+    @media (max-width: 768px) {
+
+      .architecture-visual { flex-direction: column; }
+
+      .arch-arrow { transform: rotate(90deg); }
+
+    }
+
+
+
+    /* Lightbox */
+
+    .gallery-item {
+
+      cursor: pointer;
+
+      position: relative;
+
+    }
+
+    .gallery-item::after {
+
+      content: '\f00e';
+
+      font-family: 'Font Awesome 6 Free';
+
+      font-weight: 900;
+
+      position: absolute;
+
+      top: 1rem;
+
+      right: 1rem;
+
+      background: rgba(0, 0, 0, 0.7);
+
+      color: white;
+
+      width: 36px;
+
+      height: 36px;
+
+      border-radius: 50%;
+
+      display: flex;
+
+      align-items: center;
+
+      justify-content: center;
+
+      opacity: 0;
+
+      transition: opacity 0.3s, transform 0.3s;
+
+      pointer-events: none;
+
+    }
+
+    .gallery-item:hover::after {
+
+      opacity: 1;
+
+      transform: scale(1.1);
+
+    }
+
+    .lightbox {
+
+      display: none;
+
+      position: fixed;
+
+      top: 0;
+
+      left: 0;
+
+      width: 100%;
+
+      height: 100%;
+
+      background: rgba(0, 0, 0, 0.95);
+
+      z-index: 9999;
+
+      justify-content: center;
+
+      align-items: center;
+
+      padding: 2rem;
+
+      opacity: 0;
+
+      transition: opacity 0.3s ease;
+
+    }
+
+    .lightbox.active {
+
+      display: flex;
+
+      opacity: 1;
+
+    }
+
+    .lightbox-content {
+
+      position: relative;
+
+      max-width: 90vw;
+
+      max-height: 90vh;
+
+      animation: lightboxZoom 0.3s ease;
+
+    }
+
+    @keyframes lightboxZoom {
+
+      from { transform: scale(0.8); opacity: 0; }
+
+      to { transform: scale(1); opacity: 1; }
+
+    }
+
+    .lightbox-content img {
+
+      max-width: 100%;
+
+      max-height: 85vh;
+
+      border-radius: 12px;
+
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+
+    }
+
+    .lightbox-caption {
+
+      text-align: center;
+
+      color: white;
+
+      margin-top: 1rem;
+
+      font-size: 1.1rem;
+
+    }
+
+    .lightbox-caption .title {
+
+      font-weight: 600;
+
+      color: var(--primary);
+
+    }
+
+    .lightbox-caption .desc {
+
+      color: rgba(255, 255, 255, 0.7);
+
+      font-size: 0.95rem;
+
+      margin-top: 0.25rem;
+
+    }
+
+    .lightbox-close {
+
+      position: absolute;
+
+      top: -40px;
+
+      right: 0;
+
+      background: none;
+
+      border: none;
+
+      color: white;
+
+      font-size: 2rem;
+
+      cursor: pointer;
+
+      transition: color 0.3s, transform 0.3s;
+
+      padding: 0.5rem;
+
+    }
+
+    .lightbox-close:hover {
+
+      color: var(--primary);
+
+      transform: rotate(90deg);
+
+    }
+
+    .lightbox-nav {
+
+      position: absolute;
+
+      top: 50%;
+
+      transform: translateY(-50%);
+
+      background: rgba(255, 255, 255, 0.1);
+
+      border: 1px solid rgba(255, 255, 255, 0.2);
+
+      color: white;
+
+      font-size: 1.5rem;
+
+      padding: 1rem 1.25rem;
+
+      cursor: pointer;
+
+      border-radius: 50%;
+
+      transition: all 0.3s;
+
+    }
+
+    .lightbox-nav:hover {
+
+      background: var(--primary);
+
+      border-color: var(--primary);
+
+    }
+
+    .lightbox-nav.prev { left: 2rem; }
+
+    .lightbox-nav.next { right: 2rem; }
+
+    .lightbox-counter {
+
+      position: absolute;
+
+      bottom: 1rem;
+
+      left: 50%;
+
+      transform: translateX(-50%);
+
+      color: rgba(255, 255, 255, 0.6);
+
+      font-family: 'JetBrains Mono', monospace;
+
+      font-size: 0.85rem;
+
+    }
+
+    @media (max-width: 768px) {
+
+      .lightbox-nav { display: none; }
+
+      .lightbox-content { max-width: 95vw; }
+
+    }
+
+  
+        /* Tooltips termes techniques */
+        .term {
+            border-bottom: 1px dashed var(--primary);
+            cursor: help;
+            position: relative;
+            display: inline;
+        }
+        .term::after {
+            content: attr(data-def);
+            position: absolute;
+            bottom: calc(100% + 8px);
+            left: 50%;
+            transform: translateX(-50%);
+            background: #1e293b;
+            color: #f8fafc;
+            font-size: 0.78rem;
+            line-height: 1.5;
+            padding: 0.6rem 0.9rem;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            white-space: normal;
+            width: 220px;
+            text-align: left;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.2s;
+            z-index: 100;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+        }
+        .term:hover::after { opacity: 1; }
+</style>
+
+<meta name="theme-color" content="#111214"><link rel="stylesheet" href="/assets/legacy-unified.css"><meta name="author" content="Franck Raymond"><meta name="robots" content="index,follow,max-image-preview:large"><meta property="og:type" content="website"><meta property="og:site_name" content="Portfolio de Franck Raymond"><meta property="og:title" content="Zabbix - Supervision Infrastructure | Portfolio"><meta property="og:description" content="Projet Zabbix - Supervision d'infrastructure sur Rocky Linux avec notifications Discord - Portfolio BTS SIO SISR"><meta property="og:url" content="https://franckraymond.tech/pages/dossier-technique-projet-zabbix-r5.html"><meta property="og:image" content="https://franckraymond.tech/franck.webp"><meta property="og:image:alt" content="Portrait professionnel de Franck Raymond"><meta property="og:locale" content="fr_FR"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Zabbix - Supervision Infrastructure | Portfolio"><meta name="twitter:description" content="Projet Zabbix - Supervision d'infrastructure sur Rocky Linux avec notifications Discord - Portfolio BTS SIO SISR"><meta name="twitter:image" content="https://franckraymond.tech/franck.webp"><link rel="canonical" href="https://franckraymond.tech/pages/dossier-technique-projet-zabbix-r5.html"><link rel="icon" href="/favicon-32x32.png" sizes="32x32" type="image/png"><link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180"><link rel="manifest" href="/site.webmanifest"><script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"Zabbix - Supervision Infrastructure | Portfolio","url":"https://franckraymond.tech/pages/dossier-technique-projet-zabbix-r5.html","description":"Projet Zabbix - Supervision d'infrastructure sur Rocky Linux avec notifications Discord - Portfolio BTS SIO SISR","isPartOf":{"@type":"WebSite","name":"Portfolio de Franck Raymond","url":"https://franckraymond.tech/"},"about":{"@type":"Person","name":"Franck Raymond","url":"https://franckraymond.tech/"}}</script>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,400&amp;family=Geist:wght@400;500;600&amp;display=swap">
+<link rel="stylesheet" href="/assets/editorial-tokens.css?v=20261106-modern">
+<link rel="stylesheet" href="/assets/editorial.css?v=20261106-modern">
+<script src="/assets/editorial-theme.js?v=20261028-1fe0ee8c9d"></script>
+</head>
+
+
+
+<body data-theme="light" class="portfolio-legacy editorial-site">
+
+  <div class="bg-mesh"></div>
+
+  <div class="noise-overlay"></div>
+
+  <div class="grid-lines"></div>
+
+
+
+  <header class="main-header" id="header">
+
+    <nav class="nav-container" aria-label="Navigation principale">
+
+      <div class="nav-brand">
+
+        <a href="../index.html" class="brand-logo">
+
+          <span class="logo-bracket">&lt;</span>
+
+          <span class="logo-text">FR</span>
+
+          <span class="logo-bracket">/&gt;</span>
+
+        </a>
+
+      </div>
+
+      <div class="nav-menu" id="navMenu">
+
+        <a href="../index.html" class="nav-link"><i class="fas fa-home"></i><span class="nav-text">Accueil</span></a>
+
+        <a href="../index.html#skills" class="nav-link"><i class="fas fa-server"></i><span class="nav-text">Compétences</span></a>
+
+        <a href="/projets.html" class="nav-link active"><i class="fas fa-project-diagram"></i><span class="nav-text">Projets</span></a>
+
+        <a href="epreuve-e5.html" class="nav-link"><i class="fas fa-graduation-cap"></i><span class="nav-text">épreuve E5</span></a>
+
+        <a href="../index.html#experience" class="nav-link"><i class="fas fa-briefcase"></i><span class="nav-text">Expériences</span></a>
+
+        <a href="../index.html#contact" class="nav-link"><i class="fas fa-envelope"></i><span class="nav-text">Contact</span></a>
+
+      
+<a class="nav-link" href="https://opengym.jsuisfray.blitz.cloud/"><span class="nav-text">Sport</span></a></div>
+
+      <div class="nav-controls">
+
+        <button class="theme-toggle" id="themeToggle" title="Changer le thème" aria-label="Basculer entre mode sombre et clair">
+
+          <i class="fas fa-moon"></i>
+
+        </button>
+
+        <button class="menu-toggle" id="menuToggle" aria-label="Ouvrir le menu mobile" aria-expanded="false">
+
+          <span></span><span></span><span></span>
+
+        </button>
+
+      </div>
+
+    </nav>
+
+  </header>
+
+
+
+  <main>
+
+    <!-- HERO -->
+
+    <section class="hero-section page-hero">
+
+      <div class="hero-glow"></div>
+
+      <div class="hero-glow-2"></div>
+
+      <div class="hero-container">
+
+        <div class="hero-content">
+
+          <div class="hero-greeting page-badge">Monitoring &amp; Supervision</div>
+
+          <h1 class="hero-name"><span class="name-gradient"><span class="term" data-def="Logiciel de surveillance qui vérifie en temps réel que les serveurs et équipements réseau fonctionnent correctement.">Zabbix</span> - Supervision Infrastructure</span></h1>
+
+          <p class="hero-description">
+
+            J'ai déployé un serveur <span class="term" data-def="Logiciel de surveillance qui vérifie en temps réel que les serveurs et équipements réseau fonctionnent correctement.">Zabbix</span> 7.0 sur Rocky Linux pour superviser l'infrastructure avec collecte de metriques, alerting Discord et supervision des serveurs <span class="term" data-def="Logiciel de gestion des tickets informatiques — les utilisateurs signalent leurs problèmes et les techniciens les traitent.">GLPI</span> et <span class="term" data-def="Annuaire centralisé qui gère tous les utilisateurs et ordinateurs d'une entreprise. L'admin y crée les comptes et définit qui a accès à quoi.">AD</span>.
+
+          </p>
+
+<div class="hero-buttons">
+
+            <a href="#infrastructure" class="btn btn-primary"><i class="fas fa-network-wired"></i> Infrastructure</a>
+
+            <a href="#discord" class="btn btn-secondary"><i class="fab fa-discord"></i> Notifications</a>
+
+          </div>
+
+        </div>
+
+        <div class="hero-image-wrapper">
+
+          <div class="hero-image-container">
+
+            <div class="profile-image-frame">
+
+              <i class="fas fa-chart-line page-icon"></i>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- CONTEXTE -->
+
+    <section id="contexte" class="section">
+
+      <div class="section-container">
+
+        <div class="section-header">
+
+          <span class="section-number">01</span>
+
+          <h2 class="section-title">Contexte <span class="title-gradient">du projet</span></h2>
+
+          <div class="section-line"></div>
+
+        </div>
+
+        <div class="about-content">
+
+          <div>
+
+            <p class="about-text">
+
+              Dans le cadre du module R5, j'ai déployé un serveur <span class="term" data-def="Logiciel de surveillance qui vérifie en temps réel que les serveurs et équipements réseau fonctionnent correctement.">Zabbix</span> sur Rocky Linux pour mettre en place une solution de supervision d'infrastructure. Mon objectif etait d'installer Zabbix Server, l'agent de collecte, le frontend web, les notifications Discord et la supervision des serveurs <span class="term" data-def="Logiciel de gestion des tickets informatiques — les utilisateurs signalent leurs problèmes et les techniciens les traitent.">GLPI</span> et <span class="term" data-def="Annuaire centralisé qui gère tous les utilisateurs et ordinateurs d'une entreprise. L'admin y crée les comptes et définit qui a accès à quoi.">AD</span>.
+
+            </p>
+
+            <p class="about-text">
+
+              <strong>Cadre :</strong> Serveur Rocky Linux avec <span class="term" data-def="Logiciel de surveillance qui vérifie en temps réel que les serveurs et équipements réseau fonctionnent correctement.">Zabbix</span> 7.0.23, interface web Apache/PHP, base de données MariaDB, alertes via webhook Discord, supervision de <span class="term" data-def="Logiciel de gestion des tickets informatiques — les utilisateurs signalent leurs problèmes et les techniciens les traitent.">GLPI</span> et du contrôleur <span class="term" data-def="Annuaire centralisé qui gère tous les utilisateurs et ordinateurs d'une entreprise. L'admin y crée les comptes et définit qui a accès à quoi.">AD</span>.
+
+            </p>
+
+          </div>
+
+          <div>
+
+            <div class="skill-category">
+
+              <h3 class="category-title"><i class="fas fa-layer-group"></i> Technologies utilisées</h3>
+
+              <div class="timeline-tags">
+
+                <span class="tag">Rocky Linux</span>
+
+                <span class="tag">Zabbix 7.0.23</span>
+
+                <span class="tag">Apache</span>
+
+                <span class="tag">PHP 8.3</span>
+
+                <span class="tag">MariaDB</span>
+
+                <span class="tag">Zabbix Agent2</span>
+
+                <span class="tag">Discord Webhook</span>
+
+              </div>
+
+            </div>
+
+            <div class="skill-category" style="margin-top: 1.5rem;">
+
+              <h3 class="category-title"><i class="fas fa-file-signature"></i> Hôtes supervises</h3>
+
+              <div class="timeline-tags">
+
+                <span class="tag"><span class="term" data-def="Logiciel de gestion des tickets informatiques — les utilisateurs signalent leurs problèmes et les techniciens les traitent.">GLPI</span>-SRV (172.20.10.13)</span>
+
+                <span class="tag"><span class="term" data-def="Annuaire centralisé qui gère tous les utilisateurs et ordinateurs d'une entreprise. L'admin y crée les comptes et définit qui a accès à quoi.">AD</span>-DC (172.20.10.12)</span>
+
+                <span class="tag">Zabbix Server</span>
+
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- POURQUOI CETTE SOLUTION -->
+
+    <section id="pourquoi" class="section" style="background: var(--bg-card-solid);">
+
+      <div class="section-container">
+
+        <div class="section-header">
+
+          <span class="section-number">02</span>
+
+          <h2 class="section-title">Pourquoi <span class="title-gradient">cette solution ?</span></h2>
+
+          <div class="section-line"></div>
+
+        </div>
+
+        <div class="info-box">
+
+          <h4><i class="fas fa-lightbulb"></i> Choix de <span class="term" data-def="Logiciel de surveillance qui vérifie en temps réel que les serveurs et équipements réseau fonctionnent correctement.">Zabbix</span></h4>
+
+          <p style="color: var(--text-secondary); margin-top: 0.5rem;">
+
+            J'ai choisi <strong><span class="term" data-def="Logiciel de surveillance qui vérifie en temps réel que les serveurs et équipements réseau fonctionnent correctement.">Zabbix</span></strong> plutôt que Centreon ou Nagios pour sa <strong>flexibilité</strong>, sa <strong>légèreté</strong> et sa <strong>compatibilité</strong> avec mon environnement virtualisé. Zabbix offre une interface web moderne, une configuration simplifiée des agents, et une excellente intégration avec les webhooks (Discord, Slack) pour les notifications en temps réel. De plus, la communauté active et la documentation complète facilitent le déploiement et le dépannage.
+
+          </p>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- INFRASTRUCTURE -->
+
+    <section id="infrastructure" class="section">
+
+      <div class="section-container">
+
+        <div class="section-header">
+
+          <span class="section-number">04</span>
+
+          <h2 class="section-title">Infrastructure <span class="title-gradient">déployée</span></h2>
+
+          <div class="section-line"></div>
+
+        </div>
+
+
+
+        <table class="infra-table">
+
+          <thead>
+
+            <tr>
+
+              <th>Role</th>
+
+              <th>Hostname</th>
+
+              <th>IP</th>
+
+              <th>Description</th>
+
+            </tr>
+
+          </thead>
+
+          <tbody>
+
+            <tr><td><strong><span class="term" data-def="Logiciel de surveillance qui vérifie en temps réel que les serveurs et équipements réseau fonctionnent correctement.">Zabbix</span> Server</strong></td><td>localhost.localdomain</td><td>172.20.10.14</td><td>Rocky Linux + <span class="term" data-def="Logiciel de surveillance qui vérifie en temps réel que les serveurs et équipements réseau fonctionnent correctement.">Zabbix</span> Server 7.0.23 + Agent2 + Web</td></tr>
+
+            <tr><td><strong><span class="term" data-def="Logiciel de gestion des tickets informatiques — les utilisateurs signalent leurs problèmes et les techniciens les traitent.">GLPI</span> Server</strong></td><td><span class="term" data-def="Logiciel de gestion des tickets informatiques — les utilisateurs signalent leurs problèmes et les techniciens les traitent.">GLPI</span>-SRV</td><td>172.20.10.13</td><td>Rocky Linux + <span class="term" data-def="Logiciel de surveillance qui vérifie en temps réel que les serveurs et équipements réseau fonctionnent correctement.">Zabbix</span> Agent2</td></tr>
+
+            <tr><td><strong><span class="term" data-def="Annuaire centralisé qui gère tous les utilisateurs et ordinateurs d'une entreprise. L'admin y crée les comptes et définit qui a accès à quoi.">AD</span> Controller</strong></td><td>WIN-JBIDVUF39PM</td><td>172.20.10.12</td><td>Windows Server + <span class="term" data-def="Logiciel de surveillance qui vérifie en temps réel que les serveurs et équipements réseau fonctionnent correctement.">Zabbix</span> Agent</td></tr>
+
+          </tbody>
+
+        </table>
+
+
+
+        <div class="architecture-visual">
+
+          <div class="arch-box agent">
+
+            <i class="fas fa-server"></i>
+
+            <div>GLPI + AD</div>
+
+            <small>Agents Zabbix</small>
+
+          </div>
+
+          <span class="arch-arrow"><i class="fas fa-arrow-right"></i></span>
+
+          <div class="arch-box zabbix">
+
+            <i class="fas fa-chart-line"></i>
+
+            <div>Zabbix Server</div>
+
+            <small>172.20.10.14:10051</small>
+
+          </div>
+
+          <span class="arch-arrow"><i class="fas fa-arrow-right"></i></span>
+
+          <div class="arch-box discord">
+
+            <i class="fab fa-discord"></i>
+
+            <div>Discord</div>
+
+            <small>Alertes</small>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- INSTALLATION -->
+
+    <section id="installation" class="section">
+
+      <div class="section-container">
+
+        <div class="section-header">
+
+          <span class="section-number">04</span>
+
+          <h2 class="section-title">Installation <span class="title-gradient"><span class="term" data-def="Logiciel de surveillance qui vérifie en temps réel que les serveurs et équipements réseau fonctionnent correctement.">Zabbix</span></span></h2>
+
+          <div class="section-line"></div>
+
+        </div>
+
+
+
+        <div class="tp-card">
+
+          <h3><i class="fas fa-download"></i> Installation des paquets</h3>
+
+          <p class="about-text">J'ai commence par ajouter le depot officiel <span class="term" data-def="Logiciel de surveillance qui vérifie en temps réel que les serveurs et équipements réseau fonctionnent correctement.">Zabbix</span> 7.0 puis j'ai installe tous les composants nécessaires.</p>
+
+          <div class="code-block">
+
+# Ajout du depot Zabbix 7.0
+
+rpm -Uvh https://repo.zabbix.com/zabbix/7.0/rhel/10/x86_64/zabbix-release-latest-7.0.el10.noarch.rpm
+
+
+
+# Installation des paquets
+
+dnf -y install zabbix-server-mysql zabbix-web-mysql zabbix-apache-conf \
+
+  zabbix-sql-scripts zabbix-agent2 mariadb-server httpd php-fpm
+
+          </div>
+
+        </div>
+
+
+
+        <div class="tp-card">
+
+          <h3><i class="fas fa-database"></i> Configuration de la base de données</h3>
+
+          <p class="about-text">J'ai créé la base de données et l'utilisateur <span class="term" data-def="Logiciel de surveillance qui vérifie en temps réel que les serveurs et équipements réseau fonctionnent correctement.">Zabbix</span>, puis j'ai importe le schéma initial.</p>
+
+          <div class="code-block">
+
+# Demarrage MariaDB
+
+systemctl enable --now mariadb
+
+
+
+# Création de la base et de l'utilisateur
+
+mysql -e "CREATE DATABASE zabbix CHARACTER SET utf8mb4 COLLATE utf8mb4_bin;"
+
+mysql -e "CREATE USER 'zabbix'@'localhost' IDENTIFIED BY '[mot de passe supprimé]';"
+
+mysql -e "GRANT ALL PRIVILÈGES ON zabbix.* TO 'zabbix'@'localhost';"
+
+
+
+# Import du schéma Zabbix
+
+zcat /usr/share/zabbix-sql-scripts/mysql/server.sql.gz | mysql -uzabbix -p'ZabbixDb2026!' zabbix
+
+          </div>
+
+        </div>
+
+
+
+        <div class="project-gallery">
+
+          <div class="gallery-item">
+
+            <img src="projet-zabbix_assets/image1.png" alt="Paquets Zabbix installes">
+
+            <div class="gallery-item-content">
+
+              <div class="gallery-item-title">Paquets Zabbix installes</div>
+
+              <div class="gallery-item-desc">rpm -qa | grep zabbix - Version 7.0.23 installee</div>
+
+            </div>
+
+          </div>
+
+          <div class="gallery-item">
+
+            <img src="projet-zabbix_assets/image2.png" alt="Services actifs">
+
+            <div class="gallery-item-content">
+
+              <div class="gallery-item-title">Services actifs</div>
+
+              <div class="gallery-item-desc">Tous les services en etat "active"</div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- ACCES WEB -->
+
+    <section id="web" class="section" style="background: var(--bg-card-solid);">
+
+      <div class="section-container">
+
+        <div class="section-header">
+
+          <span class="section-number">06</span>
+
+          <h2 class="section-title">Interface <span class="title-gradient">Web</span></h2>
+
+          <div class="section-line"></div>
+
+        </div>
+
+
+
+        <div class="tp-card">
+
+          <h3><i class="fas fa-globe"></i> Configuration Frontend</h3>
+
+          <p class="about-text">J'ai configuré le frontend web avec les paramètrès de connexion à la base et demarre les services.</p>
+
+          <div class="code-block">
+
+# Activation des services
+
+systemctl enable --now zabbix-server zabbix-agent2 httpd php-fpm
+
+
+
+# Configuration firewall
+
+firewall-cmd --permanent --add-service=http
+
+firewall-cmd --permanent --add-port=10051/tcp
+
+firewall-cmd --reload
+
+          </div>
+
+        </div>
+
+
+
+        <div class="info-box">
+
+          <h4><i class="fas fa-key"></i> Informations de connexion</h4>
+
+          <ul style="margin-left: 1.5rem; color: var(--text-secondary);">
+
+            <li><strong>URL :</strong> http://172.20.10.14/zabbix/</li>
+
+            <li><strong>Login :</strong> Admin</li>
+
+            <li><strong>Mot de passe :</strong> [supprimé]</li>
+
+          </ul>
+
+        </div>
+
+
+
+        <div class="project-gallery">
+
+          <div class="gallery-item">
+
+            <img src="projet-zabbix_assets/image3.png" alt="HTTP 200 OK">
+
+            <div class="gallery-item-content">
+
+              <div class="gallery-item-title">Accès web valide</div>
+
+              <div class="gallery-item-desc">curl -I retourne HTTP/1.1 200 OK</div>
+
+            </div>
+
+          </div>
+
+          <div class="gallery-item">
+
+            <img src="projet-zabbix_assets/image4.png" alt="Page de connexion Zabbix">
+
+            <div class="gallery-item-content">
+
+              <div class="gallery-item-title">Page de connexion</div>
+
+              <div class="gallery-item-desc">Interface web Zabbix accessible</div>
+
+            </div>
+
+          </div>
+
+          <div class="gallery-item">
+
+            <img src="projet-zabbix_assets/image6.png" alt="Dashboard Zabbix">
+
+            <div class="gallery-item-content">
+
+              <div class="gallery-item-title">Dashboard Global View</div>
+
+              <div class="gallery-item-desc">Vue d'ensemble avec problèmes et carte</div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- NOTIFICATIONS DISCORD -->
+
+    <section id="discord" class="section">
+
+      <div class="section-container">
+
+        <div class="section-header">
+
+          <span class="section-number">06</span>
+
+          <h2 class="section-title">Notifications <span class="title-gradient">Discord</span></h2>
+
+          <div class="section-line"></div>
+
+        </div>
+
+
+
+        <div class="tp-card">
+
+          <h3><i class="fab fa-discord"></i> Configuration du Webhook</h3>
+
+          <p class="about-text">J'ai configuré les notifications Discord pour recevoir les alertes <span class="term" data-def="Logiciel de surveillance qui vérifie en temps réel que les serveurs et équipements réseau fonctionnent correctement.">Zabbix</span> en temps réel.</p>
+
+          <div class="timeline-achievements">
+
+            <div class="achievement-item"><i class="fas fa-check-circle"></i><span>J'ai active le media type Discord dans Zabbix</span></div>
+
+            <div class="achievement-item"><i class="fas fa-check-circle"></i><span>J'ai ajoute le webhook Discord à l'utilisateur Admin</span></div>
+
+            <div class="achievement-item"><i class="fas fa-check-circle"></i><span>J'ai configuré la macro {$ZABBIX.URL}</span></div>
+
+            <div class="achievement-item"><i class="fas fa-check-circle"></i><span>J'ai active l'action "Report problems to Zabbix administrators"</span></div>
+
+          </div>
+
+        </div>
+
+
+
+        <div class="tp-card">
+
+          <h3><i class="fas fa-flask"></i> Test des alertes</h3>
+
+          <p class="about-text">J'ai teste l'envoi des alertes avec zabbix_sender pour declencher des problèmes de test.</p>
+
+          <div class="code-block">
+
+# Declenchement d'un problème de test
+
+zabbix_sender -z 127.0.0.1 -s "ZBX-DISCORD-TEST" -k discord.test -o 1
+
+
+
+# Vérification du dernier envoi Discord
+
+mysql -N zabbix -e "SELECT alertid,status,error FROM alerts WHERE mediatypeid=39 ORDER BY alertid DESC LIMIT 5;"
+
+# Attendu: status=1 et error vide
+
+          </div>
+
+        </div>
+
+
+
+        <div class="validation-box">
+
+          <h4><i class="fas fa-check-circle"></i> Notifications validees</h4>
+
+          <ul style="margin-left: 1.5rem; color: var(--text-secondary);">
+
+            <li>Alertes recues dans le salon Discord</li>
+
+            <li>Format complet avec nom du problème, hôte, severite</li>
+
+            <li>Status=1 en base (envoi réussi)</li>
+
+          </ul>
+
+        </div>
+
+
+
+        <div class="project-gallery">
+
+          <div class="gallery-item" style="max-width: 500px; margin: 0 auto;">
+
+            <img src="projet-zabbix_assets/image5.png" alt="Messages Discord">
+
+            <div class="gallery-item-content">
+
+              <div class="gallery-item-title">Alertes recues sur Discord</div>
+
+              <div class="gallery-item-desc">"Problem: Discord test trigger" avec détails complets</div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- SUPERVISION HOTES -->
+
+    <section id="hosts" class="section" style="background: var(--bg-card-solid);">
+
+      <div class="section-container">
+
+        <div class="section-header">
+
+          <span class="section-number">07</span>
+
+          <h2 class="section-title">Supervision <span class="title-gradient">des Hôtes</span></h2>
+
+          <div class="section-line"></div>
+
+        </div>
+
+
+
+        <div class="tp-card">
+
+          <h3><i class="fas fa-server"></i> Ajout de <span class="term" data-def="Logiciel de gestion des tickets informatiques — les utilisateurs signalent leurs problèmes et les techniciens les traitent.">GLPI</span>-SRV</h3>
+
+          <p class="about-text">J'ai ajoute le serveur <span class="term" data-def="Logiciel de gestion des tickets informatiques — les utilisateurs signalent leurs problèmes et les techniciens les traitent.">GLPI</span> dans <span class="term" data-def="Logiciel de surveillance qui vérifie en temps réel que les serveurs et équipements réseau fonctionnent correctement.">Zabbix</span> et installe l'agent Zabbix dessus.</p>
+
+          <div class="code-block">
+
+# Installation de l'agent sur GLPI (172.20.10.13)
+
+dnf -y install zabbix-agent2
+
+sed -i 's/^Server=.*/Server=172.20.10.14/' /etc/zabbix/zabbix_agent2.conf
+
+sed -i 's/^ServerActive=.*/ServerActive=172.20.10.14/' /etc/zabbix/zabbix_agent2.conf
+
+sed -i 's/^Hostname=.*/Hostname=GLPI-SRV/' /etc/zabbix/zabbix_agent2.conf
+
+systemctl enable --now zabbix-agent2
+
+
+
+# Vérification depuis le serveur Zabbix
+
+zabbix_get -s 172.20.10.13 -k agent.ping
+
+# Resultat: 1 (agent OK)
+
+          </div>
+
+        </div>
+
+
+
+        <div class="tp-card">
+
+          <h3><i class="fab fa-windows"></i> Ajout de <span class="term" data-def="Annuaire centralisé qui gère tous les utilisateurs et ordinateurs d'une entreprise. L'admin y crée les comptes et définit qui a accès à quoi.">AD</span>-DC</h3>
+
+          <p class="about-text">J'ai ajoute le contrôleur de domaine Windows et installe l'agent <span class="term" data-def="Logiciel de surveillance qui vérifie en temps réel que les serveurs et équipements réseau fonctionnent correctement.">Zabbix</span> Windows.</p>
+
+          <div class="timeline-achievements">
+
+            <div class="achievement-item"><i class="fas fa-check-circle"></i><span>J'ai télécharge zabbix_agent2-7.4.7-windows-amd64</span></div>
+
+            <div class="achievement-item"><i class="fas fa-check-circle"></i><span>J'ai configuré l'agent avec Server=172.20.10.14</span></div>
+
+            <div class="achievement-item"><i class="fas fa-check-circle"></i><span>J'ai ajoute l'hôte AD-DC dans Zabbix avec le template Windows</span></div>
+
+            <div class="achievement-item"><i class="fas fa-check-circle"></i><span>Agent disponible: agent.ping=1</span></div>
+
+          </div>
+
+        </div>
+
+
+
+        <div class="project-gallery">
+
+          <div class="gallery-item">
+
+            <img src="projet-zabbix_assets/image7.png" alt="Agent Windows télécharge">
+
+            <div class="gallery-item-content">
+
+              <div class="gallery-item-title">Agent Windows télécharge</div>
+
+              <div class="gallery-item-desc">zabbix_agent2-7.4.7-windows-amd64</div>
+
+            </div>
+
+          </div>
+
+          <div class="gallery-item">
+
+            <img src="projet-zabbix_assets/image8.png" alt="Liste des hôtes">
+
+            <div class="gallery-item-content">
+
+              <div class="gallery-item-title">Liste des hôtes supervises</div>
+
+              <div class="gallery-item-desc">GLPI Server, Windows AD, Zabbix server - tous avec ZBX vert</div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- BILAN -->
+
+    <section id="bilan" class="section">
+
+      <div class="section-container">
+
+        <div class="section-header">
+
+          <span class="section-number">09</span>
+
+          <h2 class="section-title">Bilan <span class="title-gradient">du projet</span></h2>
+
+          <div class="section-line"></div>
+
+        </div>
+
+
+
+        <div class="validation-box">
+
+          <h4><i class="fas fa-check-circle"></i> Ce que j'ai validé</h4>
+
+          <ul style="margin-left: 1.5rem; color: var(--text-secondary);">
+
+            <li><span class="term" data-def="Logiciel de surveillance qui vérifie en temps réel que les serveurs et équipements réseau fonctionnent correctement.">Zabbix</span> Server 7.0.23 installe et opérationnel</li>
+
+            <li>Frontend web accessible (HTTP 200 OK)</li>
+
+            <li>Notifications Discord par webhook fonctionnelles</li>
+
+            <li>Serveur <span class="term" data-def="Logiciel de gestion des tickets informatiques — les utilisateurs signalent leurs problèmes et les techniciens les traitent.">GLPI</span> supervise (agent Linux)</li>
+
+            <li>Contrôleur <span class="term" data-def="Annuaire centralisé qui gère tous les utilisateurs et ordinateurs d'une entreprise. L'admin y crée les comptes et définit qui a accès à quoi.">AD</span> supervise (agent Windows)</li>
+
+            <li>Dashboard avec vue globale et problèmes</li>
+
+          </ul>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- COMPETENCES -->
+
+    <section id="competences" class="section" style="background: var(--bg-card-solid);">
+
+      <div class="section-container">
+
+        <div class="section-header">
+
+          <span class="section-number">09</span>
+
+          <h2 class="section-title">Compétences <span class="title-gradient">mobilisees</span></h2>
+
+          <div class="section-line"></div>
+
+        </div>
+
+
+
+        <div class="skills-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem;">
+
+          <div class="skill-category">
+
+            <h3 class="category-title"><i class="fas fa-server"></i> Administration système</h3>
+
+            <p class="about-text">J'ai installe et configure un serveur Linux, gère les paquets RPM et configure les services systemd.</p>
+
+          </div>
+
+          <div class="skill-category">
+
+            <h3 class="category-title"><i class="fas fa-chart-line"></i> Supervision</h3>
+
+            <p class="about-text">J'ai déployé <span class="term" data-def="Logiciel de surveillance qui vérifie en temps réel que les serveurs et équipements réseau fonctionnent correctement.">Zabbix</span> pour la supervision d'infrastructure avec collecte de metriques et alerting.</p>
+
+          </div>
+
+          <div class="skill-category">
+
+            <h3 class="category-title"><i class="fas fa-bell"></i> Alerting</h3>
+
+            <p class="about-text">J'ai configuré les notifications Discord par webhook pour recevoir les alertes en temps réel.</p>
+
+          </div>
+
+          <div class="skill-category">
+
+            <h3 class="category-title"><i class="fas fa-network-wired"></i> Multi-plateformes</h3>
+
+            <p class="about-text">J'ai supervise des serveurs Linux et Windows avec les agents <span class="term" data-def="Logiciel de surveillance qui vérifie en temps réel que les serveurs et équipements réseau fonctionnent correctement.">Zabbix</span> adaptes.</p>
+
+          </div>
+
+        </div>
+
+
+
+        <div style="text-align: center; margin-top: 3rem;">
+
+          <a href="epreuve-e5.html" class="btn btn-primary"><i class="fas fa-graduation-cap"></i> Voir toutes les compétences E5</a>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+
+  </main>
+
+
+
+  <footer class="main-footer" role="contentinfo">
+
+    <div class="footer-container">
+
+      <div class="footer-content">
+
+        <p class="footer-text">© 2025 <span class="footer-copyright">Franck Raymond</span> - Tous droits réservés.</p>
+
+      </div>
+
+    </div>
+
+  </footer>
+
+
+
+  <!-- Lightbox -->
+
+  <div class="lightbox" id="lightbox">
+
+    <div class="lightbox-content">
+
+      <button class="lightbox-close" id="lightboxClose"><i class="fas fa-times"></i></button>
+
+      <img src="" alt="" id="lightboxImg">
+
+      <div class="lightbox-caption">
+
+        <div class="title" id="lightboxTitle"></div>
+
+        <div class="desc" id="lightboxDesc"></div>
+
+      </div>
+
+    </div>
+
+    <button class="lightbox-nav prev" id="lightboxPrev"><i class="fas fa-chevron-left"></i></button>
+
+    <button class="lightbox-nav next" id="lightboxNext"><i class="fas fa-chevron-right"></i></button>
+
+    <div class="lightbox-counter" id="lightboxCounter"></div>
+
+  </div>
+
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+
+  <script src="../script.js?v=20261028-b753f7964f"></script>
+
+  <script>
+
+    // Lightbox functionality
+
+    const lightbox = document.getElementById('lightbox');
+
+    const lightboxImg = document.getElementById('lightboxImg');
+
+    const lightboxTitle = document.getElementById('lightboxTitle');
+
+    const lightboxDesc = document.getElementById('lightboxDesc');
+
+    const lightboxCounter = document.getElementById('lightboxCounter');
+
+    const lightboxClose = document.getElementById('lightboxClose');
+
+    const lightboxPrev = document.getElementById('lightboxPrev');
+
+    const lightboxNext = document.getElementById('lightboxNext');
+
+
+
+    const galleryItems = document.querySelectorAll('.gallery-item');
+
+    let currentIndex = 0;
+
+    const images = [];
+
+
+
+    galleryItems.forEach((item, index) => {
+
+      const img = item.querySelector('img');
+
+      const title = item.querySelector('.gallery-item-title')?.textContent || '';
+
+      const desc = item.querySelector('.gallery-item-desc')?.textContent || '';
+
+
+
+      images.push({ src: img.src, title, desc });
+
+
+
+      item.addEventListener('click', () => {
+
+        currentIndex = index;
+
+        openLightbox();
+
+      });
+
+    });
+
+
+
+    function openLightbox() {
+
+      const image = images[currentIndex];
+
+      lightboxImg.src = image.src;
+
+      lightboxTitle.textContent = image.title;
+
+      lightboxDesc.textContent = image.desc;
+
+      lightboxCounter.textContent = `${currentIndex + 1} / ${images.length}`;
+
+      lightbox.classList.add('active');
+
+      document.body.style.overflow = 'hidden';
+
+    }
+
+
+
+    function closeLightbox() {
+
+      lightbox.classList.remove('active');
+
+      document.body.style.overflow = '';
+
+    }
+
+
+
+    function nextImage() {
+
+      currentIndex = (currentIndex + 1) % images.length;
+
+      openLightbox();
+
+    }
+
+
+
+    function prevImage() {
+
+      currentIndex = (currentIndex - 1 + images.length) % images.length;
+
+      openLightbox();
+
+    }
+
+
+
+    lightboxClose.addEventListener('click', closeLightbox);
+
+    lightboxNext.addEventListener('click', nextImage);
+
+    lightboxPrev.addEventListener('click', prevImage);
+
+
+
+    lightbox.addEventListener('click', (e) => {
+
+      if (e.target === lightbox) closeLightbox();
+
+    });
+
+
+
+    document.addEventListener('keydown', (e) => {
+
+      if (!lightbox.classList.contains('active')) return;
+
+      if (e.key === 'Escape') closeLightbox();
+
+      if (e.key === 'ArrowRight') nextImage();
+
+      if (e.key === 'ArrowLeft') prevImage();
+
+    });
+
+  </script>
+
+
+
+
+
+
+
+
+
+<script src="/assets/portfolio-glossary.js" defer=""></script><script src="/assets/legacy-unified.js?v=20261028-8c422e514f" defer=""></script></body></html>

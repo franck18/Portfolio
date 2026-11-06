@@ -1,0 +1,362 @@
+<!DOCTYPE html><html lang="fr"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sécurité Active Directory | Portfolio</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&amp;family=Outfit:wght@300;400;500;600;700;800;900&amp;family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../style.css">
+  <style>
+        /* Tooltips termes techniques */
+        .term {
+            border-bottom: 1px dashed var(--primary);
+            cursor: help;
+            position: relative;
+            display: inline;
+        }
+        .term::after {
+            content: attr(data-def);
+            position: absolute;
+            bottom: calc(100% + 8px);
+            left: 50%;
+            transform: translateX(-50%);
+            background: #1e293b;
+            color: #f8fafc;
+            font-size: 0.78rem;
+            line-height: 1.5;
+            padding: 0.6rem 0.9rem;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            white-space: normal;
+            width: 220px;
+            text-align: left;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.2s;
+            z-index: 100;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+        }
+        .term:hover::after { opacity: 1; }
+  </style>
+<meta name="theme-color" content="#111214"><link rel="stylesheet" href="/assets/legacy-unified.css?v=20260831-2"><meta name="description" content="Portfolio de Franck Raymond : projets en administration systèmes, réseaux, supervision et cybersécurité."><meta name="author" content="Franck Raymond"><meta name="robots" content="index,follow,max-image-preview:large"><meta property="og:type" content="website"><meta property="og:site_name" content="Portfolio de Franck Raymond"><meta property="og:title" content="Sécurité Active Directory | Portfolio"><meta property="og:description" content="Portfolio de Franck Raymond : projets en administration systèmes, réseaux, supervision et cybersécurité."><meta property="og:url" content="https://franckraymond.tech/pages/securite-ad.html"><meta property="og:image" content="https://franckraymond.tech/franck.webp"><meta property="og:image:alt" content="Portrait professionnel de Franck Raymond"><meta property="og:locale" content="fr_FR"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Sécurité Active Directory | Portfolio"><meta name="twitter:description" content="Portfolio de Franck Raymond : projets en administration systèmes, réseaux, supervision et cybersécurité."><meta name="twitter:image" content="https://franckraymond.tech/franck.webp"><link rel="canonical" href="https://franckraymond.tech/pages/securite-ad.html"><link rel="icon" href="/favicon-32x32.png" sizes="32x32" type="image/png"><link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180"><link rel="manifest" href="/site.webmanifest"><script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"Sécurité Active Directory | Portfolio","url":"https://franckraymond.tech/pages/securite-ad.html","description":"Portfolio de Franck Raymond : projets en administration systèmes, réseaux, supervision et cybersécurité.","isPartOf":{"@type":"WebSite","name":"Portfolio de Franck Raymond","url":"https://franckraymond.tech/"},"about":{"@type":"Person","name":"Franck Raymond","url":"https://franckraymond.tech/"}}</script>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,400&amp;family=Geist:wght@400;500;600&amp;display=swap">
+<link rel="stylesheet" href="/assets/editorial-tokens.css?v=20261106-modern">
+<link rel="stylesheet" href="/assets/editorial.css?v=20261106-modern">
+<script src="/assets/editorial-theme.js?v=20261028-1fe0ee8c9d"></script>
+</head>
+<body data-theme="light" class="portfolio-legacy editorial-site">
+  <div class="bg-mesh"></div>
+  <div class="noise-overlay"></div>
+  <div class="grid-lines"></div>
+
+  <header class="main-header" id="header">
+    <nav class="nav-container" aria-label="Navigation principale">
+      <div class="nav-brand">
+        <a href="../index.html" class="brand-logo">
+          <span class="logo-bracket">&lt;</span>
+          <span class="logo-text">FR</span>
+          <span class="logo-bracket">/&gt;</span>
+        </a>
+      </div>
+      <div class="nav-menu" id="navMenu">
+        <a href="../index.html" class="nav-link">
+          <i class="fas fa-home"></i>
+          <span class="nav-text">Accueil</span>
+        </a>
+        <a href="../index.html#skills" class="nav-link active">
+          <i class="fas fa-code"></i>
+          <span class="nav-text">Compétences</span>
+        </a>
+        <a href="../index.html#experience" class="nav-link">
+          <i class="fas fa-briefcase"></i>
+          <span class="nav-text">Expériences</span>
+        </a>
+        <a href="../index.html#contact" class="nav-link">
+          <i class="fas fa-envelope"></i>
+          <span class="nav-text">Contact</span>
+        </a>
+      
+<a class="nav-link" href="https://opengym.jsuisfray.blitz.cloud/"><span class="nav-text">Sport</span></a></div>
+      <div class="nav-controls">
+        <button class="theme-toggle" id="themeToggle" title="Changer le thème" aria-label="Basculer entre mode sombre et clair">
+          <i class="fas fa-moon"></i>
+        </button>
+        <button class="menu-toggle" id="menuToggle" aria-label="Ouvrir le menu mobile" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero-section page-hero">
+      <div class="hero-glow"></div>
+      <div class="hero-glow-2"></div>
+      <div class="hero-container">
+        <div class="hero-content">
+          <div class="hero-greeting page-badge">Supervision &amp; sécurité</div>
+          <h1 class="hero-name"><span class="name-gradient">Sécurité <span class="term" data-def="Annuaire centralisé qui gère tous les utilisateurs et ordinateurs d'une entreprise. L'admin y crée les comptes et définit qui a accès à quoi.">Active Directory</span></span></h1>
+          <p class="hero-description">
+            Renforcement de la sécurité <span class="term" data-def="Annuaire centralisé qui gère tous les utilisateurs et ordinateurs d'une entreprise. L'admin y crée les comptes et définit qui a accès à quoi.">AD</span> par des bonnes pratiques et <span class="term" data-def="Règles appliquées automatiquement à tous les ordinateurs d'une entreprise (ex: fond d'écran imposé, logiciels installés d'office).">GPO</span>.
+          </p>
+          <div class="hero-buttons">
+            <a href="#actions" class="btn btn-primary"><i class="fas fa-skull-crossbones"></i> Les menaces</a>
+            <a href="#mesures" class="btn btn-secondary"><i class="fas fa-shield-alt"></i> Se proteger</a>
+          </div>
+        </div>
+        <div class="hero-image-wrapper">
+          <div class="hero-image-container">
+            <div class="profile-image-frame">
+              <i class="fas fa-lock page-icon"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contexte" class="section">
+      <div class="section-container">
+        <div class="section-header">
+          <span class="section-number">01</span>
+          <h2 class="section-title">Contexte <span class="title-gradient">&amp; enjeux actuels</span></h2>
+          <div class="section-line"></div>
+        </div>
+        <div class="about-content">
+          <div>
+            <p class="about-text">
+              <span class="term" data-def="Annuaire centralisé qui gère tous les utilisateurs et ordinateurs d'une entreprise. L'admin y crée les comptes et définit qui a accès à quoi.">Active Directory</span>, c'est un peu le coeur de la plupart des entreprises qui tournent sous Windows. C'est lui qui gère les utilisateurs, les droits d'accès, les politiques de sécurité... Bref, si un attaquant arrive a compromettre l'AD, c'est game over : il peut potentiellement accéder a tout le SI.
+            </p>
+            <p class="about-text" style="margin-top: 1rem;">
+              Et le problème, c'est que les attaques sur <span class="term" data-def="Annuaire centralisé qui gère tous les utilisateurs et ordinateurs d'une entreprise. L'admin y crée les comptes et définit qui a accès à quoi.">AD</span> sont de plus en plus frequentes. On a vu ces dernieres annees des ransomwares comme <strong>LockBit</strong> ou <strong>BlackCat</strong> qui ciblent specifiquement les contrôleurs de domaine pour chiffrer tout le réseau d'un coup. Des techniques comme <strong>Kerberoasting</strong>, <strong>Pass-the-Hash</strong> ou <strong>DCSync</strong> sont devenues monnaie courante chez les attaquants.
+            </p>
+            <p class="about-text" style="margin-top: 1rem;">
+              D'après l'ANSSI, plus de 80% des attaques par ransomware en France en 2023-2024 ont implique une compromission d'<span class="term" data-def="Annuaire centralisé qui gère tous les utilisateurs et ordinateurs d'une entreprise. L'admin y crée les comptes et définit qui a accès à quoi.">Active Directory</span>. çà montre bien que sécuriser son AD, c'est plus une option aujourd'hui, c'est une necessite absolue.
+            </p>
+            <p class="about-text" style="margin-top: 1rem;">
+              <strong>Problématique :</strong> Comment sécuriser concrètement un environnement <span class="term" data-def="Annuaire centralisé qui gère tous les utilisateurs et ordinateurs d'une entreprise. L'admin y crée les comptes et définit qui a accès à quoi.">Active Directory</span> face aux menaces actuelles, tout en gardant une infrastructure fonctionnelle pour les utilisateurs ?
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="actions" class="section" style="background: var(--bg-card-solid);">
+      <div class="section-container">
+        <div class="section-header">
+          <span class="section-number">02</span>
+          <h2 class="section-title">Les principales <span class="title-gradient">menaces sur <span class="term" data-def="Annuaire centralisé qui gère tous les utilisateurs et ordinateurs d'une entreprise. L'admin y crée les comptes et définit qui a accès à quoi.">AD</span></span></h2>
+          <div class="section-line"></div>
+        </div>
+        <div class="about-content">
+          <div>
+            <p class="about-text">Avant de parler des solutions, faut comprendre contre quoi on se bat. Voici les attaques les plus courantes sur <span class="term" data-def="Annuaire centralisé qui gère tous les utilisateurs et ordinateurs d'une entreprise. L'admin y crée les comptes et définit qui a accès à quoi.">Active Directory</span> :</p>
+
+            <h3 style="color: var(--accent-primary); margin-top: 1.5rem; margin-bottom: 0.5rem;"><i class="fas fa-skull-crossbones"></i> Kerberoasting</h3>
+            <p class="about-text">Le principe est simple : un attaquant qui à un compte utilisateur basique peut demander des tickets Kerberos pour les comptes de service. Ces tickets sont chiffres avec le hash du mot de passe du compte de service. Du coup, l'attaquant peut les recuperer et tenter de les casser en offline avec des outils comme Hashcat. Si le mot de passe du compte de service est faible, c'est cuit en quelques minutes.</p>
+
+            <h3 style="color: var(--accent-primary); margin-top: 1.5rem; margin-bottom: 0.5rem;"><i class="fas fa-skull-crossbones"></i> Pass-the-Hash (PtH)</h3>
+            <p class="about-text">Sous Windows, quand on se connecte, le hash NTLM de notre mot de passe reste en memoire (dans le processus LSASS). Un attaquant avec des droits admin local peut dumper ces hash avec des outils comme Mimikatz. Ensuite, il peut les reutiliser directement pour s'authentifier sur d'autres machines, sans même connaitre le mot de passe en clair. C'est comme ça que les attaquants font du mouvement lateral dans le réseau.</p>
+
+            <h3 style="color: var(--accent-primary); margin-top: 1.5rem; margin-bottom: 0.5rem;"><i class="fas fa-skull-crossbones"></i> DCSync</h3>
+            <p class="about-text">C'est une des attaques les plus devastatrices. Si un attaquant arrive a avoir les droits de replication (souvent en compromettant un compte Domain Admin), il peut simuler un contrôleur de domaine et demander la replication de tous les hash de mots de passe, y compris celui du compte krbtgt. Avec ça, il peut creer des Golden Tickets et avoir un accès permanent au domaine.</p>
+
+            <h3 style="color: var(--accent-primary); margin-top: 1.5rem; margin-bottom: 0.5rem;"><i class="fas fa-skull-crossbones"></i> LLMNR/NBT-NS Poisoning</h3>
+            <p class="about-text">LLMNR et NetBIOS sont des protocoles de résolution de noms qui datent d'une autre epoque. Quand un poste ne trouve pas une machine via <span class="term" data-def="Système qui traduit un nom de site (ex: google.com) en adresse réseau compréhensible par les machines.">DNS</span>, il broadcast sur le réseau avec ces protocoles. Un attaquant peut répondre a ces requetes et intercepter les hash NTLMv2 des utilisateurs. C'est souvent le premier point d'entree dans un réseau.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="mesures" class="section">
+      <div class="section-container">
+        <div class="section-header">
+          <span class="section-number">03</span>
+          <h2 class="section-title">Mesures de <span class="title-gradient">sécurisation</span></h2>
+          <div class="section-line"></div>
+        </div>
+        <div class="about-content">
+          <div>
+            <p class="about-text">Maintenant qu'on connait les menaces, voici les mesures concrètes a mettre en place :</p>
+
+            <h3 style="color: var(--accent-secondary); margin-top: 1.5rem; margin-bottom: 0.5rem;"><i class="fas fa-shield-alt"></i> 1. Politique de mots de passe robuste</h3>
+            <p class="about-text">Via les <span class="term" data-def="Règles appliquées automatiquement à tous les ordinateurs d'une entreprise (ex: fond d'écran imposé, logiciels installés d'office).">GPO</span> (Group Policy Objects), on peut forcer des règles strictes : minimum 12 caracteres, complexite obligatoire, historique des mots de passe pour eviter la reutilisation. Pour les comptes de service vulnerables au Kerberoasting, on met des mots de passe de 25+ caracteres generes aleatoirement, ou mieux, on utilise les <strong>gMSA</strong> (Group Managed Service Accounts) qui gerent automatiquement la rotation des mots de passe.</p>
+
+            <h3 style="color: var(--accent-secondary); margin-top: 1.5rem; margin-bottom: 0.5rem;"><i class="fas fa-shield-alt"></i> 2. Le modèle de Tiering</h3>
+            <p class="about-text">C'est un concept recommande par Microsoft pour limiter les mouvements lateraux. L'idee c'est de separer l'infra en 3 niveaux :</p>
+            <ul class="about-text" style="margin-left: 1.5rem; margin-top: 0.5rem;">
+              <li><strong>Tier 0</strong> : Les contrôleurs de domaine et comptes Domain Admins. Accès ultra-restreint.</li>
+              <li><strong>Tier 1</strong> : Les serveurs membres (serveurs de fichiers, applications, etc.)</li>
+              <li><strong>Tier 2</strong> : Les postes utilisateurs</li>
+            </ul>
+            <p class="about-text" style="margin-top: 0.5rem;">La règle d'or : un admin Tier 0 ne doit JAMAIS se connecter sur un poste Tier 2. Sinon, si ce poste est compromis, l'attaquant recupere les credentials admin du domaine direct.</p>
+
+            <h3 style="color: var(--accent-secondary); margin-top: 1.5rem; margin-bottom: 0.5rem;"><i class="fas fa-shield-alt"></i> 3. LAPS (Local Administrator Password Solution)</h3>
+            <p class="about-text">Gros problème classique : le même mot de passe admin local sur tous les postes. Si un attaquant le recupere sur une machine, il peut l'utiliser partout (Pass-the-Hash). LAPS resout ça en generant un mot de passe unique pour chaque poste, stocke de manière sécurisée dans l'<span class="term" data-def="Annuaire centralisé qui gère tous les utilisateurs et ordinateurs d'une entreprise. L'admin y crée les comptes et définit qui a accès à quoi.">AD</span>. C'est gratuit, fourni par Microsoft, et ça se déploie facilement via <span class="term" data-def="Règles appliquées automatiquement à tous les ordinateurs d'une entreprise (ex: fond d'écran imposé, logiciels installés d'office).">GPO</span>.</p>
+
+            <h3 style="color: var(--accent-secondary); margin-top: 1.5rem; margin-bottom: 0.5rem;"><i class="fas fa-shield-alt"></i> 4. Désactiver les protocoles obsoletes</h3>
+            <p class="about-text">LLMNR, NetBIOS over TCP/IP, SMBv1... tous ces vieux protocoles sont des vecteurs d'attaque. On les desactive via <span class="term" data-def="Règles appliquées automatiquement à tous les ordinateurs d'une entreprise (ex: fond d'écran imposé, logiciels installés d'office).">GPO</span>. Pour LLMNR : <em>Computer Configuration &gt; Administrative Templates &gt; Network &gt; <span class="term" data-def="Système qui traduit un nom de site (ex: google.com) en adresse réseau compréhensible par les machines.">DNS</span> Client &gt; Turn off multicast name résolution</em>. Pour SMBv1, une simple commande <span class="term" data-def="Langage de script de Microsoft pour automatiser des tâches d'administration sur Windows.">PowerShell</span> suffit : <code>Disable-WindowsOptionalFeature -Online -FeatureName SMB1Protocol</code></p>
+
+            <h3 style="color: var(--accent-secondary); margin-top: 1.5rem; margin-bottom: 0.5rem;"><i class="fas fa-shield-alt"></i> 5. Audit et surveillance</h3>
+            <p class="about-text">Activer les <span class="term" data-def="Fichiers de journaux qui enregistrent tout ce qui se passe sur un serveur (connexions, erreurs, actions).">logs</span> de sécurité, c'est bien. Mais faut savoir quoi surveiller. Les événements critiques à monitorer :</p>
+            <ul class="about-text" style="margin-left: 1.5rem; margin-top: 0.5rem;">
+              <li><strong>4624/4625</strong> : Connexions réussies/echouees</li>
+              <li><strong>4672</strong> : Attribution de privilèges speciaux (admin)</li>
+              <li><strong>4768/4769</strong> : Demandes de tickets Kerberos (pour détecter le Kerberoasting)</li>
+              <li><strong>4776</strong> : Validation de credentials (NTLM)</li>
+              <li><strong>4732/4733</strong> : Ajout/suppression de membres dans les groupes sensibles</li>
+            </ul>
+            <p class="about-text" style="margin-top: 0.5rem;">Idealement, on centralise tout ça dans un SIEM pour pouvoir faire des alertes automatiques.</p>
+          </div>
+          <div>
+            <div class="skill-category">
+              <h3 class="category-title"><i class="fas fa-layer-group"></i> Outils et technologies</h3>
+              <div class="timeline-tags">
+                <span class="tag"><span class="term" data-def="Règles appliquées automatiquement à tous les ordinateurs d'une entreprise (ex: fond d'écran imposé, logiciels installés d'office).">GPO</span></span>
+                <span class="tag">Tiering Model</span>
+                <span class="tag">LAPS</span>
+                <span class="tag">gMSA</span>
+                <span class="tag">Audit Policy</span>
+                <span class="tag"><span class="term" data-def="Langage de script de Microsoft pour automatiser des tâches d'administration sur Windows.">PowerShell</span></span>
+                <span class="tag">Event Viewer</span>
+                <span class="tag">SIEM</span>
+              </div>
+            </div>
+            <div class="skill-category" style="margin-top: 1.5rem;">
+              <h3 class="category-title"><i class="fas fa-graduation-cap"></i> Compétences BTS SIO</h3>
+              <div class="timeline-tags">
+                <span class="tag">Sécuriser les accès</span>
+                <span class="tag">Gerer les identités</span>
+                <span class="tag">Superviser les systèmes</span>
+                <span class="tag">Appliquer les bonnes pratiques</span>
+              </div>
+            </div>
+            <div class="skill-category" style="margin-top: 1.5rem;">
+              <h3 class="category-title"><i class="fas fa-book"></i> Ressources utiles</h3>
+              <p class="about-text" style="font-size: 0.9rem; margin-top: 0.5rem;">
+                - Guide ANSSI : Sécurisation de l'<span class="term" data-def="Annuaire centralisé qui gère tous les utilisateurs et ordinateurs d'une entreprise. L'admin y crée les comptes et définit qui a accès à quoi.">Active Directory</span><br>
+                - Microsoft : Best practices for securing AD<br>
+                - MITRE ATT&amp;CK : Tactiques et techniques sur AD<br>
+                - HackTheBox/TryHackMe : Labs pour pratiquer
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="difficultes" class="section">
+      <div class="section-container">
+        <div class="section-header">
+          <span class="section-number">04</span>
+          <h2 class="section-title">Retour d'expérience <span class="title-gradient">&amp; difficultés</span></h2>
+          <div class="section-line"></div>
+        </div>
+        <div class="about-content">
+          <div>
+            <p class="about-text">Sécuriser un <span class="term" data-def="Annuaire centralisé qui gère tous les utilisateurs et ordinateurs d'une entreprise. L'admin y crée les comptes et définit qui a accès à quoi.">AD</span> en production, c'est pas juste appliquer des <span class="term" data-def="Règles appliquées automatiquement à tous les ordinateurs d'une entreprise (ex: fond d'écran imposé, logiciels installés d'office).">GPO</span> et basta. Y'a plein de pieges et de compromis a faire. Voici ce que j'ai appris :</p>
+
+            <h3 style="color: var(--accent-primary); margin-top: 1.5rem; margin-bottom: 0.5rem;"><i class="fas fa-exclamation-triangle"></i> Le problème des applications legacy</h3>
+            <p class="about-text">Beaucoup d'applis métier anciennes ne supportent pas les politiques de mots de passe modernes ou ont besoin de protocoles obsoletes pour fonctionner. Par exemple, certaines applis tournent encore avec NTLMv1 ou ont des comptes de service avec des mots de passe codes en dur. La solution c'est souvent de creer des <strong>Fine-Grained Password Policies</strong> pour ces comptes specifiques, tout en documentant le risque residuel.</p>
+
+            <h3 style="color: var(--accent-primary); margin-top: 1.5rem; margin-bottom: 0.5rem;"><i class="fas fa-exclamation-triangle"></i> La résistance au changement</h3>
+            <p class="about-text">Forcer des mots de passe de 12 caracteres avec complexite, ça fait raler. Les utilisateurs vont contourner en mettant "Entreprise2024!" et changer juste le chiffre a chaque renouvellement. La vraie solution c'est de passer aux passphrases (plus longues mais plus faciles a retenir) ou de déployer du MFA pour reduire la dependance aux mots de passe.</p>
+
+            <h3 style="color: var(--accent-primary); margin-top: 1.5rem; margin-bottom: 0.5rem;"><i class="fas fa-exclamation-triangle"></i> Le tiering en pratique</h3>
+            <p class="about-text">Le modèle de tiering c'est genial sur le papier, mais en vrai c'est complique a mettre en place. ça demande de revoir toute l'organisation des comptes, de former les admins, de mettre en place des PAW (Privileged Access Workstations)... Dans une petite structure avec un seul admin sys qui fait tout, c'est quasi impossible a appliquer strictement. Faut adapter le modèle à la realite de l'entreprise.</p>
+
+            <h3 style="color: var(--accent-secondary); margin-top: 1.5rem; margin-bottom: 0.5rem;"><i class="fas fa-lightbulb"></i> Ce que j'en retiens</h3>
+            <p class="about-text">La sécurité <span class="term" data-def="Annuaire centralisé qui gère tous les utilisateurs et ordinateurs d'une entreprise. L'admin y crée les comptes et définit qui a accès à quoi.">AD</span> c'est un equilibre constant entre le niveau de protection et l'utilisabilite. Faut prioriser les mesures qui ont le plus d'impact : LAPS et la désactivation de LLMNR/NBT-NS, ça se déploie facilement et ça bloque énormément d'attaques. Le tiering complet, ça peut venir après, progressivement.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="veille" class="section" style="background: var(--bg-card-solid);">
+      <div class="section-container">
+        <div class="section-header">
+          <span class="section-number">05</span>
+          <h2 class="section-title">Tendances <span class="title-gradient">&amp; évolution</span></h2>
+          <div class="section-line"></div>
+        </div>
+        <div class="about-content">
+          <div>
+            <p class="about-text">La sécurité <span class="term" data-def="Annuaire centralisé qui gère tous les utilisateurs et ordinateurs d'une entreprise. L'admin y crée les comptes et définit qui a accès à quoi.">AD</span>, c'est un domaine qui bouge beaucoup. Voici les tendances actuelles a surveiller :</p>
+
+            <h3 style="color: var(--accent-secondary); margin-top: 1.5rem; margin-bottom: 0.5rem;"><i class="fas fa-cloud"></i> Azure <span class="term" data-def="Annuaire centralisé qui gère tous les utilisateurs et ordinateurs d'une entreprise. L'admin y crée les comptes et définit qui a accès à quoi.">AD</span> et l'hybride</h3>
+            <p class="about-text">De plus en plus d'entreprises passent en mode hybride avec Azure <span class="term" data-def="Annuaire centralisé qui gère tous les utilisateurs et ordinateurs d'une entreprise. L'admin y crée les comptes et définit qui a accès à quoi.">AD</span> (maintenant "Microsoft Entra ID"). ça ajoute de nouvelles surfaces d'attaque : synchronisation des hash vers le <span class="term" data-def="Serveurs distants accessibles par internet, gérés par des entreprises comme Microsoft (Azure) ou Amazon (AWS).">cloud</span>, token d'accès OAuth, etc. Les attaquants s'adaptent avec des techniques comme le <strong>Golden SAML</strong> ou l'exploitation des mauvaises configs d'Azure AD Connect.</p>
+
+            <h3 style="color: var(--accent-secondary); margin-top: 1.5rem; margin-bottom: 0.5rem;"><i class="fas fa-robot"></i> Outils de détection automatises</h3>
+            <p class="about-text">Côté defense, on voit apparaitre des outils comme <strong>Microsoft Defender for Identity</strong> (anciennement Azure ATP) qui detectent automatiquement les comportements suspects : tentatives de Kerberoasting, replication DCSync anormale, reconnaissance LDAP... C'est plus accessible que de monitorer les <span class="term" data-def="Fichiers de journaux qui enregistrent tout ce qui se passe sur un serveur (connexions, erreurs, actions).">logs</span> à la main.</p>
+
+            <h3 style="color: var(--accent-secondary); margin-top: 1.5rem; margin-bottom: 0.5rem;"><i class="fas fa-key"></i> Vers le Zero Trust</h3>
+            <p class="about-text">Le modèle Zero Trust remet en question l'approche traditionnelle ou on fait confiance a tout ce qui est "dans le réseau". L'idee c'est de vérifier systematiquement chaque accès, même en interne. Microsoft pousse fort la-dessus avec des solutions comme Conditional Access dans Entra ID. A terme, ça pourrait reduire la dependance à l'<span class="term" data-def="Annuaire centralisé qui gère tous les utilisateurs et ordinateurs d'une entreprise. L'admin y crée les comptes et définit qui a accès à quoi.">AD</span> on-premise.</p>
+
+            <h3 style="color: var(--accent-secondary); margin-top: 1.5rem; margin-bottom: 0.5rem;"><i class="fas fa-newspaper"></i> Actualités recentes</h3>
+            <p class="about-text">En 2024, plusieurs CVE critiques ont touche <span class="term" data-def="Annuaire centralisé qui gère tous les utilisateurs et ordinateurs d'une entreprise. L'admin y crée les comptes et définit qui a accès à quoi.">AD</span> : vulnérabilités dans Kerberos, dans le service Netlogon (ZeroLogon en 2020 c'etait déjà ça)... çà montre l'importance de maintenir ses DC a jour et d'avoir un processus de patching rigoureux, même si c'est contraignant sur des contrôleurs de domaine en production.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="conclusion" class="section">
+      <div class="section-container">
+        <div class="section-header">
+          <span class="section-number">06</span>
+          <h2 class="section-title">Conclusion <span class="title-gradient">&amp; avis personnel</span></h2>
+          <div class="section-line"></div>
+        </div>
+        <div class="about-content">
+          <div>
+            <p class="about-text">
+              La sécurité <span class="term" data-def="Annuaire centralisé qui gère tous les utilisateurs et ordinateurs d'une entreprise. L'admin y crée les comptes et définit qui a accès à quoi.">Active Directory</span>, c'est un sujet que j'ai trouve vraiment interessant a approfondir. C'est concret, ça touche directement a ce qu'on fait en entreprise, et ça permet de comprendre comment les attaquants raisonnent pour mieux se defendre.
+            </p>
+            <p class="about-text" style="margin-top: 1rem;">
+              Ce que j'en retiens, c'est que la sécurité c'est jamais fini. Y'a pas de solution miracle qui sécurisé tout d'un coup. C'est un ensemble de mesures a empiler, a maintenir, a adapter. Et surtout, faut garder en tete que l'objectif c'est pas d'être inviolable (ça existe pas), mais de rendre la vie suffisamment difficile aux attaquants pour qu'ils passent leur chemin ou se fassent détecter.
+            </p>
+            <p class="about-text" style="margin-top: 1rem;">
+              Pour un admin sys debutant, je conseillerais de commencer par les quick wins : LAPS, désactiver LLMNR/NBT-NS, politique de mots de passe correcte. ça prend pas des semaines a déployer et ça bloque déjà pas mal de techniques d'attaque courantes.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="preuves" class="section" style="background: var(--bg-card-solid);">
+      <div class="section-container">
+        <div class="section-header">
+          <span class="section-number">07</span>
+          <h2 class="section-title">Sources <span class="title-gradient">&amp; references</span></h2>
+          <div class="section-line"></div>
+        </div>
+        <div class="about-content">
+          <div>
+            <p class="about-text">Voici les principales sources que j'ai utilisées pour cette veille :</p>
+            <ul class="about-text" style="margin-left: 1.5rem; margin-top: 1rem; line-height: 2;">
+              <li><strong>ANSSI</strong> - "Recommandations de sécurité relatives a <span class="term" data-def="Annuaire centralisé qui gère tous les utilisateurs et ordinateurs d'une entreprise. L'admin y crée les comptes et définit qui a accès à quoi.">Active Directory</span>" (2023)</li>
+              <li><strong>Microsoft Learn</strong> - Documentation officielle sur la sécurisation <span class="term" data-def="Annuaire centralisé qui gère tous les utilisateurs et ordinateurs d'une entreprise. L'admin y crée les comptes et définit qui a accès à quoi.">AD</span> et Entra ID</li>
+              <li><strong>MITRE ATT&amp;CK</strong> - Matrice des techniques d'attaque sur <span class="term" data-def="Annuaire centralisé qui gère tous les utilisateurs et ordinateurs d'une entreprise. L'admin y crée les comptes et définit qui a accès à quoi.">AD</span></li>
+              <li><strong>SpecterOps</strong> - Blog technique sur les attaques <span class="term" data-def="Annuaire centralisé qui gère tous les utilisateurs et ordinateurs d'une entreprise. L'admin y crée les comptes et définit qui a accès à quoi.">AD</span></li>
+              <li><strong>HackTricks</strong> - Documentation sur les techniques de pentest <span class="term" data-def="Annuaire centralisé qui gère tous les utilisateurs et ordinateurs d'une entreprise. L'admin y crée les comptes et définit qui a accès à quoi.">AD</span></li>
+              <li><strong>CERT-FR</strong> - Alertes de sécurité et CVE recentes</li>
+            </ul>
+          </div>
+        </div>
+        <div class="section-footer" style="margin-top: 2rem;">
+          <a href="../index.html#skills" class="btn-more"><i class="fas fa-arrow-left"></i> Retour aux compétences</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="main-footer" role="contentinfo">
+    <div class="footer-container">
+      <div class="footer-content">
+        <p class="footer-text">2026 <span class="footer-copyright">Franck Raymond</span> - Tous droits réservés.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+  <script src="../script.js?v=20261028-b753f7964f"></script>
+
+
+<script src="/assets/portfolio-glossary.js?v=20260831-2" defer=""></script><script src="/assets/legacy-unified.js?v=20261028-8c422e514f" defer=""></script></body></html>

@@ -1,0 +1,6 @@
+baseline/
+site/
+backups/
+evidence/
+__pycache__/
+deployment-manifest.json

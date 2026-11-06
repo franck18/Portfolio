@@ -1,0 +1,457 @@
+<!DOCTYPE html><html lang="fr"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IA &amp; Automatisation | Portfolio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&amp;family=Outfit:wght@300;400;500;600;700;800;900&amp;family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .veille-hero { padding: 8rem 0 4rem; position: relative; }
+        .veille-icon-frame {
+            width: 200px; height: 200px;
+            background: linear-gradient(135deg, rgba(14, 165, 233, 0.2), rgba(236, 72, 153, 0.2));
+            border: 2px solid rgba(14, 165, 233, 0.3);
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 5rem; color: #0ea5e9;
+        }
+        .tech-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 1.5rem;
+            transition: all 0.3s;
+        }
+        .tech-card:hover {
+            border-color: var(--primary);
+            transform: translateY(-5px);
+        }
+        .tech-card h4 {
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+            display: flex; align-items: center; gap: 0.5rem;
+        }
+        .tech-badge {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: 50px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+        }
+        .tech-badge.opensource { background: rgba(16, 185, 129, 0.2); color: #10b981; }
+        .tech-badge.commercial { background: rgba(0, 168, 255, 0.2); color: #5ccbff; }
+        .tech-badge.trending { background: rgba(245, 158, 11, 0.2); color: #f59e0b; }
+        .source-card {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem 1.5rem;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+        .source-card:hover {
+            border-color: var(--primary);
+            background: var(--bg-hover);
+        }
+        .source-icon {
+            width: 48px; height: 48px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 12px;
+            display: flex; align-items: center; justify-content: center;
+            color: white; font-size: 1.25rem;
+        }
+        .code-block {
+            background: #1e1e1e;
+            border-radius: 8px;
+            padding: 1rem;
+            font-family: var(--font-code);
+            font-size: 0.85rem;
+            color: #d4d4d4;
+            overflow-x: auto;
+            margin-top: 1rem;
+        }
+        .code-comment { color: #6a9955; }
+        .code-keyword { color: #569cd6; }
+        .code-string { color: #ce9178; }
+
+        /* Tooltips termes techniques */
+        .term {
+            border-bottom: 1px dashed var(--primary);
+            cursor: help;
+            position: relative;
+            display: inline;
+        }
+        .term::after {
+            content: attr(data-def);
+            position: absolute;
+            bottom: calc(100% + 8px);
+            left: 50%;
+            transform: translateX(-50%);
+            background: #1e293b;
+            color: #f8fafc;
+            font-size: 0.78rem;
+            line-height: 1.5;
+            padding: 0.6rem 0.9rem;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            white-space: normal;
+            width: 220px;
+            text-align: left;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.2s;
+            z-index: 100;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+        }
+        .term:hover::after { opacity: 1; }
+    </style>
+<meta name="theme-color" content="#111214"><link rel="stylesheet" href="/assets/legacy-unified.css?v=20260831-2"><meta name="description" content="Portfolio de Franck Raymond : projets en administration systèmes, réseaux, supervision et cybersécurité."><meta name="author" content="Franck Raymond"><meta name="robots" content="index,follow,max-image-preview:large"><meta property="og:type" content="website"><meta property="og:site_name" content="Portfolio de Franck Raymond"><meta property="og:title" content="IA &amp; Automatisation | Portfolio"><meta property="og:description" content="Portfolio de Franck Raymond : projets en administration systèmes, réseaux, supervision et cybersécurité."><meta property="og:url" content="https://franckraymond.tech/veille-ia.html"><meta property="og:image" content="https://franckraymond.tech/franck.webp"><meta property="og:image:alt" content="Portrait professionnel de Franck Raymond"><meta property="og:locale" content="fr_FR"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="IA &amp; Automatisation | Portfolio"><meta name="twitter:description" content="Portfolio de Franck Raymond : projets en administration systèmes, réseaux, supervision et cybersécurité."><meta name="twitter:image" content="https://franckraymond.tech/franck.webp"><link rel="canonical" href="https://franckraymond.tech/veille-ia.html"><link rel="icon" href="/favicon-32x32.png" sizes="32x32" type="image/png"><link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180"><link rel="manifest" href="/site.webmanifest"><script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"IA & Automatisation | Portfolio","url":"https://franckraymond.tech/veille-ia.html","description":"Portfolio de Franck Raymond : projets en administration systèmes, réseaux, supervision et cybersécurité.","isPartOf":{"@type":"WebSite","name":"Portfolio de Franck Raymond","url":"https://franckraymond.tech/"},"about":{"@type":"Person","name":"Franck Raymond","url":"https://franckraymond.tech/"}}</script>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,400&amp;family=Geist:wght@400;500;600&amp;display=swap">
+<link rel="stylesheet" href="/assets/editorial-tokens.css?v=20261106-modern">
+<link rel="stylesheet" href="/assets/editorial.css?v=20261106-modern">
+<script src="/assets/editorial-theme.js?v=20261028-1fe0ee8c9d"></script>
+</head>
+<body data-theme="light" class="portfolio-legacy editorial-site">
+    <div class="bg-mesh"></div>
+    <div class="noise-overlay"></div>
+    <div class="grid-lines"></div>
+
+    <header class="main-header" id="header">
+        <nav class="nav-container" aria-label="Navigation principale">
+            <div class="nav-brand">
+                <a href="index.html" class="brand-logo">
+                    <span class="logo-bracket">&lt;</span>
+                    <span class="logo-text">FR</span>
+                    <span class="logo-bracket">/&gt;</span>
+                </a>
+            </div>
+            <div class="nav-menu" id="navMenu">
+                <a href="index.html" class="nav-link">
+                    <i class="fas fa-home"></i>
+                    <span class="nav-text">Accueil</span>
+                </a>
+                <a href="index.html#skills" class="nav-link">
+                    <i class="fas fa-code"></i>
+                    <span class="nav-text">Compétences</span>
+                </a>
+                <a href="/projets.html#veille" class="nav-link active">
+                    <i class="fas fa-rss"></i>
+                    <span class="nav-text">Veille</span>
+                </a>
+                <a href="index.html#contact" class="nav-link">
+                    <i class="fas fa-envelope"></i>
+                    <span class="nav-text">Contact</span>
+                </a>
+            
+<a class="nav-link" href="https://opengym.jsuisfray.blitz.cloud/"><span class="nav-text">Sport</span></a></div>
+            <div class="nav-controls">
+                <button class="theme-toggle" id="themeToggle" aria-label="Changer le thème">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <button class="menu-toggle" id="menuToggle" aria-label="Menu">
+                    <span></span><span></span><span></span>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="veille-hero">
+            <div class="section-container">
+                <div class="hero-container">
+                    <div class="hero-content">
+                        <div class="hero-greeting" style="color: #0ea5e9;">VEILLE TECHNOLOGIQUE</div>
+                        <h1 class="hero-name">
+                            IA <span class="name-value" style="background: linear-gradient(135deg, #0ea5e9, #00e5ff); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">&amp; Automatisation</span>
+                        </h1>
+                        <p class="hero-description">
+                            Comment l'IA et l'automatisation changent le quotidien des admins systèmes — outils, usages concrets et retours d'expérience.
+                        </p>
+                        <div class="hero-buttons">
+                            <a href="#llm" class="btn btn-primary" style="background: linear-gradient(135deg, #0ea5e9, #00e5ff);">
+                                <i class="fas fa-brain"></i> LLM Locaux
+                            </a>
+                            <a href="#automatisation" class="btn btn-secondary">
+                                <i class="fas fa-cogs"></i> Automatisation
+                            </a>
+                        </div>
+                    </div>
+                    <div class="hero-image-wrapper">
+                        <div class="veille-icon-frame">
+                            <i class="fas fa-robot"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contexte" class="section">
+            <div class="section-container">
+                <div class="section-header">
+                    <span class="section-number">01</span>
+                    <h2 class="section-title">Pourquoi <span class="title-gradient">cette Veille ?</span></h2>
+                    <div class="section-line"></div>
+                </div>
+
+                <div class="about-content">
+                    <div>
+                        <p class="about-text">
+                            Les outils IA comme ChatGPT ou les modèles locaux (<span class="term" data-def="Logiciel gratuit qui fait tourner une IA directement sur ta machine, sans internet">Ollama</span>) commencent à changer la façon dont on travaille en IT — génération de <span class="term" data-def="Programme automatique qui effectue des tâches répétitives (ex : créer 50 comptes utilisateurs en un clic)">scripts</span>, aide au diagnostic, documentation automatique. Mais envoyer des données sensibles vers le <span class="term" data-def="Serveurs distants accessibles par internet, gérés par des entreprises comme Microsoft ou Amazon">cloud</span> pose des problèmes de confidentialité, d'où l'intérêt des solutions locales.
+                        </p>
+                        <p class="about-text">
+                            En parallèle, automatiser les tâches répétitives avec des outils comme <span class="term" data-def="Outil qui configure automatiquement plusieurs serveurs à la fois, sans intervention manuelle">Ansible</span> fait gagner un temps considérable et réduit les erreurs humaines.
+                        </p>
+                        <div style="display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 1.5rem;">
+                            <span class="tag">Ollama</span>
+                            <span class="tag">LM Studio</span>
+                            <span class="tag">Ansible</span>
+                            <span class="tag">Terraform</span>
+                            <span class="tag">ChatGPT</span>
+                        </div>
+                    </div>
+                    <div class="skills-grid" style="grid-template-columns: 1fr;">
+                        <div class="skill-category">
+                            <h3 class="category-title">Enjeux pour l'IT</h3>
+                            <div class="skill-items">
+                                <div class="skill-item"><i class="fas fa-lock"></i> Confidentialité : IA locale vs cloud</div>
+                                <div class="skill-item"><i class="fas fa-tachometer-alt"></i> Productivité : automatisation des tâches</div>
+                                <div class="skill-item"><i class="fas fa-user-graduate"></i> Évolution des compétences requises</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="llm" class="section" style="background: var(--bg-card-solid);">
+            <div class="section-container">
+                <div class="section-header">
+                    <span class="section-number">02</span>
+                    <h2 class="section-title">LLM <span class="title-gradient">Locaux</span></h2>
+                    <div class="section-line"></div>
+                </div>
+
+                <p class="about-text" style="margin-bottom: 2rem;">
+                    Un <span class="term" data-def="Modèle d'IA entraîné sur du texte, capable de répondre à des questions, rédiger ou générer du code. ChatGPT en est un exemple.">LLM</span> local tourne directement sur ta machine ou ton serveur — pas de connexion internet, pas de données envoyées à l'extérieur. Utile en entreprise quand on veut de l'assistance IA sans exposer les données internes.
+                </p>
+
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem;">
+                    <div class="tech-card">
+                        <span class="tech-badge opensource">Open Source</span>
+                        <h4><i class="fas fa-llama"></i> Ollama</h4>
+                        <p style="color: var(--text-secondary); font-size: 0.9rem;">
+                            Outil en <span class="term" data-def="Interface en ligne de commande : on tape des instructions dans un terminal au lieu de cliquer">ligne de commande</span> pour faire tourner des <span class="term" data-def="Modèle d'IA entraîné sur du texte, capable de répondre à des questions, rédiger ou générer du code">LLM</span> localement. Supporte Llama 3, Mistral, CodeLlama… Installation simple, <span class="term" data-def="Interface qui permet à des programmes de communiquer entre eux — ici, pour envoyer des questions à l'IA depuis d'autres outils">API</span> intégrée.
+                        </p>
+                        <div class="code-block">
+                            <span class="code-comment"># Installation et utilisation</span><br>
+                            <span class="code-keyword">curl</span> -fsSL https://ollama.ai/install.sh | sh<br>
+                            <span class="code-keyword">ollama</span> run llama3
+                        </div>
+                    </div>
+                    <div class="tech-card">
+                        <span class="tech-badge opensource">Open Source</span>
+                        <h4><i class="fas fa-desktop"></i> LM Studio</h4>
+                        <p style="color: var(--text-secondary); font-size: 0.9rem;">
+                            <span class="term" data-def="Interface avec des boutons et fenêtres, comme sur un logiciel classique — pas besoin de taper des commandes">Interface graphique</span> pour télécharger et faire tourner des <span class="term" data-def="Modèle d'IA entraîné sur du texte, capable de répondre à des questions, rédiger ou générer du code">LLM</span>. Parfait pour débuter sans passer par le terminal.
+                        </p>
+                        <div style="margin-top: 1rem;">
+                            <span class="tag">GUI</span>
+                            <span class="tag">Windows/Mac/Linux</span>
+                        </div>
+                    </div>
+                    <div class="tech-card">
+                        <span class="tech-badge trending">Tendance</span>
+                        <h4><i class="fas fa-globe"></i> Open WebUI</h4>
+                        <p style="color: var(--text-secondary); font-size: 0.9rem;">
+                            Interface web style ChatGPT pour Ollama. Plusieurs utilisateurs peuvent s'en servir en même temps, avec historique des conversations. <span class="term" data-def="Technique qui permet à l'IA de répondre en s'appuyant sur tes propres documents plutôt que sur sa formation de base">RAG</span> intégré. Déployable en <span class="term" data-def="Outil qui fait tourner des applications dans des environnements isolés, sans modifier le reste du système">Docker</span>.
+                        </p>
+                        <div style="margin-top: 1rem;">
+                            <span class="tag">Docker</span>
+                            <span class="tag">Self-hosted</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="skill-category" style="margin-top: 2rem;">
+                    <h3 class="category-title">Modèles populaires en 2024-2025</h3>
+                    <div class="skill-items">
+                        <div class="skill-item"><i class="fas fa-fire"></i> Llama 3 (Meta) : polyvalent, très performant</div>
+                        <div class="skill-item"><i class="fas fa-code"></i> CodeLlama : spécialisé développement</div>
+                        <div class="skill-item"><i class="fas fa-feather"></i> Mistral 7B : léger et efficace</div>
+                        <div class="skill-item"><i class="fas fa-microchip"></i> Phi-3 (Microsoft) : petit mais puissant</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="automatisation" class="section">
+            <div class="section-container">
+                <div class="section-header">
+                    <span class="section-number">03</span>
+                    <h2 class="section-title">Automatisation <span class="title-gradient">IT</span></h2>
+                    <div class="section-line"></div>
+                </div>
+
+                <p class="about-text" style="margin-bottom: 2rem;">
+                    Au lieu de configurer les serveurs à la main, on écrit des fichiers qui décrivent ce qu'on veut — et l'outil s'en charge. Moins d'erreurs, gain de temps, et tout est traçable dans Git.
+                </p>
+
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-marker"></div>
+                        <div class="timeline-content">
+                            <h3 class="timeline-title"><i class="fas fa-cogs"></i> Ansible</h3>
+                            <p class="timeline-description">
+                                Ansible se connecte aux machines via <span class="term" data-def="Protocole sécurisé pour se connecter à distance à un serveur, comme un accès à distance chiffré">SSH</span> et exécute des tâches définies dans des fichiers <span class="term" data-def="Format de fichier texte simple et lisible, souvent utilisé pour écrire des configurations">YAML</span>. Pas besoin d'installer quoi que ce soit sur les serveurs cibles. Pratique pour configurer plusieurs machines d'un coup.
+                            </p>
+                            <div class="code-block">
+                                <span class="code-comment"># Exemple playbook Ansible</span><br>
+                                <span class="code-keyword">- name:</span> <span class="code-string">Installer Apache</span><br>
+                                &nbsp;&nbsp;<span class="code-keyword">hosts:</span> webservers<br>
+                                &nbsp;&nbsp;<span class="code-keyword">tasks:</span><br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;<span class="code-keyword">- name:</span> <span class="code-string">Install httpd</span><br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-keyword">apt:</span> name=apache2 state=présent
+                            </div>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-marker"></div>
+                        <div class="timeline-content">
+                            <h3 class="timeline-title"><i class="fas fa-cloud"></i> Terraform</h3>
+                            <p class="timeline-description">
+                                Terraform permet de créer et gérer des ressources <span class="term" data-def="Serveurs distants accessibles par internet, gérés par des entreprises comme Microsoft (Azure) ou Amazon (AWS)">cloud</span> ou locales depuis des fichiers de config. Avant d'appliquer, il montre exactement ce qu'il va faire — pratique pour éviter les mauvaises surprises.
+                            </p>
+                            <div style="margin-top: 0.75rem;">
+                                <span class="tag">Multi-cloud</span>
+                                <span class="tag">State management</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-marker"></div>
+                        <div class="timeline-content">
+                            <h3 class="timeline-title"><i class="fas fa-infinity"></i> CI/CD &amp; GitHub Actions</h3>
+                            <p class="timeline-description">
+                                Automatiser les tests et déploiements dès qu'on pousse du code sur Git. Plus besoin de déployer à la main — le pipeline s'en charge. GitHub Actions ou GitLab CI permettent de mettre ça en place simplement.
+                            </p>
+                            <div style="margin-top: 0.75rem;">
+                                <span class="tag">GitLab CI</span>
+                                <span class="tag">GitHub Actions</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="impact" class="section" style="background: var(--bg-card-solid);">
+            <div class="section-container">
+                <div class="section-header">
+                    <span class="section-number">04</span>
+                    <h2 class="section-title">Impact sur <span class="title-gradient">les Métiers IT</span></h2>
+                    <div class="section-line"></div>
+                </div>
+
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem;">
+                    <div class="tech-card">
+                        <h4><i class="fas fa-check-circle" style="color: #10b981;"></i> Opportunités</h4>
+                        <ul style="color: var(--text-secondary); font-size: 0.9rem; padding-left: 1.2rem;">
+                            <li>Assistance au diagnostic et dépannage</li>
+                            <li>Génération de scripts et documentation</li>
+                            <li>Analyse de logs automatisée</li>
+                            <li>Chatbots support niveau 1</li>
+                        </ul>
+                    </div>
+                    <div class="tech-card">
+                        <h4><i class="fas fa-exclamation-triangle" style="color: #f59e0b;"></i> Défis</h4>
+                        <ul style="color: var(--text-secondary); font-size: 0.9rem; padding-left: 1.2rem;">
+                            <li>Nécessité de valider les réponses IA</li>
+                            <li>Risques de sécurité (injection prompt)</li>
+                            <li>Dépendance aux outils</li>
+                            <li>Formation continue requise</li>
+                        </ul>
+                    </div>
+                    <div class="tech-card">
+                        <h4><i class="fas fa-graduation-cap" style="color: #00a8ff;"></i> Ce qu'il faut apprendre</h4>
+                        <ul style="color: var(--text-secondary); font-size: 0.9rem; padding-left: 1.2rem;">
+                            <li>Savoir formuler de bonnes questions à l'IA</li>
+                            <li>Automatiser avec Ansible, scripts PowerShell/Bash</li>
+                            <li>Python pour les tâches utilitaires</li>
+                            <li>Ne pas faire confiance aveuglément aux réponses IA</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="section-container">
+                <div class="section-header">
+                    <span class="section-number">05</span>
+                    <h2 class="section-title">Sources <span class="title-gradient">de Veille</span></h2>
+                    <div class="section-line"></div>
+                </div>
+
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem;">
+                    <a href="https://ollama.ai/" target="_blank" class="source-card">
+                        <div class="source-icon"><i class="fas fa-brain"></i></div>
+                        <div>
+                            <strong style="color: var(--text-primary);">Ollama</strong>
+                            <p style="color: var(--text-muted); font-size: 0.85rem;">Site officiel et documentation</p>
+                        </div>
+                    </a>
+                    <a href="https://www.ansible.com/blog" target="_blank" class="source-card">
+                        <div class="source-icon"><i class="fas fa-cogs"></i></div>
+                        <div>
+                            <strong style="color: var(--text-primary);">Ansible Blog</strong>
+                            <p style="color: var(--text-muted); font-size: 0.85rem;">Actualités et bonnes pratiques</p>
+                        </div>
+                    </a>
+                    <a href="https://www.reddit.com/r/LocalLLaMA/" target="_blank" class="source-card">
+                        <div class="source-icon"><i class="fab fa-reddit"></i></div>
+                        <div>
+                            <strong style="color: var(--text-primary);">r/LocalLLaMA</strong>
+                            <p style="color: var(--text-muted); font-size: 0.85rem;">Communauté LLM locaux</p>
+                        </div>
+                    </a>
+                    <a href="https://huggingface.co/" target="_blank" class="source-card">
+                        <div class="source-icon"><i class="fas fa-smile"></i></div>
+                        <div>
+                            <strong style="color: var(--text-primary);">Hugging Face</strong>
+                            <p style="color: var(--text-muted); font-size: 0.85rem;">Hub de modèles IA open source</p>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="section-footer" style="margin-top: 4rem;">
+                    <a href="/projets.html#veille" class="btn-more">
+                        <i class="fas fa-arrow-left"></i> Retour à l'accueil
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="main-footer">
+        <div class="footer-container">
+            <div class="footer-content">
+                <p class="footer-text">© 2025 <span class="footer-copyright">Franck Raymond</span> — Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        window.addEventListener('scroll', () => {
+            document.getElementById('header').classList.toggle('scrolled', window.scrollY > 50);
+        });
+        document.getElementById('menuToggle').addEventListener('click', () => {
+            document.getElementById('navMenu').classList.toggle('active');
+        });
+    </script>
+
+
+<script src="/assets/portfolio-glossary.js?v=20260831-2" defer=""></script><script src="/assets/legacy-unified.js?v=20261028-8c422e514f" defer=""></script></body></html>

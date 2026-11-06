@@ -1,0 +1,286 @@
+<!DOCTYPE html><html lang="en" dir="ltr" data-theme="light"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Automated hardening of an isolated Rocky Linux target with SSH security, kernel rules, auditing and idempotency checks.">
+  <meta name="author" content="Franck Raymond">
+  <meta name="robots" content="index,follow,max-image-preview:large">
+  <meta name="theme-color" content="#111214">
+  <title>Linux hardening with Ansible | Portfolio Franck Raymond</title>
+  <link rel="canonical" href="https://franckraymond.tech/en/pages/projet-linux-hardening-ansible.html">
+  <link rel="alternate" hreflang="fr" href="https://franckraymond.tech/pages/projet-linux-hardening-ansible.html">
+  <link rel="alternate" hreflang="en" href="https://franckraymond.tech/en/pages/projet-linux-hardening-ansible.html">
+  <link rel="alternate" hreflang="x-default" href="https://franckraymond.tech/pages/projet-linux-hardening-ansible.html">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Franck Raymond Portfolio">
+  <meta property="og:title" content="Linux hardening with Ansible | Portfolio Franck Raymond">
+  <meta property="og:description" content="Automated hardening of an isolated Rocky Linux target with SSH security, kernel rules, auditing and idempotency checks.">
+  <meta property="og:url" content="https://franckraymond.tech/en/pages/projet-linux-hardening-ansible.html">
+  <meta property="og:image" content="https://franckraymond.tech/franck.webp">
+  <meta property="og:image:alt" content="Professional portrait of Franck Raymond">
+  <meta property="og:image:width" content="1024">
+  <meta property="og:image:height" content="1024">
+  <meta property="og:locale" content="en_GB">
+  <meta property="og:locale:alternate" content="fr_FR">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Linux hardening with Ansible | Portfolio Franck Raymond">
+  <meta name="twitter:description" content="Automated hardening of an isolated Rocky Linux target with SSH security, kernel rules, auditing and idempotency checks.">
+  <meta name="twitter:image" content="https://franckraymond.tech/franck.webp">
+  <meta name="twitter:image:alt" content="Professional portrait of Franck Raymond">
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Person",
+      "@id": "https://franckraymond.tech/#person",
+      "name": "Franck Raymond",
+      "url": "https://franckraymond.tech/",
+      "image": "https://franckraymond.tech/franck.webp",
+      "jobTitle": "Systems and Network Administrator",
+      "description": "Systems and Network Administrator at Delannoy Dewailly, studying for the Bachelor ASRBD at EPSI Lille on a one-year work-study placement.",
+      "email": "mailto:franckrmnd@gmail.com",
+      "sameAs": [
+        "https://www.linkedin.com/in/franck-r-21a8a4184",
+        "https://github.com/franckraymond"
+      ],
+      "knowsAbout": [
+        "Systems administration",
+        "Computer networks",
+        "Cybersecurity",
+        "Monitoring",
+        "Linux",
+        "Windows Server"
+      ]
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://franckraymond.tech/#website",
+      "url": "https://franckraymond.tech/",
+      "name": "Franck Raymond Portfolio",
+      "inLanguage": [
+        "fr-FR",
+        "en-GB"
+      ],
+      "publisher": {
+        "@id": "https://franckraymond.tech/#person"
+      }
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://franckraymond.tech/en/pages/projet-linux-hardening-ansible.html#webpage",
+      "url": "https://franckraymond.tech/en/pages/projet-linux-hardening-ansible.html",
+      "name": "Linux hardening with Ansible | Portfolio Franck Raymond",
+      "description": "Automated hardening of an isolated Rocky Linux target with SSH security, kernel rules, auditing and idempotency checks.",
+      "isPartOf": {
+        "@id": "https://franckraymond.tech/#website"
+      },
+      "about": {
+        "@id": "https://franckraymond.tech/#person"
+      },
+      "inLanguage": "en-GB"
+    }
+  ]
+}
+</script>
+  <link rel="stylesheet" href="../../tailwind-output.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&amp;family=Outfit:wght@400;500;600;700;800&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../style.css">
+  <link rel="stylesheet" href="../../assets/portfolio-v2.css?v=20260831-2">
+  
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,400&amp;family=Geist:wght@400;500;600&amp;display=swap">
+<link rel="stylesheet" href="/assets/editorial-tokens.css?v=20261106-modern">
+<link rel="stylesheet" href="/assets/editorial.css?v=20261106-modern">
+<script src="/assets/editorial-theme.js?v=20261028-1fe0ee8c9d"></script>
+</head>
+<body data-theme="light" class="portfolio-v2 editorial-site">
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  <div class="bg-mesh" aria-hidden="true"></div>
+  <div class="noise-overlay" aria-hidden="true"></div>
+  <div class="grid-lines" aria-hidden="true"></div>
+
+  <header class="main-header" id="header">
+    <nav class="nav-container" aria-label="Main navigation">
+      <a href="/en/index.html" class="brand-logo" aria-label="Home — Franck Raymond">
+        <span class="logo-bracket" aria-hidden="true">&lt;</span>
+        <span class="logo-text">FR</span>
+        <span class="logo-bracket" aria-hidden="true">/&gt;</span>
+      </a>
+      <div class="nav-menu" id="navMenu">
+        <a href="/en/index.html" class="nav-link"><i class="fas fa-home" aria-hidden="true"></i><span class="nav-text">Home</span></a>
+        <a href="/en/projets.html" class="nav-link"><i class="fas fa-diagram-project" aria-hidden="true"></i><span class="nav-text">Projects</span></a>
+        <a href="/en/index.html#skills" class="nav-link"><i class="fas fa-code" aria-hidden="true"></i><span class="nav-text">Skills</span></a>
+        <a href="/en/index.html#experience" class="nav-link"><i class="fas fa-briefcase" aria-hidden="true"></i><span class="nav-text">Experience</span></a>
+        <a href="/en/index.html#contact" class="nav-link"><i class="fas fa-envelope" aria-hidden="true"></i><span class="nav-text">Contact</span></a>
+              <a class="nav-link" href="https://opengym.jsuisfray.blitz.cloud/"><span class="nav-text">Training</span></a>
+      </div>
+      <div class="nav-controls">
+        <div class="language-switcher">
+          <button class="language-toggle" id="languageToggle" type="button" aria-label="Choose language" aria-controls="languageMenu" aria-expanded="false" data-open-label="Choose language" data-close-label="Close language menu">
+            <i class="fas fa-globe" aria-hidden="true"></i><span>EN</span>
+          </button>
+          <div class="language-menu" id="languageMenu" aria-label="Language selection" hidden="">
+            <a href="/pages/projet-linux-hardening-ansible.html" lang="fr" hreflang="fr" data-language="fr">FR <span>Français</span></a>
+            <a href="/en/pages/projet-linux-hardening-ansible.html" lang="en" hreflang="en" data-language="en" aria-current="page">EN <span>English</span></a>
+          </div>
+        </div>
+        <button class="theme-toggle" id="themeToggle" type="button" aria-label="Switch to light theme" data-light-label="Switch to light theme" data-dark-label="Switch to dark theme">
+          <i class="fas fa-sun" aria-hidden="true"></i>
+        </button>
+        <button class="menu-toggle" id="menuToggle" type="button" aria-label="Open menu" aria-controls="navMenu" aria-expanded="false" data-open-label="Open menu" data-close-label="Close menu">
+          <span aria-hidden="true"></span><span aria-hidden="true"></span><span aria-hidden="true"></span>
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <main id="main-content">
+    
+<article class="case-study">
+  <header class="case-hero">
+    <div class="case-container case-hero-grid">
+      <div>
+        <p class="case-kicker"><i class="fas fa-user-shield" aria-hidden="true"></i>Systems and cybersecurity</p>
+        <h1>Linux hardening with Ansible</h1>
+        <p class="case-lead">An Ansible role turns a deliberately permissive Rocky Linux target into a hardened system, then checks every control without changing the VM's main access.</p>
+        <div class="case-tags" aria-label="Tools and technologies used">
+          <span>Rocky Linux</span><span>Ansible</span><span>OpenSSH</span><span>sysctl</span><span>auditd</span><span>Docker</span><span>Trivy</span>
+        </div>
+      </div>
+      <dl class="case-facts" aria-label="Key information">
+        
+        <div><dt>First run</dt><dd>12 changes applied</dd></div>
+        
+        <div><dt>Idempotency</dt><dd>changed=0 on second run</dd></div>
+        
+        <div><dt>SSH</dt><dd>root and passwords disabled</dd></div>
+        
+        <div><dt>Validation</dt><dd>5 controls, 0 failures</dd></div>
+        
+      </dl>
+    </div>
+  </header>
+
+  <nav class="case-nav" aria-label="Project contents">
+    <div class="case-container">
+      <a href="#analyse">Need</a>
+      <a href="#architecture">Solution</a>
+      <a href="#realisation">Work completed</a>
+      <a href="#validation">Checks</a>
+      <a href="#recul">Improvements</a>
+      <a href="#preuves">Evidence</a>
+    </div>
+  </nav>
+
+  <section class="case-band" id="analyse">
+    <div class="case-container">
+      <div class="case-section-heading"><span>01</span><div><p>Before starting</p><h2>The need and my role</h2></div></div>
+      <div class="case-two-columns">
+        <div class="case-copy"><h3>The need</h3><p>An overly permissive Linux installation may allow direct root SSH access, passwords and unnecessary features. I needed to demonstrate realistic, repeatable and measurable hardening without risking access to the main VM.</p></div>
+        <div class="case-copy"><h3>My role</h3><p>I designed the Ansible role, isolated the target in a locally accessible Rocky Linux container, automated the SSH, sudo, sysctl and auditd measures, then wrote the verification playbook and security scans.</p></div>
+      </div>
+      <div class="case-list-grid">
+        <div class="case-list-item"><i class="fas fa-diamond" aria-hidden="true"></i><span>Never modify the SSH service used to administer the host VM.</span></div><div class="case-list-item"><i class="fas fa-diamond" aria-hidden="true"></i><span>Use key authentication without publishing any private key.</span></div><div class="case-list-item"><i class="fas fa-diamond" aria-hidden="true"></i><span>Keep execution repeatable, with no change during a second run.</span></div><div class="case-list-item"><i class="fas fa-diamond" aria-hidden="true"></i><span>Document the exception required by the isolated target's SSH process.</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="case-band case-band-alt" id="architecture">
+    <div class="case-container">
+      <div class="case-section-heading"><span>02</span><div><p>Why I chose this approach</p><h2>The chosen solution</h2></div></div>
+      <div class="case-decision">
+        <h3>A containerised SSH target managed by Ansible</h3>
+        <p>The VM acts as the controller and manages a separate Rocky Linux target on 127.0.0.1:2222. This allows real system rules and SSH restarts to be tested while keeping the VM's administration access outside the playbook scope.</p>
+      </div>
+      <div class="case-list-grid case-list-grid-wide">
+        <div class="case-list-item"><i class="fas fa-arrow-right" aria-hidden="true"></i><span>The Rocky Linux VM runs Ansible as the control node.</span></div><div class="case-list-item"><i class="fas fa-arrow-right" aria-hidden="true"></i><span>A Rocky Linux 9 container provides a deliberately under-hardened SSH target.</span></div><div class="case-list-item"><i class="fas fa-arrow-right" aria-hidden="true"></i><span>A temporary key generated locally bootstraps access for the secops account.</span></div><div class="case-list-item"><i class="fas fa-arrow-right" aria-hidden="true"></i><span>The role manages SSH, sudo, password ageing, sysctl and auditd.</span></div><div class="case-list-item"><i class="fas fa-arrow-right" aria-hidden="true"></i><span>A separate playbook reads the effective configuration and fails if a control is missing.</span></div><div class="case-list-item"><i class="fas fa-arrow-right" aria-hidden="true"></i><span>Trivy scans both the repository and image before evidence is retained.</span></div>
+      </div>
+      
+    </div>
+  </section>
+
+  <section class="case-band" id="realisation">
+    <div class="case-container">
+      <div class="case-section-heading"><span>03</span><div><p>From plan to practice</p><h2>What I completed</h2></div></div>
+      <ol class="case-steps">
+        <li><span>01</span><p>Built an isolated Rocky Linux target published only on the loopback interface.</p></li><li><span>02</span><p>Recorded the initial SSH posture and absence of the secops account.</p></li><li><span>03</span><p>Created the Ansible role with variables, tasks, templates and handlers.</p></li><li><span>04</span><p>Disabled root, passwords, X11 and TCP forwarding in SSH.</p></li><li><span>05</span><p>Applied sudo, password, kernel and audit policies.</p></li><li><span>06</span><p>Ran the playbook once to change the target and again to prove idempotency.</p></li><li><span>07</span><p>Validated the protected files, effective settings and Trivy scans.</p></li>
+      </ol>
+      <p class="case-technical-link"><a href="../../downloads/portfolio-projects-source.zip"><i class="fas fa-terminal" aria-hidden="true"></i>Full technical document — French</a></p>
+    </div>
+  </section>
+
+  <section class="case-band case-band-alt" id="validation">
+    <div class="case-container">
+      <div class="case-section-heading"><span>04</span><div><p>Checking that it works</p><h2>How I checked my work</h2></div></div>
+      <div class="case-two-columns">
+        <div><h3>Tests performed</h3><ul class="case-check-list"><li><i class="fas fa-check" aria-hidden="true"></i>Compared effective SSH settings before and after hardening.</li><li><i class="fas fa-check" aria-hidden="true"></i>Ran Ansible a second time with `changed=0` and `failed=0`.</li><li><i class="fas fa-check" aria-hidden="true"></i>Checked SSH, the secops account and four protected configuration files.</li><li><i class="fas fa-check" aria-hidden="true"></i>Scanned the Dockerfile, secrets and Rocky Linux image with Trivy.</li></ul></div>
+        <div><h3>Observed results</h3><ul class="case-check-list case-results"><li><i class="fas fa-circle-check" aria-hidden="true"></i>The first run applied 12 security changes without failure.</li><li><i class="fas fa-circle-check" aria-hidden="true"></i>The second run confirmed a stable state with 17 successful tasks and no change.</li><li><i class="fas fa-circle-check" aria-hidden="true"></i>Direct root SSH access and password authentication are disabled.</li><li><i class="fas fa-circle-check" aria-hidden="true"></i>The secops account, kernel policies and audit rules are installed.</li><li><i class="fas fa-circle-check" aria-hidden="true"></i>No high or critical vulnerability was detected in the scanned image.</li></ul></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="case-band" id="recul">
+    <div class="case-container">
+      <div class="case-section-heading"><span>05</span><div><p>Looking back</p><h2>Limits and improvements</h2></div></div>
+      <div class="case-two-columns">
+        <div><h3>Security and operation</h3><ul class="case-check-list"><li><i class="fas fa-shield-halved" aria-hidden="true"></i>The target is published only on 127.0.0.1 and cannot be reached from the VMware network.</li><li><i class="fas fa-shield-halved" aria-hidden="true"></i>Private keys and the `.secrets` directory are excluded from published code.</li><li><i class="fas fa-shield-halved" aria-hidden="true"></i>Permissions on SSH, sudo and identity files are checked.</li><li><i class="fas fa-shield-halved" aria-hidden="true"></i>The Trivy SSH process exception is scoped, dated and documented with compensating controls.</li></ul></div>
+        <div><h3>What I would improve</h3><ul class="case-check-list case-limitations"><li><i class="fas fa-triangle-exclamation" aria-hidden="true"></i>The target is a laboratory container rather than a complete production server.</li><li><i class="fas fa-triangle-exclamation" aria-hidden="true"></i>SELinux policy design, disk encryption and central identity management are outside scope.</li><li><i class="fas fa-triangle-exclamation" aria-hidden="true"></i>The role variables would need adaptation before supporting several Linux distributions.</li></ul></div>
+      </div>
+    </div>
+  </section>
+
+  
+  <section class="case-band case-band-alt" id="preuves">
+    <div class="case-container">
+      <div class="case-section-heading"><span>06</span><div><p>Visible elements</p><h2>Evidence that it works</h2></div></div>
+      <div class="case-gallery">
+        
+        <figure><button type="button" data-lightbox-src="../../pages/projet-linux-hardening-ansible_assets/01-ansible-avant-apres.png" data-lightbox-alt="SSH configuration before hardening and second Ansible run with no change"><img src="../../pages/projet-linux-hardening-ansible_assets/01-ansible-avant-apres.png" alt="SSH configuration before hardening and second Ansible run with no change" loading="lazy"></button><figcaption>Permissive baseline followed by idempotency evidence with changed=0.</figcaption></figure>
+        
+        <figure><button type="button" data-lightbox-src="../../pages/projet-linux-hardening-ansible_assets/02-ansible-verification.png" data-lightbox-alt="Ansible playbook validating the Linux hardening controls"><img src="../../pages/projet-linux-hardening-ansible_assets/02-ansible-verification.png" alt="Ansible playbook validating the Linux hardening controls" loading="lazy"></button><figcaption>Automated checks for SSH, secops, sudo, sysctl and auditd.</figcaption></figure>
+        
+      </div>
+    </div>
+  </section>
+  
+
+  <section class="case-band case-sources">
+    <div class="case-container case-two-columns">
+      <div><h2>Skills demonstrated</h2><ul class="case-compact-list"><li>Automate Linux configuration with Ansible.</li><li>Harden OpenSSH, sudo, kernel settings and audit logging.</li><li>Isolate an administration target to reduce operational risk.</li><li>Prove idempotency and verify the resulting state automatically.</li></ul></div>
+      <div><h2>Sources used</h2><ul class="case-compact-list"><li><a href="https://docs.ansible.com/projects/ansible/latest/playbook_guide/playbooks_intro.html" target="_blank" rel="noopener noreferrer">Ansible - Playbooks and idempotency</a></li><li><a href="https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/9/html/security_hardening/assembly_securing-openssh_security-hardening" target="_blank" rel="noopener noreferrer">Red Hat - Securing OpenSSH</a></li><li><a href="https://trivy.dev/latest/docs/scanner/misconfiguration/" target="_blank" rel="noopener noreferrer">Trivy - Misconfiguration scanner</a></li></ul></div>
+    </div>
+  </section>
+</article>
+
+<dialog class="case-lightbox" id="caseLightbox" aria-label="Enlarged evidence image">
+  <button type="button" data-lightbox-close="" aria-label="Close image"><i class="fas fa-xmark" aria-hidden="true"></i></button>
+  <img src="" alt="">
+</dialog>
+
+  </main>
+
+  <footer class="main-footer">
+    <div class="footer-container">
+      <div class="footer-content">
+        <p class="footer-text">© 2026 <span class="footer-copyright">Franck Raymond</span>. All rights reserved.</p>
+        <div class="footer-socials" aria-label="Professional profiles">
+          <a href="https://github.com/franckraymond" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><i class="fab fa-github" aria-hidden="true"></i></a>
+          <a href="https://www.linkedin.com/in/franck-r-21a8a4184" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fab fa-linkedin" aria-hidden="true"></i></a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../../assets/portfolio-glossary.js?v=20260831-2" defer=""></script>
+  <script src="../../assets/portfolio-v2.js?v=20261028-493b8041ab" defer=""></script>
+  
+
+
+</body></html>

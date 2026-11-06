@@ -1,0 +1,2726 @@
+<!DOCTYPE html><html lang="fr"><head>
+
+  <meta charset="UTF-8">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta name="description" content="Participer à l'évolution d'un site Web - Portfolio BTS SIO SISR">
+
+  <title>Participer à l'évolution d'un site Web | Portfolio</title>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&amp;family=Outfit:wght@300;400;500;600;700;800;900&amp;family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="../style.css">
+
+  <style>
+
+    /* Global overflow fix */
+
+    html, body {
+
+      overflow-x: hidden;
+
+    }
+
+
+
+    main {
+
+      overflow-x: hidden;
+
+    }
+
+
+
+    .section-container {
+
+      max-width: 100%;
+
+      overflow-x: hidden;
+
+    }
+
+
+
+    /* Code blocks styling */
+
+    .code-block {
+
+      background: #0d1117;
+
+      border: 1px solid var(--border-color);
+
+      border-radius: 12px;
+
+      margin: 1.5rem 0;
+
+      overflow: hidden;
+
+      max-width: 100%;
+
+    }
+
+
+
+    .code-header {
+
+      background: #161b22;
+
+      padding: 0.75rem 1rem;
+
+      display: flex;
+
+      justify-content: space-between;
+
+      align-items: center;
+
+      border-bottom: 1px solid var(--border-color);
+
+      flex-wrap: wrap;
+
+      gap: 0.5rem;
+
+    }
+
+
+
+    .code-header span {
+
+      color: var(--text-secondary);
+
+      font-size: 0.8rem;
+
+      font-family: 'JetBrains Mono', monospace;
+
+    }
+
+
+
+    .code-header .copy-btn {
+
+      background: none;
+
+      border: none;
+
+      color: var(--text-secondary);
+
+      cursor: pointer;
+
+      padding: 0.25rem 0.5rem;
+
+      border-radius: 4px;
+
+      transition: all 0.3s;
+
+      flex-shrink: 0;
+
+    }
+
+
+
+    .code-header .copy-btn:hover {
+
+      background: rgba(255,255,255,0.1);
+
+      color: var(--accent);
+
+    }
+
+
+
+    .code-content {
+
+      padding: 1rem;
+
+      overflow-x: auto;
+
+      -webkit-overflow-scrolling: touch;
+
+    }
+
+
+
+    .code-content pre {
+
+      margin: 0;
+
+      font-family: 'JetBrains Mono', monospace;
+
+      font-size: 0.8rem;
+
+      line-height: 1.6;
+
+      color: #e6edf3;
+
+      white-space: pre;
+
+    }
+
+
+
+    .code-content .comment {
+
+      color: #8b949e;
+
+    }
+
+
+
+    .code-content .tag {
+
+      color: #ff7b72;
+
+    }
+
+
+
+    .code-content .attr {
+
+      color: #79c0ff;
+
+    }
+
+
+
+    .code-content .string {
+
+      color: #a5d6ff;
+
+    }
+
+
+
+    .code-content .keyword {
+
+      color: #ff7b72;
+
+    }
+
+
+
+    /* Task cards */
+
+    .task-grid {
+
+      display: grid;
+
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+
+      gap: 1.5rem;
+
+      margin: 2rem 0;
+
+    }
+
+
+
+    .task-card {
+
+      background: var(--bg-card);
+
+      border: 1px solid var(--border-color);
+
+      border-radius: 16px;
+
+      padding: 1.5rem;
+
+      transition: all 0.3s ease;
+
+      overflow: hidden;
+
+    }
+
+
+
+    .task-card:hover {
+
+      transform: translateY(-5px);
+
+      border-color: var(--accent);
+
+    }
+
+
+
+    .task-icon {
+
+      width: 50px;
+
+      height: 50px;
+
+      background: linear-gradient(135deg, var(--accent) 0%, var(--accent-dark) 100%);
+
+      border-radius: 12px;
+
+      display: flex;
+
+      align-items: center;
+
+      justify-content: center;
+
+      font-size: 1.25rem;
+
+      margin-bottom: 1rem;
+
+      color: white;
+
+    }
+
+
+
+    .task-card h3 {
+
+      font-size: 1.1rem;
+
+      margin-bottom: 0.5rem;
+
+      color: var(--text-primary);
+
+    }
+
+
+
+    .task-card p {
+
+      color: var(--text-secondary);
+
+      font-size: 0.875rem;
+
+      line-height: 1.6;
+
+    }
+
+
+
+    /* Step cards */
+
+    .step-card {
+
+      background: var(--bg-card);
+
+      border: 1px solid var(--border-color);
+
+      border-radius: 16px;
+
+      padding: 1.5rem;
+
+      padding-top: 2rem;
+
+      margin-bottom: 2rem;
+
+      position: relative;
+
+      overflow: hidden;
+
+    }
+
+
+
+    .step-number {
+
+      position: absolute;
+
+      top: -15px;
+
+      left: 20px;
+
+      background: linear-gradient(135deg, var(--accent) 0%, var(--accent-dark) 100%);
+
+      width: 40px;
+
+      height: 40px;
+
+      border-radius: 50%;
+
+      display: flex;
+
+      align-items: center;
+
+      justify-content: center;
+
+      font-weight: 700;
+
+      font-size: 1.125rem;
+
+      color: white;
+
+    }
+
+
+
+    .step-title {
+
+      font-size: 1.1rem;
+
+      font-weight: 600;
+
+      margin-bottom: 1rem;
+
+      padding-left: 0.5rem;
+
+      color: var(--text-primary);
+
+    }
+
+
+
+    .step-content {
+
+      color: var(--text-secondary);
+
+      overflow: hidden;
+
+    }
+
+
+
+    .step-content p {
+
+      margin-bottom: 1rem;
+
+    }
+
+
+
+    /* Alert boxes */
+
+    .alert {
+
+      padding: 1rem;
+
+      border-radius: 8px;
+
+      margin: 1rem 0;
+
+      display: flex;
+
+      align-items: flex-start;
+
+      gap: 0.75rem;
+
+      overflow: hidden;
+
+    }
+
+
+
+    .alert i {
+
+      flex-shrink: 0;
+
+      margin-top: 2px;
+
+    }
+
+
+
+    .alert > div {
+
+      min-width: 0;
+
+      word-wrap: break-word;
+
+    }
+
+
+
+    .alert-info {
+
+      background: rgba(59, 130, 246, 0.1);
+
+      border: 1px solid #3b82f6;
+
+    }
+
+
+
+    .alert-info i {
+
+      color: #3b82f6;
+
+    }
+
+
+
+    .alert-success {
+
+      background: rgba(34, 197, 94, 0.1);
+
+      border: 1px solid #22c55e;
+
+    }
+
+
+
+    .alert-success i {
+
+      color: #22c55e;
+
+    }
+
+
+
+    .alert-warning {
+
+      background: rgba(245, 158, 11, 0.1);
+
+      border: 1px solid #f59e0b;
+
+    }
+
+
+
+    .alert-warning i {
+
+      color: #f59e0b;
+
+    }
+
+
+
+    .alert strong {
+
+      color: var(--text-primary);
+
+    }
+
+
+
+    /* Before/After comparison */
+
+    .comparison-grid {
+
+      display: grid;
+
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+
+      gap: 2rem;
+
+      margin: 2rem 0;
+
+    }
+
+
+
+    .comparison-card {
+
+      background: var(--bg-card);
+
+      border: 1px solid var(--border-color);
+
+      border-radius: 16px;
+
+      overflow: hidden;
+
+    }
+
+
+
+    .comparison-header {
+
+      padding: 1rem;
+
+      text-align: center;
+
+      font-weight: 600;
+
+      border-bottom: 1px solid var(--border-color);
+
+    }
+
+
+
+    .comparison-card.before .comparison-header {
+
+      background: rgba(239, 68, 68, 0.1);
+
+      color: #ef4444;
+
+    }
+
+
+
+    .comparison-card.after .comparison-header {
+
+      background: rgba(34, 197, 94, 0.1);
+
+      color: #22c55e;
+
+    }
+
+
+
+    .comparison-content {
+
+      padding: 1.5rem;
+
+    }
+
+
+
+    .comparison-content ul {
+
+      list-style: none;
+
+      padding: 0;
+
+      margin: 0;
+
+    }
+
+
+
+    .comparison-content li {
+
+      padding: 0.5rem 0;
+
+      color: var(--text-secondary);
+
+      display: flex;
+
+      align-items: flex-start;
+
+      gap: 0.75rem;
+
+    }
+
+
+
+    .comparison-content li i {
+
+      margin-top: 3px;
+
+    }
+
+
+
+    .comparison-card.before li i {
+
+      color: #ef4444;
+
+    }
+
+
+
+    .comparison-card.after li i {
+
+      color: #22c55e;
+
+    }
+
+
+
+    /* Image containers */
+
+    .image-container {
+
+      margin: 1.5rem 0;
+
+      text-align: center;
+
+    }
+
+
+
+    .image-container img {
+
+      max-width: 100%;
+
+      height: auto;
+
+      border-radius: 8px;
+
+      border: 1px solid var(--border-color);
+
+      cursor: pointer;
+
+      transition: transform 0.3s, box-shadow 0.3s;
+
+    }
+
+
+
+    .image-container img:hover {
+
+      transform: scale(1.02);
+
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+
+    }
+
+
+
+    .image-caption {
+
+      margin-top: 0.75rem;
+
+      color: var(--text-secondary);
+
+      font-size: 0.85rem;
+
+      font-style: italic;
+
+    }
+
+
+
+    .image-placeholder {
+
+      background: var(--bg-card);
+
+      border: 2px dashed var(--border-color);
+
+      border-radius: 12px;
+
+      padding: 3rem;
+
+      text-align: center;
+
+      color: var(--text-secondary);
+
+      margin: 1rem 0;
+
+    }
+
+
+
+    .image-placeholder i {
+
+      font-size: 2rem;
+
+      margin-bottom: 1rem;
+
+      color: var(--accent);
+
+    }
+
+
+
+    /* Competences grid */
+
+    .competences-grid {
+
+      display: grid;
+
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+
+      gap: 1.5rem;
+
+      margin: 2rem 0;
+
+    }
+
+
+
+    .competence-card {
+
+      background: var(--bg-card);
+
+      border: 1px solid var(--border-color);
+
+      border-radius: 12px;
+
+      padding: 1.25rem;
+
+      transition: all 0.3s;
+
+      overflow: hidden;
+
+    }
+
+
+
+    .competence-card:hover {
+
+      border-color: var(--accent);
+
+      transform: translateY(-3px);
+
+    }
+
+
+
+    .competence-header {
+
+      display: flex;
+
+      align-items: center;
+
+      gap: 0.75rem;
+
+      margin-bottom: 0.75rem;
+
+      flex-wrap: wrap;
+
+    }
+
+
+
+    .competence-badge {
+
+      background: var(--accent);
+
+      color: white;
+
+      padding: 0.25rem 0.75rem;
+
+      border-radius: 4px;
+
+      font-size: 0.75rem;
+
+      font-weight: 600;
+
+      flex-shrink: 0;
+
+    }
+
+
+
+    .competence-title {
+
+      font-weight: 600;
+
+      font-size: 0.95rem;
+
+      color: var(--text-primary);
+
+    }
+
+
+
+    .competence-desc {
+
+      color: var(--text-secondary);
+
+      font-size: 0.85rem;
+
+    }
+
+
+
+    /* Timeline */
+
+    .workflow-timeline {
+
+      position: relative;
+
+      padding-left: 2rem;
+
+      margin: 2rem 0;
+
+    }
+
+
+
+    .workflow-timeline::before {
+
+      content: '';
+
+      position: absolute;
+
+      left: 0;
+
+      top: 0;
+
+      bottom: 0;
+
+      width: 2px;
+
+      background: var(--border-color);
+
+    }
+
+
+
+    .workflow-item {
+
+      position: relative;
+
+      padding-bottom: 2rem;
+
+    }
+
+
+
+    .workflow-item:last-child {
+
+      padding-bottom: 0;
+
+    }
+
+
+
+    .workflow-item::before {
+
+      content: '';
+
+      position: absolute;
+
+      left: -2rem;
+
+      top: 0.5rem;
+
+      width: 12px;
+
+      height: 12px;
+
+      background: var(--accent);
+
+      border-radius: 50%;
+
+      transform: translateX(-5px);
+
+    }
+
+
+
+    .workflow-item h4 {
+
+      font-weight: 600;
+
+      margin-bottom: 0.5rem;
+
+      color: var(--text-primary);
+
+    }
+
+
+
+    .workflow-item p {
+
+      color: var(--text-secondary);
+
+    }
+
+
+
+    /* PDF button */
+
+    .btn-pdf {
+
+      background: linear-gradient(135deg, #ef4444 0%, #b91c1c 100%);
+
+      color: white;
+
+      border: none;
+
+      padding: 0.75rem 1.5rem;
+
+      border-radius: 8px;
+
+      font-weight: 600;
+
+      cursor: pointer;
+
+      display: inline-flex;
+
+      align-items: center;
+
+      gap: 0.5rem;
+
+      transition: all 0.3s;
+
+      text-decoration: none;
+
+    }
+
+
+
+    .btn-pdf:hover {
+
+      transform: translateY(-2px);
+
+      box-shadow: 0 5px 20px rgba(239, 68, 68, 0.4);
+
+    }
+
+
+
+    /* Hero buttons fix */
+
+    .hero-buttons {
+
+      display: flex;
+
+      flex-wrap: wrap;
+
+      gap: 1rem;
+
+    }
+
+
+
+    /* Lightbox */
+
+    .lightbox {
+
+      display: none;
+
+      position: fixed;
+
+      top: 0;
+
+      left: 0;
+
+      width: 100%;
+
+      height: 100%;
+
+      background: rgba(0, 0, 0, 0.95);
+
+      z-index: 2000;
+
+      justify-content: center;
+
+      align-items: center;
+
+      padding: 2rem;
+
+    }
+
+
+
+    .lightbox.active {
+
+      display: flex;
+
+    }
+
+
+
+    .lightbox-content {
+
+      position: relative;
+
+      max-width: 90%;
+
+      max-height: 90%;
+
+    }
+
+
+
+    .lightbox-content img {
+
+      max-width: 100%;
+
+      max-height: 85vh;
+
+      border-radius: 8px;
+
+    }
+
+
+
+    .lightbox-close {
+
+      position: absolute;
+
+      top: -40px;
+
+      right: 0;
+
+      background: none;
+
+      border: none;
+
+      color: white;
+
+      font-size: 2rem;
+
+      cursor: pointer;
+
+    }
+
+
+
+    .lightbox-nav {
+
+      position: absolute;
+
+      top: 50%;
+
+      transform: translateY(-50%);
+
+      background: rgba(255, 255, 255, 0.1);
+
+      border: none;
+
+      color: white;
+
+      font-size: 2rem;
+
+      padding: 1rem;
+
+      cursor: pointer;
+
+      border-radius: 8px;
+
+      transition: background 0.3s;
+
+    }
+
+
+
+    .lightbox-nav:hover {
+
+      background: rgba(255, 255, 255, 0.2);
+
+    }
+
+
+
+    .lightbox-prev { left: -60px; }
+
+    .lightbox-next { right: -60px; }
+
+
+
+    .lightbox-counter {
+
+      position: absolute;
+
+      bottom: -40px;
+
+      left: 50%;
+
+      transform: translateX(-50%);
+
+      color: var(--text-secondary);
+
+    }
+
+
+
+    @media print {
+
+      .main-header, .lightbox, .btn-pdf, .hero-buttons {
+
+        display: none !important;
+
+      }
+
+      .hero-section {
+
+        min-height: auto;
+
+        padding: 2rem;
+
+      }
+
+    }
+
+
+
+    @media (max-width: 768px) {
+
+      .lightbox-nav {
+
+        display: none;
+
+      }
+
+
+
+      .step-card {
+
+        padding: 1.25rem;
+
+        padding-top: 1.75rem;
+
+      }
+
+
+
+      .comparison-grid {
+
+        grid-template-columns: 1fr;
+
+      }
+
+
+
+      .task-grid {
+
+        grid-template-columns: 1fr;
+
+      }
+
+
+
+      .competences-grid {
+
+        grid-template-columns: 1fr;
+
+      }
+
+
+
+      .code-content pre {
+
+        font-size: 0.75rem;
+
+      }
+
+    }
+
+
+
+    @media (max-width: 480px) {
+
+      .step-number {
+
+        width: 32px;
+
+        height: 32px;
+
+        font-size: 0.9rem;
+
+        top: -12px;
+
+        left: 15px;
+
+      }
+
+
+
+      .workflow-timeline {
+
+        padding-left: 1.5rem;
+
+      }
+
+
+
+      .workflow-item::before {
+
+        left: -1.5rem;
+
+        width: 10px;
+
+        height: 10px;
+
+      }
+
+    }
+
+  
+        /* Tooltips termes techniques */
+        .term {
+            border-bottom: 1px dashed var(--primary);
+            cursor: help;
+            position: relative;
+            display: inline;
+        }
+        .term::after {
+            content: attr(data-def);
+            position: absolute;
+            bottom: calc(100% + 8px);
+            left: 50%;
+            transform: translateX(-50%);
+            background: #1e293b;
+            color: #f8fafc;
+            font-size: 0.78rem;
+            line-height: 1.5;
+            padding: 0.6rem 0.9rem;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            white-space: normal;
+            width: 220px;
+            text-align: left;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.2s;
+            z-index: 100;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+        }
+        .term:hover::after { opacity: 1; }
+</style>
+
+<meta name="theme-color" content="#111214"><link rel="stylesheet" href="/assets/legacy-unified.css?v=20260831-2"><meta name="author" content="Franck Raymond"><meta name="robots" content="index,follow,max-image-preview:large"><meta property="og:type" content="website"><meta property="og:site_name" content="Portfolio de Franck Raymond"><meta property="og:title" content="Participer à l'évolution d'un site Web | Portfolio"><meta property="og:description" content="Participer à l'évolution d'un site Web - Portfolio BTS SIO SISR"><meta property="og:url" content="https://franckraymond.tech/pages/participer-evolution-site.html"><meta property="og:image" content="https://franckraymond.tech/franck.webp"><meta property="og:image:alt" content="Portrait professionnel de Franck Raymond"><meta property="og:locale" content="fr_FR"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Participer à l'évolution d'un site Web | Portfolio"><meta name="twitter:description" content="Participer à l'évolution d'un site Web - Portfolio BTS SIO SISR"><meta name="twitter:image" content="https://franckraymond.tech/franck.webp"><link rel="canonical" href="https://franckraymond.tech/pages/participer-evolution-site.html"><link rel="icon" href="/favicon-32x32.png" sizes="32x32" type="image/png"><link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180"><link rel="manifest" href="/site.webmanifest"><script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"Participer à l'évolution d'un site Web | Portfolio","url":"https://franckraymond.tech/pages/participer-evolution-site.html","description":"Participer à l'évolution d'un site Web - Portfolio BTS SIO SISR","isPartOf":{"@type":"WebSite","name":"Portfolio de Franck Raymond","url":"https://franckraymond.tech/"},"about":{"@type":"Person","name":"Franck Raymond","url":"https://franckraymond.tech/"}}</script>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,400&amp;family=Geist:wght@400;500;600&amp;display=swap">
+<link rel="stylesheet" href="/assets/editorial-tokens.css?v=20261106-modern">
+<link rel="stylesheet" href="/assets/editorial.css?v=20261106-modern">
+<script src="/assets/editorial-theme.js?v=20261028-1fe0ee8c9d"></script>
+</head>
+
+
+
+<body data-theme="light" class="portfolio-legacy editorial-site">
+
+  <div class="bg-mesh"></div>
+
+  <div class="noise-overlay"></div>
+
+  <div class="grid-lines"></div>
+
+
+
+  <header class="main-header" id="header">
+
+    <nav class="nav-container" aria-label="Navigation principale">
+
+      <div class="nav-brand">
+
+        <a href="../index.html" class="brand-logo">
+
+          <span class="logo-bracket">&lt;</span>
+
+          <span class="logo-text">FR</span>
+
+          <span class="logo-bracket">/&gt;</span>
+
+        </a>
+
+      </div>
+
+      <div class="nav-menu" id="navMenu">
+
+        <a href="../index.html" class="nav-link">
+
+          <i class="fas fa-home"></i>
+
+          <span class="nav-text">Accueil</span>
+
+        </a>
+
+        <a href="/profil.html" class="nav-link">
+
+          <i class="fas fa-user"></i>
+
+          <span class="nav-text">Profil</span>
+
+        </a>
+
+        <a href="../index.html#skills" class="nav-link">
+
+          <i class="fas fa-code"></i>
+
+          <span class="nav-text">Compétences</span>
+
+        </a>
+
+        <a href="/projets.html" class="nav-link active">
+
+          <i class="fas fa-diagram-project"></i>
+
+          <span class="nav-text">Projets</span>
+
+        </a>
+
+        <a href="../index.html#experience" class="nav-link">
+
+          <i class="fas fa-briefcase"></i>
+
+          <span class="nav-text">Expériences</span>
+
+        </a>
+
+        <a href="/projets.html#veille" class="nav-link">
+
+          <i class="fas fa-newspaper"></i>
+
+          <span class="nav-text">Veille</span>
+
+        </a>
+
+        <a href="../index.html#contact" class="nav-link">
+
+          <i class="fas fa-envelope"></i>
+
+          <span class="nav-text">Contact</span>
+
+        </a>
+
+      
+<a class="nav-link" href="https://opengym.jsuisfray.blitz.cloud/"><span class="nav-text">Sport</span></a></div>
+
+      <div class="nav-controls">
+
+        <button class="theme-toggle" id="themeToggle" title="Changer le thème" aria-label="Basculer entre mode sombre et clair">
+
+          <i class="fas fa-moon"></i>
+
+        </button>
+
+        <button class="menu-toggle" id="menuToggle" aria-label="Ouvrir le menu mobile" aria-expanded="false">
+
+          <span></span><span></span><span></span>
+
+        </button>
+
+      </div>
+
+    </nav>
+
+  </header>
+
+
+
+  <main>
+
+    <!-- Hero Section -->
+
+    <section class="hero-section page-hero">
+
+      <div class="hero-glow"></div>
+
+      <div class="hero-glow-2"></div>
+
+      <div class="hero-container">
+
+        <div class="hero-content">
+
+          <div class="hero-greeting page-badge"><i class="fas fa-globe"></i> Développement Web</div>
+
+          <h1 class="hero-name"><span class="name-gradient">Participer à l'évolution d'un site Web</span></h1>
+
+          <p class="hero-description">
+
+            Amélioration continue de mon portfolio personnel en utilisant HTML5, CSS3, JavaScript
+
+            et des techniques modernes de développement front-end pour une expérience utilisateur optimale.
+
+          </p>
+
+<div class="hero-buttons">
+
+            <a href="#validation" class="btn btn-primary"><i class="fas fa-link"></i> Validation</a>
+
+            <a href="#realisations" class="btn btn-secondary"><i class="fas fa-tasks"></i> Réalisations</a>
+
+            <button class="btn-pdf" onclick="window.print()"><i class="fas fa-file-pdf"></i> PDF</button>
+
+          </div>
+
+          <div class="timeline-tags" style="margin-top: 1.5rem;">
+
+            <span class="tag"><i class="fab fa-html5"></i> HTML5</span>
+
+            <span class="tag"><i class="fab fa-css3-alt"></i> CSS3</span>
+
+            <span class="tag"><i class="fab fa-js"></i> JavaScript</span>
+
+            <span class="tag"><i class="fas fa-mobile-alt"></i> Responsive</span>
+
+            <span class="tag"><i class="fab fa-git-alt"></i> <span class="term" data-def="Outil qui enregistre l'historique des modifications d'un projet — permet de revenir en arrière ou de travailler à plusieurs.">Git</span></span>
+
+            <span class="tag"><i class="fas fa-palette"></i> UI/UX</span>
+
+          </div>
+
+        </div>
+
+        <div class="hero-image-wrapper">
+
+          <div class="hero-image-container">
+
+            <div class="profile-image-frame">
+
+              <i class="fas fa-code-branch page-icon"></i>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- Contexte -->
+
+    <section id="validation" class="section">
+
+  <div class="section-container">
+
+    <div class="section-header">
+
+      <span class="section-number">01</span>
+
+      <h2 class="section-title">Comment je l'ai <span class="title-gradient">validée</span></h2>
+
+      <div class="section-line"></div>
+
+    </div>
+
+    <div class="about-content">
+
+      <div>
+
+        <p class="about-text">
+
+          <strong>J'ai validé cette compétence en faisant concrètement ceci :</strong> J'ai valide cette compétence en faisant évoluer le portfolio dans le temps : ajout de nouvelles pages, correction des liens, reorganisation du contenu et adaptation du design selon les retours. Le site n'est pas reste fige ; je l'ai fait vivre comme un vrai support de communication technique.
+
+        </p>
+
+        <p class="about-text" style="margin-top: 1rem;">
+
+          Ce travail m'a permis de valider ma capacité à faire évoluer un site existant, prendre en compte les retours et intégrer de nouveaux contenus sans perdre la cohérence globale.
+
+        </p>
+
+        <div class="timeline-achievements">
+
+              <div class="achievement-item"><i class="fas fa-check-circle"></i><span>Ajouter de nouvelles pages de projets et de compétences</span></div>
+
+      <div class="achievement-item"><i class="fas fa-check-circle"></i><span>Corriger les liens, les dates et la structure du site</span></div>
+
+      <div class="achievement-item"><i class="fas fa-check-circle"></i><span>Faire évoluer l'interface sans casser la navigation</span></div>
+
+      <div class="achievement-item"><i class="fas fa-check-circle"></i><span>Prendre en compte les retours pour prioriser les améliorations utiles</span></div>
+
+      <div class="achievement-item"><i class="fas fa-check-circle"></i><span>Maintenir une cohérence entre l'existant et les nouvelles pages ajoutees</span></div>
+
+        </div>
+
+      </div>
+
+      <div>
+
+        <div class="skill-category">
+
+          <h3 class="category-title"><i class="fas fa-diagram-project"></i> TP et projets reliés</h3>
+
+          <div class="timeline-tags">
+
+                <a href="../index.html" class="tag"><i class="fas fa-link"></i> Site principal</a>
+
+        <a href="projet-openclaw.html" class="tag"><i class="fas fa-link"></i> OpenClaw</a>
+
+          </div>
+
+        </div>
+
+        <div class="skill-category" style="margin-top: 1.5rem;">
+
+          <h3 class="category-title"><i class="fas fa-graduation-cap"></i> Ce que j'ai validé</h3>
+
+          <div class="timeline-tags">
+
+                <span class="tag">évolution continue</span>
+
+        <span class="tag">Maintenance web</span>
+
+        <span class="tag">Intégration de contenus</span>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+
+    <!-- Tâches réalisées -->
+
+    <section id="taches" class="section" style="background: var(--bg-card-solid);">
+
+      <div class="section-container">
+
+        <div class="section-header">
+
+          <span class="section-number">02</span>
+
+          <h2 class="section-title">Tâches <span class="title-gradient">réalisées</span></h2>
+
+          <div class="section-line"></div>
+
+        </div>
+
+
+
+        <div class="task-grid">
+
+          <div class="task-card">
+
+            <div class="task-icon">
+
+              <i class="fas fa-palette"></i>
+
+            </div>
+
+            <h3>Design moderne</h3>
+
+            <p>Création d'un design sombre élégant avec des dégradés, des effets glassmorphism et des animations fluides.</p>
+
+          </div>
+
+
+
+          <div class="task-card">
+
+            <div class="task-icon">
+
+              <i class="fas fa-folder-open"></i>
+
+            </div>
+
+            <h3>Pages projets</h3>
+
+            <p>Développement de pages détaillées pour chaque projet avec captures d'écran, code et compétences associées.</p>
+
+          </div>
+
+
+
+          <div class="task-card">
+
+            <div class="task-icon">
+
+              <i class="fas fa-images"></i>
+
+            </div>
+
+            <h3>Lightbox interactif</h3>
+
+            <p>Implémentation d'une galerie d'images avec navigation au clavier et affichage plein écran.</p>
+
+          </div>
+
+
+
+          <div class="task-card">
+
+            <div class="task-icon">
+
+              <i class="fas fa-mobile-alt"></i>
+
+            </div>
+
+            <h3>Responsive design</h3>
+
+            <p>Adaptation complète du site pour une navigation fluide sur desktop, tablette et mobile.</p>
+
+          </div>
+
+
+
+          <div class="task-card">
+
+            <div class="task-icon">
+
+              <i class="fas fa-moon"></i>
+
+            </div>
+
+            <h3>Thème sombre/clair</h3>
+
+            <p>Système de basculement entre thème sombre et clair avec persistance des préférences utilisateur.</p>
+
+          </div>
+
+
+
+          <div class="task-card">
+
+            <div class="task-icon">
+
+              <i class="fas fa-code"></i>
+
+            </div>
+
+            <h3>Blocs de code</h3>
+
+            <p>Affichage de code source avec coloration syntaxique et fonction de copie en un clic.</p>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- Réalisations détaillées -->
+
+    <section id="realisations" class="section">
+
+      <div class="section-container">
+
+        <div class="section-header">
+
+          <span class="section-number">03</span>
+
+          <h2 class="section-title">Réalisations <span class="title-gradient">détaillées</span></h2>
+
+          <div class="section-line"></div>
+
+        </div>
+
+
+
+        <div class="step-card">
+
+          <div class="step-number">1</div>
+
+          <h3 class="step-title">Création du design global</h3>
+
+          <div class="step-content">
+
+            <p>
+
+              J'ai conçu un design moderne avec un thème sombre par défaut, utilisant des
+
+              variables CSS pour une personnalisation facile. Le design inclut des effets
+
+              de fond animés (mesh gradient, grille, bruit) pour un rendu professionnel.
+
+            </p>
+
+
+
+            <div class="code-block">
+
+              <div class="code-header">
+
+                <span>Variables CSS du thème</span>
+
+                <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button>
+
+              </div>
+
+              <div class="code-content">
+
+<pre><span class="comment">/* Variables du thème sombre */</span>
+
+<span class="tag">:root</span> {
+
+  <span class="attr">--bg-primary</span>: <span class="string">#0a0a0f</span>;
+
+  <span class="attr">--bg-card</span>: <span class="string">rgba(20, 20, 30, 0.8)</span>;
+
+  <span class="attr">--text-primary</span>: <span class="string">#ffffff</span>;
+
+  <span class="attr">--text-secondary</span>: <span class="string">#a0a0b0</span>;
+
+  <span class="attr">--accent</span>: <span class="string">#00a8ff</span>;
+
+  <span class="attr">--accent-dark</span>: <span class="string">#0074cc</span>;
+
+  <span class="attr">--border-color</span>: <span class="string">rgba(255, 255, 255, 0.1)</span>;
+
+}
+
+
+
+<span class="comment">/* Effet glassmorphism */</span>
+
+<span class="tag">.card</span> {
+
+  <span class="attr">background</span>: <span class="string">var(--bg-card)</span>;
+
+  <span class="attr">backdrop-filter</span>: <span class="string">blur(10px)</span>;
+
+  <span class="attr">border</span>: <span class="string">1px solid var(--border-color)</span>;
+
+  <span class="attr">border-radius</span>: <span class="string">16px</span>;
+
+}</pre>
+
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+
+
+        <div class="step-card">
+
+          <div class="step-number">2</div>
+
+          <h3 class="step-title">Développement des pages projets</h3>
+
+          <div class="step-content">
+
+            <p>
+
+              J'ai créé un template réutilisable pour les pages de projets, avec une structure
+
+              cohérente : hero section, contexte, réalisations détaillées, captures d'écran
+
+              et compétences mobilisées.
+
+            </p>
+
+
+
+            <div class="code-block">
+
+              <div class="code-header">
+
+                <span>Structure d'une page projet</span>
+
+                <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button>
+
+              </div>
+
+              <div class="code-content">
+
+<pre><span class="tag">&lt;section</span> <span class="attr">class</span>=<span class="string">"hero-section page-hero"</span><span class="tag">&gt;</span>
+
+  <span class="comment">&lt;!-- Hero avec titre et tags --&gt;</span>
+
+<span class="tag">&lt;/section&gt;</span>
+
+
+
+<span class="tag">&lt;section</span> <span class="attr">id</span>=<span class="string">"contexte"</span> <span class="attr">class</span>=<span class="string">"section"</span><span class="tag">&gt;</span>
+
+  <span class="comment">&lt;!-- Contexte et objectifs --&gt;</span>
+
+<span class="tag">&lt;/section&gt;</span>
+
+
+
+<span class="tag">&lt;section</span> <span class="attr">id</span>=<span class="string">"realisations"</span> <span class="attr">class</span>=<span class="string">"section"</span><span class="tag">&gt;</span>
+
+  <span class="comment">&lt;!-- Étapes détaillées avec code --&gt;</span>
+
+<span class="tag">&lt;/section&gt;</span>
+
+
+
+<span class="tag">&lt;section</span> <span class="attr">id</span>=<span class="string">"competences"</span> <span class="attr">class</span>=<span class="string">"section"</span><span class="tag">&gt;</span>
+
+  <span class="comment">&lt;!-- Grille des compétences BTS SIO --&gt;</span>
+
+<span class="tag">&lt;/section&gt;</span></pre>
+
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+
+
+        <div class="step-card">
+
+          <div class="step-number">3</div>
+
+          <h3 class="step-title">Implémentation du système Lightbox</h3>
+
+          <div class="step-content">
+
+            <p>
+
+              J'ai développé un système de galerie d'images interactif permettant de visualiser
+
+              les captures d'écran en plein écran avec navigation au clavier (flèches, Echap)
+
+              et compteur d'images.
+
+            </p>
+
+
+
+            <div class="alert alert-info">
+
+              <i class="fas fa-info-circle"></i>
+
+              <div>
+
+                <strong>Fonctionnalités</strong><br>
+
+                Navigation avec les flèches du clavier, fermeture avec Echap,
+
+                clic extérieur pour fermer, et compteur d'images.
+
+              </div>
+
+            </div>
+
+
+
+            <div class="code-block">
+
+              <div class="code-header">
+
+                <span>JavaScript du Lightbox</span>
+
+                <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button>
+
+              </div>
+
+              <div class="code-content">
+
+<pre><span class="comment">// Gestion des événements clavier</span>
+
+<span class="keyword">document</span>.addEventListener(<span class="string">'keydown'</span>, <span class="keyword">function</span>(e) {
+
+  <span class="keyword">const</span> lightbox = document.getElementById(<span class="string">'lightbox'</span>);
+
+  <span class="keyword">if</span> (!lightbox.classList.contains(<span class="string">'active'</span>)) <span class="keyword">return</span>;
+
+
+
+  <span class="keyword">if</span> (e.key === <span class="string">'Escape'</span>) closeLightbox();
+
+  <span class="keyword">if</span> (e.key === <span class="string">'ArrowLeft'</span>) navigateLightbox(-1);
+
+  <span class="keyword">if</span> (e.key === <span class="string">'ArrowRight'</span>) navigateLightbox(1);
+
+});</pre>
+
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+
+
+        <div class="step-card">
+
+          <div class="step-number">4</div>
+
+          <h3 class="step-title">Optimisation responsive et performance</h3>
+
+          <div class="step-content">
+
+            <p>
+
+              J'ai adapté le site pour tous les types d'écrans avec des breakpoints spécifiques
+
+              et corrigé les problèmes de débordement sur les blocs de code et tableaux.
+
+            </p>
+
+
+
+            <div class="code-block">
+
+              <div class="code-header">
+
+                <span>Gestion du overflow et responsive</span>
+
+                <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button>
+
+              </div>
+
+              <div class="code-content">
+
+<pre><span class="comment">/* Empêcher le débordement horizontal */</span>
+
+<span class="tag">html, body</span> {
+
+  <span class="attr">overflow-x</span>: <span class="string">hidden</span>;
+
+}
+
+
+
+<span class="tag">.code-content</span> {
+
+  <span class="attr">overflow-x</span>: <span class="string">auto</span>;
+
+  <span class="attr">-webkit-overflow-scrolling</span>: <span class="string">touch</span>;
+
+}
+
+
+
+<span class="comment">/* Mobile */</span>
+
+<span class="keyword">@media</span> (<span class="attr">max-width</span>: <span class="string">768px</span>) {
+
+  <span class="tag">.task-grid, .competences-grid</span> {
+
+    <span class="attr">grid-template-columns</span>: <span class="string">1fr</span>;
+
+  }
+
+
+
+  <span class="tag">.code-content pre</span> {
+
+    <span class="attr">font-size</span>: <span class="string">0.75rem</span>;
+
+  }
+
+}</pre>
+
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- Avant / Après -->
+
+    <section id="comparaison" class="section" style="background: var(--bg-card-solid);">
+
+      <div class="section-container">
+
+        <div class="section-header">
+
+          <span class="section-number">04</span>
+
+          <h2 class="section-title">Avant <span class="title-gradient">/ Après</span></h2>
+
+          <div class="section-line"></div>
+
+        </div>
+
+
+
+        <p class="about-text">
+
+          Mon premier portfolio était hébergé sur Google Sites. J'ai décidé de le refaire
+
+          entièrement en codant moi-même pour avoir un contrôle total sur le design et
+
+          démontrer mes compétences en développement front-end.
+
+        </p>
+
+
+
+        <div class="alert alert-info" style="margin-bottom: 2rem;">
+
+          <i class="fas fa-external-link-alt"></i>
+
+          <div>
+
+            <strong>Ancien portfolio</strong><br>
+
+            <a href="https://sites.google.com/view/franck-raymond/moi" target="_blank" style="color: #3b82f6;">
+
+              https://sites.google.com/view/franck-raymond/moi
+
+            </a>
+
+          </div>
+
+        </div>
+
+
+
+        <div class="comparison-grid">
+
+          <div class="comparison-card before">
+
+            <div class="comparison-header">
+
+              <i class="fas fa-times-circle"></i> Ancien (Google Sites)
+
+            </div>
+
+            <div class="comparison-content">
+
+              <ul>
+
+                <li><i class="fas fa-minus"></i> Plateforme Google Sites limitée</li>
+
+                <li><i class="fas fa-minus"></i> Design basique avec templates</li>
+
+                <li><i class="fas fa-minus"></i> Personnalisation restreinte</li>
+
+                <li><i class="fas fa-minus"></i> Navigation sidebar classique</li>
+
+                <li><i class="fas fa-minus"></i> Pas de code personnalisé</li>
+
+                <li><i class="fas fa-minus"></i> Couleurs neutres simples</li>
+
+                <li><i class="fas fa-minus"></i> Dépendant de Google</li>
+
+              </ul>
+
+            </div>
+
+          </div>
+
+
+
+          <div class="comparison-card after">
+
+            <div class="comparison-header">
+
+              <i class="fas fa-check-circle"></i> Nouveau (HTML/CSS/JS)
+
+            </div>
+
+            <div class="comparison-content">
+
+              <ul>
+
+                <li><i class="fas fa-plus"></i> Code 100% personnalisé</li>
+
+                <li><i class="fas fa-plus"></i> Design moderne glassmorphism</li>
+
+                <li><i class="fas fa-plus"></i> Contrôle total sur le style</li>
+
+                <li><i class="fas fa-plus"></i> Navigation fluide et animations</li>
+
+                <li><i class="fas fa-plus"></i> Pages projets détaillées avec code</li>
+
+                <li><i class="fas fa-plus"></i> Thème sombre/clair dynamique</li>
+
+                <li><i class="fas fa-plus"></i> Hébergement indépendant</li>
+
+              </ul>
+
+            </div>
+
+          </div>
+
+        </div>
+
+
+
+        <div class="alert alert-success" style="margin-top: 2rem;">
+
+          <i class="fas fa-chart-line"></i>
+
+          <div>
+
+            <strong>Pourquoi ce changement ?</strong><br>
+
+            Coder mon propre portfolio me permet de démontrer mes compétences techniques
+
+            et d'avoir une liberté totale pour créer un design unique et professionnel.
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- Workflow -->
+
+    <section id="workflow" class="section">
+
+      <div class="section-container">
+
+        <div class="section-header">
+
+          <span class="section-number">05</span>
+
+          <h2 class="section-title">Méthodologie <span class="title-gradient">de travail</span></h2>
+
+          <div class="section-line"></div>
+
+        </div>
+
+
+
+        <p class="about-text">
+
+          Pour développer et améliorer mon portfolio, j'ai suivi une méthodologie
+
+          itérative permettant d'ajouter progressivement de nouvelles fonctionnalités.
+
+        </p>
+
+
+
+        <div class="workflow-timeline">
+
+          <div class="workflow-item">
+
+            <h4><i class="fas fa-lightbulb" style="color: var(--accent); margin-right: 0.5rem;"></i> Phase 1 : Conception</h4>
+
+            <p>
+
+              Définition des besoins, recherche d'inspiration sur des portfolios existants
+
+              et choix des technologies à utiliser.
+
+            </p>
+
+          </div>
+
+
+
+          <div class="workflow-item">
+
+            <h4><i class="fas fa-code" style="color: var(--accent); margin-right: 0.5rem;"></i> Phase 2 : Structure HTML</h4>
+
+            <p>
+
+              Création de la structure sémantique du site avec les sections principales :
+
+              hero, about, skills, projets, expériences, contact.
+
+            </p>
+
+          </div>
+
+
+
+          <div class="workflow-item">
+
+            <h4><i class="fas fa-paint-brush" style="color: var(--accent); margin-right: 0.5rem;"></i> Phase 3 : Design CSS</h4>
+
+            <p>
+
+              Développement du style visuel avec variables CSS, thème sombre,
+
+              effets glassmorphism et animations.
+
+            </p>
+
+          </div>
+
+
+
+          <div class="workflow-item">
+
+            <h4><i class="fab fa-js" style="color: var(--accent); margin-right: 0.5rem;"></i> Phase 4 : Interactivité</h4>
+
+            <p>
+
+              Ajout des fonctionnalités JavaScript : navigation mobile, lightbox,
+
+              copie de code, switch de thème.
+
+            </p>
+
+          </div>
+
+
+
+          <div class="workflow-item">
+
+            <h4><i class="fas fa-file-alt" style="color: var(--accent); margin-right: 0.5rem;"></i> Phase 5 : Pages projets</h4>
+
+            <p>
+
+              Création des pages détaillées pour chaque projet avec captures d'écran,
+
+              extraits de code et compétences associées.
+
+            </p>
+
+          </div>
+
+
+
+          <div class="workflow-item">
+
+            <h4><i class="fas fa-sync" style="color: var(--accent); margin-right: 0.5rem;"></i> Phase 6 : Itérations</h4>
+
+            <p>
+
+              Corrections de bugs, optimisations responsive et ajout régulier
+
+              de nouveaux contenus et projets.
+
+            </p>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- Compétences -->
+
+    <section id="competences" class="section" style="background: var(--bg-card-solid);">
+
+      <div class="section-container">
+
+        <div class="section-header">
+
+          <span class="section-number">06</span>
+
+          <h2 class="section-title">Compétences <span class="title-gradient">mobilisées</span></h2>
+
+          <div class="section-line"></div>
+
+        </div>
+
+
+
+        <div class="competences-grid">
+
+          <div class="competence-card">
+
+            <div class="competence-header">
+
+              <span class="competence-badge">B1</span>
+
+              <span class="competence-title">Gérer le patrimoine informatique</span>
+
+            </div>
+
+            <p class="competence-desc">
+
+              Versionnement du code avec <span class="term" data-def="Outil qui enregistre l'historique des modifications d'un projet — permet de revenir en arrière ou de travailler à plusieurs.">Git</span>, organisation des fichiers et
+
+              maintenance de la structure du projet.
+
+            </p>
+
+          </div>
+
+
+
+          <div class="competence-card">
+
+            <div class="competence-header">
+
+              <span class="competence-badge">B2</span>
+
+              <span class="competence-title">Répondre aux incidents</span>
+
+            </div>
+
+            <p class="competence-desc">
+
+              Correction des bugs d'affichage, problèmes de débordement
+
+              et compatibilité entre navigateurs.
+
+            </p>
+
+          </div>
+
+
+
+          <div class="competence-card">
+
+            <div class="competence-header">
+
+              <span class="competence-badge">B3</span>
+
+              <span class="competence-title">Développer la présence en ligne</span>
+
+            </div>
+
+            <p class="competence-desc">
+
+              Création d'un portfolio professionnel pour présenter mes compétences
+
+              et projets aux recruteurs et entreprises.
+
+            </p>
+
+          </div>
+
+
+
+          <div class="competence-card">
+
+            <div class="competence-header">
+
+              <span class="competence-badge">B4</span>
+
+              <span class="competence-title">Travailler en mode projet</span>
+
+            </div>
+
+            <p class="competence-desc">
+
+              Planification des fonctionnalités, développement itératif
+
+              et gestion autonome du projet.
+
+            </p>
+
+          </div>
+
+
+
+          <div class="competence-card">
+
+            <div class="competence-header">
+
+              <span class="competence-badge">B5</span>
+
+              <span class="competence-title">Mettre à disposition un service</span>
+
+            </div>
+
+            <p class="competence-desc">
+
+              Déploiement du portfolio en ligne et mise à jour régulière
+
+              avec de nouveaux contenus.
+
+            </p>
+
+          </div>
+
+
+
+          <div class="competence-card">
+
+            <div class="competence-header">
+
+              <span class="competence-badge">B6</span>
+
+              <span class="competence-title">Organiser son développement</span>
+
+            </div>
+
+            <p class="competence-desc">
+
+              Apprentissage des techniques CSS avancées, JavaScript moderne
+
+              et bonnes pratiques du développement front-end.
+
+            </p>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- Conclusion -->
+
+    <section id="conclusion" class="section">
+
+      <div class="section-container">
+
+        <div class="section-header">
+
+          <span class="section-number">07</span>
+
+          <h2 class="section-title">Conclusion <span class="title-gradient">et bilan</span></h2>
+
+          <div class="section-line"></div>
+
+        </div>
+
+
+
+        <p class="about-text">
+
+          Ce projet personnel m'a permis de développer mes compétences en développement
+
+          front-end et de créer un support professionnel pour présenter mes réalisations.
+
+          Le portfolio évolue continuellement avec de nouveaux projets et améliorations.
+
+        </p>
+
+
+
+        <p class="about-text" style="margin-top: 1rem;">
+
+          Au-delà du développement front-end, cette page m'a fait progresser sur un point plus transversal : faire vivre un site dans la durée, corriger sans regressions majeures et garder un niveau de qualité constant malgré les ajouts successifs.
+
+        </p>
+
+
+
+        <div class="alert alert-warning" style="margin: 2rem 0;">
+
+          <i class="fas fa-lightbulb"></i>
+
+          <div>
+
+            <strong>Ce que j'ai appris</strong><br>
+
+            L'importance d'un code propre et maintenable, l'utilisation des variables CSS
+
+            pour la cohérence du design, et la nécessité de tester sur différents appareils.
+
+          </div>
+
+        </div>
+
+
+
+        <div class="timeline-achievements">
+
+          <div class="achievement-item"><i class="fas fa-check-circle"></i><span>Maîtrise de HTML5, CSS3 et JavaScript</span></div>
+
+          <div class="achievement-item"><i class="fas fa-check-circle"></i><span>Techniques CSS avancées (flexbox, grid, animations)</span></div>
+
+          <div class="achievement-item"><i class="fas fa-check-circle"></i><span>Développement responsive mobile-first</span></div>
+
+          <div class="achievement-item"><i class="fas fa-check-circle"></i><span>Création d'interfaces utilisateur modernes</span></div>
+
+        </div>
+
+
+
+        <div class="section-footer" style="margin-top: 2rem; display: flex; flex-wrap: wrap; gap: 1rem;">
+
+          <a href="epreuve-e5.html" class="btn-more"><i class="fas fa-arrow-left"></i> Retour E5</a>
+
+          <a href="../index.html#projets" class="btn-more"><i class="fas fa-folder"></i> Projets</a>
+
+        </div>
+
+      </div>
+
+    </section>
+
+      <section id="mots-cles" class="section" style="background: var(--bg-card-solid);">
+
+      <div class="section-container">
+
+        <div class="section-header">
+
+          <span class="section-number">MK</span>
+
+          <h2 class="section-title">Mots clés <span class="title-gradient">BTS SIO SISR</span></h2>
+
+          <div class="section-line"></div>
+
+        </div>
+
+        <p class="about-text">Résumé rapide de la compétence en mots clés.</p>
+
+        <div class="timeline-tags">
+
+          <span class="tag">HTML/CSS/JS</span>
+
+          <span class="tag">Maintenance</span>
+
+          <span class="tag"><span class="term" data-def="Outil qui enregistre l'historique des modifications d'un projet — permet de revenir en arrière ou de travailler à plusieurs.">Git</span></span>
+
+          <span class="tag">Responsive</span>
+
+          <span class="tag">UX</span>
+
+        </div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+
+
+  <footer class="main-footer" role="contentinfo">
+
+    <div class="footer-container">
+
+      <div class="footer-content">
+
+        <p class="footer-text">2026 <span class="footer-copyright">Franck Raymond</span> - Tous droits réservés.</p>
+
+        <div class="timeline-tags" style="margin-top: 0.5rem;">
+
+          <span class="tag">HTML5</span>
+
+          <span class="tag">CSS3</span>
+
+          <span class="tag">JavaScript</span>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </footer>
+
+
+
+  <!-- Lightbox -->
+
+  <div class="lightbox" id="lightbox">
+
+    <div class="lightbox-content">
+
+      <button class="lightbox-close" onclick="closeLightbox()">×</button>
+
+      <button class="lightbox-nav lightbox-prev" onclick="navigateLightbox(-1)"><i class="fas fa-chevron-left"></i></button>
+
+      <img id="lightbox-img" src="" alt="">
+
+      <button class="lightbox-nav lightbox-next" onclick="navigateLightbox(1)"><i class="fas fa-chevron-right"></i></button>
+
+      <div class="lightbox-counter" id="lightbox-counter"></div>
+
+    </div>
+
+  </div>
+
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+
+  <script src="../script.js?v=20261028-b753f7964f"></script>
+
+  <script>
+
+    // Copy code functionality
+
+    function copyCode(btn) {
+
+      const codeBlock = btn.closest('.code-block');
+
+      const code = codeBlock.querySelector('pre').textContent;
+
+      navigator.clipboard.writeText(code).then(() => {
+
+        btn.innerHTML = '<i class="fas fa-check"></i>';
+
+        setTimeout(() => {
+
+          btn.innerHTML = '<i class="fas fa-copy"></i>';
+
+        }, 2000);
+
+      });
+
+    }
+
+
+
+    // Lightbox functionality
+
+    let currentImageIndex = 0;
+
+    let images = [];
+
+
+
+    document.addEventListener('DOMContentLoaded', function() {
+
+      const projectImages = document.querySelectorAll('.image-container img, .project-image');
+
+      images = Array.from(projectImages);
+
+
+
+      images.forEach((img, index) => {
+
+        img.addEventListener('click', () => openLightbox(index));
+
+      });
+
+    });
+
+
+
+    function openLightbox(index) {
+
+      currentImageIndex = index;
+
+      const lightbox = document.getElementById('lightbox');
+
+      const lightboxImg = document.getElementById('lightbox-img');
+
+      const counter = document.getElementById('lightbox-counter');
+
+
+
+      lightboxImg.src = images[index].src;
+
+      counter.textContent = `${index + 1} / ${images.length}`;
+
+      lightbox.classList.add('active');
+
+      document.body.style.overflow = 'hidden';
+
+    }
+
+
+
+    function closeLightbox() {
+
+      document.getElementById('lightbox').classList.remove('active');
+
+      document.body.style.overflow = '';
+
+    }
+
+
+
+    function navigateLightbox(direction) {
+
+      currentImageIndex += direction;
+
+      if (currentImageIndex < 0) currentImageIndex = images.length - 1;
+
+      if (currentImageIndex >= images.length) currentImageIndex = 0;
+
+
+
+      const lightboxImg = document.getElementById('lightbox-img');
+
+      const counter = document.getElementById('lightbox-counter');
+
+      lightboxImg.src = images[currentImageIndex].src;
+
+      counter.textContent = `${currentImageIndex + 1} / ${images.length}`;
+
+    }
+
+
+
+    document.addEventListener('keydown', function(e) {
+
+      const lightbox = document.getElementById('lightbox');
+
+      if (!lightbox.classList.contains('active')) return;
+
+
+
+      if (e.key === 'Escape') closeLightbox();
+
+      if (e.key === 'ArrowLeft') navigateLightbox(-1);
+
+      if (e.key === 'ArrowRight') navigateLightbox(1);
+
+    });
+
+
+
+    document.getElementById('lightbox').addEventListener('click', function(e) {
+
+      if (e.target === this) closeLightbox();
+
+    });
+
+  </script>
+
+
+
+
+
+
+
+
+
+<script src="/assets/portfolio-glossary.js?v=20260831-2" defer=""></script><script src="/assets/legacy-unified.js?v=20261028-8c422e514f" defer=""></script></body></html>

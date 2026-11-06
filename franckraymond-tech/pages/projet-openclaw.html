@@ -1,0 +1,785 @@
+<!DOCTYPE html><html lang="fr"><head>
+
+  <meta charset="UTF-8">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta name="description" content="Installation OpenClaw sur Rocky Linux - Portfolio BTS SIO SISR">
+
+  <title>Installation OpenClaw sur Rocky Linux | Portfolio</title>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&amp;family=Outfit:wght@300;400;500;600;700;800;900&amp;family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="../style.css">
+
+  <style>
+        /* Tooltips termes techniques */
+        .term {
+            border-bottom: 1px dashed var(--primary);
+            cursor: help;
+            position: relative;
+            display: inline;
+        }
+        .term::after {
+            content: attr(data-def);
+            position: absolute;
+            bottom: calc(100% + 8px);
+            left: 50%;
+            transform: translateX(-50%);
+            background: #1e293b;
+            color: #f8fafc;
+            font-size: 0.78rem;
+            line-height: 1.5;
+            padding: 0.6rem 0.9rem;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            white-space: normal;
+            width: 220px;
+            text-align: left;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.2s;
+            z-index: 100;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+        }
+        .term:hover::after { opacity: 1; }
+  </style>
+<meta name="theme-color" content="#111214"><link rel="stylesheet" href="/assets/legacy-unified.css?v=20260831-2"><meta name="author" content="Franck Raymond"><meta name="robots" content="index,follow,max-image-preview:large"><meta property="og:type" content="website"><meta property="og:site_name" content="Portfolio de Franck Raymond"><meta property="og:title" content="Installation OpenClaw sur Rocky Linux | Portfolio"><meta property="og:description" content="Installation OpenClaw sur Rocky Linux - Portfolio BTS SIO SISR"><meta property="og:url" content="https://franckraymond.tech/pages/projet-openclaw.html"><meta property="og:image" content="https://franckraymond.tech/franck.webp"><meta property="og:image:alt" content="Portrait professionnel de Franck Raymond"><meta property="og:locale" content="fr_FR"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Installation OpenClaw sur Rocky Linux | Portfolio"><meta name="twitter:description" content="Installation OpenClaw sur Rocky Linux - Portfolio BTS SIO SISR"><meta name="twitter:image" content="https://franckraymond.tech/franck.webp"><link rel="canonical" href="https://franckraymond.tech/pages/projet-openclaw.html"><link rel="icon" href="/favicon-32x32.png" sizes="32x32" type="image/png"><link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180"><link rel="manifest" href="/site.webmanifest"><script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"Installation OpenClaw sur Rocky Linux | Portfolio","url":"https://franckraymond.tech/pages/projet-openclaw.html","description":"Installation OpenClaw sur Rocky Linux - Portfolio BTS SIO SISR","isPartOf":{"@type":"WebSite","name":"Portfolio de Franck Raymond","url":"https://franckraymond.tech/"},"about":{"@type":"Person","name":"Franck Raymond","url":"https://franckraymond.tech/"}}</script>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,400&amp;family=Geist:wght@400;500;600&amp;display=swap">
+<link rel="stylesheet" href="/assets/editorial-tokens.css?v=20261106-modern">
+<link rel="stylesheet" href="/assets/editorial.css?v=20261106-modern">
+<script src="/assets/editorial-theme.js?v=20261028-1fe0ee8c9d"></script>
+</head>
+
+<body data-theme="light" class="portfolio-legacy editorial-site">
+
+  <div class="bg-mesh"></div>
+
+  <div class="noise-overlay"></div>
+
+  <div class="grid-lines"></div>
+
+
+
+  <header class="main-header" id="header">
+
+    <nav class="nav-container" aria-label="Navigation principale">
+
+      <div class="nav-brand">
+
+        <a href="../index.html" class="brand-logo">
+
+          <span class="logo-bracket">&lt;</span>
+
+          <span class="logo-text">FR</span>
+
+          <span class="logo-bracket">/&gt;</span>
+
+        </a>
+
+      </div>
+
+      <div class="nav-menu" id="navMenu">
+
+        <a href="../index.html" class="nav-link">
+
+          <i class="fas fa-home"></i>
+
+          <span class="nav-text">Accueil</span>
+
+        </a>
+
+        <a href="/profil.html" class="nav-link">
+
+          <i class="fas fa-user"></i>
+
+          <span class="nav-text">Profil</span>
+
+        </a>
+
+        <a href="../index.html#skills" class="nav-link">
+
+          <i class="fas fa-code"></i>
+
+          <span class="nav-text">Compétences</span>
+
+        </a>
+
+        <a href="/projets.html" class="nav-link active">
+
+          <i class="fas fa-diagram-project"></i>
+
+          <span class="nav-text">Projets</span>
+
+        </a>
+
+        <a href="../index.html#experience" class="nav-link">
+
+          <i class="fas fa-briefcase"></i>
+
+          <span class="nav-text">Expériences</span>
+
+        </a>
+
+        <a href="/projets.html#veille" class="nav-link">
+
+          <i class="fas fa-newspaper"></i>
+
+          <span class="nav-text">Veille</span>
+
+        </a>
+
+        <a href="../index.html#contact" class="nav-link">
+
+          <i class="fas fa-envelope"></i>
+
+          <span class="nav-text">Contact</span>
+
+        </a>
+
+      
+<a class="nav-link" href="https://opengym.jsuisfray.blitz.cloud/"><span class="nav-text">Sport</span></a></div>
+
+      <div class="nav-controls">
+
+        <button class="theme-toggle" id="themeToggle" title="Changer le thème" aria-label="Basculer entre mode sombre et clair">
+
+          <i class="fas fa-moon"></i>
+
+        </button>
+
+        <button class="menu-toggle" id="menuToggle" aria-label="Ouvrir le menu mobile" aria-expanded="false">
+
+          <span></span><span></span><span></span>
+
+        </button>
+
+      </div>
+
+    </nav>
+
+  </header>
+
+
+
+  <main>
+
+    <section class="hero-section page-hero">
+
+      <div class="hero-glow"></div>
+
+      <div class="hero-glow-2"></div>
+
+      <div class="hero-container">
+
+        <div class="hero-content">
+
+          <div class="hero-greeting page-badge">IA &amp; Automatisation</div>
+
+          <h1 class="hero-name"><span class="name-gradient">Installation OpenClaw sur Rocky Linux</span></h1>
+
+          <p class="hero-description">
+
+            Déploiement d'un assistant IA personnel sur une <span class="term" data-def="Ordinateur simulé qui tourne à l'intérieur d'un vrai serveur physique.">VM</span> Rocky Linux avec configuration <span class="term" data-def="Protocole sécurisé pour se connecter à distance à un serveur, comme un accès à distance chiffré.">SSH</span> sans mot de passe et service systemd.
+
+          </p>
+
+          <div class="hero-buttons">
+
+            <a href="#objectifs" class="btn btn-primary"><i class="fas fa-bullseye"></i> Objectifs</a>
+
+            <a href="#resultats" class="btn btn-secondary"><i class="fas fa-image"></i> Captures</a>
+
+          </div>
+
+        </div>
+
+        <div class="hero-image-wrapper">
+
+          <div class="hero-image-container">
+
+            <div class="profile-image-frame">
+
+              <i class="fas fa-robot page-icon"></i>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+
+    <section id="contexte" class="section">
+
+      <div class="section-container">
+
+        <div class="section-header">
+
+          <span class="section-number">01</span>
+
+          <h2 class="section-title">Contexte <span class="title-gradient">du projet</span></h2>
+
+          <div class="section-line"></div>
+
+        </div>
+
+        <div class="about-content">
+
+          <div>
+
+            <p class="about-text">
+
+              OpenClaw est un assistant IA personnel open-source qui permet d'automatiser des tâches vià des canaux de communication
+
+              (WhatsApp, Telegram, etc.). L'objectif etait de déployer cette solution sur une <span class="term" data-def="Ordinateur simulé qui tourne à l'intérieur d'un vrai serveur physique.">VM</span> Rocky Linux 9.6
+
+              accessible via <span class="term" data-def="Protocole sécurisé pour se connecter à distance à un serveur, comme un accès à distance chiffré.">SSH</span>, avec une configuration sécurisée et un demarrage automatique.
+
+            </p>
+
+            <p class="about-text"><strong>Environnement :</strong> <span class="term" data-def="Ordinateur simulé qui tourne à l'intérieur d'un vrai serveur physique.">VM</span> Rocky Linux 9.6 (192.168.19.238), accès root via <span class="term" data-def="Protocole sécurisé pour se connecter à distance à un serveur, comme un accès à distance chiffré.">SSH</span>.</p>
+
+          </div>
+
+          <div>
+
+            <div class="skill-category">
+
+              <h3 class="category-title"><i class="fas fa-layer-group"></i> Technologies utilisées</h3>
+
+              <div class="timeline-tags">
+
+                <span class="tag">Rocky Linux 9.6</span>
+
+                <span class="tag"><span class="term" data-def="Protocole sécurisé pour se connecter à distance à un serveur, comme un accès à distance chiffré.">SSH</span></span>
+
+                <span class="tag">Node.js 22</span>
+
+                <span class="tag">npm</span>
+
+                <span class="tag">systemd</span>
+
+                <span class="tag">OpenClaw</span>
+
+              </div>
+
+            </div>
+
+            <div class="skill-category" style="margin-top: 1.5rem;">
+
+              <h3 class="category-title"><i class="fas fa-file-signature"></i> Livrables</h3>
+
+              <div class="timeline-tags">
+
+                <span class="tag"><span class="term" data-def="Ordinateur simulé qui tourne à l'intérieur d'un vrai serveur physique.">VM</span> configuree</span>
+
+                <span class="tag">Accès <span class="term" data-def="Protocole sécurisé pour se connecter à distance à un serveur, comme un accès à distance chiffré.">SSH</span> sans mot de passe</span>
+
+                <span class="tag">Service OpenClaw actif</span>
+
+                <span class="tag">Documentation</span>
+
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+
+    <section id="objectifs" class="section" style="background: var(--bg-card-solid);">
+
+      <div class="section-container">
+
+        <div class="section-header">
+
+          <span class="section-number">02</span>
+
+          <h2 class="section-title">Objectifs <span class="title-gradient">du projet</span></h2>
+
+          <div class="section-line"></div>
+
+        </div>
+
+        <div class="timeline-achievements">
+
+          <div class="achievement-item"><i class="fas fa-check-circle"></i><span>Configurer l'accès <span class="term" data-def="Protocole sécurisé pour se connecter à distance à un serveur, comme un accès à distance chiffré.">SSH</span> par clé (sans mot de passe).</span></div>
+
+          <div class="achievement-item"><i class="fas fa-check-circle"></i><span>Installer Node.js 22 et les outils de build nécessaires.</span></div>
+
+          <div class="achievement-item"><i class="fas fa-check-circle"></i><span>Déployer OpenClaw via npm.</span></div>
+
+          <div class="achievement-item"><i class="fas fa-check-circle"></i><span>Configurer le service systemd pour un demarrage automatique.</span></div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+
+    <section id="etapes" class="section">
+
+      <div class="section-container">
+
+        <div class="section-header">
+
+          <span class="section-number">03</span>
+
+          <h2 class="section-title">étapes <span class="title-gradient">d'implémentation</span></h2>
+
+          <div class="section-line"></div>
+
+        </div>
+
+
+
+        <div class="about-content" style="flex-direction: column; gap: 2rem;">
+
+
+
+          <!-- Etape 1: SSH -->
+
+          <div class="skill-category">
+
+            <h3 class="category-title"><i class="fas fa-key"></i> étape 1 : Configuration <span class="term" data-def="Protocole sécurisé pour se connecter à distance à un serveur, comme un accès à distance chiffré.">SSH</span> sans mot de passe</h3>
+
+            <p class="about-text">Copie de la clé publique <span class="term" data-def="Protocole sécurisé pour se connecter à distance à un serveur, comme un accès à distance chiffré.">SSH</span> vers le serveur pour eviter la saisie du mot de passe a chaque connexion.</p>
+
+            <pre class="code-block"><code># Verification de la cle existante
+
+cat ~/.ssh/id_rsa.pub
+
+
+
+# Copie de la cle sur le serveur Rocky
+
+ssh root@192.168.19.238 "mkdir -p ~/.ssh &amp;&amp; chmod 700 ~/.ssh"
+
+ssh root@192.168.19.238 "echo 'VOTRE_CLE_PUBLIQUE' &gt;&gt; ~/.ssh/authorized_keys"
+
+ssh root@192.168.19.238 "chmod 600 ~/.ssh/authorized_keys"
+
+
+
+# Test de connexion sans mot de passe
+
+ssh root@192.168.19.238 "echo 'Connexion OK'"</code></pre>
+
+          </div>
+
+
+
+          <!-- Etape 2: Prerequisites -->
+
+          <div class="skill-category">
+
+            <h3 class="category-title"><i class="fas fa-download"></i> étape 2 : Installation des prerequis</h3>
+
+            <p class="about-text">Installation de curl, Node.js 22 via NodeSource, <span class="term" data-def="Outil qui enregistre l'historique des modifications d'un projet — permet de revenir en arrière ou de travailler à plusieurs.">Git</span> et les outils de compilation.</p>
+
+            <pre class="code-block"><code># Installation de curl
+
+dnf install -y curl
+
+
+
+# Installation de Node.js 22 (via le script officiel OpenClaw)
+
+curl -fsSL https://openclaw.ai/install.sh | bash
+
+
+
+# Ou manuellement via NodeSource :
+
+curl -fsSL https://rpm.nodesource.com/setup_22.x | bash -
+
+dnf install -y nodejs
+
+
+
+# Installation des outils de build (requis pour node-llama-cpp)
+
+dnf groupinstall -y 'Development Tools'
+
+dnf install -y cmake git</code></pre>
+
+          </div>
+
+
+
+          <!-- Etape 3: Installation OpenClaw -->
+
+          <div class="skill-category">
+
+            <h3 class="category-title"><i class="fas fa-robot"></i> étape 3 : Installation d'OpenClaw</h3>
+
+            <p class="about-text">Installation globale d'OpenClaw via npm.</p>
+
+            <pre class="code-block"><code># Installation d'OpenClaw
+
+npm install -g openclaw@latest
+
+
+
+# Verification de l'installation
+
+openclaw --version
+
+# Resultat: 2026.2.6-3
+
+
+
+which openclaw
+
+# Resultat: /usr/bin/openclaw</code></pre>
+
+          </div>
+
+
+
+          <!-- Etape 4: Service systemd -->
+
+          <div class="skill-category">
+
+            <h3 class="category-title"><i class="fas fa-cogs"></i> étape 4 : Configuration du service systemd</h3>
+
+            <p class="about-text">Installation du service Gateway pour un fonctionnement en arrière-plan avec demarrage automatique.</p>
+
+            <pre class="code-block"><code># Installation du service systemd
+
+openclaw gateway install --force
+
+
+
+# Activation du linger pour les services utilisateur
+
+loginctl enable-linger root
+
+
+
+# Activation et demarrage du service
+
+systemctl --user enable openclaw-gateway
+
+systemctl --user start openclaw-gateway
+
+
+
+# Verification du statut
+
+systemctl --user status openclaw-gateway</code></pre>
+
+          </div>
+
+
+
+          <!-- Etape 5: Configuration -->
+
+          <div class="skill-category">
+
+            <h3 class="category-title"><i class="fas fa-sliders-h"></i> étape 5 : Configuration d'OpenClaw</h3>
+
+            <p class="about-text">Lancement de l'assistant de configuration interactif pour configurer les credentials et canaux.</p>
+
+            <pre class="code-block"><code># Lancer la configuration interactive
+
+openclaw configure
+
+
+
+# Ou configurer section par section :
+
+openclaw configure --section model      # Configuration du modele IA
+
+openclaw configure --section gateway    # Configuration du gateway
+
+openclaw configure --section channels   # Configuration des canaux (WhatsApp, Telegram...)
+
+
+
+# Diagnostics
+
+openclaw doctor
+
+
+
+# Voir les logs en temps reel
+
+openclaw logs --follow</code></pre>
+
+          </div>
+
+
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+
+    <section id="configuration" class="section" style="background: var(--bg-card-solid);">
+
+      <div class="section-container">
+
+        <div class="section-header">
+
+          <span class="section-number">04</span>
+
+          <h2 class="section-title">Guide de <span class="title-gradient">configuration</span></h2>
+
+          <div class="section-line"></div>
+
+        </div>
+
+        <div class="about-content" style="flex-direction: column; gap: 1.5rem;">
+
+          <p class="about-text">
+
+            Pour configurer OpenClaw, connectez-vous en <span class="term" data-def="Protocole sécurisé pour se connecter à distance à un serveur, comme un accès à distance chiffré.">SSH</span> au serveur et lancez <code>openclaw configure</code>.
+
+            L'assistant interactif vous guidera a travers les étapes suivantes :
+
+          </p>
+
+          <div class="timeline-achievements">
+
+            <div class="achievement-item"><i class="fas fa-server"></i><span><strong>Gateway Location</strong> : Choisir "Local (this machine)" pour executer sur le serveur.</span></div>
+
+            <div class="achievement-item"><i class="fas fa-brain"></i><span><strong>Model Configuration</strong> : Configurer la clé <span class="term" data-def="Interface qui permet à des programmes de communiquer entre eux — ici, pour envoyer des requêtes à un service depuis du code.">API</span> (OpenAI, Anthropic, ou modèle local).</span></div>
+
+            <div class="achievement-item"><i class="fas fa-comments"></i><span><strong>Channels</strong> : Connecter WhatsApp Web, Telegram Bot, ou autres canaux.</span></div>
+
+            <div class="achievement-item"><i class="fas fa-folder"></i><span><strong>Workspace</strong> : Définir le repertoire de travail de l'agent.</span></div>
+
+            <div class="achievement-item"><i class="fas fa-puzzle-piece"></i><span><strong>Skills</strong> : Activer les compétences (calendrier, rappels, recherche web...).</span></div>
+
+          </div>
+
+          <div class="skill-category">
+
+            <h3 class="category-title"><i class="fas fa-terminal"></i> Commandes utiles</h3>
+
+            <pre class="code-block"><code># Verifier l'etat du service
+
+systemctl --user status openclaw-gateway
+
+
+
+# Redemarrer le service
+
+systemctl --user restart openclaw-gateway
+
+
+
+# Voir les logs
+
+openclaw logs --follow
+
+
+
+# Diagnostics complets
+
+openclaw doctor
+
+
+
+# Ouvrir le dashboard (via tunnel SSH)
+
+# Depuis votre machine locale :
+
+ssh -L 18789:localhost:18789 root@192.168.19.238
+
+# Puis ouvrir http://localhost:18789 dans votre navigateur</code></pre>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+
+    <section id="difficultes" class="section">
+
+      <div class="section-container">
+
+        <div class="section-header">
+
+          <span class="section-number">05</span>
+
+          <h2 class="section-title">Difficultés <span class="title-gradient">rencontrees</span></h2>
+
+          <div class="section-line"></div>
+
+        </div>
+
+        <div class="timeline-achievements">
+
+          <div class="achievement-item"><i class="fas fa-exclamation-triangle"></i><span>Echec de l'installation npm : outils de build manquants (cmake, make).</span></div>
+
+          <div class="achievement-item"><i class="fas fa-exclamation-triangle"></i><span>Compilation de node-llama-cpp necessitant les Development Tools.</span></div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+
+    <section id="solutions" class="section" style="background: var(--bg-card-solid);">
+
+      <div class="section-container">
+
+        <div class="section-header">
+
+          <span class="section-number">06</span>
+
+          <h2 class="section-title">Solutions <span class="title-gradient">appliquees</span></h2>
+
+          <div class="section-line"></div>
+
+        </div>
+
+        <div class="timeline-achievements">
+
+          <div class="achievement-item"><i class="fas fa-lightbulb"></i><span>Installation du groupe 'Development Tools' et cmake avant npm install.</span></div>
+
+          <div class="achievement-item"><i class="fas fa-lightbulb"></i><span>Nettoyage du cache npm et reinstallation propre.</span></div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+
+    <section id="resultats" class="section">
+
+      <div class="section-container">
+
+        <div class="section-header">
+
+          <span class="section-number">07</span>
+
+          <h2 class="section-title">Resultats <span class="title-gradient">et captures</span></h2>
+
+          <div class="section-line"></div>
+
+        </div>
+
+        <p class="about-text">Les captures et documents de cette section ne sont pas encore publiés.</p>
+
+        
+
+        <p class="about-text" style="margin-top: 2rem;">
+
+          <strong>Statut final du service :</strong>
+
+        </p>
+
+        <pre class="code-block"><code>● openclaw-gateway.service - OpenClaw Gateway (v2026.2.6-3)
+
+     Loaded: loaded (/root/.config/systemd/user/openclaw-gateway.service; enabled)
+
+     Active: active (running)
+
+   Main PID: 45944 (node)
+
+     CGroup: /user.slice/user-0.slice/user@0.service/app.slice/openclaw-gateway.service
+
+             └─45944 /usr/bin/node /usr/lib/node_modules/openclaw/dist/index.js gateway --port 18789</code></pre>
+
+        <div class="section-footer">
+
+          <a href="../index.html#projets" class="btn-more"><i class="fas fa-arrow-left"></i> Retour aux projets</a>
+
+        </div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+
+
+  <footer class="main-footer" role="contentinfo">
+
+    <div class="footer-container">
+
+      <div class="footer-content">
+
+        <p class="footer-text">2026 <span class="footer-copyright">Franck Raymond</span> - Tous droits réservés.</p>
+
+      </div>
+
+    </div>
+
+  </footer>
+
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+
+  <script src="../script.js?v=20261028-b753f7964f"></script>
+
+  <style>
+
+    .code-block {
+
+      background: #1e293b;
+
+      border: 1px solid rgba(99, 102, 241, 0.3);
+
+      border-radius: 8px;
+
+      padding: 1rem 1.25rem;
+
+      overflow-x: auto;
+
+      font-family: 'JetBrains Mono', monospace;
+
+      font-size: 0.85rem;
+
+      line-height: 1.6;
+
+      margin: 1rem 0;
+
+    }
+
+    .code-block code {
+
+      color: #e2e8f0;
+
+      white-space: pre;
+
+    }
+
+  </style>
+
+
+
+
+
+<script src="/assets/portfolio-glossary.js?v=20260831-2" defer=""></script><script src="/assets/legacy-unified.js?v=20261028-8c422e514f" defer=""></script></body></html>

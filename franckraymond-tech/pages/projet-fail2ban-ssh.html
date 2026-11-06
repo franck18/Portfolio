@@ -1,0 +1,272 @@
+<!DOCTYPE html><html lang="fr" dir="ltr" data-theme="light"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Simulation contrôlée d&amp;#39;une attaque par dictionnaire puis durcissement d&amp;#39;OpenSSH sur Rocky Linux 9 avec Fail2Ban, FirewallD et SELinux.">
+  <meta name="author" content="Franck Raymond">
+  <meta name="robots" content="index,follow,max-image-preview:large">
+  <meta name="theme-color" content="#111214">
+  <title>Durcissement SSH avec Fail2Ban | Portfolio Franck Raymond</title>
+  <link rel="canonical" href="https://franckraymond.tech/pages/projet-fail2ban-ssh.html">
+  <link rel="alternate" hreflang="fr" href="https://franckraymond.tech/pages/projet-fail2ban-ssh.html">
+  <link rel="alternate" hreflang="en" href="https://franckraymond.tech/en/pages/projet-fail2ban-ssh.html">
+  <link rel="alternate" hreflang="x-default" href="https://franckraymond.tech/pages/projet-fail2ban-ssh.html">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Portfolio de Franck Raymond">
+  <meta property="og:title" content="Durcissement SSH avec Fail2Ban | Portfolio Franck Raymond">
+  <meta property="og:description" content="Simulation contrôlée d&amp;#39;une attaque par dictionnaire puis durcissement d&amp;#39;OpenSSH sur Rocky Linux 9 avec Fail2Ban, FirewallD et SELinux.">
+  <meta property="og:url" content="https://franckraymond.tech/pages/projet-fail2ban-ssh.html">
+  <meta property="og:image" content="https://franckraymond.tech/franck.webp">
+  <meta property="og:image:alt" content="Portrait professionnel de Franck Raymond">
+  <meta property="og:image:width" content="1024">
+  <meta property="og:image:height" content="1024">
+  <meta property="og:locale" content="fr_FR">
+  <meta property="og:locale:alternate" content="en_GB">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Durcissement SSH avec Fail2Ban | Portfolio Franck Raymond">
+  <meta name="twitter:description" content="Simulation contrôlée d&amp;#39;une attaque par dictionnaire puis durcissement d&amp;#39;OpenSSH sur Rocky Linux 9 avec Fail2Ban, FirewallD et SELinux.">
+  <meta name="twitter:image" content="https://franckraymond.tech/franck.webp">
+  <meta name="twitter:image:alt" content="Portrait professionnel de Franck Raymond">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Person",
+        "@id": "https://franckraymond.tech/#person",
+        "name": "Franck Raymond",
+        "url": "https://franckraymond.tech/",
+        "image": "https://franckraymond.tech/franck.webp",
+        "jobTitle": "Administrateur systèmes et réseaux",
+        "description": "Administrateur systèmes et réseaux chez Delannoy Dewailly, en alternance d’un an dans le cadre du Bachelor ASRBD à l’EPSI Lille.",
+        "email": "mailto:franckrmnd@gmail.com",
+        "sameAs": ["https://www.linkedin.com/in/franck-r-21a8a4184", "https://github.com/franckraymond"],
+        "knowsAbout": ["Administration systèmes", "Réseaux informatiques", "Cybersécurité", "Supervision", "Linux", "Windows Server"]
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://franckraymond.tech/#website",
+        "url": "https://franckraymond.tech/",
+        "name": "Portfolio de Franck Raymond",
+        "inLanguage": ["fr-FR", "en-GB"],
+        "publisher": { "@id": "https://franckraymond.tech/#person" }
+      },
+      {
+        "@type": "WebPage",
+        "@id": "https://franckraymond.tech/pages/projet-fail2ban-ssh.html#webpage",
+        "url": "https://franckraymond.tech/pages/projet-fail2ban-ssh.html",
+        "name": "Durcissement SSH avec Fail2Ban | Portfolio Franck Raymond",
+        "description": "Simulation contrôlée d&#39;une attaque par dictionnaire puis durcissement d&#39;OpenSSH sur Rocky Linux 9 avec Fail2Ban, FirewallD et SELinux.",
+        "isPartOf": { "@id": "https://franckraymond.tech/#website" },
+        "about": { "@id": "https://franckraymond.tech/#person" }
+      }
+    ]
+  }
+  </script>
+  <link rel="stylesheet" href="../tailwind-output.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&amp;family=Outfit:wght@400;500;600;700;800&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../style.css">
+  <link rel="stylesheet" href="../assets/portfolio-v2.css?v=20260831-2">
+  
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,400&amp;family=Geist:wght@400;500;600&amp;display=swap">
+<link rel="stylesheet" href="/assets/editorial-tokens.css?v=20261106-modern">
+<link rel="stylesheet" href="/assets/editorial.css?v=20261106-modern">
+<script src="/assets/editorial-theme.js?v=20261028-1fe0ee8c9d"></script>
+</head>
+<body data-theme="light" class="portfolio-v2 editorial-site">
+  
+  <a class="skip-link" href="#main-content">Aller au contenu principal</a>
+  <div class="bg-mesh" aria-hidden="true"></div>
+  <div class="noise-overlay" aria-hidden="true"></div>
+  <div class="grid-lines" aria-hidden="true"></div>
+
+  <header class="main-header" id="header">
+    <nav class="nav-container" aria-label="Navigation principale">
+      <a href="/index.html" class="brand-logo" aria-label="Accueil — Franck Raymond">
+        <span class="logo-bracket" aria-hidden="true">&lt;</span>
+        <span class="logo-text">FR</span>
+        <span class="logo-bracket" aria-hidden="true">/&gt;</span>
+      </a>
+      <div class="nav-menu" id="navMenu">
+        <a href="/index.html" class="nav-link"><i class="fas fa-home" aria-hidden="true"></i><span class="nav-text">Accueil</span></a>
+        <a href="/projets.html" class="nav-link"><i class="fas fa-diagram-project" aria-hidden="true"></i><span class="nav-text">Projets</span></a>
+        <a href="/index.html#skills" class="nav-link"><i class="fas fa-code" aria-hidden="true"></i><span class="nav-text">Compétences</span></a>
+        <a href="/index.html#experience" class="nav-link"><i class="fas fa-briefcase" aria-hidden="true"></i><span class="nav-text">Expériences</span></a>
+        <a href="/index.html#contact" class="nav-link"><i class="fas fa-envelope" aria-hidden="true"></i><span class="nav-text">Contact</span></a>
+      
+<a class="nav-link" href="https://opengym.jsuisfray.blitz.cloud/"><span class="nav-text">Sport</span></a></div>
+      <div class="nav-controls">
+        <div class="language-switcher">
+          <button class="language-toggle" id="languageToggle" type="button" aria-label="Choisir la langue" aria-controls="languageMenu" aria-expanded="false" data-open-label="Choisir la langue" data-close-label="Fermer le choix de langue">
+            <i class="fas fa-globe" aria-hidden="true"></i><span>FR</span>
+          </button>
+          <div class="language-menu" id="languageMenu" aria-label="Choix de la langue" hidden="">
+            <a href="/pages/projet-fail2ban-ssh.html" lang="fr" hreflang="fr" data-language="fr" aria-current="page">FR <span>Français</span></a>
+            <a href="/en/pages/projet-fail2ban-ssh.html" lang="en" hreflang="en" data-language="en">EN <span>English</span></a>
+          </div>
+        </div>
+        <button class="theme-toggle" id="themeToggle" type="button" aria-label="Activer le thème clair" data-light-label="Activer le thème clair" data-dark-label="Activer le thème sombre">
+          <i class="fas fa-sun" aria-hidden="true"></i>
+        </button>
+        <button class="menu-toggle" id="menuToggle" type="button" aria-label="Ouvrir le menu" aria-controls="navMenu" aria-expanded="false" data-open-label="Ouvrir le menu" data-close-label="Fermer le menu">
+          <span aria-hidden="true"></span><span aria-hidden="true"></span><span aria-hidden="true"></span>
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <main id="main-content">
+    
+<article class="case-study">
+  <header class="case-hero">
+    <div class="case-container case-hero-grid">
+      <div>
+        <p class="case-kicker"><i class="fas fa-shield-halved" aria-hidden="true"></i>Cybersécurité défensive</p>
+        <h1>Durcissement SSH avec Fail2Ban</h1>
+        <p class="case-lead">Dans un réseau VMware isolé, une attaque SSH par dictionnaire est reproduite avec Hydra, puis contenue par le durcissement d'OpenSSH et une jail Fail2Ban personnalisée.</p>
+        <div class="case-tags" aria-label="Outils et technologies utilisés">
+          <span>Rocky Linux 9</span><span>OpenSSH</span><span>Fail2Ban</span><span>Hydra</span><span>FirewallD</span><span>SELinux</span>
+        </div>
+      </div>
+      <dl class="case-facts" aria-label="Informations principales">
+        
+        <div><dt>Cible</dt><dd>VM-DEFENSE — 192.168.88.139</dd></div>
+        
+        <div><dt>Poste de test</dt><dd>VM-ATTAQUE — 192.168.88.138</dd></div>
+        
+        <div><dt>Réseau</dt><dd>VMware NAT isolé — 192.168.88.0/24</dd></div>
+        
+        <div><dt>Contrôles</dt><dd>Clés SSH, Fail2Ban, FirewallD, SELinux</dd></div>
+        
+      </dl>
+    </div>
+  </header>
+
+  <nav class="case-nav" aria-label="Sommaire du projet">
+    <div class="case-container">
+      <a href="#analyse">Besoin</a>
+      <a href="#architecture">Solution</a>
+      <a href="#realisation">Réalisation</a>
+      <a href="#validation">Vérification</a>
+      <a href="#recul">Améliorations</a>
+      <a href="#preuves">Preuves</a>
+    </div>
+  </nav>
+
+  <section class="case-band" id="analyse">
+    <div class="case-container">
+      <div class="case-section-heading"><span>01</span><div><p>Avant de commencer</p><h2>Le besoin et mon rôle</h2></div></div>
+      <div class="case-two-columns">
+        <div class="case-copy"><h3>Le besoin</h3><p>Observer les traces d'une attaque SSH par dictionnaire dans un environnement autorisé, puis réduire la surface d'attaque et bloquer automatiquement une source répétant les échecs d'authentification.</p></div>
+        <div class="case-copy"><h3>Mon rôle</h3><p>Création du laboratoire isolé, exécution du scénario Hydra avec des comptes de test, durcissement du service SSH, configuration de FirewallD et SELinux, création de la jail Fail2Ban et collecte des traces de validation.</p></div>
+      </div>
+      <div class="case-list-grid">
+        <div class="case-list-item"><i class="fas fa-diamond" aria-hidden="true"></i><span>Limiter toute attaque au réseau de laboratoire et à des identifiants de test.</span></div><div class="case-list-item"><i class="fas fa-diamond" aria-hidden="true"></i><span>Conserver l'accès administrateur par clé avant de désactiver les mots de passe.</span></div><div class="case-list-item"><i class="fas fa-diamond" aria-hidden="true"></i><span>Adapter SELinux et FirewallD au port SSH 15000.</span></div><div class="case-list-item"><i class="fas fa-diamond" aria-hidden="true"></i><span>Distinguer le ralentissement des attaques de la suppression du risque d'authentification faible.</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="case-band case-band-alt" id="architecture">
+    <div class="case-container">
+      <div class="case-section-heading"><span>02</span><div><p>Pourquoi cette méthode</p><h2>La solution choisie</h2></div></div>
+      <div class="case-decision">
+        <h3>Défense en profondeur autour d'OpenSSH</h3>
+        <p>Fail2Ban répond au besoin de détecter des échecs répétés dans les journaux et de bannir temporairement la source. Il complète, sans les remplacer, l'authentification par clé, l'interdiction de root, la désactivation des mots de passe et le filtrage réseau. Le changement de port réduit surtout le bruit des scans automatisés ; il n'est pas considéré comme un contrôle de sécurité principal.</p>
+      </div>
+      <div class="case-list-grid case-list-grid-wide">
+        <div class="case-list-item"><i class="fas fa-arrow-right" aria-hidden="true"></i><span>VM-ATTAQUE utilise Hydra uniquement contre la cible autorisée du réseau isolé.</span></div><div class="case-list-item"><i class="fas fa-arrow-right" aria-hidden="true"></i><span>VM-DEFENSE héberge OpenSSH sur Rocky Linux 9.</span></div><div class="case-list-item"><i class="fas fa-arrow-right" aria-hidden="true"></i><span>sshd journalise les échecs d'authentification exploités par Fail2Ban.</span></div><div class="case-list-item"><i class="fas fa-arrow-right" aria-hidden="true"></i><span>Une jail personnalisée applique un bannissement après répétition des échecs.</span></div><div class="case-list-item"><i class="fas fa-arrow-right" aria-hidden="true"></i><span>FirewallD autorise le port SSH retenu et bloque les sources bannies.</span></div><div class="case-list-item"><i class="fas fa-arrow-right" aria-hidden="true"></i><span>SELinux associe le port 15000 au type attendu par SSH.</span></div>
+      </div>
+      
+    </div>
+  </section>
+
+  <section class="case-band" id="realisation">
+    <div class="case-container">
+      <div class="case-section-heading"><span>03</span><div><p>Passer du plan à la pratique</p><h2>Ce que j’ai réalisé</h2></div></div>
+      <ol class="case-steps">
+        <li><span>01</span><p>Création des deux machines virtuelles dans le réseau NAT isolé 192.168.88.0/24.</p></li><li><span>02</span><p>Exécution d'un test Hydra avec des listes et comptes réservés au laboratoire.</p></li><li><span>03</span><p>Déplacement de SSH du port 22 au port 15000 et adaptation de SELinux et FirewallD.</p></li><li><span>04</span><p>Activation des clés SSH, interdiction de la connexion root et désactivation de l'authentification par mot de passe.</p></li><li><span>05</span><p>Installation de Fail2Ban et création d'une jail ciblant les échecs OpenSSH.</p></li><li><span>06</span><p>Répétition du scénario, contrôle du bannissement, collecte des journaux puis test de débanissement.</p></li>
+      </ol>
+      <p class="case-technical-link"><a href="dossier-technique-projet-fail2ban-ssh.html"><i class="fas fa-terminal" aria-hidden="true"></i>Consulter le dossier technique complet</a></p>
+    </div>
+  </section>
+
+  <section class="case-band case-band-alt" id="validation">
+    <div class="case-container">
+      <div class="case-section-heading"><span>04</span><div><p>Contrôler le fonctionnement</p><h2>Comment j’ai vérifié</h2></div></div>
+      <div class="case-two-columns">
+        <div><h3>Tests réalisés</h3><ul class="case-check-list"><li><i class="fas fa-check" aria-hidden="true"></i>Contrôle de la configuration effective de sshd avant redémarrage.</li><li><i class="fas fa-check" aria-hidden="true"></i>Connexion réussie par clé sur le port 15000 depuis une source autorisée.</li><li><i class="fas fa-check" aria-hidden="true"></i>Vérification des règles FirewallD et de l'étiquetage du port par SELinux.</li><li><i class="fas fa-check" aria-hidden="true"></i>Génération d'échecs répétés puis contrôle du bannissement Fail2Ban.</li><li><i class="fas fa-check" aria-hidden="true"></i>Contrôle du refus de connexion depuis l'adresse bannie et lecture des journaux associés.</li></ul></div>
+        <div><h3>Résultats observés</h3><ul class="case-check-list case-results"><li><i class="fas fa-circle-check" aria-hidden="true"></i>L'adresse de la machine de test est détectée puis bannie après les échecs répétés.</li><li><i class="fas fa-circle-check" aria-hidden="true"></i>La connexion depuis la source bannie est refusée pendant le test.</li><li><i class="fas fa-circle-check" aria-hidden="true"></i>L'accès par clé reste opérationnel sur le port 15000.</li><li><i class="fas fa-circle-check" aria-hidden="true"></i>Les connexions root et l'authentification SSH par mot de passe sont désactivées.</li><li><i class="fas fa-circle-check" aria-hidden="true"></i>Les journaux fournissent des traces techniques exploitables du scénario.</li></ul></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="case-band" id="recul">
+    <div class="case-container">
+      <div class="case-section-heading"><span>05</span><div><p>Prendre du recul</p><h2>Limites et améliorations</h2></div></div>
+      <div class="case-two-columns">
+        <div><h3>Sécurité et utilisation</h3><ul class="case-check-list"><li><i class="fas fa-shield-halved" aria-hidden="true"></i>Le test offensif reste strictement limité à un réseau, une cible et des identifiants autorisés.</li><li><i class="fas fa-shield-halved" aria-hidden="true"></i>L'authentification par clé et l'interdiction de root portent l'essentiel du durcissement SSH.</li><li><i class="fas fa-shield-halved" aria-hidden="true"></i>Fail2Ban ralentit les tentatives répétées mais ne corrige pas des identifiants faibles ni une clé compromise.</li><li><i class="fas fa-shield-halved" aria-hidden="true"></i>SELinux demeure actif et le port non standard est déclaré avec le type approprié.</li></ul></div>
+        <div><h3>Ce que j’améliorerais</h3><ul class="case-check-list case-limitations"><li><i class="fas fa-triangle-exclamation" aria-hidden="true"></i>Le laboratoire ne mesure pas encore le taux de faux positifs, la durée optimale de bannissement ou la charge du service.</li><li><i class="fas fa-triangle-exclamation" aria-hidden="true"></i>Le blocage par adresse IP est moins efficace face à une attaque distribuée ou à des adresses changeantes.</li><li><i class="fas fa-triangle-exclamation" aria-hidden="true"></i>MFA, bastion, VPN et centralisation SIEM ne font pas partie du périmètre testé.</li><li><i class="fas fa-triangle-exclamation" aria-hidden="true"></i>Les traces collectées ne constituent pas à elles seules une investigation forensique complète.</li></ul></div>
+      </div>
+    </div>
+  </section>
+
+  
+  <section class="case-band case-band-alt" id="preuves">
+    <div class="case-container">
+      <div class="case-section-heading"><span>06</span><div><p>Éléments visibles</p><h2>Preuves du fonctionnement</h2></div></div>
+      <div class="case-gallery">
+        
+        <figure><button type="button" data-lightbox-src="projet-fail2ban-ssh_assets/capture_8.png" data-lightbox-alt="Journal Fail2Ban indiquant le bannissement de la machine de test"><img src="projet-fail2ban-ssh_assets/capture_8.png" alt="Journal Fail2Ban indiquant le bannissement de la machine de test" loading="lazy"></button><figcaption>Détection et bannissement de l'adresse source.</figcaption></figure>
+        
+        <figure><button type="button" data-lightbox-src="projet-fail2ban-ssh_assets/capture_7.png" data-lightbox-alt="Connexion SSH refusée depuis la source bannie"><img src="projet-fail2ban-ssh_assets/capture_7.png" alt="Connexion SSH refusée depuis la source bannie" loading="lazy"></button><figcaption>Effet du bannissement observé depuis la machine de test.</figcaption></figure>
+        
+        <figure><button type="button" data-lightbox-src="projet-fail2ban-ssh_assets/capture_6.png" data-lightbox-alt="Configuration de durcissement du serveur OpenSSH"><img src="projet-fail2ban-ssh_assets/capture_6.png" alt="Configuration de durcissement du serveur OpenSSH" loading="lazy"></button><figcaption>Paramètres SSH retenus pour le laboratoire.</figcaption></figure>
+        
+        <figure><button type="button" data-lightbox-src="projet-fail2ban-ssh_assets/capture_10.png" data-lightbox-alt="Journaux techniques du scénario SSH"><img src="projet-fail2ban-ssh_assets/capture_10.png" alt="Journaux techniques du scénario SSH" loading="lazy"></button><figcaption>Traces d'authentification et de réponse défensive.</figcaption></figure>
+        
+        <figure><button type="button" data-lightbox-src="projet-fail2ban-ssh_assets/capture_9.png" data-lightbox-alt="Commande de débanissement Fail2Ban"><img src="projet-fail2ban-ssh_assets/capture_9.png" alt="Commande de débanissement Fail2Ban" loading="lazy"></button><figcaption>Retour à l'état initial après validation.</figcaption></figure>
+        
+      </div>
+    </div>
+  </section>
+  
+
+  <section class="case-band case-sources">
+    <div class="case-container case-two-columns">
+      <div><h2>Compétences démontrées</h2><ul class="case-compact-list"><li>Construire un laboratoire d'attaque autorisé et isolé.</li><li>Durcir OpenSSH sur Rocky Linux avec clés, FirewallD et SELinux.</li><li>Configurer et diagnostiquer une jail Fail2Ban.</li><li>Collecter des preuves sans surévaluer leur portée.</li></ul></div>
+      <div><h2>Sources utilisées</h2><ul class="case-compact-list"><li><a href="https://github.com/fail2ban/fail2ban" target="_blank" rel="noopener noreferrer">Fail2Ban — Projet officiel</a></li><li><a href="https://github.com/fail2ban/fail2ban/blob/master/config/jail.conf" target="_blank" rel="noopener noreferrer">Fail2Ban — Configuration des jails</a></li><li><a href="https://man.openbsd.org/sshd_config" target="_blank" rel="noopener noreferrer">OpenSSH — Manuel sshd_config</a></li></ul></div>
+    </div>
+  </section>
+</article>
+
+<dialog class="case-lightbox" id="caseLightbox" aria-label="Agrandissement de la preuve">
+  <button type="button" data-lightbox-close="" aria-label="Fermer l’image"><i class="fas fa-xmark" aria-hidden="true"></i></button>
+  <img src="" alt="">
+</dialog>
+
+  </main>
+
+  <footer class="main-footer">
+    <div class="footer-container">
+      <div class="footer-content">
+        <p class="footer-text">© 2026 <span class="footer-copyright">Franck Raymond</span>. Tous droits réservés.</p>
+        <div class="footer-socials" aria-label="Réseaux professionnels">
+          <a href="https://github.com/franckraymond" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><i class="fab fa-github" aria-hidden="true"></i></a>
+          <a href="https://www.linkedin.com/in/franck-r-21a8a4184" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fab fa-linkedin" aria-hidden="true"></i></a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../assets/portfolio-glossary.js?v=20260831-2" defer=""></script>
+  <script src="../assets/portfolio-v2.js?v=20261028-493b8041ab" defer=""></script>
+  
+
+
+</body></html>

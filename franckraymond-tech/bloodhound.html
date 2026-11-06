@@ -1,0 +1,333 @@
+<!DOCTYPE html><html lang="fr"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Audit Active Directory avec BloodHound - Sécurité informatique">
+    <title>Audit des droits Active Directory avec BloodHound | Franck Raymond</title>
+    
+    <link rel="stylesheet" href="/tailwind-output.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&amp;family=Outfit:wght@300;400;500;600;700;800;900&amp;family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        .project-hero {
+            min-height: 70vh;
+            display: flex;
+            align-items: center;
+            padding-top: 8rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-hero::before {
+            content: '';
+            position: absolute;
+            top: 10%;
+            right: -10%;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(34, 197, 94, 0.15) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .project-icon-frame {
+            width: 200px;
+            height: 200px;
+            border-radius: 30px;
+            border: 3px solid #22c55e;
+            background: var(--bg-card);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 0 60px rgba(34, 197, 94, 0.3);
+        }
+
+        .project-icon-frame i {
+            font-size: 5rem;
+            color: #22c55e;
+        }
+
+        .placeholder-img {
+            display: none;
+        }
+
+        .security-alert {
+            background: rgba(239, 68, 68, 0.1);
+            border: 1px solid rgba(239, 68, 68, 0.3);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .security-alert h4 {
+            color: #ef4444;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .remediation-card {
+            background: rgba(34, 197, 94, 0.1);
+            border: 1px solid rgba(34, 197, 94, 0.3);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .remediation-card h4 {
+            color: #22c55e;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .remediation-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .remediation-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+            padding: 0.75rem 0;
+            border-bottom: 1px solid var(--border);
+            color: var(--text-secondary);
+        }
+
+        .remediation-list li:last-child {
+            border-bottom: none;
+        }
+
+        .remediation-list li i {
+            color: #22c55e;
+            margin-top: 0.2rem;
+        }
+    </style>
+<meta name="theme-color" content="#111214"><link rel="stylesheet" href="/assets/legacy-unified.css?v=20260831-2"><meta name="author" content="Franck Raymond"><meta name="robots" content="index,follow,max-image-preview:large"><meta property="og:type" content="website"><meta property="og:site_name" content="Portfolio de Franck Raymond"><meta property="og:title" content="Audit des droits Active Directory avec BloodHound | Franck Raymond"><meta property="og:description" content="Audit Active Directory avec BloodHound - Sécurité informatique"><meta property="og:url" content="https://franckraymond.tech/bloodhound.html"><meta property="og:image" content="https://franckraymond.tech/franck.webp"><meta property="og:image:alt" content="Portrait professionnel de Franck Raymond"><meta property="og:locale" content="fr_FR"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Audit des droits Active Directory avec BloodHound | Franck Raymond"><meta name="twitter:description" content="Audit Active Directory avec BloodHound - Sécurité informatique"><meta name="twitter:image" content="https://franckraymond.tech/franck.webp"><link rel="canonical" href="https://franckraymond.tech/bloodhound.html"><link rel="icon" href="/favicon-32x32.png" sizes="32x32" type="image/png"><link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180"><link rel="manifest" href="/site.webmanifest"><script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"Audit des droits Active Directory avec BloodHound | Franck Raymond","url":"https://franckraymond.tech/bloodhound.html","description":"Audit Active Directory avec BloodHound - Sécurité informatique","isPartOf":{"@type":"WebSite","name":"Portfolio de Franck Raymond","url":"https://franckraymond.tech/"},"about":{"@type":"Person","name":"Franck Raymond","url":"https://franckraymond.tech/"}}</script>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,400&amp;family=Geist:wght@400;500;600&amp;display=swap">
+<link rel="stylesheet" href="/assets/editorial-tokens.css?v=20261106-modern">
+<link rel="stylesheet" href="/assets/editorial.css?v=20261106-modern">
+<script src="/assets/editorial-theme.js?v=20261028-1fe0ee8c9d"></script>
+</head>
+<body data-theme="light" class="portfolio-legacy editorial-site">
+
+    <div class="bg-mesh"></div>
+    <div class="noise-overlay"></div>
+    <div class="grid-lines"></div>
+
+    <header class="main-header" id="header">
+        <nav class="nav-container">
+            <a href="index.html" class="brand-logo">
+                <span class="logo-bracket">&lt;</span>
+                <span class="logo-text">FR</span>
+                <span class="logo-bracket">/&gt;</span>
+            </a>
+            <div class="nav-menu" id="navMenu">
+                <a href="index.html" class="nav-link"><i class="fas fa-home"></i> Accueil</a>
+                <a href="profil.html" class="nav-link"><i class="fas fa-user"></i> Profil</a>
+                <a href="index.html#skills" class="nav-link active"><i class="fas fa-code"></i> Compétences</a>
+                <a href="experience.html" class="nav-link"><i class="fas fa-briefcase"></i> Expériences</a>
+                <a href="/projets.html#veille" class="nav-link"><i class="fas fa-newspaper"></i> Veille</a>
+                <a href="index.html#contact" class="nav-link"><i class="fas fa-envelope"></i> Contact</a>
+            
+<a class="nav-link" href="https://opengym.jsuisfray.blitz.cloud/"><span class="nav-text">Sport</span></a></div>
+            <div class="nav-controls">
+                <button class="theme-toggle" id="themeToggle" aria-label="Changer le thème">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <button class="menu-toggle" id="menuToggle" aria-label="Menu">
+                    <span></span><span></span><span></span>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="project-hero">
+            <div class="section-container">
+                <div class="hero-container">
+                    <div class="hero-content">
+                        <div class="hero-greeting" style="color: #22c55e;">AUDIT DE SÉCURITÉ</div>
+                        <h1 class="hero-name">
+                            Analyse <span class="name-value" style="background: linear-gradient(135deg, #22c55e, #10b981); -webkit-background-clip: text;">BloodHound</span>
+                        </h1>
+                        <p class="hero-description">
+                            Cartographie des chemins d'attaque au sein de l'Active Directory pour identifier et corriger les escalades de privilèges potentielles.
+                        </p>
+                        <div class="hero-buttons">
+                            <a href="#analyse" class="btn btn-primary" style="background: linear-gradient(135deg, #22c55e, #10b981);">
+                                <i class="fas fa-project-diagram"></i> Graphe d'Attaque
+                            </a>
+                            <a href="#remediation" class="btn btn-secondary">
+                                <i class="fas fa-shield-alt"></i> Remédiations
+                            </a>
+                        </div>
+                    </div>
+                    <div class="hero-image-wrapper">
+                        <div class="project-icon-frame">
+                            <i class="fas fa-paw"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contexte" class="section">
+            <div class="section-container">
+                <div class="section-header">
+                    <span class="section-number">01</span>
+                    <h2 class="section-title">Méthodologie <span class="title-gradient">d'Audit</span></h2>
+                    <div class="section-line"></div>
+                </div>
+                
+                <div class="about-content">
+                    <div>
+                        <p class="about-text">
+                            Active Directory est la cible n°1 des attaquants. Pour sécuriser l'infrastructure de la Mairie, j'ai utilisé <strong>BloodHound</strong> afin de visualiser les relations cachées entre utilisateurs, groupes et ordinateurs.
+                        </p>
+                        <p class="about-text">
+                            L'objectif était de découvrir les chemins d'attaque (Attack Paths) qu'un attaquant pourrait utiliser pour devenir "Domain Admin" à partir d'un compte compromis.
+                        </p>
+                        <div style="display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 1.5rem;">
+                            <span class="tag">SharpHound</span>
+                            <span class="tag">Neo4j</span>
+                            <span class="tag">BloodHound CE</span>
+                            <span class="tag">Attack Paths</span>
+                        </div>
+                    </div>
+                    <div class="placeholder-img">
+                        <div>
+                            <i class="fas fa-project-diagram" style="font-size: 3rem; margin-bottom: 1rem; display: block;"></i>
+                            Vue graphique BloodHound<br>montrant un chemin vers Domain Admins
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="analyse" class="section" style="background: var(--bg-card-solid);">
+            <div class="section-container">
+                <div class="section-header">
+                    <span class="section-number">02</span>
+                    <h2 class="section-title">Résultats <span class="title-gradient">&amp; Analyse</span></h2>
+                    <div class="section-line"></div>
+                </div>
+
+                <div class="skills-grid">
+                    <div class="skill-category">
+                        <h3 class="category-title"><i class="fas fa-exclamation-triangle" style="margin-right: 0.5rem; color: #ef4444;"></i> Problèmes Identifiés</h3>
+                        <p style="margin-bottom: 1rem; font-size: 0.9rem; color: var(--text-secondary);">
+                            L'audit a révélé plusieurs configurations à risque classiques.
+                        </p>
+                        <div class="skill-items">
+                            <div class="skill-item"><i class="fas fa-user-secret"></i> Sessions Admin sur Postes</div>
+                            <div class="skill-item"><i class="fas fa-users"></i> Groupes Imbriqués</div>
+                            <div class="skill-item"><i class="fas fa-key"></i> Délégation Kerberos</div>
+                            <div class="skill-item"><i class="fas fa-unlock-alt"></i> Comptes à privilèges élevés</div>
+                        </div>
+                    </div>
+                    <div class="skill-category">
+                        <h3 class="category-title"><i class="fas fa-chart-bar" style="margin-right: 0.5rem;"></i> Statistiques</h3>
+                        <p style="margin-bottom: 1rem; font-size: 0.9rem; color: var(--text-secondary);">
+                            Résumé quantitatif de l'audit réalisé.
+                        </p>
+                        <div class="skill-items">
+                            <div class="skill-item"><i class="fas fa-users"></i> +500 utilisateurs analysés</div>
+                            <div class="skill-item"><i class="fas fa-desktop"></i> +200 ordinateurs</div>
+                            <div class="skill-item"><i class="fas fa-route"></i> 12 chemins critiques</div>
+                            <div class="skill-item"><i class="fas fa-clock"></i> 4h d'analyse</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="security-alert">
+                    <h4><i class="fas fa-exclamation-circle"></i> Vulnérabilité Critique Détectée</h4>
+                    <p style="color: var(--text-secondary);">
+                        Un chemin d'attaque direct a été identifié permettant à un utilisateur standard d'atteindre le groupe Domain Admins en 3 sauts vià des sessions d'administration laissées ouvertes sur des postes de travail.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section id="remediation" class="section">
+            <div class="section-container">
+                <div class="section-header">
+                    <span class="section-number">03</span>
+                    <h2 class="section-title">Remédiations <span class="title-gradient">Appliquées</span></h2>
+                    <div class="section-line"></div>
+                </div>
+
+                <div class="about-content">
+                    <div>
+                        <p class="about-text">
+                            Suite à l'analyse, j'ai proposé et mis en place des mesures correctives pour éliminer les chemins d'attaque identifiés et renforcer la posture de sécurité de l'Active Directory.
+                        </p>
+                        
+                        <div class="remediation-card">
+                            <h4><i class="fas fa-check-circle"></i> Correctifs Appliqués</h4>
+                            <ul class="remediation-list">
+                                <li>
+                                    <i class="fas fa-check"></i>
+                                    <span>Nettoyage des groupes "Admin Locaux" sur les postes utilisateurs</span>
+                                </li>
+                                <li>
+                                    <i class="fas fa-check"></i>
+                                    <span>Application du principe de moindre privilège (Tiering Model)</span>
+                                </li>
+                                <li>
+                                    <i class="fas fa-check"></i>
+                                    <span>Surveillance accrue des comptes à hauts privilèges</span>
+                                </li>
+                                <li>
+                                    <i class="fas fa-check"></i>
+                                    <span>Mise en place de LAPS pour les mots de passe admin locaux</span>
+                                </li>
+                                <li>
+                                    <i class="fas fa-check"></i>
+                                    <span>Restriction des délégations Kerberos non contraintes</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="placeholder-img">
+                        <div>
+                            <i class="fas fa-shield-alt" style="font-size: 3rem; margin-bottom: 1rem; display: block;"></i>
+                            Capture d'écran BloodHound<br>après remédiation (chemins éliminés)
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section-footer" style="margin-top: 4rem;">
+                    <a href="index.html#skills" class="btn-more">
+                        <i class="fas fa-arrow-left"></i> Retour aux compétences
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="main-footer">
+        <div class="footer-container">
+            <div class="footer-content">
+                <p class="footer-text">© 2026 <span class="footer-copyright">Franck Raymond</span> — Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        window.addEventListener('scroll', () => {
+            document.getElementById('header').classList.toggle('scrolled', window.scrollY > 50);
+        });
+        document.getElementById('menuToggle').addEventListener('click', () => {
+            document.getElementById('navMenu').classList.toggle('active');
+        });
+    </script>
+
+
+<script src="/assets/portfolio-glossary.js?v=20260831-2" defer=""></script><script src="/assets/legacy-unified.js?v=20261028-8c422e514f" defer=""></script></body></html>

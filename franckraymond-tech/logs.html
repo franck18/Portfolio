@@ -1,0 +1,275 @@
+<!DOCTYPE html><html lang="fr"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Projet Graylog - Centralisation des logs et audit de sécurité">
+    <title>Centralisation des journaux avec Graylog | Franck Raymond</title>
+    
+    <link rel="stylesheet" href="/tailwind-output.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&amp;family=Outfit:wght@300;400;500;600;700;800;900&amp;family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        .project-hero {
+            min-height: 70vh;
+            display: flex;
+            align-items: center;
+            padding-top: 8rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-hero::before {
+            content: '';
+            position: absolute;
+            top: 10%;
+            right: -10%;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(249, 115, 22, 0.15) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .project-icon-frame {
+            width: 200px;
+            height: 200px;
+            border-radius: 30px;
+            border: 3px solid #f97316;
+            background: var(--bg-card);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 0 60px rgba(249, 115, 22, 0.3);
+        }
+
+        .project-icon-frame i {
+            font-size: 5rem;
+            color: #f97316;
+        }
+
+        .placeholder-img {
+            display: none;
+        }
+    </style>
+<meta name="theme-color" content="#111214"><link rel="stylesheet" href="/assets/legacy-unified.css?v=20260831-2"><meta name="author" content="Franck Raymond"><meta name="robots" content="index,follow,max-image-preview:large"><meta property="og:type" content="website"><meta property="og:site_name" content="Portfolio de Franck Raymond"><meta property="og:title" content="Centralisation des journaux avec Graylog | Franck Raymond"><meta property="og:description" content="Projet Graylog - Centralisation des logs et audit de sécurité"><meta property="og:url" content="https://franckraymond.tech/logs.html"><meta property="og:image" content="https://franckraymond.tech/franck.webp"><meta property="og:image:alt" content="Portrait professionnel de Franck Raymond"><meta property="og:locale" content="fr_FR"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Centralisation des journaux avec Graylog | Franck Raymond"><meta name="twitter:description" content="Projet Graylog - Centralisation des logs et audit de sécurité"><meta name="twitter:image" content="https://franckraymond.tech/franck.webp"><link rel="canonical" href="https://franckraymond.tech/logs.html"><link rel="icon" href="/favicon-32x32.png" sizes="32x32" type="image/png"><link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180"><link rel="manifest" href="/site.webmanifest"><script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"Centralisation des journaux avec Graylog | Franck Raymond","url":"https://franckraymond.tech/logs.html","description":"Projet Graylog - Centralisation des logs et audit de sécurité","isPartOf":{"@type":"WebSite","name":"Portfolio de Franck Raymond","url":"https://franckraymond.tech/"},"about":{"@type":"Person","name":"Franck Raymond","url":"https://franckraymond.tech/"}}</script>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,400&amp;family=Geist:wght@400;500;600&amp;display=swap">
+<link rel="stylesheet" href="/assets/editorial-tokens.css?v=20261106-modern">
+<link rel="stylesheet" href="/assets/editorial.css?v=20261106-modern">
+<script src="/assets/editorial-theme.js?v=20261028-1fe0ee8c9d"></script>
+</head>
+<body data-theme="light" class="portfolio-legacy editorial-site">
+
+    <div class="bg-mesh"></div>
+    <div class="noise-overlay"></div>
+    <div class="grid-lines"></div>
+
+    <header class="main-header" id="header">
+        <nav class="nav-container">
+            <a href="index.html" class="brand-logo">
+                <span class="logo-bracket">&lt;</span>
+                <span class="logo-text">FR</span>
+                <span class="logo-bracket">/&gt;</span>
+            </a>
+            <div class="nav-menu" id="navMenu">
+                <a href="index.html" class="nav-link"><i class="fas fa-home"></i> Accueil</a>
+                <a href="profil.html" class="nav-link"><i class="fas fa-user"></i> Profil</a>
+                <a href="index.html#skills" class="nav-link active"><i class="fas fa-code"></i> Compétences</a>
+                <a href="experience.html" class="nav-link"><i class="fas fa-briefcase"></i> Expériences</a>
+                <a href="/projets.html#veille" class="nav-link"><i class="fas fa-newspaper"></i> Veille</a>
+                <a href="index.html#contact" class="nav-link"><i class="fas fa-envelope"></i> Contact</a>
+            
+<a class="nav-link" href="https://opengym.jsuisfray.blitz.cloud/"><span class="nav-text">Sport</span></a></div>
+            <div class="nav-controls">
+                <button class="theme-toggle" id="themeToggle" aria-label="Changer le thème">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <button class="menu-toggle" id="menuToggle" aria-label="Menu">
+                    <span></span><span></span><span></span>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="project-hero">
+            <div class="section-container">
+                <div class="hero-container">
+                    <div class="hero-content">
+                        <div class="hero-greeting" style="color: #f97316;">CENTRALISATION DES LOGS</div>
+                        <h1 class="hero-name">
+                            Infrastructure <span class="name-value" style="background: linear-gradient(135deg, #f97316, #ea580c); -webkit-background-clip: text;">Graylog</span>
+                        </h1>
+                        <p class="hero-description">
+                            Mise en place d'un serveur de centralisation des journaux (Syslog) pour assurer la traçabilité des événements et faciliter l'audit de sécurité.
+                        </p>
+                        <div class="hero-buttons">
+                            <a href="#flux" class="btn btn-primary" style="background: linear-gradient(135deg, #f97316, #ea580c);">
+                                <i class="fas fa-stream"></i> Flux de Données
+                            </a>
+                            <a href="#dashboards" class="btn btn-secondary">
+                                <i class="fas fa-search"></i> Recherche
+                            </a>
+                        </div>
+                    </div>
+                    <div class="hero-image-wrapper">
+                        <div class="project-icon-frame">
+                            <i class="fas fa-file-alt"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contexte" class="section">
+            <div class="section-container">
+                <div class="section-header">
+                    <span class="section-number">01</span>
+                    <h2 class="section-title">Pourquoi <span class="title-gradient">Graylog ?</span></h2>
+                    <div class="section-line"></div>
+                </div>
+                
+                <div class="about-content">
+                    <div>
+                        <p class="about-text">
+                            Dans un parc informatique hétérogène, consulter les logs machine par machine est impossible en cas d'incident de sécurité. J'ai déployé <strong>Graylog</strong> en laboratoire pour agréger tous les journaux (Windows Events, Syslog Linux, Firewall) en un point unique.
+                        </p>
+                        <div style="display: flex; flex-direction: column; gap: 1rem; margin-top: 1.5rem;">
+                            <div class="achievement-item">
+                                <i class="fas fa-check-circle"></i>
+                                <span>Centralisation via rsyslog et NXLog</span>
+                            </div>
+                            <div class="achievement-item">
+                                <i class="fas fa-check-circle"></i>
+                                <span>Indexation avec OpenSearch/Elasticsearch</span>
+                            </div>
+                            <div class="achievement-item">
+                                <i class="fas fa-check-circle"></i>
+                                <span>Conservation légale des traces</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="placeholder-img">
+                        <div>
+                            <i class="fas fa-search" style="font-size: 3rem; margin-bottom: 1rem; display: block;"></i>
+                            Interface Web Graylog<br>(onglet "Search") avec logs entrants
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="flux" class="section" style="background: var(--bg-card-solid);">
+            <div class="section-container">
+                <div class="section-header">
+                    <span class="section-number">02</span>
+                    <h2 class="section-title">Architecture <span class="title-gradient">&amp; Collecte</span></h2>
+                    <div class="section-line"></div>
+                </div>
+
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-marker"></div>
+                        <div class="timeline-content">
+                            <h3 class="timeline-title">Collecte Windows (Sidecar &amp; NXLog)</h3>
+                            <p class="timeline-description">
+                                Pour les serveurs Windows (AD, Fichiers), j'utilise l'agent <strong>Graylog Sidecar</strong> qui pilote NXLog. Il filtre les événements critiques (ex: ID 4624 Logins, ID 4740 Compte verrouillé) et les envoie au serveur.
+                            </p>
+                            <div class="code-block" style="margin-top: 1rem;">
+                                <div class="code-line"><span class="code-keyword">&lt;Input&gt;</span> im_msvistalog</div>
+                                <div class="code-line"><span class="code-variable">Query</span> &lt;QueryList&gt;...&lt;Select Path="Security"&gt;*[System[(Level=1 or Level=2)]]&lt;/Select&gt;...&lt;/QueryList&gt;</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-marker"></div>
+                        <div class="timeline-content">
+                            <h3 class="timeline-title">Streams &amp; Pipelines</h3>
+                            <p class="timeline-description">
+                                J'ai configuré des <strong>Streams</strong> pour séparer les logs "Sécurité", "Système" et "Applications". Cela permet d'appliquer des règles de rétention différentes et de créer des alertes spécifiques.
+                            </p>
+                            <div class="placeholder-img" style="margin-top: 1rem; min-height: 180px;">
+                                <div>
+                                    <i class="fas fa-stream" style="font-size: 2rem; margin-bottom: 0.5rem; display: block;"></i>
+                                    Liste des Streams configurés<br>(ex: "Windows Security Logs")
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-marker"></div>
+                        <div class="timeline-content">
+                            <h3 class="timeline-title">Collecte Linux (rsyslog)</h3>
+                            <p class="timeline-description">
+                                Les serveurs Linux envoient leurs logs via <strong>rsyslog</strong> en UDP/TCP vers Graylog. Configuration simple et fiable pour les logs système et applicatifs.
+                            </p>
+                            <div class="code-block" style="margin-top: 1rem;">
+                                <div class="code-line"><span class="code-comment"># /etc/rsyslog.conf</span></div>
+                                <div class="code-line"><span class="code-string">*.* @graylog.lab.local:514</span></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="dashboards" class="section">
+            <div class="section-container">
+                <div class="section-header">
+                    <span class="section-number">03</span>
+                    <h2 class="section-title">Dashboards <span class="title-gradient">&amp; Alertes</span></h2>
+                    <div class="section-line"></div>
+                </div>
+
+                <div class="skills-grid">
+                    <div class="skill-category">
+                        <h3 class="category-title"><i class="fas fa-chart-pie" style="margin-right: 0.5rem;"></i> Tableaux de Bord</h3>
+                        <p style="margin-bottom: 1rem; font-size: 0.9rem; color: var(--text-secondary);">
+                            Visualisation en temps réel des événements critiques.
+                        </p>
+                        <div class="skill-items">
+                            <div class="skill-item"><i class="fas fa-sign-in-alt"></i> Échecs de connexion</div>
+                            <div class="skill-item"><i class="fas fa-user-lock"></i> Comptes verrouillés</div>
+                            <div class="skill-item"><i class="fas fa-shield-alt"></i> Alertes sécurité</div>
+                        </div>
+                    </div>
+                    <div class="skill-category">
+                        <h3 class="category-title"><i class="fas fa-bell" style="margin-right: 0.5rem;"></i> Alerting</h3>
+                        <p style="margin-bottom: 1rem; font-size: 0.9rem; color: var(--text-secondary);">
+                            Notifications automatiques par email.
+                        </p>
+                        <div class="skill-items">
+                            <div class="skill-item"><i class="fas fa-envelope"></i> Email SMTP</div>
+                            <div class="skill-item"><i class="fas fa-clock"></i> Agrégation 5 min</div>
+                            <div class="skill-item"><i class="fas fa-filter"></i> Filtres personnalisés</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section-footer" style="margin-top: 4rem;">
+                    <a href="index.html#skills" class="btn-more">
+                        <i class="fas fa-arrow-left"></i> Retour aux compétences
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="main-footer">
+        <div class="footer-container">
+            <div class="footer-content">
+                <p class="footer-text">© 2026 <span class="footer-copyright">Franck Raymond</span> — Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        window.addEventListener('scroll', () => {
+            document.getElementById('header').classList.toggle('scrolled', window.scrollY > 50);
+        });
+        document.getElementById('menuToggle').addEventListener('click', () => {
+            document.getElementById('navMenu').classList.toggle('active');
+        });
+    </script>
+
+
+<script src="/assets/portfolio-glossary.js?v=20260831-2" defer=""></script><script src="/assets/legacy-unified.js?v=20261028-8c422e514f" defer=""></script></body></html>
