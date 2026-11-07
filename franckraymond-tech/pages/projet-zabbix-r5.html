@@ -1,0 +1,237 @@
+<!DOCTYPE html><html lang="fr" dir="ltr" data-theme="light"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Du laboratoire à l'exploitation : déploiement Zabbix 7.0, audit anonymisé d'une plateforme de 139 hôtes et feuille de route sécurité.">
+  <meta name="author" content="Franck Raymond">
+  <meta name="theme-color" content="#111214">
+  <title>Supervision Zabbix | Portfolio Franck Raymond</title>
+  <link rel="canonical" href="https://franckraymond.tech/pages/projet-zabbix-r5.html">
+  <link rel="alternate" hreflang="fr" href="https://franckraymond.tech/pages/projet-zabbix-r5.html">
+  <link rel="alternate" hreflang="en" href="https://franckraymond.tech/en/pages/projet-zabbix-r5.html">
+  <link rel="alternate" hreflang="x-default" href="https://franckraymond.tech/pages/projet-zabbix-r5.html">
+  <link rel="stylesheet" href="../tailwind-output.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&amp;family=Outfit:wght@400;500;600;700;800&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../style.css">
+  <link rel="stylesheet" href="../assets/portfolio-v2.css?v=20260831-2">
+
+<meta name="robots" content="index,follow,max-image-preview:large"><meta property="og:type" content="website"><meta property="og:site_name" content="Portfolio de Franck Raymond"><meta property="og:title" content="Supervision Zabbix | Portfolio Franck Raymond"><meta property="og:description" content="Du laboratoire à l'exploitation : déploiement Zabbix 7.0, audit anonymisé d'une plateforme de 139 hôtes et feuille de route sécurité."><meta property="og:url" content="https://franckraymond.tech/pages/projet-zabbix-r5.html"><meta property="og:image" content="https://franckraymond.tech/franck.webp"><meta property="og:image:alt" content="Portrait professionnel de Franck Raymond"><meta property="og:locale" content="fr_FR"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Supervision Zabbix | Portfolio Franck Raymond"><meta name="twitter:description" content="Du laboratoire à l'exploitation : déploiement Zabbix 7.0, audit anonymisé d'une plateforme de 139 hôtes et feuille de route sécurité."><meta name="twitter:image" content="https://franckraymond.tech/franck.webp"><link rel="icon" href="/favicon-32x32.png" sizes="32x32" type="image/png"><link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180"><link rel="manifest" href="/site.webmanifest"><script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"Supervision Zabbix | Portfolio Franck Raymond","url":"https://franckraymond.tech/pages/projet-zabbix-r5.html","description":"Du laboratoire à l'exploitation : déploiement Zabbix 7.0, audit anonymisé d'une plateforme de 139 hôtes et feuille de route sécurité.","isPartOf":{"@type":"WebSite","name":"Portfolio de Franck Raymond","url":"https://franckraymond.tech/"},"about":{"@type":"Person","name":"Franck Raymond","url":"https://franckraymond.tech/"}}</script><link rel="stylesheet" href="/assets/interactive-labs.css?v=20260908-1">
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,400&amp;family=Geist:wght@400;500;600&amp;display=swap">
+<link rel="stylesheet" href="/assets/editorial-tokens.css?v=20261106-modern">
+<link rel="stylesheet" href="/assets/editorial.css?v=20261106-modern">
+<script src="/assets/editorial-theme.js?v=20261028-1fe0ee8c9d"></script>
+</head>
+<body data-theme="light" class="portfolio-v2 editorial-site">
+
+  <a class="skip-link" href="#main-content">Aller au contenu principal</a>
+  <div class="bg-mesh" aria-hidden="true"></div>
+  <div class="noise-overlay" aria-hidden="true"></div>
+  <div class="grid-lines" aria-hidden="true"></div>
+
+  <header class="main-header" id="header">
+    <nav class="nav-container" aria-label="Navigation principale">
+      <a href="/index.html" class="brand-logo" aria-label="Accueil — Franck Raymond">
+        <span class="logo-bracket" aria-hidden="true">&lt;</span>
+        <span class="logo-text">FR</span>
+        <span class="logo-bracket" aria-hidden="true">/&gt;</span>
+      </a>
+      <div class="nav-menu" id="navMenu">
+        <a href="/index.html" class="nav-link"><i class="fas fa-home" aria-hidden="true"></i><span class="nav-text">Accueil</span></a>
+        <a href="/projets.html" class="nav-link"><i class="fas fa-diagram-project" aria-hidden="true"></i><span class="nav-text">Projets</span></a>
+        <a href="/index.html#skills" class="nav-link"><i class="fas fa-code" aria-hidden="true"></i><span class="nav-text">Compétences</span></a>
+        <a href="/index.html#experience" class="nav-link"><i class="fas fa-briefcase" aria-hidden="true"></i><span class="nav-text">Expériences</span></a>
+        <a href="/index.html#contact" class="nav-link"><i class="fas fa-envelope" aria-hidden="true"></i><span class="nav-text">Contact</span></a>
+      
+<a class="nav-link" href="https://opengym.jsuisfray.blitz.cloud/"><span class="nav-text">FrayFit</span></a></div>
+      <div class="nav-controls">
+        <div class="language-switcher">
+          <button class="language-toggle" id="languageToggle" type="button" aria-label="Choisir la langue" aria-controls="languageMenu" aria-expanded="false" data-open-label="Choisir la langue" data-close-label="Fermer le choix de langue">
+            <i class="fas fa-globe" aria-hidden="true"></i><span>FR</span>
+          </button>
+          <div class="language-menu" id="languageMenu" aria-label="Choix de la langue" hidden="">
+            <a href="/pages/projet-zabbix-r5.html" lang="fr" hreflang="fr" data-language="fr" aria-current="page">FR <span>Français</span></a>
+            <a href="/en/pages/projet-zabbix-r5.html" lang="en" hreflang="en" data-language="en">EN <span>English</span></a>
+          </div>
+        </div>
+        <button class="theme-toggle" id="themeToggle" type="button" aria-label="Activer le thème clair" data-light-label="Activer le thème clair" data-dark-label="Activer le thème sombre">
+          <i class="fas fa-sun" aria-hidden="true"></i>
+        </button>
+        <button class="menu-toggle" id="menuToggle" type="button" aria-label="Ouvrir le menu" aria-controls="navMenu" aria-expanded="false" data-open-label="Ouvrir le menu" data-close-label="Fermer le menu">
+          <span aria-hidden="true"></span><span aria-hidden="true"></span><span aria-hidden="true"></span>
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <main id="main-content">
+
+<article class="case-study">
+  <header class="case-hero">
+    <div class="case-container case-hero-grid">
+      <div>
+        <p class="case-kicker"><i class="fas fa-chart-line" aria-hidden="true"></i>Observabilité &amp; exploitation</p>
+        <h1>Supervision Zabbix</h1>
+        <p class="case-lead">Du laboratoire de trois hôtes à l'audit d'une plateforme professionnelle : déploiement de Zabbix 7.0, contrôle en lecture seule de 139 hôtes actifs et construction d'une feuille de route d'exploitation sécurisée.</p>
+        <div class="case-tags" aria-label="Outils et technologies utilisés">
+          <span>Zabbix 7.0.23</span><span>Rocky Linux 9.6</span><span>MariaDB</span><span>Nginx</span><span>Agent 2</span><span>SNMP</span><span>VMware</span>
+        </div>
+      </div>
+      <dl class="case-facts" aria-label="Informations principales">
+
+        <div><dt>Contexte</dt><dd>Laboratoire puis collectivité</dd></div>
+
+        <div><dt>Périmètre audité</dt><dd>139 hôtes actifs</dd></div>
+
+        <div><dt>Collecte</dt><dd>8 087 éléments actifs</dd></div>
+
+        <div><dt>Déclencheurs</dt><dd>2 648 liés aux hôtes suivis</dd></div>
+
+      </dl>
+    </div>
+  </header>
+
+  <nav class="case-nav" aria-label="Sommaire du projet">
+    <div class="case-container">
+      <a href="#analyse">Besoin</a>
+      <a href="#architecture">Solution</a>
+      <a href="#realisation">Réalisation</a>
+      <a href="#validation">Vérification</a>
+      <a href="#recul">Améliorations</a>
+      <a href="#preuves">Preuves</a>
+    </div>
+  </nav>
+
+  <section class="interactive-lab" id="simulation-supervision" data-interactive-lab="monitoring"><noscript><div class="lab-wrap lab-noscript"><h2>Simuler une panne supervisée</h2><p>Activez JavaScript pour lancer la simulation. Les données sont entièrement fictives.</p></div></noscript></section><section class="case-band" id="analyse">
+    <div class="case-container">
+      <div class="case-section-heading"><span>01</span><div><p>Avant de commencer</p><h2>Le besoin et mon rôle</h2></div></div>
+      <div class="case-two-columns">
+        <div class="case-copy"><h3>Le besoin</h3><p>Passer d'un laboratoire démontrant la collecte et l'alerte à une compréhension réaliste de la supervision en exploitation : volumes, technologies, rétention, protections et risques.</p></div>
+        <div class="case-copy"><h3>Mon rôle</h3><p>J'ai déployé le laboratoire, puis audité la plateforme professionnelle en lecture seule : services, base, méthodes de collecte, rétention et sécurité.</p></div>
+      </div>
+      <div class="case-list-grid">
+        <div class="case-list-item"><i class="fas fa-diamond" aria-hidden="true"></i><span>Distinguer ce qui a été réalisé en laboratoire de ce qui a été observé en exploitation.</span></div><div class="case-list-item"><i class="fas fa-diamond" aria-hidden="true"></i><span>Mesurer la plateforme sans afficher les noms, adresses ou incidents de la mairie.</span></div><div class="case-list-item"><i class="fas fa-diamond" aria-hidden="true"></i><span>Comprendre une collecte mêlant agents, SNMP, services et API.</span></div><div class="case-list-item"><i class="fas fa-diamond" aria-hidden="true"></i><span>Transformer les constats techniques en priorités d'amélioration compréhensibles.</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="case-band case-band-alt" id="architecture">
+    <div class="case-container">
+      <div class="case-section-heading"><span>02</span><div><p>Pourquoi cette méthode</p><h2>La solution choisie</h2></div></div>
+      <div class="case-decision">
+        <h3>Une même solution, deux niveaux d'apprentissage</h3>
+        <p>Le laboratoire m'a permis de comprendre l'installation, les agents et les notifications. Le contexte professionnel montre ensuite le passage à l'échelle avec davantage d'hôtes, de modèles, de technologies de collecte et de données historiques.</p>
+      </div>
+      <div class="case-list-grid case-list-grid-wide">
+        <div class="case-list-item"><i class="fas fa-arrow-right" aria-hidden="true"></i><span>Rocky Linux 9.6 héberge Zabbix Server 7.0.23, Nginx et MariaDB.</span></div><div class="case-list-item"><i class="fas fa-arrow-right" aria-hidden="true"></i><span>139 hôtes actifs sont répartis dans 30 groupes fonctionnels anonymisés.</span></div><div class="case-list-item"><i class="fas fa-arrow-right" aria-hidden="true"></i><span>Les sources couvrent machines virtuelles, hyperviseurs, serveurs, réseau et services applicatifs.</span></div><div class="case-list-item"><i class="fas fa-arrow-right" aria-hidden="true"></i><span>8 087 éléments actifs alimentent 2 648 déclencheurs associés aux hôtes surveillés.</span></div><div class="case-list-item"><i class="fas fa-arrow-right" aria-hidden="true"></i><span>L'historique est conservé 31 jours et les tendances pendant 365 jours.</span></div><div class="case-list-item"><i class="fas fa-arrow-right" aria-hidden="true"></i><span>La base représente environ 8,2 Go au moment de l'audit.</span></div>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="case-band" id="realisation">
+    <div class="case-container">
+      <div class="case-section-heading"><span>03</span><div><p>Passer du plan à la pratique</p><h2>Ce que j’ai réalisé</h2></div></div>
+      <ol class="case-steps">
+        <li><span>01</span><p>Déploiement initial de Zabbix 7.0, MariaDB et du frontal web dans un laboratoire Rocky Linux.</p></li><li><span>02</span><p>Raccordement d'hôtes Linux et Windows, puis test contrôlé d'une notification Discord.</p></li><li><span>03</span><p>Inventaire en lecture seule des services et paquets de la plateforme professionnelle.</p></li><li><span>04</span><p>Requêtes agrégées sur les hôtes, éléments, déclencheurs, interfaces et volumes de données.</p></li><li><span>05</span><p>Analyse des modes de collecte, de la rétention, de SELinux, du pare-feu et des flux ouverts.</p></li><li><span>06</span><p>Anonymisation des preuves et rédaction d'une feuille de route de sécurisation.</p></li>
+      </ol>
+      <p class="case-technical-link"><a href="dossier-technique-projet-zabbix-r5.html"><i class="fas fa-terminal" aria-hidden="true"></i>Consulter le dossier technique complet</a></p>
+    </div>
+  </section>
+
+  <section class="case-band case-band-alt" id="validation">
+    <div class="case-container">
+      <div class="case-section-heading"><span>04</span><div><p>Contrôler le fonctionnement</p><h2>Comment j’ai vérifié</h2></div></div>
+      <div class="case-two-columns">
+        <div><h3>Contrôles réalisés</h3><ul class="case-check-list"><li><i class="fas fa-check" aria-hidden="true"></i><span>État systemd de Zabbix Server, Nginx et MariaDB.</span></li><li><i class="fas fa-check" aria-hidden="true"></i><span>Comptages SQL agrégés sans extraction des noms d'hôtes.</span></li><li><i class="fas fa-check" aria-hidden="true"></i><span>Répartition des interfaces et types de collecte.</span></li><li><i class="fas fa-check" aria-hidden="true"></i><span>Lecture des durées de rétention, modes TLS et protections système.</span></li></ul></div>
+        <div><h3>Résultats observés</h3><ul class="case-check-list case-results"><li><i class="fas fa-circle-check" aria-hidden="true"></i><span>Les trois composants principaux sont actifs au moment de l'audit.</span></li><li><i class="fas fa-circle-check" aria-hidden="true"></i><span>139 hôtes actifs et 8 087 contrôles sont pris en charge.</span></li><li><i class="fas fa-circle-check" aria-hidden="true"></i><span>La collecte couvre notamment SNMP, agents, services et API HTTP.</span></li><li><i class="fas fa-circle-check" aria-hidden="true"></i><span>SELinux est enforcing et le pare-feu système est actif.</span></li></ul></div>
+      </div>
+      <article class="case-incident" aria-labelledby="incident-avaya-title">
+        <div class="case-incident-copy">
+          <p class="case-incident-kicker">Incident réel · supervision utile</p>
+          <h3 id="incident-avaya-title">Zabbix a permis de passer du signal à la correction réseau</h3>
+          <p class="case-incident-intro">Des alertes et événements répétés remontaient sur un commutateur Avaya pendant que les utilisateurs constataient des coupures intermittentes sur les téléphones IP. La corrélation des deux a permis de cibler l'équipement réseau plutôt que de traiter chaque téléphone séparément.</p>
+          <ol class="case-incident-flow">
+            <li><i class="fas fa-bell" aria-hidden="true"></i><span><strong>Détecter</strong>Zabbix fait apparaître les pertes et anomalies associées au switch Avaya.</span></li>
+            <li><i class="fas fa-magnifying-glass-chart" aria-hidden="true"></i><span><strong>Diagnostiquer</strong>Les événements de supervision sont rapprochés des coupures observées sur la téléphonie.</span></li>
+            <li><i class="fas fa-right-left" aria-hidden="true"></i><span><strong>Corriger</strong>Le commutateur Avaya est remplacé par un switch Extreme Networks, avec adaptation du VLAN voix et de LLDP-MED.</span></li>
+            <li><i class="fas fa-phone-volume" aria-hidden="true"></i><span><strong>Valider</strong>Les téléphones retrouvent leur connectivité et leur mise à jour ; la stabilité et la qualité du service sont améliorées.</span></li>
+          </ol>
+          <div class="case-incident-links">
+            <a href="extreme-networks.html"><i class="fas fa-ethernet" aria-hidden="true"></i>Voir le projet Extreme Networks</a>
+            <a href="extreme-networks.html#migration-voip"><i class="fas fa-phone" aria-hidden="true"></i>Voir la migration VoIP et toutes les photos</a>
+          </div>
+        </div>
+        <div class="case-incident-media" aria-label="Photos de l'intervention réseau et téléphonie">
+          <figure><img src="migration-voip-avaya/montage-switch-avaya-optimized.webp" data-full-src="migration-voip-avaya/montage-switch-avaya.jpg" alt="Switch Extreme Networks installé dans la baie réseau" loading="lazy" width="1920" height="2560" decoding="async"><figcaption>Remplacement et intégration du switch Extreme Networks.</figcaption></figure>
+          <figure><img src="migration-voip-avaya/telephone-avaya-mise-a-jour-optimized.webp" data-full-src="migration-voip-avaya/telephone-avaya-mise-a-jour.jpg" alt="Téléphone IP Avaya effectuant sa mise à jour après rétablissement de la connexion" loading="lazy" width="1920" height="2560" decoding="async"><figcaption>Téléphone Avaya reconnecté et mise à jour en cours.</figcaption></figure>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section class="case-band" id="recul">
+    <div class="case-container">
+      <div class="case-section-heading"><span>05</span><div><p>Prendre du recul</p><h2>Limites et améliorations</h2></div></div>
+      <div class="case-two-columns">
+        <div><h3>Points solides observés</h3><ul class="case-check-list"><li><i class="fas fa-shield-halved" aria-hidden="true"></i><span>SELinux enforcing et pare-feu actif.</span></li><li><i class="fas fa-shield-halved" aria-hidden="true"></i><span>Compte MariaDB dédié à l'application.</span></li><li><i class="fas fa-shield-halved" aria-hidden="true"></i><span>Rétention de l'historique et des tendances déjà définie.</span></li><li><i class="fas fa-shield-halved" aria-hidden="true"></i><span>Captures réelles publiées uniquement après floutage des données.</span></li></ul></div>
+        <div><h3>Priorités proposées</h3><ul class="case-check-list case-limitations"><li><i class="fas fa-triangle-exclamation" aria-hidden="true"></i><span>Activer HTTPS avec un certificat interne reconnu.</span></li><li><i class="fas fa-triangle-exclamation" aria-hidden="true"></i><span>Chiffrer les échanges agents avec PSK ou certificats.</span></li><li><i class="fas fa-triangle-exclamation" aria-hidden="true"></i><span>Remplacer l'accès SSH root par des comptes nominatifs et des clés.</span></li><li><i class="fas fa-triangle-exclamation" aria-hidden="true"></i><span>Formaliser les sauvegardes et tester une restauration complète.</span></li></ul></div>
+      </div>
+    </div>
+  </section>
+
+
+  <section class="case-band case-band-alt" id="preuves">
+    <div class="case-container">
+      <div class="case-section-heading"><span>06</span><div><p>Éléments visibles</p><h2>Preuves du fonctionnement</h2></div></div>
+      <div class="case-gallery">
+
+        <figure><button type="button" data-lightbox-src="projet-zabbix-professionnel_assets/zabbix-reel-dashboard-floute.png" data-lightbox-alt="Tableau de bord réel Zabbix avec données floutées"><img src="projet-zabbix-professionnel_assets/zabbix-reel-dashboard-floute-optimized.webp" data-full-src="projet-zabbix-professionnel_assets/zabbix-reel-dashboard-floute.png" alt="Tableau de bord réel Zabbix avec données floutées" loading="lazy" width="1672" height="941" decoding="async"></button><figcaption>Capture réelle du tableau de bord, données d'exploitation floutées.</figcaption></figure>
+
+        <figure><button type="button" data-lightbox-src="projet-zabbix-professionnel_assets/zabbix-reel-hotes-floutes.png" data-lightbox-alt="Vue réelle des hôtes Zabbix avec données floutées"><img src="projet-zabbix-professionnel_assets/zabbix-reel-hotes-floutes-optimized.webp" data-full-src="projet-zabbix-professionnel_assets/zabbix-reel-hotes-floutes.png" alt="Vue réelle des hôtes Zabbix avec données floutées" loading="lazy" width="1672" height="941" decoding="async"></button><figcaption>Capture réelle de la vue Hôtes, inventaire entièrement flouté.</figcaption></figure>
+
+        <figure><button type="button" data-lightbox-src="projet-zabbix-professionnel_assets/architecture-anonymisee.png" data-lightbox-alt="Schéma d'architecture Zabbix anonymisé"><img src="projet-zabbix-professionnel_assets/architecture-anonymisee.png" alt="Schéma d'architecture Zabbix anonymisé" loading="lazy"></button><figcaption>Schéma explicatif reconstitué, sans noms ni adresses internes.</figcaption></figure>
+
+        <figure><button type="button" data-lightbox-src="projet-zabbix-professionnel_assets/feuille-route-anonymisee.png" data-lightbox-alt="Feuille de route Zabbix anonymisée"><img src="projet-zabbix-professionnel_assets/feuille-route-anonymisee.png" alt="Feuille de route Zabbix anonymisée" loading="lazy"></button><figcaption>Priorités de sécurisation et de continuité proposées.</figcaption></figure>
+
+      </div>
+    </div>
+  </section>
+
+
+  <section class="case-band case-sources">
+    <div class="case-container case-two-columns">
+      <div><h2>Compétences démontrées</h2><ul class="case-compact-list"><li>Déployer un laboratoire Zabbix complet.</li><li>Auditer une plateforme en exploitation sans la modifier.</li><li>Interroger et interpréter des métriques Zabbix agrégées.</li><li>Comprendre les collectes agents, SNMP, services et API.</li><li>Prioriser la sécurisation et anonymiser les preuves.</li></ul></div>
+      <div><h2>Sources utilisées</h2><ul class="case-compact-list"><li><a href="https://www.zabbix.com/documentation/7.0/en" target="_blank" rel="noopener noreferrer">Zabbix — Documentation 7.0</a></li><li><a href="https://www.zabbix.com/documentation/7.0/en/manual/concepts/agent" target="_blank" rel="noopener noreferrer">Zabbix — Fonctionnement des agents</a></li><li><a href="https://www.zabbix.com/documentation/7.0/en/manual/config/notifications/media/webhook" target="_blank" rel="noopener noreferrer">Zabbix — Webhooks</a></li></ul></div>
+    </div>
+  </section>
+</article>
+
+<dialog class="case-lightbox" id="caseLightbox" aria-label="Agrandissement de la preuve">
+  <button type="button" data-lightbox-close="" aria-label="Fermer l’image"><i class="fas fa-xmark" aria-hidden="true"></i></button>
+  <img src="" alt="">
+</dialog>
+
+  </main>
+
+  <footer class="main-footer">
+    <div class="footer-container">
+      <div class="footer-content">
+        <p class="footer-text">© 2026 <span class="footer-copyright">Franck Raymond</span>. Tous droits réservés.</p>
+        <div class="footer-socials" aria-label="Réseaux professionnels">
+          <a href="https://github.com/franckraymond" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><i class="fab fa-github" aria-hidden="true"></i></a>
+          <a href="https://www.linkedin.com/in/franck-r-21a8a4184" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fab fa-linkedin" aria-hidden="true"></i></a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../assets/portfolio-glossary.js?v=20260831-2" defer=""></script>
+  <script src="../assets/portfolio-v2.js?v=20261028-493b8041ab" defer=""></script>
+
+
+
+<script src="/assets/interactive-labs.js?v=20261028-7903a4303d" defer></script>
+</body></html>

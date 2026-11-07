@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="fr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta content="Profil de Franck Raymond - Administrateur systèmes et réseaux chez Delannoy Dewailly, en alternance d’un an dans le cadre du Bachelor ASRBD à l’EPSI Lille." name="description"/>
+<title>Mon profil - Franck Raymond | Bachelor ASRBD</title>
+<link href="/tailwind-output.css" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&amp;family=Outfit:wght@300;400;500;600;700;800;900&amp;family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="style.css" rel="stylesheet"/>
+<style>
+        .profile-hero {
+            padding-top: 10rem;
+            padding-bottom: 4rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .profile-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(99, 102, 241, 0.15) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .profile-img-container {
+            width: 200px;
+            height: 200px;
+            margin: 0 auto 2rem;
+            border-radius: 50%;
+            border: 4px solid var(--primary);
+            overflow: hidden;
+            background: var(--bg-card);
+            box-shadow: var(--shadow-glow);
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .profile-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .content-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s;
+        }
+
+        .content-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: var(--gradient-1);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .content-card:hover {
+            border-color: var(--primary);
+            transform: translateY(-5px);
+        }
+
+        .content-card:hover::before {
+            opacity: 1;
+        }
+
+        .card-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            color: var(--text-primary);
+        }
+
+        .card-title i {
+            color: var(--primary);
+            font-size: 1.25rem;
+        }
+
+        .bio-text {
+            font-size: 1.1rem;
+            line-height: 1.9;
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+        }
+
+        .soft-skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .soft-skill-item {
+            background: var(--bg-card-solid);
+            padding: 2rem;
+            border-radius: 16px;
+            text-align: center;
+            border: 1px solid var(--border);
+            transition: all 0.4s;
+        }
+
+        .soft-skill-item:hover {
+            border-color: var(--primary);
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .soft-skill-icon {
+            width: 60px;
+            height: 60px;
+            background: var(--gradient-1);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+            font-size: 1.5rem;
+            color: white;
+        }
+
+        .soft-skill-item h3 {
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: var(--text-primary);
+        }
+
+        .soft-skill-item p {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        .hobbies-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .hobby-tag {
+            background: rgba(99, 102, 241, 0.1);
+            color: var(--primary);
+            padding: 0.75rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.95rem;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            border: 1px solid var(--border);
+            transition: all 0.3s;
+        }
+
+        .hobby-tag:hover {
+            background: var(--primary);
+            color: white;
+            transform: translateY(-3px);
+        }
+
+        .profile-name {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .profile-tagline {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            max-width: 500px;
+            margin: 0 auto;
+        }
+    
+        /* Tooltips termes techniques */
+        .term {
+            border-bottom: 1px dashed var(--primary);
+            cursor: help;
+            position: relative;
+            display: inline;
+        }
+        .term::after {
+            content: attr(data-def);
+            position: absolute;
+            bottom: calc(100% + 8px);
+            left: 50%;
+            transform: translateX(-50%);
+            background: #1e293b;
+            color: #f8fafc;
+            font-size: 0.78rem;
+            line-height: 1.5;
+            padding: 0.6rem 0.9rem;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            white-space: normal;
+            width: 220px;
+            text-align: left;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.2s;
+            z-index: 100;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+        }
+        .term:hover::after { opacity: 1; }
+</style>
+<meta content="#111214" name="theme-color"/><link href="/assets/legacy-unified.css?v=20260831-2" rel="stylesheet"/><meta content="Franck Raymond" name="author"/><meta content="index,follow,max-image-preview:large" name="robots"/><meta content="website" property="og:type"/><meta content="Portfolio de Franck Raymond" property="og:site_name"/><meta content="Mon Profil - Franck Raymond | Bachelor ASRBD" property="og:title"/><meta content="Profil de Franck Raymond - Administrateur systèmes et réseaux chez Delannoy Dewailly, en alternance d’un an dans le cadre du Bachelor ASRBD à l’EPSI Lille." property="og:description"/><meta content="https://franckraymond.tech/profil.html" property="og:url"/><meta content="https://franckraymond.tech/franck.webp" property="og:image"/><meta content="Portrait professionnel de Franck Raymond" property="og:image:alt"/><meta content="fr_FR" property="og:locale"/><meta content="summary_large_image" name="twitter:card"/><meta content="Mon Profil - Franck Raymond | Bachelor ASRBD" name="twitter:title"/><meta content="Profil de Franck Raymond - Administrateur systèmes et réseaux chez Delannoy Dewailly, en alternance d’un an dans le cadre du Bachelor ASRBD à l’EPSI Lille." name="twitter:description"/><meta content="https://franckraymond.tech/franck.webp" name="twitter:image"/><link href="https://franckraymond.tech/profil.html" rel="canonical"/><link href="/favicon-32x32.png" rel="icon" sizes="32x32" type="image/png"/><link href="/apple-touch-icon.png" rel="apple-touch-icon" sizes="180x180"/><link href="/site.webmanifest" rel="manifest"/><script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"Mon Profil - Franck Raymond | Bachelor ASRBD","url":"https://franckraymond.tech/profil.html","description":"Profil de Franck Raymond - Administrateur systèmes et réseaux chez Delannoy Dewailly, en alternance d’un an dans le cadre du Bachelor ASRBD à l’EPSI Lille.","isPartOf":{"@type":"WebSite","name":"Portfolio de Franck Raymond","url":"https://franckraymond.tech/"},"about":{"@type":"Person","name":"Franck Raymond","url":"https://franckraymond.tech/"}}</script><link href="/assets/portfolio-v2.css?v=20260831-3" rel="stylesheet"/><link href="/assets/portfolio-refresh.css?v=20260906-2" rel="stylesheet"/>
+<link href="/assets/portfolio-library.css?v=20260906-1" rel="stylesheet"/>
+<link href="/assets/plain-language.css?v=20260917-1" rel="stylesheet"/>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,400&amp;family=Geist:wght@400;500;600&amp;display=swap">
+<link rel="stylesheet" href="/assets/editorial-tokens.css?v=20261106-modern">
+<link rel="stylesheet" href="/assets/editorial.css?v=20261106-modern">
+<script src="/assets/editorial-theme.js?v=20261028-1fe0ee8c9d"></script>
+</head>
+<body class="portfolio-legacy editorial-site" data-theme="light">
+<div class="bg-mesh"></div>
+<div class="noise-overlay"></div>
+<div class="grid-lines"></div>
+<a class="skip-link" href="#main-content">Aller au contenu</a>
+<header class="main-header" id="header">
+<nav class="nav-container" aria-label="Navigation principale">
+<a class="brand-logo" href="index.html" aria-label="Accueil — Franck Raymond">
+<span class="logo-bracket">&lt;</span>
+<span class="logo-text">FR</span>
+<span class="logo-bracket">/&gt;</span>
+</a>
+<div class="nav-menu" id="navMenu"><a class="nav-link" href="/index.html"><span class="nav-text">Accueil</span></a>
+<a class="nav-link" href="/projets.html"><span class="nav-text">Projets</span></a>
+<a aria-current="page" class="nav-link" href="/profil.html"><span class="nav-text">Profil</span></a>
+<a class="nav-link" href="/index.html#skills"><span class="nav-text">Compétences</span></a>
+<a class="nav-link" href="/experience.html"><span class="nav-text">Expériences</span></a>
+<a class="nav-link" href="/index.html#contact"><span class="nav-text">Contact</span></a>
+<a class="nav-link" href="https://opengym.jsuisfray.blitz.cloud/"><span class="nav-text">FrayFit</span></a></div>
+<div class="nav-controls">
+<button aria-label="Changer le thème" class="theme-toggle" id="themeToggle">
+<i class="fas fa-moon"></i>
+</button>
+<button aria-label="Menu" class="menu-toggle" id="menuToggle">
+<span></span><span></span><span></span>
+</button>
+</div>
+</nav>
+</header>
+<main id="main-content">
+<section class="profile-hero">
+<div class="section-container">
+<div class="profile-img-container">
+<img alt="Franck Raymond" class="profile-img" onerror="this.style.display='none'; this.parentElement.innerHTML='&lt;i class=\'fas fa-user\' style=\'font-size: 4rem; color: var(--text-muted);\'&gt;&lt;/i&gt;'" src="franck.PNG"/>
+</div>
+<h1 class="profile-name">Franck Raymond</h1>
+<p class="profile-tagline">Administrateur systèmes et réseaux chez Delannoy Dewailly, en alternance d’un an dans le cadre du Bachelor ASRBD à l’EPSI Lille.</p>
+<p style="margin-top:1rem;color:var(--primary);font-weight:600;"><i class="fas fa-briefcase" style="margin-right:0.5rem;"></i>En alternance chez Delannoy Dewailly · Bachelor ASRBD — <a href="index.html#contact" style="color:var(--primary);text-decoration:underline;">Me contacter</a></p>
+</div>
+</section>
+<div class="section-container" style="padding-bottom: 4rem;">
+<div class="content-card fade-in">
+<h2 class="card-title"><i class="fas fa-quote-left"></i> Qui suis-je ?</h2>
+<p class="bio-text">
+                    Je m'appelle Franck Raymond. Après avoir obtenu mon BTS SIO option SISR au lycée Gaston Berger, je prépare le Bachelor ASRBD — Administrateur systèmes, réseaux et bases de données — à l’EPSI Lille. Je suis administrateur systèmes et réseaux chez Delannoy Dewailly pour une alternance d’un an, au rythme d’une semaine en formation et deux semaines en entreprise.
+                </p>
+<p class="bio-text">
+                    Mon parcours en alternance, d'abord au <strong>Centre Hospitalier de Tourcoing</strong> puis à la <strong>Mairie de La Madeleine</strong>, a forgé mon caractère professionnel. J'ai appris à gérer le stress des environnements critiques (hôpital) et la rigueur nécessaire à l'administration d'un service public.
+                </p>
+<p class="bio-text">
+                    Mon objectif est de progresser vers l’administration des systèmes et réseaux et la sécurisation des infrastructures. J’aborde cette évolution avec des bases techniques, de la curiosité et la volonté d’apprendre progressivement auprès d’une équipe expérimentée.
+                </p>
+</div>
+<div class="content-card fade-in">
+<h2 class="card-title"><i class="fas fa-users"></i> Qualités Humaines</h2>
+<div class="soft-skills-grid">
+<div class="soft-skill-item">
+<div class="soft-skill-icon"><i class="fas fa-brain"></i></div>
+<h3>Curiosité</h3>
+<p>Toujours en veille sur les nouvelles technologies et tendances.</p>
+</div>
+<div class="soft-skill-item">
+<div class="soft-skill-icon"><i class="fas fa-tasks"></i></div>
+<h3>Rigueur</h3>
+<p>Respect des procédures et documentation méthodique.</p>
+</div>
+<div class="soft-skill-item">
+<div class="soft-skill-icon"><i class="fas fa-hands-helping"></i></div>
+<h3>Esprit d'équipe</h3>
+<p>Collaboration efficace et partage de connaissances.</p>
+</div>
+<div class="soft-skill-item">
+<div class="soft-skill-icon"><i class="fas fa-hourglass-half"></i></div>
+<h3>Patience</h3>
+<p>Persévérance face aux problèmes complexes.</p>
+</div>
+</div>
+</div>
+<div class="content-card fade-in">
+<h2 class="card-title"><i class="fas fa-heart"></i> Centres d'intérêt</h2>
+<p class="bio-text">En dehors de l'informatique, j'aime déconnecter et explorer d'autres horizons.</p>
+<div class="hobbies-list">
+<span class="hobby-tag"><i class="fas fa-gamepad"></i> Gaming (FC26)</span>
+<span class="hobby-tag"><i class="fas fa-running"></i> Sports (Foot, Salle)</span>
+<span class="hobby-tag"><i class="fas fa-search"></i> Veille Tech</span>
+<span class="hobby-tag"><i class="fas fa-microchip"></i> Hardware</span>
+</div>
+</div>
+
+</div>
+<section aria-labelledby="profil-title" class="home-band home-profile" id="profil">
+<div class="home-container home-profile-grid">
+<div class="home-heading">
+<span>Recommandations</span>
+<h2 id="profil-title">Les regards de mes formateurs et responsables</h2>
+</div>
+
+<blockquote class="home-recommendation">
+<i aria-hidden="true" class="fas fa-quote-left"></i>
+<div>
+<p class="home-recommendation-label">Recommandation académique</p>
+<p class="home-recommendation-quote">« Je recommande sa candidature au regard du travail accompli, de ses résultats et compte tenu de son implication et de sa volonté de réussir. »</p>
+<footer><strong>Vincent Liesse</strong><span>Formateur du GRETA Lille Métropole · Lycée Gaston Berger</span></footer>
+</div>
+<p class="home-recommendation-date">Lettre du 11 mars 2026</p>
+</blockquote>
+<blockquote class="home-recommendation">
+<i aria-hidden="true" class="fas fa-quote-left"></i>
+<div>
+<p class="home-recommendation-label">Recommandation professionnelle</p>
+<p class="home-recommendation-quote">« Sérieux, autonome et d'une réelle rigueur technique, il s'est parfaitement intégré à l'équipe et a mené à bien l'ensemble des missions qui lui ont été confiées. »</p>
+<footer><strong>Jean-Christophe Cadou</strong><span>Responsable du service informatique · Ville de La Madeleine</span></footer>
+<a class="home-text-link" href="/cv/Lettre-de-recommandation-Jean-Christophe-Cadou.pdf" rel="noopener" target="_blank">Lire la lettre de Jean-Christophe Cadou <i aria-hidden="true" class="fas fa-arrow-up-right-from-square"></i></a>
+</div>
+<p class="home-recommendation-date">Lettre du 10 août 2026</p>
+</blockquote>
+</div>
+</section><section aria-labelledby="rh-summary-title" class="home-recruiter-summary">
+<div class="home-container">
+<div class="rh-summary-heading">
+<p><i aria-hidden="true" class="fas fa-user-tie"></i>En bref pour les RH</p>
+<h2 id="rh-summary-title">Ce que je peux apporter à une équipe informatique</h2>
+<p>Un résumé rapide de mes compétences opérationnelles et des environnements dans lesquels je les ai déjà mobilisées.</p>
+</div>
+<div class="rh-summary-grid">
+<article><span>01</span><i aria-hidden="true" class="fas fa-screwdriver-wrench"></i><h3>Support &amp; exploitation</h3><p>Diagnostiquer un incident, préparer des postes, suivre les demandes et documenter les interventions.</p><strong>Déjà pratiqué au CHU de Tourcoing et à la Mairie de La Madeleine</strong></article>
+<article><span>02</span><i aria-hidden="true" class="fas fa-server"></i><h3>Systèmes</h3><p>Administrer des comptes et droits, travailler avec Windows Server, Active Directory, GPO et Linux.</p><strong>Expérience professionnelle complétée par des laboratoires vérifiables</strong></article>
+<article><span>03</span><i aria-hidden="true" class="fas fa-network-wired"></i><h3>Réseaux</h3><p>Comprendre VLAN, DHCP, DNS, commutation et VoIP, puis tester méthodiquement la connectivité.</p><strong>Participation à une migration Avaya vers Extreme Networks</strong></article>
+<article><span>04</span><i aria-hidden="true" class="fas fa-cloud-shield"></i><h3>Cloud &amp; cybersécurité</h3><p>Développer mes compétences sur Azure, Docker, le durcissement Linux, la supervision et l’analyse de journaux.</p><strong>Laboratoires personnels, veille et certifications en préparation</strong></article>
+</div>
+<div class="rh-summary-actions"><a class="home-button home-button-primary" href="/index.html#skills">Voir les compétences détaillées</a><a class="home-text-link" href="experience.html">Voir les expériences <i aria-hidden="true" class="fas fa-arrow-right"></i></a></div>
+</div>
+</section><section aria-labelledby="premiers-jours-title" class="home-band home-first-month" id="premiers-jours">
+<div class="home-container">
+<div class="home-section-header">
+<div class="home-heading"><span>02 / En entreprise</span><h2 id="premiers-jours-title">Ma méthode pour prendre mes repères</h2></div>
+<p>Un cadre de travail pour mes premières semaines : observer, participer puis proposer. Il s’agit de ma méthode, pas d’un bilan de missions déjà réalisées.</p>
+</div>
+<div class="first-month-path">
+<article class="first-month-step">
+<p>Jours 1 à 7</p>
+<h3>Observer et comprendre</h3>
+<p>Découvrir l’équipe, les outils, les procédures et les priorités. Poser des questions et prendre des notes avant de modifier quoi que ce soit.</p>
+<a href="pages/projet-homelab.html">Voir ma façon d’apprendre <i aria-hidden="true" class="fas fa-arrow-right"></i></a>
+</article>
+<article class="first-month-step">
+<p>Jours 8 à 15</p>
+<h3>Participer progressivement</h3>
+<p>Prendre en charge des tâches de support ou d’administration avec mon tuteur, puis faire vérifier le résultat et compléter la documentation.</p>
+<a href="/index.html#experience">Voir mon expérience <i aria-hidden="true" class="fas fa-arrow-right"></i></a>
+</article>
+<article class="first-month-step">
+<p>Jours 16 à 30</p>
+<h3>Proposer avec l’équipe</h3>
+<p>Repérer une petite amélioration utile, comme une alerte ou une procédure plus claire, puis la proposer et la tester après validation.</p>
+<a href="pages/projet-zabbix-r5.html">Voir un exemple de supervision <i aria-hidden="true" class="fas fa-arrow-right"></i></a>
+</article>
+</div>
+</div>
+</section></main>
+<footer class="main-footer">
+<div class="footer-container">
+<div class="footer-content">
+<p class="footer-text">© 2026 <span class="footer-copyright">Franck Raymond</span> — Tous droits réservés.</p>
+</div>
+</div>
+</footer>
+<script>
+        // Fade-in animation
+        document.addEventListener('DOMContentLoaded', () => {
+            const cards = document.querySelectorAll('.fade-in');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach((entry, index) => {
+                    if (entry.isIntersecting) {
+                        setTimeout(() => {
+                            entry.target.style.opacity = '1';
+                            entry.target.style.transform = 'translateY(0)';
+                        }, index * 150);
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            cards.forEach(card => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(30px)';
+                card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                observer.observe(card);
+            });
+        });
+
+        // Header scroll
+        window.addEventListener('scroll', () => {
+            document.getElementById('header').classList.toggle('scrolled', window.scrollY > 50);
+        });
+
+        // Mobile menu
+        document.getElementById('menuToggle').addEventListener('click', () => {
+            document.getElementById('navMenu').classList.toggle('active');
+        });
+    </script>
+<script defer="" src="/assets/portfolio-glossary.js?v=20260917-1"></script><script defer="" src="/assets/legacy-unified.js?v=20261028-8c422e514f"></script></body></html>

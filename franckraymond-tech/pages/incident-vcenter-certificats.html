@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html data-theme="light" dir="ltr" lang="fr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta content="Retour d'expérience : remise en service d'un vCenter après expiration des certificats et blocage de l'accès SSH, avec snapshot préventif et procédure de retour arrière." name="description"/>
+<meta content="Franck Raymond" name="author"/>
+<meta content="#111214" name="theme-color"/>
+<title>Incident vCenter : certificats expirés | Portfolio Franck Raymond</title>
+<link href="https://franckraymond.tech/pages/incident-vcenter-certificats.html" rel="canonical"/>
+<link href="https://franckraymond.tech/pages/incident-vcenter-certificats.html" hreflang="fr" rel="alternate"/>
+<link href="https://franckraymond.tech/pages/incident-vcenter-certificats.html" hreflang="x-default" rel="alternate"/>
+<link href="../tailwind-output.css" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&amp;family=Outfit:wght@400;500;600;700;800&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="../style.css" rel="stylesheet"/>
+<link href="../assets/portfolio-v2.css?v=20260831-3" rel="stylesheet"/>
+<meta content="index,follow,max-image-preview:large" name="robots"/>
+<meta content="article" property="og:type"/>
+<meta content="Portfolio de Franck Raymond" property="og:site_name"/>
+<meta content="Incident vCenter : certificats expirés" property="og:title"/>
+<meta content="Diagnostic, snapshot préventif, récupération de l'accès et renouvellement des certificats d'un vCenter critique." property="og:description"/>
+<meta content="https://franckraymond.tech/pages/incident-vcenter-certificats.html" property="og:url"/>
+<meta content="https://franckraymond.tech/pages/incident-vcenter-assets/vcenter-ssh-anonymise.png" property="og:image"/>
+<meta content="fr_FR" property="og:locale"/>
+<link href="/favicon-32x32.png" rel="icon" sizes="32x32" type="image/png"/>
+<link href="/apple-touch-icon.png" rel="apple-touch-icon" sizes="180x180"/>
+<link href="/site.webmanifest" rel="manifest"/>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Incident vCenter : certificats expirés et accès bloqué","url":"https://franckraymond.tech/pages/incident-vcenter-certificats.html","author":{"@type":"Person","name":"Franck Raymond"},"isPartOf":{"@type":"WebSite","name":"Portfolio de Franck Raymond","url":"https://franckraymond.tech/"}}</script>
+<link href="/assets/portfolio-refresh.css?v=20260906-2" rel="stylesheet"/>
+<link href="/assets/portfolio-library.css?v=20260906-1" rel="stylesheet"/>
+<link href="/assets/interactive-labs.css?v=20260908-1" rel="stylesheet"/>
+<link href="/assets/plain-language.css?v=20260917-1" rel="stylesheet"/>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,400&amp;family=Geist:wght@400;500;600&amp;display=swap">
+<link rel="stylesheet" href="/assets/editorial-tokens.css?v=20261106-modern">
+<link rel="stylesheet" href="/assets/editorial.css?v=20261106-modern">
+<script src="/assets/editorial-theme.js?v=20261028-1fe0ee8c9d"></script>
+</head>
+<body data-theme="light" class="portfolio-v2 editorial-site">
+<a class="skip-link" href="#main-content">Aller au contenu principal</a>
+<div aria-hidden="true" class="bg-mesh"></div><div aria-hidden="true" class="noise-overlay"></div><div aria-hidden="true" class="grid-lines"></div>
+<header class="main-header" id="header">
+<nav aria-label="Navigation principale" class="nav-container">
+<a aria-label="Accueil — Franck Raymond" class="brand-logo" href="/index.html"><span aria-hidden="true" class="logo-bracket">&lt;</span><span class="logo-text">FR</span><span aria-hidden="true" class="logo-bracket">/&gt;</span></a>
+<div class="nav-menu" id="navMenu"><a class="nav-link" href="/index.html"><span class="nav-text">Accueil</span></a>
+<a class="nav-link" href="/projets.html"><span class="nav-text">Projets</span></a>
+<a class="nav-link" href="/profil.html"><span class="nav-text">Profil</span></a>
+<a class="nav-link" href="/index.html#skills"><span class="nav-text">Compétences</span></a>
+<a class="nav-link" href="/experience.html"><span class="nav-text">Expériences</span></a>
+<a class="nav-link" href="/index.html#contact"><span class="nav-text">Contact</span></a>
+<a class="nav-link" href="https://opengym.jsuisfray.blitz.cloud/"><span class="nav-text">FrayFit</span></a></div>
+<div class="nav-controls">
+<button aria-label="Activer le thème clair" class="theme-toggle" data-dark-label="Activer le thème sombre" data-light-label="Activer le thème clair" id="themeToggle" type="button"><i aria-hidden="true" class="fas fa-sun"></i></button>
+<button aria-controls="navMenu" aria-expanded="false" aria-label="Ouvrir le menu" class="menu-toggle" data-close-label="Fermer le menu" data-open-label="Ouvrir le menu" id="menuToggle" type="button"><span aria-hidden="true"></span><span aria-hidden="true"></span><span aria-hidden="true"></span></button>
+</div>
+</nav>
+</header>
+<main id="main-content">
+<article class="case-study">
+<header class="case-hero">
+<div class="case-container case-hero-grid">
+<div>
+<p class="case-kicker"><i aria-hidden="true" class="fas fa-certificate"></i>Incident réel · infrastructure critique</p>
+<h1>vCenter : certificats expirés et accès bloqué</h1>
+<p class="case-lead">Lors de mes derniers jours d’alternance, j’ai participé à la remise en service d’un vCenter dont les certificats étaient expirés depuis deux jours. L’accès web dépendant du SSO était indisponible et plusieurs erreurs de mot de passe avaient verrouillé l’accès SSH.</p>
+<div aria-label="Technologies et méthodes" class="case-tags"><span>VMware vCenter 7</span><span>SSO</span><span>SSH</span><span>Certificats</span><span>Snapshot</span><span>Console Linux</span></div>
+</div>
+<dl aria-label="Informations principales" class="case-facts">
+<div><dt>Contexte</dt><dd>Expérience professionnelle</dd></div>
+<div><dt>Impact</dt><dd>Administration vCenter inaccessible</dd></div>
+<div><dt>Priorité</dt><dd>Préserver un retour arrière</dd></div>
+<div><dt>Résultat</dt><dd>Accès et certificats rétablis</dd></div>
+</dl>
+</div>
+</header>
+<nav aria-label="Sommaire du retour d'expérience" class="case-nav"><div class="case-container"><a href="#lecture-visuelle">Lecture visuelle</a><a href="#contexte">Contexte</a><a href="#diagnostic">Diagnostic</a><a href="#intervention">Intervention</a><a href="#validation">Validation</a><a href="#recul">Recul</a><a href="#preuve">Preuve</a></div></nav>
+<aside class="plain-guide"><p class="plain-kicker">En clair</p><h2>Un accès d’administration à rétablir</h2><p>L’outil vCenter, utilisé pour gérer des serveurs virtuels, était inaccessible. Cela ne signifie pas que tous les services hébergés étaient arrêtés.</p><p><strong>Mon rôle et le résultat :</strong> Avec mon tuteur, j’ai participé à préparer un retour arrière, renouveler les certificats expirés et vérifier le rétablissement des accès.</p><details><summary>Les mots utiles pour lire ce projet</summary><p>Un certificat numérique aide à vérifier l’identité d’un service. Un snapshot conserve l’état d’une machine à un instant donné pour faciliter un retour arrière ; il ne remplace pas une sauvegarde indépendante.</p></details></aside><section class="interactive-lab" data-interactive-lab="vcenter" id="resoudre-incident"><noscript><div class="lab-wrap lab-noscript"><h2>Résous l’incident vCenter</h2><p>Activez JavaScript pour suivre la reconstitution. Le retour d’expérience complet reste disponible ci-dessous.</p></div></noscript></section><section aria-labelledby="visual-title" class="refresh-case home-band" id="lecture-visuelle"><div class="home-container"><h2 id="visual-title">Comprendre l’intervention</h2><p class="refresh-case-lead">Une lecture visuelle des étapes, complétée par les preuves du projet.</p><div class="case-flow" data-case-flow=""><div class="case-flow-main"><div class="flow-diagram"><button aria-pressed="true" class="flow-node selected" data-flow-node="0" type="button"><span class="flow-symbol"><svg aria-hidden="true" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewbox="0 0 24 24"><path d="M6 3h12v13H6zM9 7h6M9 10h4"></path><circle cx="15" cy="16" r="3"></circle><path d="m13 19-1 3 3-1 3 1-1-3"></path></svg></span><span>Certificats expirés</span></button><svg aria-hidden="true" class="flow-arrow" viewbox="0 0 60 24"><path d="M2 12h53m-8-7 8 7-8 7" fill="none" stroke="currentColor" stroke-width="1.5"></path></svg><button aria-pressed="false" class="flow-node" data-flow-node="1" type="button"><span class="flow-symbol"><svg aria-hidden="true" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewbox="0 0 24 24"><rect height="11" rx="2" width="14" x="5" y="10"></rect><path d="M8 10V7a4 4 0 0 1 8 0v3M12 14v3"></path></svg></span><span>Accès indisponible</span></button><svg aria-hidden="true" class="flow-arrow" viewbox="0 0 60 24"><path d="M2 12h53m-8-7 8 7-8 7" fill="none" stroke="currentColor" stroke-width="1.5"></path></svg><button aria-pressed="false" class="flow-node" data-flow-node="2" type="button"><span class="flow-symbol"><svg aria-hidden="true" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewbox="0 0 24 24"><path d="m12 2 9 4v6c0 5-6 9-9 10-3-1-9-5-9-10V6zM8 12l3 3 5-6"></path></svg></span><span>Rétablissement</span></button></div><div class="case-flow-controls"><button aria-pressed="true" data-flow-step="0" type="button">1. Diagnostic</button><button aria-pressed="false" data-flow-step="1" type="button">2. Intervention</button><button aria-pressed="false" data-flow-step="2" type="button">3. Validation</button></div></div><div aria-live="polite" class="case-flow-inspector"><h3 data-flow-title="">Diagnostic</h3><p data-flow-description="">L’administration vCenter est inaccessible. L’expiration des certificats et les difficultés d’authentification imposent une reprise méthodique.</p></div><script class="case-flow-data" type="application/json">[["Diagnostic", "L’administration vCenter est inaccessible. L’expiration des certificats et les difficultés d’authentification imposent une reprise méthodique."], ["Intervention", "Avec mon tuteur : préparation d’un snapshot, accès en console, vérification du clavier et renouvellement des certificats."], ["Validation", "Contrôle des accès, des services et des certificats après intervention. Le retour d’expérience précise les vérifications effectuées."]]</script></div><p class="diagram-caption">Représentation pédagogique</p><div class="refresh-case-footer"><div><h3>Mon rôle</h3><p>Participation à la remise en service avec mon tuteur.</p></div><div><h3>Preuves &amp; limites</h3><p><a href="#preuve">Consulter les preuves</a> · <a href="#validation">Lire les vérifications et le contexte</a></p></div></div></div></section><section class="case-band" id="contexte">
+<div class="case-container">
+<div class="case-section-heading"><span>01</span><div><p>Comprendre avant d’agir</p><h2>Le contexte et la chaîne de blocage</h2></div></div>
+<div class="case-two-columns">
+<div class="case-copy"><h3>Le problème initial</h3><p>Les certificats de vCenter avaient expiré depuis deux jours. L’interface d’administration n’était plus exploitable normalement, alors qu’elle était nécessaire pour les opérations liées au SSO.</p></div>
+<div class="case-copy"><h3>La difficulté supplémentaire</h3><p>Des tentatives involontaires avec un mot de passe incorrect avaient déclenché trop d’échecs d’authentification. La connexion SSH se fermait immédiatement, empêchant le chemin d’accès habituel.</p></div>
+</div>
+<div class="case-list-grid">
+<div class="case-list-item"><i aria-hidden="true" class="fas fa-link-slash"></i><span>Certificats expirés : accès web et authentification dégradés.</span></div>
+<div class="case-list-item"><i aria-hidden="true" class="fas fa-user-lock"></i><span>Compte bloqué après plusieurs échecs d’authentification SSH.</span></div>
+<div class="case-list-item"><i aria-hidden="true" class="fas fa-shield-halved"></i><span>vCenter étant critique, toute intervention devait rester réversible.</span></div>
+<div class="case-list-item"><i aria-hidden="true" class="fas fa-eye-slash"></i><span>Les adresses et identifiants sont masqués dans la preuve publiée.</span></div>
+</div>
+</div>
+</section>
+<section class="case-band case-band-alt" id="diagnostic">
+<div class="case-container">
+<div class="case-section-heading"><span>02</span><div><p>Décider avant de modifier</p><h2>Le snapshot qui a sécurisé l’intervention</h2></div></div>
+<div class="case-decision"><h3>Mon premier réflexe : prévoir le retour arrière</h3><p>Avant d’entrer dans la console de l’appliance et de modifier l’authentification ou les certificats, j’ai proposé de réaliser un snapshot du vCenter depuis l’hyperviseur. Cette décision a fourni un point de retour lorsque l’intervention a rencontré une difficulté et a évité de transformer un incident d’accès en panne durable.</p></div>
+<div class="case-list-grid case-list-grid-wide">
+<div class="case-list-item"><i aria-hidden="true" class="fas fa-camera"></i><span>Créer un état de reprise avant toute modification sensible.</span></div>
+<div class="case-list-item"><i aria-hidden="true" class="fas fa-triangle-exclamation"></i><span>Identifier les risques liés à l’authentification et aux certificats.</span></div>
+<div class="case-list-item"><i aria-hidden="true" class="fas fa-rotate-left"></i><span>Conserver une option de restauration rapidement exploitable.</span></div>
+<div class="case-list-item"><i aria-hidden="true" class="fas fa-circle-info"></i><span>Un snapshot est un filet technique temporaire, pas une sauvegarde complète.</span></div>
+</div>
+</div>
+</section>
+<section class="case-band" id="intervention">
+<div class="case-container">
+<div class="case-section-heading"><span>03</span><div><p>Rétablir méthodiquement</p><h2>Ce que j’ai réalisé</h2></div></div>
+<ol class="case-steps">
+<li><span>01</span><p>Constat de l’expiration des certificats et du verrouillage de l’accès SSH après trop d’échecs d’authentification.</p></li>
+<li><span>02</span><p>Création d’un snapshot préventif de l’appliance vCenter avant toute modification critique.</p></li>
+<li><span>03</span><p>Accès à la console directe de vCenter pour contourner l’indisponibilité de l’interface web et de SSH.</p></li>
+<li><span>04</span><p>Correction de la disposition du clavier, initialement en QWERTY, avec <code>loadkeys fr</code> afin d’éviter une nouvelle erreur de saisie.</p></li>
+<li><span>05</span><p>Récupération de l’accès d’administration puis mise à jour des certificats vCenter depuis les outils intégrés à l’appliance.</p></li>
+<li><span>06</span><p>Redémarrage contrôlé des services nécessaires et validation progressive des accès.</p></li>
+</ol>
+</div>
+</section>
+<section class="case-band case-band-alt" id="validation">
+<div class="case-container">
+<div class="case-section-heading"><span>04</span><div><p>Ne pas s’arrêter au premier écran vert</p><h2>Résultat et vérifications</h2></div></div>
+<div class="case-two-columns">
+<div><h3>Contrôles effectués</h3><ul class="case-check-list"><li><i aria-hidden="true" class="fas fa-check"></i><span>Authentification d’administration de nouveau fonctionnelle.</span></li><li><i aria-hidden="true" class="fas fa-check"></i><span>Services vCenter revenus dans un état exploitable.</span></li><li><i aria-hidden="true" class="fas fa-check"></i><span>Certificats actualisés et interface d’administration récupérée.</span></li><li><i aria-hidden="true" class="fas fa-check"></i><span>Absence d’adresse IP ou d’identifiant interne dans la preuve publique.</span></li></ul></div>
+<div><h3>Ce que cette intervention démontre</h3><ul class="case-check-list case-results"><li><i aria-hidden="true" class="fas fa-circle-check"></i><span>Capacité à raisonner sur une chaîne de dépendances : certificats, SSO, SSH et console.</span></li><li><i aria-hidden="true" class="fas fa-circle-check"></i><span>Prudence avant changement sur un composant critique.</span></li><li><i aria-hidden="true" class="fas fa-circle-check"></i><span>Adaptation à un problème concret de clavier et de saisie.</span></li><li><i aria-hidden="true" class="fas fa-circle-check"></i><span>Validation du service après correction, pas seulement exécution d’une commande.</span></li></ul></div>
+</div>
+</div>
+</section>
+<section class="case-band" id="recul">
+<div class="case-container">
+<div class="case-section-heading"><span>05</span><div><p>Capitaliser</p><h2>Les enseignements que j’en retiens</h2></div></div>
+<div class="case-list-grid case-list-grid-wide">
+<div class="case-list-item"><i aria-hidden="true" class="fas fa-calendar-check"></i><span>Superviser les dates d’expiration et déclencher des alertes suffisamment tôt.</span></div>
+<div class="case-list-item"><i aria-hidden="true" class="fas fa-keyboard"></i><span>Vérifier la disposition du clavier avant toute saisie sensible en console.</span></div>
+<div class="case-list-item"><i aria-hidden="true" class="fas fa-file-lines"></i><span>Documenter la procédure d’accès hors interface web et les étapes de renouvellement.</span></div>
+<div class="case-list-item"><i aria-hidden="true" class="fas fa-clock-rotate-left"></i><span>Préparer le retour arrière avant d’intervenir, puis supprimer le snapshot selon la politique de conservation.</span></div>
+</div>
+</div>
+</section>
+<section class="case-band case-band-alt" id="preuve">
+<div class="case-container">
+<div class="case-section-heading"><span>06</span><div><p>Capture anonymisée</p><h2>Le symptôme SSH observé</h2></div></div>
+<div class="case-gallery">
+<figure><button data-lightbox-alt="Terminal vCenter affichant un rejet SSH après trop d'échecs d'authentification, données internes masquées" data-lightbox-src="incident-vcenter-assets/vcenter-ssh-anonymise.png" type="button"><img alt="Terminal vCenter affichant le message Too many authentication failures avec adresse et identifiants masqués" loading="lazy" src="incident-vcenter-assets/vcenter-ssh-anonymise-optimized.webp" data-full-src="incident-vcenter-assets/vcenter-ssh-anonymise.png" width="1771" height="888" decoding="async"/></button><figcaption>Capture réelle anonymisée : le message montre un rejet SSH après trop d’échecs d’authentification ; il ne prouve pas, à lui seul, un verrouillage du compte. L’adresse interne et les identifiants ont été masqués avant publication.</figcaption></figure>
+</div>
+</div>
+</section>
+<section class="case-band case-sources"><div class="case-container case-two-columns"><div><h2>Compétences démontrées</h2><ul class="case-compact-list"><li>Analyser un incident d’infrastructure en chaîne.</li><li>Sécuriser une intervention par un retour arrière.</li><li>Administrer une appliance vCenter depuis sa console.</li><li>Renouveler des certificats et valider le rétablissement.</li><li>Anonymiser une preuve technique avant publication.</li></ul></div><div><h2>Positionnement</h2><ul class="case-compact-list"><li>Incident traité dans un cadre professionnel et avec l’accompagnement de mon tuteur.</li><li>Aucune adresse, aucun mot de passe et aucun nom d’équipement interne ne sont publiés.</li><li>Les commandes détaillées propres à l’environnement ne sont volontairement pas exposées.</li></ul></div></div></section>
+</article>
+<dialog aria-label="Agrandissement de la preuve" class="case-lightbox" id="caseLightbox"><button aria-label="Fermer l’image" data-lightbox-close="" type="button"><i aria-hidden="true" class="fas fa-xmark"></i></button><img alt="" src=""/></dialog>
+</main>
+<footer class="main-footer"><div class="footer-container"><div class="footer-content"><p class="footer-text">© 2026 <span class="footer-copyright">Franck Raymond</span>. Tous droits réservés.</p><div aria-label="Réseaux professionnels" class="footer-socials"><a aria-label="GitHub" href="https://github.com/franckraymond" rel="noopener noreferrer" target="_blank"><i aria-hidden="true" class="fab fa-github"></i></a><a aria-label="LinkedIn" href="https://www.linkedin.com/in/franck-r-21a8a4184" rel="noopener noreferrer" target="_blank"><i aria-hidden="true" class="fab fa-linkedin"></i></a></div></div></div></footer>
+<script defer="" src="../assets/portfolio-glossary.js?v=20260917-1"></script>
+<script defer="" src="../assets/portfolio-v2.js?v=20261028-493b8041ab"></script>
+<script defer="" src="/assets/portfolio-refresh.js?v=20260906-2"></script>
+<script defer="" src="/assets/interactive-labs.js?v=20261028-7903a4303d"></script>
+</body></html>

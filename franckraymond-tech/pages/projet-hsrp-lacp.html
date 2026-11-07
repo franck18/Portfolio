@@ -1,0 +1,269 @@
+<!DOCTYPE html><html lang="fr" dir="ltr" data-theme="light"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Conception et validation d&amp;#39;une architecture Cisco redondante combinant passerelle virtuelle HSRP et agrégation de liens LACP.">
+  <meta name="author" content="Franck Raymond">
+  <meta name="robots" content="index,follow,max-image-preview:large">
+  <meta name="theme-color" content="#111214">
+  <title>Haute disponibilité HSRP &amp;amp; LACP | Portfolio Franck Raymond</title>
+  <link rel="canonical" href="https://franckraymond.tech/pages/projet-hsrp-lacp.html">
+  <link rel="alternate" hreflang="fr" href="https://franckraymond.tech/pages/projet-hsrp-lacp.html">
+  <link rel="alternate" hreflang="en" href="https://franckraymond.tech/en/pages/projet-hsrp-lacp.html">
+  <link rel="alternate" hreflang="x-default" href="https://franckraymond.tech/pages/projet-hsrp-lacp.html">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Portfolio de Franck Raymond">
+  <meta property="og:title" content="Haute disponibilité HSRP &amp;amp; LACP | Portfolio Franck Raymond">
+  <meta property="og:description" content="Conception et validation d&amp;#39;une architecture Cisco redondante combinant passerelle virtuelle HSRP et agrégation de liens LACP.">
+  <meta property="og:url" content="https://franckraymond.tech/pages/projet-hsrp-lacp.html">
+  <meta property="og:image" content="https://franckraymond.tech/franck.webp">
+  <meta property="og:image:alt" content="Portrait professionnel de Franck Raymond">
+  <meta property="og:image:width" content="1024">
+  <meta property="og:image:height" content="1024">
+  <meta property="og:locale" content="fr_FR">
+  <meta property="og:locale:alternate" content="en_GB">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Haute disponibilité HSRP &amp;amp; LACP | Portfolio Franck Raymond">
+  <meta name="twitter:description" content="Conception et validation d&amp;#39;une architecture Cisco redondante combinant passerelle virtuelle HSRP et agrégation de liens LACP.">
+  <meta name="twitter:image" content="https://franckraymond.tech/franck.webp">
+  <meta name="twitter:image:alt" content="Portrait professionnel de Franck Raymond">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Person",
+        "@id": "https://franckraymond.tech/#person",
+        "name": "Franck Raymond",
+        "url": "https://franckraymond.tech/",
+        "image": "https://franckraymond.tech/franck.webp",
+        "jobTitle": "Administrateur systèmes et réseaux",
+        "description": "Administrateur systèmes et réseaux chez Delannoy Dewailly, en alternance d’un an dans le cadre du Bachelor ASRBD à l’EPSI Lille.",
+        "email": "mailto:franckrmnd@gmail.com",
+        "sameAs": ["https://www.linkedin.com/in/franck-r-21a8a4184", "https://github.com/franckraymond"],
+        "knowsAbout": ["Administration systèmes", "Réseaux informatiques", "Cybersécurité", "Supervision", "Linux", "Windows Server"]
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://franckraymond.tech/#website",
+        "url": "https://franckraymond.tech/",
+        "name": "Portfolio de Franck Raymond",
+        "inLanguage": ["fr-FR", "en-GB"],
+        "publisher": { "@id": "https://franckraymond.tech/#person" }
+      },
+      {
+        "@type": "WebPage",
+        "@id": "https://franckraymond.tech/pages/projet-hsrp-lacp.html#webpage",
+        "url": "https://franckraymond.tech/pages/projet-hsrp-lacp.html",
+        "name": "Haute disponibilité HSRP &amp; LACP | Portfolio Franck Raymond",
+        "description": "Conception et validation d&#39;une architecture Cisco redondante combinant passerelle virtuelle HSRP et agrégation de liens LACP.",
+        "isPartOf": { "@id": "https://franckraymond.tech/#website" },
+        "about": { "@id": "https://franckraymond.tech/#person" }
+      }
+    ]
+  }
+  </script>
+  <link rel="stylesheet" href="../tailwind-output.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&amp;family=Outfit:wght@400;500;600;700;800&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../style.css">
+  <link rel="stylesheet" href="../assets/portfolio-v2.css?v=20260831-2">
+  
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,400&amp;family=Geist:wght@400;500;600&amp;display=swap">
+<link rel="stylesheet" href="/assets/editorial-tokens.css?v=20261106-modern">
+<link rel="stylesheet" href="/assets/editorial.css?v=20261106-modern">
+<script src="/assets/editorial-theme.js?v=20261028-1fe0ee8c9d"></script>
+</head>
+<body data-theme="light" class="portfolio-v2 editorial-site">
+  
+  <a class="skip-link" href="#main-content">Aller au contenu principal</a>
+  <div class="bg-mesh" aria-hidden="true"></div>
+  <div class="noise-overlay" aria-hidden="true"></div>
+  <div class="grid-lines" aria-hidden="true"></div>
+
+  <header class="main-header" id="header">
+    <nav class="nav-container" aria-label="Navigation principale">
+      <a href="/index.html" class="brand-logo" aria-label="Accueil — Franck Raymond">
+        <span class="logo-bracket" aria-hidden="true">&lt;</span>
+        <span class="logo-text">FR</span>
+        <span class="logo-bracket" aria-hidden="true">/&gt;</span>
+      </a>
+      <div class="nav-menu" id="navMenu">
+        <a href="/index.html" class="nav-link"><i class="fas fa-home" aria-hidden="true"></i><span class="nav-text">Accueil</span></a>
+        <a href="/projets.html" class="nav-link"><i class="fas fa-diagram-project" aria-hidden="true"></i><span class="nav-text">Projets</span></a>
+        <a href="/index.html#skills" class="nav-link"><i class="fas fa-code" aria-hidden="true"></i><span class="nav-text">Compétences</span></a>
+        <a href="/index.html#experience" class="nav-link"><i class="fas fa-briefcase" aria-hidden="true"></i><span class="nav-text">Expériences</span></a>
+        <a href="/index.html#contact" class="nav-link"><i class="fas fa-envelope" aria-hidden="true"></i><span class="nav-text">Contact</span></a>
+      
+<a class="nav-link" href="https://opengym.jsuisfray.blitz.cloud/"><span class="nav-text">FrayFit</span></a></div>
+      <div class="nav-controls">
+        <div class="language-switcher">
+          <button class="language-toggle" id="languageToggle" type="button" aria-label="Choisir la langue" aria-controls="languageMenu" aria-expanded="false" data-open-label="Choisir la langue" data-close-label="Fermer le choix de langue">
+            <i class="fas fa-globe" aria-hidden="true"></i><span>FR</span>
+          </button>
+          <div class="language-menu" id="languageMenu" aria-label="Choix de la langue" hidden="">
+            <a href="/pages/projet-hsrp-lacp.html" lang="fr" hreflang="fr" data-language="fr" aria-current="page">FR <span>Français</span></a>
+            <a href="/en/pages/projet-hsrp-lacp.html" lang="en" hreflang="en" data-language="en">EN <span>English</span></a>
+          </div>
+        </div>
+        <button class="theme-toggle" id="themeToggle" type="button" aria-label="Activer le thème clair" data-light-label="Activer le thème clair" data-dark-label="Activer le thème sombre">
+          <i class="fas fa-sun" aria-hidden="true"></i>
+        </button>
+        <button class="menu-toggle" id="menuToggle" type="button" aria-label="Ouvrir le menu" aria-controls="navMenu" aria-expanded="false" data-open-label="Ouvrir le menu" data-close-label="Fermer le menu">
+          <span aria-hidden="true"></span><span aria-hidden="true"></span><span aria-hidden="true"></span>
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <main id="main-content">
+    
+<article class="case-study">
+  <header class="case-hero">
+    <div class="case-container case-hero-grid">
+      <div>
+        <p class="case-kicker"><i class="fas fa-network-wired" aria-hidden="true"></i>Réseaux &amp; haute disponibilité</p>
+        <h1>Haute disponibilité HSRP &amp; LACP</h1>
+        <p class="case-lead">Conception d'un laboratoire Cisco multi-VLAN où deux commutateurs de niveau 3 partagent une passerelle HSRP et agrègent leurs liaisons montantes avec LACP.</p>
+        <div class="case-tags" aria-label="Outils et technologies utilisés">
+          <span>Cisco IOS</span><span>HSRP</span><span>LACP</span><span>EtherChannel</span><span>VLAN</span><span>STP</span>
+        </div>
+      </div>
+      <dl class="case-facts" aria-label="Informations principales">
+        
+        <div><dt>Périmètre</dt><dd>Laboratoire Cisco multi-VLAN</dd></div>
+        
+        <div><dt>Redondance L3</dt><dd>Passerelle virtuelle HSRP</dd></div>
+        
+        <div><dt>Redondance L2</dt><dd>Port-channel LACP</dd></div>
+        
+        <div><dt>Validation</dt><dd>Bascule et état des liens contrôlés</dd></div>
+        
+      </dl>
+    </div>
+  </header>
+
+  <nav class="case-nav" aria-label="Sommaire du projet">
+    <div class="case-container">
+      <a href="#analyse">Besoin</a>
+      <a href="#architecture">Solution</a>
+      <a href="#realisation">Réalisation</a>
+      <a href="#validation">Vérification</a>
+      <a href="#recul">Améliorations</a>
+      <a href="#preuves">Preuves</a>
+    </div>
+  </nav>
+
+  <section class="case-band" id="analyse">
+    <div class="case-container">
+      <div class="case-section-heading"><span>01</span><div><p>Avant de commencer</p><h2>Le besoin et mon rôle</h2></div></div>
+      <div class="case-two-columns">
+        <div class="case-copy"><h3>Le besoin</h3><p>Éviter qu'une passerelle ou une liaison montante unique rende les VLAN indisponibles, tout en conservant une configuration observable et testable depuis les équipements Cisco.</p></div>
+        <div class="case-copy"><h3>Mon rôle</h3><p>Conception de la topologie, configuration des VLAN et SVI, paramétrage de HSRP et des port-channels LACP, diagnostic des incohérences de trunk puis réalisation des tests de bascule.</p></div>
+      </div>
+      <div class="case-list-grid">
+        <div class="case-list-item"><i class="fas fa-diamond" aria-hidden="true"></i><span>Maintenir une passerelle par défaut stable pour les postes de chaque VLAN.</span></div><div class="case-list-item"><i class="fas fa-diamond" aria-hidden="true"></i><span>Faire correspondre les paramètres LACP et trunk aux deux extrémités.</span></div><div class="case-list-item"><i class="fas fa-diamond" aria-hidden="true"></i><span>Conserver une boucle de niveau 2 maîtrisée avec STP.</span></div><div class="case-list-item"><i class="fas fa-diamond" aria-hidden="true"></i><span>Valider la continuité sans présenter de délai de convergence non mesuré.</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="case-band case-band-alt" id="architecture">
+    <div class="case-container">
+      <div class="case-section-heading"><span>02</span><div><p>Pourquoi cette méthode</p><h2>La solution choisie</h2></div></div>
+      <div class="case-decision">
+        <h3>HSRP pour la passerelle, LACP pour les liaisons</h3>
+        <p>HSRP fournit une adresse IP virtuelle indépendante du commutateur actif. LACP regroupe plusieurs liens compatibles dans un port-channel et permet de conserver le trafic lorsqu'un membre tombe. Ces deux mécanismes traitent des points de défaillance différents et complémentaires.</p>
+      </div>
+      <div class="case-list-grid case-list-grid-wide">
+        <div class="case-list-item"><i class="fas fa-arrow-right" aria-hidden="true"></i><span>Deux commutateurs de niveau 3 assurent le routage inter-VLAN.</span></div><div class="case-list-item"><i class="fas fa-arrow-right" aria-hidden="true"></i><span>Chaque VLAN utilise une adresse virtuelle HSRP comme passerelle par défaut.</span></div><div class="case-list-item"><i class="fas fa-arrow-right" aria-hidden="true"></i><span>Les priorités et l'option preempt déterminent le commutateur actif attendu.</span></div><div class="case-list-item"><i class="fas fa-arrow-right" aria-hidden="true"></i><span>Les liaisons vers le commutateur d'accès sont regroupées en port-channels LACP.</span></div><div class="case-list-item"><i class="fas fa-arrow-right" aria-hidden="true"></i><span>Les port-channels transportent les VLAN autorisés en mode trunk.</span></div><div class="case-list-item"><i class="fas fa-arrow-right" aria-hidden="true"></i><span>STP continue de protéger le domaine de niveau 2.</span></div>
+      </div>
+      
+      <figure class="case-architecture">
+        <img src="projet-hsrp-lacp_assets/architecture_hsrp.svg" alt="Schéma de l'architecture Cisco redondante HSRP et LACP" loading="lazy">
+        <figcaption>Deux passerelles de niveau 3 et des liaisons agrégées vers l'accès.</figcaption>
+      </figure>
+      
+    </div>
+  </section>
+
+  <section class="case-band" id="realisation">
+    <div class="case-container">
+      <div class="case-section-heading"><span>03</span><div><p>Passer du plan à la pratique</p><h2>Ce que j’ai réalisé</h2></div></div>
+      <ol class="case-steps">
+        <li><span>01</span><p>Création des VLAN, des trunks et des interfaces SVI sur les commutateurs de niveau 3.</p></li><li><span>02</span><p>Configuration des groupes HSRP avec adresse virtuelle, priorité et preempt.</p></li><li><span>03</span><p>Création des groupes EtherChannel et négociation LACP active ou passive.</p></li><li><span>04</span><p>Alignement des VLAN autorisés et du VLAN natif sur les interfaces membres.</p></li><li><span>05</span><p>Contrôle des rôles HSRP et de l'état agrégé des port-channels.</p></li><li><span>06</span><p>Coupure volontaire d'une liaison puis test de bascule de la passerelle.</p></li>
+      </ol>
+      <p class="case-technical-link"><a href="dossier-technique-projet-hsrp-lacp.html"><i class="fas fa-terminal" aria-hidden="true"></i>Consulter le dossier technique complet</a></p>
+    </div>
+  </section>
+
+  <section class="case-band case-band-alt" id="validation">
+    <div class="case-container">
+      <div class="case-section-heading"><span>04</span><div><p>Contrôler le fonctionnement</p><h2>Comment j’ai vérifié</h2></div></div>
+      <div class="case-two-columns">
+        <div><h3>Tests réalisés</h3><ul class="case-check-list"><li><i class="fas fa-check" aria-hidden="true"></i>Contrôle des états Active et Standby avec `show standby`.</li><li><i class="fas fa-check" aria-hidden="true"></i>Contrôle de l'état SU et des interfaces groupées avec `show etherchannel summary`.</li><li><i class="fas fa-check" aria-hidden="true"></i>Désactivation d'un membre du port-channel pendant un trafic de test.</li><li><i class="fas fa-check" aria-hidden="true"></i>Indisponibilité volontaire de l'équipement HSRP actif puis contrôle du relais par le secondaire.</li></ul></div>
+        <div><h3>Résultats observés</h3><ul class="case-check-list case-results"><li><i class="fas fa-circle-check" aria-hidden="true"></i>Les rôles HSRP actif et secours sont visibles et correspondent aux priorités configurées.</li><li><i class="fas fa-circle-check" aria-hidden="true"></i>Les interfaces LACP apparaissent groupées dans un port-channel opérationnel.</li><li><i class="fas fa-circle-check" aria-hidden="true"></i>Lorsqu'un câble membre est retiré, le second lien continue d'acheminer le trafic sans interruption visible lors du test.</li><li><i class="fas fa-circle-check" aria-hidden="true"></i>La passerelle secondaire reprend le rôle actif pendant le scénario de bascule.</li></ul></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="case-band" id="recul">
+    <div class="case-container">
+      <div class="case-section-heading"><span>05</span><div><p>Prendre du recul</p><h2>Limites et améliorations</h2></div></div>
+      <div class="case-two-columns">
+        <div><h3>Sécurité et utilisation</h3><ul class="case-check-list"><li><i class="fas fa-shield-halved" aria-hidden="true"></i>La redondance améliore la disponibilité mais ne remplace pas le filtrage inter-VLAN ni la protection du plan de contrôle.</li><li><i class="fas fa-shield-halved" aria-hidden="true"></i>La cohérence des trunks limite les erreurs d'exposition involontaire de VLAN.</li><li><i class="fas fa-shield-halved" aria-hidden="true"></i>Une exploitation réelle demanderait aussi une supervision des changements de rôle et de l'état des membres LACP.</li></ul></div>
+        <div><h3>Ce que j’améliorerais</h3><ul class="case-check-list case-limitations"><li><i class="fas fa-triangle-exclamation" aria-hidden="true"></i>Le temps de convergence et la perte de paquets n'ont pas été mesurés précisément.</li><li><i class="fas fa-triangle-exclamation" aria-hidden="true"></i>Le laboratoire ne couvre pas la redondance des alimentations, opérateurs ou services applicatifs.</li><li><i class="fas fa-triangle-exclamation" aria-hidden="true"></i>Les protections STP, DHCP snooping et sécurité des ports restent à intégrer à un scénario de production complet.</li></ul></div>
+      </div>
+    </div>
+  </section>
+
+  
+  <section class="case-band case-band-alt" id="preuves">
+    <div class="case-container">
+      <div class="case-section-heading"><span>06</span><div><p>Éléments visibles</p><h2>Preuves du fonctionnement</h2></div></div>
+      <div class="case-gallery">
+        
+        <figure><button type="button" data-lightbox-src="projet-hsrp-lacp_assets/architecture_hsrp.svg" data-lightbox-alt="Topologie HSRP et LACP"><img src="projet-hsrp-lacp_assets/architecture_hsrp.svg" alt="Topologie HSRP et LACP" loading="lazy"></button><figcaption>Architecture logique du laboratoire redondant.</figcaption></figure>
+        
+      </div>
+    </div>
+  </section>
+  
+
+  <section class="case-band case-sources">
+    <div class="case-container case-two-columns">
+      <div><h2>Compétences démontrées</h2><ul class="case-compact-list"><li>Concevoir une architecture réseau redondante de niveau 2 et 3.</li><li>Configurer HSRP, LACP, les VLAN et les trunks sous Cisco IOS.</li><li>Diagnostiquer une incohérence de port-channel ou de trunk.</li><li>Construire et documenter un protocole de bascule.</li></ul></div>
+      <div><h2>Sources utilisées</h2><ul class="case-compact-list"><li><a href="https://www.cisco.com/c/en/us/td/docs/switches/lan/c9000/lyr3-fwd/fhrp/fhrp-configuration-guide/hsrp.html" target="_blank" rel="noopener noreferrer">Cisco — Configuration HSRP</a></li><li><a href="https://www.cisco.com/c/en/us/td/docs/switches/lan/c9000/lyr2-fwd/etherchannel/etherchannel-configuration-guide/etherchannels.html" target="_blank" rel="noopener noreferrer">Cisco — Configuration EtherChannel</a></li></ul></div>
+    </div>
+  </section>
+</article>
+
+<dialog class="case-lightbox" id="caseLightbox" aria-label="Agrandissement de la preuve">
+  <button type="button" data-lightbox-close="" aria-label="Fermer l’image"><i class="fas fa-xmark" aria-hidden="true"></i></button>
+  <img src="" alt="">
+</dialog>
+
+  </main>
+
+  <footer class="main-footer">
+    <div class="footer-container">
+      <div class="footer-content">
+        <p class="footer-text">© 2026 <span class="footer-copyright">Franck Raymond</span>. Tous droits réservés.</p>
+        <div class="footer-socials" aria-label="Réseaux professionnels">
+          <a href="https://github.com/franckraymond" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><i class="fab fa-github" aria-hidden="true"></i></a>
+          <a href="https://www.linkedin.com/in/franck-r-21a8a4184" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fab fa-linkedin" aria-hidden="true"></i></a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../assets/portfolio-glossary.js?v=20260831-2" defer=""></script>
+  <script src="../assets/portfolio-v2.js?v=20261028-493b8041ab" defer=""></script>
+  
+
+
+</body></html>

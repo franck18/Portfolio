@@ -1,0 +1,477 @@
+<!DOCTYPE html><html lang="fr"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Virtualisation &amp; Cloud | Portfolio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&amp;family=Outfit:wght@300;400;500;600;700;800;900&amp;family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .veille-hero { padding: 8rem 0 4rem; position: relative; }
+        .veille-icon-frame {
+            width: 200px; height: 200px;
+            background: linear-gradient(135deg, rgba(6, 182, 212, 0.2), rgba(0, 168, 255, 0.2));
+            border: 2px solid rgba(6, 182, 212, 0.3);
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 5rem; color: #38bdf8;
+        }
+        .tech-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 1.5rem;
+            transition: all 0.3s;
+        }
+        .tech-card:hover {
+            border-color: var(--primary);
+            transform: translateY(-5px);
+        }
+        .tech-card h4 {
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+            display: flex; align-items: center; gap: 0.5rem;
+        }
+        .tech-badge {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: 50px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+        }
+        .tech-badge.opensource { background: rgba(16, 185, 129, 0.2); color: #10b981; }
+        .tech-badge.proprietary { background: rgba(0, 168, 255, 0.2); color: #5ccbff; }
+        .tech-badge.cloud { background: rgba(245, 158, 11, 0.2); color: #f59e0b; }
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1.5rem;
+        }
+        .comparison-table th, .comparison-table td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid var(--border);
+        }
+        .comparison-table th {
+            background: var(--bg-card);
+            color: var(--primary-light);
+            font-weight: 600;
+        }
+        .comparison-table td { color: var(--text-secondary); }
+        .source-card {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem 1.5rem;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+        .source-card:hover {
+            border-color: var(--primary);
+            background: var(--bg-hover);
+        }
+        .source-icon {
+            width: 48px; height: 48px;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            border-radius: 12px;
+            display: flex; align-items: center; justify-content: center;
+            color: white; font-size: 1.25rem;
+        }
+    
+        /* Tooltips termes techniques */
+        .term {
+            border-bottom: 1px dashed var(--primary);
+            cursor: help;
+            position: relative;
+            display: inline;
+        }
+        .term::after {
+            content: attr(data-def);
+            position: absolute;
+            bottom: calc(100% + 8px);
+            left: 50%;
+            transform: translateX(-50%);
+            background: #1e293b;
+            color: #f8fafc;
+            font-size: 0.78rem;
+            line-height: 1.5;
+            padding: 0.6rem 0.9rem;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            white-space: normal;
+            width: 220px;
+            text-align: left;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.2s;
+            z-index: 100;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+        }
+        .term:hover::after { opacity: 1; }
+</style>
+<meta name="theme-color" content="#111214"><link rel="stylesheet" href="/assets/legacy-unified.css?v=20260831-2"><meta name="description" content="Portfolio de Franck Raymond : projets en administration systèmes, réseaux, supervision et cybersécurité."><meta name="author" content="Franck Raymond"><meta name="robots" content="index,follow,max-image-preview:large"><meta property="og:type" content="website"><meta property="og:site_name" content="Portfolio de Franck Raymond"><meta property="og:title" content="Virtualisation &amp; Cloud | Portfolio"><meta property="og:description" content="Portfolio de Franck Raymond : projets en administration systèmes, réseaux, supervision et cybersécurité."><meta property="og:url" content="https://franckraymond.tech/virtualisation.html"><meta property="og:image" content="https://franckraymond.tech/franck.webp"><meta property="og:image:alt" content="Portrait professionnel de Franck Raymond"><meta property="og:locale" content="fr_FR"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Virtualisation &amp; Cloud | Portfolio"><meta name="twitter:description" content="Portfolio de Franck Raymond : projets en administration systèmes, réseaux, supervision et cybersécurité."><meta name="twitter:image" content="https://franckraymond.tech/franck.webp"><link rel="canonical" href="https://franckraymond.tech/virtualisation.html"><link rel="icon" href="/favicon-32x32.png" sizes="32x32" type="image/png"><link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180"><link rel="manifest" href="/site.webmanifest"><script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"Virtualisation & Cloud | Portfolio","url":"https://franckraymond.tech/virtualisation.html","description":"Portfolio de Franck Raymond : projets en administration systèmes, réseaux, supervision et cybersécurité.","isPartOf":{"@type":"WebSite","name":"Portfolio de Franck Raymond","url":"https://franckraymond.tech/"},"about":{"@type":"Person","name":"Franck Raymond","url":"https://franckraymond.tech/"}}</script>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,400&amp;family=Geist:wght@400;500;600&amp;display=swap">
+<link rel="stylesheet" href="/assets/editorial-tokens.css?v=20261106-modern">
+<link rel="stylesheet" href="/assets/editorial.css?v=20261106-modern">
+<script src="/assets/editorial-theme.js?v=20261028-1fe0ee8c9d"></script>
+</head>
+<body data-theme="light" class="portfolio-legacy editorial-site">
+    <div class="bg-mesh"></div>
+    <div class="noise-overlay"></div>
+    <div class="grid-lines"></div>
+
+    <header class="main-header" id="header">
+        <nav class="nav-container" aria-label="Navigation principale">
+            <div class="nav-brand">
+                <a href="index.html" class="brand-logo">
+                    <span class="logo-bracket">&lt;</span>
+                    <span class="logo-text">FR</span>
+                    <span class="logo-bracket">/&gt;</span>
+                </a>
+            </div>
+            <div class="nav-menu" id="navMenu">
+                <a href="index.html" class="nav-link">
+                    <i class="fas fa-home"></i>
+                    <span class="nav-text">Accueil</span>
+                </a>
+                <a href="index.html#skills" class="nav-link">
+                    <i class="fas fa-code"></i>
+                    <span class="nav-text">Compétences</span>
+                </a>
+                <a href="/projets.html#veille" class="nav-link active">
+                    <i class="fas fa-rss"></i>
+                    <span class="nav-text">Veille</span>
+                </a>
+                <a href="index.html#contact" class="nav-link">
+                    <i class="fas fa-envelope"></i>
+                    <span class="nav-text">Contact</span>
+                </a>
+            
+<a class="nav-link" href="https://opengym.jsuisfray.blitz.cloud/"><span class="nav-text">FrayFit</span></a></div>
+            <div class="nav-controls">
+                <button class="theme-toggle" id="themeToggle" aria-label="Changer le thème">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <button class="menu-toggle" id="menuToggle" aria-label="Menu">
+                    <span></span><span></span><span></span>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="veille-hero">
+            <div class="section-container">
+                <div class="hero-container">
+                    <div class="hero-content">
+                        <div class="hero-greeting" style="color: #38bdf8;">VEILLE TECHNOLOGIQUE BTS SIO</div>
+                        <h1 class="hero-name">
+                            Virtualisation <span class="name-value" style="background: linear-gradient(135deg, #38bdf8, #00a8ff); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">&amp; <span class="term" data-def="Serveurs distants accessibles par internet, gérés par des entreprises comme Microsoft (Azure) ou Amazon (AWS).">Cloud</span></span>
+                        </h1>
+                        <p class="hero-description">
+                            Évolution des hyperviseurs (<span class="term" data-def="Logiciel qui permet de faire tourner plusieurs systèmes (machines virtuelles) sur un seul serveur physique.">VMware</span> vs Proxmox), conteneurisation (<span class="term" data-def="Outil qui fait tourner des applications dans des environnements isolés, sans modifier le reste du système.">Docker</span>/Kubernetes) et adoption du <span class="term" data-def="Serveurs distants accessibles par internet, gérés par des entreprises comme Microsoft (Azure) ou Amazon (AWS).">cloud</span> en entreprise.
+                        </p>
+                        <div class="hero-buttons">
+                            <a href="#hyperviseurs" class="btn btn-primary" style="background: linear-gradient(135deg, #38bdf8, #00a8ff);">
+                                <i class="fas fa-server"></i> Hyperviseurs
+                            </a>
+                            <a href="#containers" class="btn btn-secondary">
+                                <i class="fab fa-docker"></i> Conteneurs
+                            </a>
+                        </div>
+                    </div>
+                    <div class="hero-image-wrapper">
+                        <div class="veille-icon-frame">
+                            <i class="fas fa-cloud"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contexte" class="section">
+            <div class="section-container">
+                <div class="section-header">
+                    <span class="section-number">01</span>
+                    <h2 class="section-title">Pourquoi <span class="title-gradient">cette Veille ?</span></h2>
+                    <div class="section-line"></div>
+                </div>
+
+                <div class="about-content">
+                    <div>
+                        <p class="about-text">
+                            La virtualisation est devenue incontournable dans les infrastructures modernes. Elle permet d'optimiser les ressources matérielles, de faciliter les déploiements et d'améliorer la résilience des services.
+                        </p>
+                        <p class="about-text">
+                            Avec l'émergence du <span class="term" data-def="Serveurs distants accessibles par internet, gérés par des entreprises comme Microsoft (Azure) ou Amazon (AWS).">cloud</span> et des conteneurs, le paysage évolue rapidement. En tant que futur administrateur systèmes, il est crucial de suivre ces évolutions pour proposer les meilleures solutions aux entreprises.
+                        </p>
+                        <div style="display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 1.5rem;">
+                            <span class="tag"><span class="term" data-def="Logiciel qui permet de faire tourner plusieurs systèmes (machines virtuelles) sur un seul serveur physique.">VMware</span></span>
+                            <span class="tag">Proxmox</span>
+                            <span class="tag"><span class="term" data-def="Outil qui fait tourner des applications dans des environnements isolés, sans modifier le reste du système.">Docker</span></span>
+                            <span class="tag">Kubernetes</span>
+                            <span class="tag"><span class="term" data-def="Serveurs distants accessibles par internet, gérés par des entreprises comme Microsoft (Azure) ou Amazon (AWS).">Cloud</span></span>
+                        </div>
+                    </div>
+                    <div class="skills-grid" style="grid-template-columns: 1fr;">
+                        <div class="skill-category">
+                            <h3 class="category-title">Enjeux Actuels</h3>
+                            <div class="skill-items">
+                                <div class="skill-item"><i class="fas fa-euro-sign"></i> Réduction des coûts d'infrastructure</div>
+                                <div class="skill-item"><i class="fas fa-rocket"></i> Agilité et rapidité de déploiement</div>
+                                <div class="skill-item"><i class="fas fa-sync-alt"></i> Haute disponibilité et PRA</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="hyperviseurs" class="section" style="background: var(--bg-card-solid);">
+            <div class="section-container">
+                <div class="section-header">
+                    <span class="section-number">02</span>
+                    <h2 class="section-title">Hyperviseurs : <span class="title-gradient"><span class="term" data-def="Logiciel qui permet de faire tourner plusieurs systèmes (machines virtuelles) sur un seul serveur physique.">VMware</span> vs Proxmox</span></h2>
+                    <div class="section-line"></div>
+                </div>
+
+                <p class="about-text" style="margin-bottom: 2rem;">
+                    Le rachat de <span class="term" data-def="Logiciel qui permet de faire tourner plusieurs systèmes (machines virtuelles) sur un seul serveur physique.">VMware</span> par Broadcom en 2023 a bouleversé le marché de la virtualisation. Les nouvelles politiques tarifaires ont poussé de nombreuses entreprises à envisager des alternatives open source comme Proxmox VE.
+                </p>
+
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem;">
+                    <div class="tech-card">
+                        <span class="tech-badge proprietary">Propriétaire</span>
+                        <h4><i class="fas fa-building"></i> <span class="term" data-def="Logiciel qui permet de faire tourner plusieurs systèmes (machines virtuelles) sur un seul serveur physique.">VMware</span> vSphere</h4>
+                        <p style="color: var(--text-secondary); font-size: 0.9rem;">
+                            Leader historique de la virtualisation d'entreprise. Interface vCenter puissante, écosystème riche (vSAN, NSX, vRealize). Depuis le rachat Broadcom : augmentation des prix, fin des licences perpétuelles, abonnements obligatoires.
+                        </p>
+                        <div style="margin-top: 1rem;">
+                            <span class="tag">Enterprise</span>
+                            <span class="tag">Support premium</span>
+                        </div>
+                    </div>
+                    <div class="tech-card">
+                        <span class="tech-badge opensource">Open Source</span>
+                        <h4><i class="fas fa-cube"></i> <span class="term" data-def="Logiciel qui permet de faire tourner plusieurs systèmes (machines virtuelles) sur un seul serveur physique.">Proxmox</span> VE</h4>
+                        <p style="color: var(--text-secondary); font-size: 0.9rem;">
+                            Solution open source basée sur Debian, KVM et LXC. Interface web intuitive, clustering intégré, stockage distribué (Ceph). Gratuit avec support optionnel payant. En forte croissance depuis les changements <span class="term" data-def="Logiciel qui permet de faire tourner plusieurs systèmes (machines virtuelles) sur un seul serveur physique.">VMware</span>.
+                        </p>
+                        <div style="margin-top: 1rem;">
+                            <span class="tag">Gratuit</span>
+                            <span class="tag">Communauté active</span>
+                        </div>
+                    </div>
+                </div>
+
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th>Critère</th>
+                            <th><span class="term" data-def="Logiciel qui permet de faire tourner plusieurs systèmes (machines virtuelles) sur un seul serveur physique.">VMware</span> vSphere</th>
+                            <th><span class="term" data-def="Logiciel qui permet de faire tourner plusieurs systèmes (machines virtuelles) sur un seul serveur physique.">Proxmox</span> VE</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Coût</strong></td>
+                            <td>Abonnement obligatoire (plusieurs milliers €/an)</td>
+                            <td>Gratuit (support optionnel ~100€/an/socket)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Interface</strong></td>
+                            <td>vCenter (client web)</td>
+                            <td>Interface web HTML5 intégrée</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Hyperviseur</strong></td>
+                            <td>ESXi (propriétaire)</td>
+                            <td>KVM + LXC (open source)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Stockage</strong></td>
+                            <td>vSAN, VMFS</td>
+                            <td>Ceph, ZFS, NFS, iSCSI</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Migration à chaud</strong></td>
+                            <td>vMotion</td>
+                            <td>Live Migration</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <section id="containers" class="section">
+            <div class="section-container">
+                <div class="section-header">
+                    <span class="section-number">03</span>
+                    <h2 class="section-title">Conteneurisation : <span class="title-gradient"><span class="term" data-def="Outil qui fait tourner des applications dans des environnements isolés, sans modifier le reste du système.">Docker</span> &amp; Kubernetes</span></h2>
+                    <div class="section-line"></div>
+                </div>
+
+                <p class="about-text" style="margin-bottom: 2rem;">
+                    Les conteneurs ont révolutionné le déploiement d'applications. Plus légers que les <span class="term" data-def="Ordinateur simulé qui tourne à l'intérieur d'un vrai serveur physique.">VM</span>, ils permettent une portabilité maximale et une gestion simplifiée des environnements.
+                </p>
+
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-marker"></div>
+                        <div class="timeline-content">
+                            <h3 class="timeline-title"><i class="fab fa-docker"></i> <span class="term" data-def="Outil qui fait tourner des applications dans des environnements isolés, sans modifier le reste du système.">Docker</span></h3>
+                            <p class="timeline-description">
+                                Plateforme de conteneurisation leader. Permet d'encapsuler une application et ses dépendances dans un conteneur portable. <span class="term" data-def="Outil qui fait tourner des applications dans des environnements isolés, sans modifier le reste du système.">Docker</span> Compose pour l'orchestration simple multi-conteneurs. Idéal pour le développement et les petits déploiements.
+                            </p>
+                            <div style="margin-top: 0.75rem;">
+                                <span class="tag">Conteneurs</span>
+                                <span class="tag">Images</span>
+                                <span class="tag"><span class="term" data-def="Outil qui fait tourner des applications dans des environnements isolés, sans modifier le reste du système.">Docker</span> Hub</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-marker"></div>
+                        <div class="timeline-content">
+                            <h3 class="timeline-title"><i class="fas fa-dharmachakra"></i> Kubernetes (K8s)</h3>
+                            <p class="timeline-description">
+                                Orchestrateur de conteneurs développé par Google. Gère automatiquement le déploiement, la mise à l'échelle et la haute disponibilité des conteneurs. Standard de facto pour les environnements de production à grande échelle.
+                            </p>
+                            <div style="margin-top: 0.75rem;">
+                                <span class="tag">Orchestration</span>
+                                <span class="tag">Auto-scaling</span>
+                                <span class="tag">Self-healing</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-marker"></div>
+                        <div class="timeline-content">
+                            <h3 class="timeline-title"><i class="fas fa-box"></i> Podman &amp; Alternatives</h3>
+                            <p class="timeline-description">
+                                Podman (Red Hat) : alternative sans daemon, rootless par défaut, compatible <span class="term" data-def="Outil qui fait tourner des applications dans des environnements isolés, sans modifier le reste du système.">Docker</span>. Containerd : runtime utilisé par Kubernetes. LXC/LXD : conteneurs système (alternative légère aux <span class="term" data-def="Ordinateur simulé qui tourne à l'intérieur d'un vrai serveur physique.">VM</span>).
+                            </p>
+                            <div style="margin-top: 0.75rem;">
+                                <span class="tag">Rootless</span>
+                                <span class="tag">Sécurité</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="cloud" class="section" style="background: var(--bg-card-solid);">
+            <div class="section-container">
+                <div class="section-header">
+                    <span class="section-number">04</span>
+                    <h2 class="section-title"><span class="term" data-def="Serveurs distants accessibles par internet, gérés par des entreprises comme Microsoft (Azure) ou Amazon (AWS).">Cloud</span> <span class="title-gradient">Public &amp; Hybride</span></h2>
+                    <div class="section-line"></div>
+                </div>
+
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem;">
+                    <div class="tech-card">
+                        <span class="tech-badge cloud"><span class="term" data-def="Serveurs distants accessibles par internet, gérés par des entreprises comme Microsoft (Azure) ou Amazon (AWS).">Cloud</span> Leader</span>
+                        <h4><i class="fab fa-aws"></i> Amazon Web Services</h4>
+                        <p style="color: var(--text-secondary); font-size: 0.9rem;">
+                            Leader mondial (~32% du marché). Services phares : EC2, S3, RDS, Lambda. Écosystème le plus complet avec 200+ services.
+                        </p>
+                    </div>
+                    <div class="tech-card">
+                        <span class="tech-badge cloud">Entreprise</span>
+                        <h4><i class="fab fa-microsoft"></i> Microsoft Azure</h4>
+                        <p style="color: var(--text-secondary); font-size: 0.9rem;">
+                            2ème acteur (~23% du marché). Intégration native avec l'écosystème Microsoft (<span class="term" data-def="Annuaire centralisé qui gère tous les utilisateurs et ordinateurs d'une entreprise. L'admin y crée les comptes et définit qui a accès à quoi.">AD</span>, Office 365). Forte adoption en entreprise.
+                        </p>
+                    </div>
+                    <div class="tech-card">
+                        <span class="tech-badge cloud">Innovation</span>
+                        <h4><i class="fab fa-google"></i> Google <span class="term" data-def="Serveurs distants accessibles par internet, gérés par des entreprises comme Microsoft (Azure) ou Amazon (AWS).">Cloud</span> Platform</h4>
+                        <p style="color: var(--text-secondary); font-size: 0.9rem;">
+                            3ème acteur (~10% du marché). Excellence en data/ML (BigQuery, Vertex AI). Créateur de Kubernetes.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="skill-category" style="margin-top: 2rem;">
+                    <h3 class="category-title">Tendances 2024-2025</h3>
+                    <div class="skill-items">
+                        <div class="skill-item"><i class="fas fa-cloud"></i> <span class="term" data-def="Serveurs distants accessibles par internet, gérés par des entreprises comme Microsoft (Azure) ou Amazon (AWS).">Cloud</span> hybride : combinaison on-premise + cloud public</div>
+                        <div class="skill-item"><i class="fas fa-shield-alt"></i> FinOps : optimisation des coûts <span class="term" data-def="Serveurs distants accessibles par internet, gérés par des entreprises comme Microsoft (Azure) ou Amazon (AWS).">cloud</span></div>
+                        <div class="skill-item"><i class="fas fa-leaf"></i> Green IT : datacenters éco-responsables</div>
+                        <div class="skill-item"><i class="fas fa-robot"></i> IA/ML as a Service : démocratisation de l'IA</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="section-container">
+                <div class="section-header">
+                    <span class="section-number">05</span>
+                    <h2 class="section-title">Sources <span class="title-gradient">de Veille</span></h2>
+                    <div class="section-line"></div>
+                </div>
+
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem;">
+                    <a href="https://www.proxmox.com/en/news" target="_blank" class="source-card">
+                        <div class="source-icon"><i class="fas fa-cube"></i></div>
+                        <div>
+                            <strong style="color: var(--text-primary);"><span class="term" data-def="Logiciel qui permet de faire tourner plusieurs systèmes (machines virtuelles) sur un seul serveur physique.">Proxmox</span> News</strong>
+                            <p style="color: var(--text-muted); font-size: 0.85rem;">Actualités et releases <span class="term" data-def="Logiciel qui permet de faire tourner plusieurs systèmes (machines virtuelles) sur un seul serveur physique.">Proxmox</span> VE</p>
+                        </div>
+                    </a>
+                    <a href="https://kubernetes.io/blog/" target="_blank" class="source-card">
+                        <div class="source-icon"><i class="fas fa-dharmachakra"></i></div>
+                        <div>
+                            <strong style="color: var(--text-primary);">Kubernetes Blog</strong>
+                            <p style="color: var(--text-muted); font-size: 0.85rem;">Blog officiel Kubernetes</p>
+                        </div>
+                    </a>
+                    <a href="https://www.theregister.com/data_centre/" target="_blank" class="source-card">
+                        <div class="source-icon"><i class="fas fa-newspaper"></i></div>
+                        <div>
+                            <strong style="color: var(--text-primary);">The Register</strong>
+                            <p style="color: var(--text-muted); font-size: 0.85rem;">Actualités infrastructure IT</p>
+                        </div>
+                    </a>
+                    <a href="https://www.reddit.com/r/homelab/" target="_blank" class="source-card">
+                        <div class="source-icon"><i class="fab fa-reddit"></i></div>
+                        <div>
+                            <strong style="color: var(--text-primary);">r/homelab</strong>
+                            <p style="color: var(--text-muted); font-size: 0.85rem;">Communauté passionnés virtualisation</p>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="section-footer" style="margin-top: 4rem;">
+                    <a href="/projets.html#veille" class="btn-more">
+                        <i class="fas fa-arrow-left"></i> Retour à l'accueil
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="main-footer">
+        <div class="footer-container">
+            <div class="footer-content">
+                <p class="footer-text">© 2025 <span class="footer-copyright">Franck Raymond</span> — Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        window.addEventListener('scroll', () => {
+            document.getElementById('header').classList.toggle('scrolled', window.scrollY > 50);
+        });
+        document.getElementById('menuToggle').addEventListener('click', () => {
+            document.getElementById('navMenu').classList.toggle('active');
+        });
+    </script>
+
+
+<script src="/assets/portfolio-glossary.js?v=20260831-2" defer=""></script><script src="/assets/legacy-unified.js?v=20261028-8c422e514f" defer=""></script></body></html>

@@ -1,0 +1,1843 @@
+<!DOCTYPE html><html lang="fr"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Projet Sécurisation SSH Fail2Ban - Portfolio BTS SIO SISR">
+  <title>Sécurisation SSH Fail2Ban | Portfolio</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&amp;family=Outfit:wght@300;400;500;600;700;800;900&amp;family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../style.css">
+  <style>
+    /* Global overflow fix */
+    html, body {
+      overflow-x: hidden;
+    }
+
+    main {
+      overflow-x: hidden;
+    }
+
+    .section-container {
+      max-width: 100%;
+      overflow-x: hidden;
+    }
+
+    /* Code blocks styling */
+    .code-block {
+      background: #0d1117;
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      margin: 1.5rem 0;
+      overflow: hidden;
+      max-width: 100%;
+    }
+
+    .code-header {
+      background: #161b22;
+      padding: 0.75rem 1rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid var(--border-color);
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .code-header span {
+      color: var(--text-secondary);
+      font-size: 0.8rem;
+      font-family: 'JetBrains Mono', monospace;
+      word-break: break-word;
+    }
+
+    .code-header .copy-btn {
+      background: none;
+      border: none;
+      color: var(--text-secondary);
+      cursor: pointer;
+      padding: 0.25rem 0.5rem;
+      border-radius: 4px;
+      transition: all 0.3s;
+      flex-shrink: 0;
+    }
+
+    .code-header .copy-btn:hover {
+      background: rgba(255,255,255,0.1);
+      color: var(--accent);
+    }
+
+    .code-content {
+      padding: 1rem;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      max-width: 100%;
+    }
+
+    .code-content pre {
+      margin: 0;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.8rem;
+      line-height: 1.6;
+      color: #e6edf3;
+      white-space: pre;
+      word-wrap: normal;
+    }
+
+    .code-content .comment {
+      color: #8b949e;
+    }
+
+    .code-content .command {
+      color: #79c0ff;
+    }
+
+    .code-content .string {
+      color: #a5d6ff;
+    }
+
+    .code-content .keyword {
+      color: #ff7b72;
+    }
+
+    /* Infrastructure cards */
+    .infra-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+      margin: 2rem 0;
+    }
+
+    .infra-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 16px;
+      padding: 1.5rem;
+      text-align: center;
+      transition: all 0.3s ease;
+      overflow: hidden;
+    }
+
+    .infra-card:hover {
+      transform: translateY(-5px);
+      border-color: var(--accent);
+    }
+
+    .infra-card.defense {
+      border-left: 4px solid #22c55e;
+    }
+
+    .infra-card.attaque {
+      border-left: 4px solid #ef4444;
+    }
+
+    .infra-icon {
+      width: 60px;
+      height: 60px;
+      background: linear-gradient(135deg, var(--accent) 0%, var(--accent-dark) 100%);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      margin: 0 auto 1rem;
+      color: white;
+    }
+
+    .infra-card.defense .infra-icon {
+      background: linear-gradient(135deg, #22c55e 0%, #15803d 100%);
+    }
+
+    .infra-card.attaque .infra-icon {
+      background: linear-gradient(135deg, #ef4444 0%, #b91c1c 100%);
+    }
+
+    .infra-card h3 {
+      font-size: 1.125rem;
+      margin-bottom: 0.5rem;
+      color: var(--text-primary);
+    }
+
+    .infra-card .ip {
+      font-family: 'JetBrains Mono', monospace;
+      background: var(--bg-darker);
+      padding: 0.25rem 0.75rem;
+      border-radius: 4px;
+      font-size: 0.85rem;
+      color: var(--accent);
+      display: inline-block;
+      margin-bottom: 0.5rem;
+      word-break: break-all;
+    }
+
+    .infra-card p {
+      color: var(--text-secondary);
+      font-size: 0.875rem;
+    }
+
+    /* Step cards */
+    .step-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 16px;
+      padding: 1.5rem;
+      padding-top: 2rem;
+      margin-bottom: 2rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .step-number {
+      position: absolute;
+      top: -15px;
+      left: 20px;
+      background: linear-gradient(135deg, var(--accent) 0%, var(--accent-dark) 100%);
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 1.125rem;
+      color: white;
+    }
+
+    .step-title {
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      padding-left: 0.5rem;
+      color: var(--text-primary);
+      word-wrap: break-word;
+    }
+
+    .step-content {
+      color: var(--text-secondary);
+      overflow: hidden;
+    }
+
+    .step-content p {
+      margin-bottom: 1rem;
+      word-wrap: break-word;
+    }
+
+    /* Alert boxes */
+    .alert {
+      padding: 1rem;
+      border-radius: 8px;
+      margin: 1rem 0;
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+      overflow: hidden;
+    }
+
+    .alert i {
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .alert > div {
+      min-width: 0;
+      word-wrap: break-word;
+    }
+
+    .alert-warning {
+      background: rgba(245, 158, 11, 0.1);
+      border: 1px solid #f59e0b;
+    }
+
+    .alert-warning i {
+      color: #f59e0b;
+    }
+
+    .alert-danger {
+      background: rgba(239, 68, 68, 0.1);
+      border: 1px solid #ef4444;
+    }
+
+    .alert-danger i {
+      color: #ef4444;
+    }
+
+    .alert-success {
+      background: rgba(34, 197, 94, 0.1);
+      border: 1px solid #22c55e;
+    }
+
+    .alert-success i {
+      color: #22c55e;
+    }
+
+    .alert-info {
+      background: rgba(59, 130, 246, 0.1);
+      border: 1px solid #3b82f6;
+    }
+
+    .alert-info i {
+      color: #3b82f6;
+    }
+
+    .alert strong {
+      color: var(--text-primary);
+    }
+
+    /* Config table */
+    .table-wrapper {
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      margin: 1rem 0;
+    }
+
+    .config-table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 400px;
+    }
+
+    .config-table th,
+    .config-table td {
+      padding: 0.75rem 0.75rem;
+      text-align: left;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .config-table th {
+      background: var(--bg-darker);
+      font-weight: 600;
+      color: var(--text-primary);
+      font-size: 0.9rem;
+    }
+
+    .config-table td {
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+    }
+
+    .config-table code {
+      background: var(--bg-darker);
+      padding: 0.125rem 0.5rem;
+      border-radius: 4px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.8rem;
+      color: var(--accent);
+    }
+
+    /* Timeline */
+    .conclusion-timeline {
+      position: relative;
+      padding-left: 2rem;
+      margin: 2rem 0;
+    }
+
+    .conclusion-timeline::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: var(--border-color);
+    }
+
+    .timeline-item {
+      position: relative;
+      padding-bottom: 2rem;
+    }
+
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: -2rem;
+      top: 0.5rem;
+      width: 12px;
+      height: 12px;
+      background: var(--accent);
+      border-radius: 50%;
+      transform: translateX(-5px);
+    }
+
+    .timeline-item h4 {
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      color: var(--text-primary);
+    }
+
+    .timeline-item p {
+      color: var(--text-secondary);
+    }
+
+    /* Competences grid */
+    .competences-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+      margin: 2rem 0;
+    }
+
+    .competence-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 1.25rem;
+      transition: all 0.3s;
+      overflow: hidden;
+    }
+
+    .competence-card:hover {
+      border-color: var(--accent);
+      transform: translateY(-3px);
+    }
+
+    .competence-header {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 0.75rem;
+      flex-wrap: wrap;
+    }
+
+    .competence-badge {
+      background: var(--accent);
+      color: white;
+      padding: 0.25rem 0.75rem;
+      border-radius: 4px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      flex-shrink: 0;
+    }
+
+    .competence-title {
+      font-weight: 600;
+      font-size: 0.95rem;
+      color: var(--text-primary);
+    }
+
+    .competence-desc {
+      color: var(--text-secondary);
+      font-size: 0.85rem;
+    }
+
+    /* Lightbox */
+    .lightbox {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.95);
+      z-index: 2000;
+      justify-content: center;
+      align-items: center;
+      padding: 2rem;
+    }
+
+    .lightbox.active {
+      display: flex;
+    }
+
+    .lightbox-content {
+      position: relative;
+      max-width: 90%;
+      max-height: 90%;
+    }
+
+    .lightbox-content img {
+      max-width: 100%;
+      max-height: 85vh;
+      border-radius: 8px;
+    }
+
+    .lightbox-close {
+      position: absolute;
+      top: -40px;
+      right: 0;
+      background: none;
+      border: none;
+      color: white;
+      font-size: 2rem;
+      cursor: pointer;
+      padding: 0.5rem;
+    }
+
+    .lightbox-nav {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(255, 255, 255, 0.1);
+      border: none;
+      color: white;
+      font-size: 2rem;
+      padding: 1rem;
+      cursor: pointer;
+      border-radius: 8px;
+      transition: background 0.3s;
+    }
+
+    .lightbox-nav:hover {
+      background: rgba(255, 255, 255, 0.2);
+    }
+
+    .lightbox-prev {
+      left: -60px;
+    }
+
+    .lightbox-next {
+      right: -60px;
+    }
+
+    .lightbox-counter {
+      position: absolute;
+      bottom: -40px;
+      left: 50%;
+      transform: translateX(-50%);
+      color: var(--text-secondary);
+      font-size: 0.875rem;
+    }
+
+    /* Zoomable images */
+    .zoomable-image {
+      position: relative;
+      display: inline-block;
+      cursor: pointer;
+    }
+
+    .zoomable-image::after {
+      content: '\f00e';
+      font-family: 'Font Awesome 6 Free';
+      font-weight: 900;
+      position: absolute;
+      bottom: 15px;
+      right: 15px;
+      background: rgba(0, 0, 0, 0.7);
+      color: white;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: opacity 0.3s;
+      pointer-events: none;
+    }
+
+    .zoomable-image:hover::after {
+      opacity: 1;
+    }
+
+    .project-image {
+      transition: transform 0.3s;
+    }
+
+    .project-image:hover {
+      transform: scale(1.02);
+    }
+
+    /* Image containers */
+    .image-container {
+      margin: 1.5rem 0;
+      text-align: center;
+    }
+
+    .image-container img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 8px;
+      border: 1px solid var(--border-color);
+      cursor: pointer;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .image-container img:hover {
+      transform: scale(1.02);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    }
+
+    .image-caption {
+      margin-top: 0.75rem;
+      color: var(--text-secondary);
+      font-size: 0.85rem;
+      font-style: italic;
+    }
+
+    .zoomable-image {
+      position: relative;
+      display: inline-block;
+      cursor: pointer;
+    }
+
+    .zoomable-image::after {
+      content: '\f00e';
+      font-family: 'Font Awesome 6 Free';
+      font-weight: 900;
+      position: absolute;
+      bottom: 20px;
+      right: 20px;
+      background: rgba(0, 0, 0, 0.7);
+      color: white;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: opacity 0.3s;
+      pointer-events: none;
+    }
+
+    .zoomable-image:hover::after {
+      opacity: 1;
+    }
+
+    /* PDF button */
+    .btn-pdf {
+      background: linear-gradient(135deg, #ef4444 0%, #b91c1c 100%);
+      color: white;
+      border: none;
+      padding: 0.75rem 1.5rem;
+      border-radius: 8px;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition: all 0.3s;
+      text-decoration: none;
+    }
+
+    .btn-pdf:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 20px rgba(239, 68, 68, 0.4);
+    }
+
+    /* Hero buttons fix */
+    .hero-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    /* Timeline tags fix */
+    .timeline-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .timeline-tags .tag {
+      white-space: nowrap;
+    }
+
+    @media print {
+      .main-header, .lightbox, .btn-pdf, .hero-buttons {
+        display: none !important;
+      }
+      .hero-section {
+        min-height: auto;
+        padding: 2rem;
+      }
+      .step-card, .infra-card, .competence-card {
+        break-inside: avoid;
+      }
+    }
+
+    @media (max-width: 992px) {
+      .competences-grid {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      }
+    }
+
+    @media (max-width: 768px) {
+      .lightbox-nav {
+        display: none;
+      }
+
+      .step-card {
+        padding: 1.25rem;
+        padding-top: 1.75rem;
+      }
+
+      .step-title {
+        font-size: 1rem;
+      }
+
+      .code-content {
+        padding: 0.75rem;
+      }
+
+      .code-content pre {
+        font-size: 0.75rem;
+      }
+
+      .infra-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .competences-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .alert {
+        flex-direction: column;
+        gap: 0.5rem;
+      }
+
+      .alert i {
+        margin-top: 0;
+      }
+
+      .config-table th,
+      .config-table td {
+        padding: 0.5rem;
+        font-size: 0.8rem;
+      }
+
+      .config-table code {
+        font-size: 0.7rem;
+        padding: 0.1rem 0.3rem;
+      }
+
+      .hero-buttons {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .hero-buttons .btn,
+      .hero-buttons .btn-pdf {
+        width: 100%;
+        justify-content: center;
+      }
+
+      .section-footer {
+        flex-direction: column;
+        gap: 1rem;
+      }
+
+      .section-footer .btn-more {
+        text-align: center;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .code-header span {
+        font-size: 0.7rem;
+      }
+
+      .code-content pre {
+        font-size: 0.65rem;
+      }
+
+      .step-number {
+        width: 32px;
+        height: 32px;
+        font-size: 0.9rem;
+        top: -12px;
+        left: 15px;
+      }
+
+      .infra-card {
+        padding: 1rem;
+      }
+
+      .infra-icon {
+        width: 50px;
+        height: 50px;
+        font-size: 1.25rem;
+      }
+
+      .competence-card {
+        padding: 1rem;
+      }
+
+      .conclusion-timeline {
+        padding-left: 1.5rem;
+      }
+
+      .timeline-item::before {
+        left: -1.5rem;
+        width: 10px;
+        height: 10px;
+      }
+    }
+  
+        /* Tooltips termes techniques */
+        .term {
+            border-bottom: 1px dashed var(--primary);
+            cursor: help;
+            position: relative;
+            display: inline;
+        }
+        .term::after {
+            content: attr(data-def);
+            position: absolute;
+            bottom: calc(100% + 8px);
+            left: 50%;
+            transform: translateX(-50%);
+            background: #1e293b;
+            color: #f8fafc;
+            font-size: 0.78rem;
+            line-height: 1.5;
+            padding: 0.6rem 0.9rem;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            white-space: normal;
+            width: 220px;
+            text-align: left;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.2s;
+            z-index: 100;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+        }
+        .term:hover::after { opacity: 1; }
+</style>
+<meta name="theme-color" content="#111214"><link rel="stylesheet" href="/assets/legacy-unified.css"><meta name="author" content="Franck Raymond"><meta name="robots" content="index,follow,max-image-preview:large"><meta property="og:type" content="website"><meta property="og:site_name" content="Portfolio de Franck Raymond"><meta property="og:title" content="Sécurisation SSH Fail2Ban | Portfolio"><meta property="og:description" content="Projet Sécurisation SSH Fail2Ban - Portfolio BTS SIO SISR"><meta property="og:url" content="https://franckraymond.tech/pages/dossier-technique-projet-fail2ban-ssh.html"><meta property="og:image" content="https://franckraymond.tech/franck.webp"><meta property="og:image:alt" content="Portrait professionnel de Franck Raymond"><meta property="og:locale" content="fr_FR"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Sécurisation SSH Fail2Ban | Portfolio"><meta name="twitter:description" content="Projet Sécurisation SSH Fail2Ban - Portfolio BTS SIO SISR"><meta name="twitter:image" content="https://franckraymond.tech/franck.webp"><link rel="canonical" href="https://franckraymond.tech/pages/dossier-technique-projet-fail2ban-ssh.html"><link rel="icon" href="/favicon-32x32.png" sizes="32x32" type="image/png"><link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180"><link rel="manifest" href="/site.webmanifest"><script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"Sécurisation SSH Fail2Ban | Portfolio","url":"https://franckraymond.tech/pages/dossier-technique-projet-fail2ban-ssh.html","description":"Projet Sécurisation SSH Fail2Ban - Portfolio BTS SIO SISR","isPartOf":{"@type":"WebSite","name":"Portfolio de Franck Raymond","url":"https://franckraymond.tech/"},"about":{"@type":"Person","name":"Franck Raymond","url":"https://franckraymond.tech/"}}</script>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,400&amp;family=Geist:wght@400;500;600&amp;display=swap">
+<link rel="stylesheet" href="/assets/editorial-tokens.css?v=20261106-modern">
+<link rel="stylesheet" href="/assets/editorial.css?v=20261106-modern">
+<script src="/assets/editorial-theme.js?v=20261028-1fe0ee8c9d"></script>
+</head>
+
+<body data-theme="light" class="portfolio-legacy editorial-site">
+  <div class="bg-mesh"></div>
+  <div class="noise-overlay"></div>
+  <div class="grid-lines"></div>
+
+  <header class="main-header" id="header">
+    <nav class="nav-container" aria-label="Navigation principale">
+      <div class="nav-brand">
+        <a href="../index.html" class="brand-logo">
+          <span class="logo-bracket">&lt;</span>
+          <span class="logo-text">FR</span>
+          <span class="logo-bracket">/&gt;</span>
+        </a>
+      </div>
+      <div class="nav-menu" id="navMenu">
+        <a href="../index.html" class="nav-link">
+          <i class="fas fa-home"></i>
+          <span class="nav-text">Accueil</span>
+        </a>
+        <a href="/profil.html" class="nav-link">
+          <i class="fas fa-user"></i>
+          <span class="nav-text">Profil</span>
+        </a>
+        <a href="../index.html#skills" class="nav-link">
+          <i class="fas fa-code"></i>
+          <span class="nav-text">Compétences</span>
+        </a>
+        <a href="/projets.html" class="nav-link active">
+          <i class="fas fa-diagram-project"></i>
+          <span class="nav-text">Projets</span>
+        </a>
+        <a href="../index.html#experience" class="nav-link">
+          <i class="fas fa-briefcase"></i>
+          <span class="nav-text">Expériences</span>
+        </a>
+        <a href="/projets.html#veille" class="nav-link">
+          <i class="fas fa-newspaper"></i>
+          <span class="nav-text">Veille</span>
+        </a>
+        <a href="../index.html#contact" class="nav-link">
+          <i class="fas fa-envelope"></i>
+          <span class="nav-text">Contact</span>
+        </a>
+      
+<a class="nav-link" href="https://opengym.jsuisfray.blitz.cloud/"><span class="nav-text">FrayFit</span></a></div>
+      <div class="nav-controls">
+        <button class="theme-toggle" id="themeToggle" title="Changer le thème" aria-label="Basculer entre mode sombre et clair">
+          <i class="fas fa-moon"></i>
+        </button>
+        <button class="menu-toggle" id="menuToggle" aria-label="Ouvrir le menu mobile" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <!-- Hero Section -->
+    <section class="hero-section page-hero">
+      <div class="hero-glow"></div>
+      <div class="hero-glow-2"></div>
+      <div class="hero-container">
+        <div class="hero-content">
+          <div class="hero-greeting page-badge"><i class="fas fa-shield-halved"></i> R5 - Enforcing Linux Security</div>
+          <h1 class="hero-name"><span class="name-gradient">Sécurisation <span class="term" data-def="Protocole sécurisé pour se connecter à distance à un serveur, comme un accès à distance chiffré.">SSH</span> avec <span class="term" data-def="Programme qui bloque automatiquement les adresses IP qui tentent de se connecter trop souvent (protection contre les attaques).">Fail2Ban</span></span></h1>
+          <p class="hero-description">
+            Mise en place d'une solution de protection contre les attaques par force brute <span class="term" data-def="Protocole sécurisé pour se connecter à distance à un serveur, comme un accès à distance chiffré.">SSH</span>
+            sur un serveur Rocky Linux, incluant le durcissement de la configuration SSH et
+            la détection/blocage automatique des tentatives d'intrusion.
+          </p>
+<div class="hero-buttons">
+            <a href="#phase1" class="btn btn-primary"><i class="fas fa-user-secret"></i> Attaque Hydra</a>
+            <a href="#phase3" class="btn btn-secondary"><i class="fas fa-ban"></i> Fail2Ban</a>
+            <button class="btn-pdf" onclick="window.print()"><i class="fas fa-file-pdf"></i> PDF</button>
+          </div>
+          <div class="timeline-tags" style="margin-top: 1.5rem;">
+            <span class="tag"><i class="fab fa-linux"></i> Rocky Linux 9</span>
+            <span class="tag"><i class="fas fa-lock"></i> Fail2Ban</span>
+            <span class="tag"><i class="fas fa-terminal"></i> SSH Hardening</span>
+            <span class="tag"><i class="fas fa-fire"></i> FirewallD</span>
+            <span class="tag"><i class="fas fa-user-secret"></i> Hydra</span>
+            <span class="tag"><i class="fas fa-shield-alt"></i> SELinux</span>
+          </div>
+        </div>
+        <div class="hero-image-wrapper">
+          <div class="hero-image-container">
+            <div class="profile-image-frame">
+              <i class="fas fa-shield-halved page-icon"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contexte -->
+    <section id="contexte" class="section">
+      <div class="section-container">
+        <div class="section-header">
+          <span class="section-number">01</span>
+          <h2 class="section-title">Contexte <span class="title-gradient">et Objectifs</span></h2>
+          <div class="section-line"></div>
+        </div>
+        <div class="about-content">
+          <div>
+            <p class="about-text">
+              Dans le cadre de ce projet de sécurité Linux, j'ai mis en place un environnement de test
+              permettant de simuler des attaques par force brute <span class="term" data-def="Protocole sécurisé pour se connecter à distance à un serveur, comme un accès à distance chiffré.">SSH</span> et de démontrer l'efficacité des
+              mesures de protection. L'objectif était de sécuriser un serveur Linux contre les tentatives
+              d'intrusion via SSH en utilisant plusieurs couches de défense.
+            </p>
+            <div class="timeline-achievements" style="margin-top: 1.5rem;">
+              <div class="achievement-item"><i class="fas fa-check-circle"></i><span>Configurer et exécuter une attaque par dictionnaire avec Hydra</span></div>
+              <div class="achievement-item"><i class="fas fa-check-circle"></i><span>Durcir la configuration SSH (changement de port, désactivation root, authentification par clé)</span></div>
+              <div class="achievement-item"><i class="fas fa-check-circle"></i><span>Configurer FirewallD et SELinux pour autoriser le nouveau port SSH</span></div>
+              <div class="achievement-item"><i class="fas fa-check-circle"></i><span>Déployer Fail2Ban avec une jail personnalisée pour bloquer automatiquement les attaquants</span></div>
+              <div class="achievement-item"><i class="fas fa-check-circle"></i><span>Collecter les preuves d'attaque et de blocage pour analyse forensique</span></div>
+            </div>
+          </div>
+          <div>
+            <div class="skill-category">
+              <h3 class="category-title"><i class="fas fa-layer-group"></i> Technologies utilisées</h3>
+              <div class="timeline-tags">
+                <span class="tag">Fail2Ban</span>
+                <span class="tag">OpenSSH</span>
+                <span class="tag">Hydra</span>
+                <span class="tag">FirewallD</span>
+                <span class="tag">SELinux</span>
+                <span class="tag">Rocky Linux</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- POURQUOI CETTE SOLUTION -->
+    <section id="pourquoi" class="section" style="background: var(--bg-card-solid);">
+      <div class="section-container">
+        <div class="section-header">
+          <span class="section-number">02</span>
+          <h2 class="section-title">Pourquoi <span class="title-gradient">cette solution ?</span></h2>
+          <div class="section-line"></div>
+        </div>
+        <div class="alert alert-info">
+          <i class="fas fa-lightbulb"></i>
+          <div>
+            <strong>Choix de Fail2Ban</strong><br>
+            J'ai choisi <strong>Fail2Ban</strong> plutôt que DenyHosts ou SSHGuard pour sa <strong>légèreté</strong>, sa <strong>flexibilité</strong> et son excellente <strong>intégration avec FirewallD</strong>. Fail2Ban surveille les logs en temps réel et bannit automatiquement les IP malveillantes vià des règles de pare-feu. Sa configuration par "jails" permet de protéger facilement plusieurs services (SSH, Apache, <span class="term" data-def="Serveur web qui distribue les pages de sites internet et peut rediriger le trafic vers différents services.">Nginx</span>) avec des paramètres personnalisés. C'est la solution de référence pour la protection contre les attaques par force brute sur Linux.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Infrastructure -->
+    <section id="infrastructure" class="section">
+      <div class="section-container">
+        <div class="section-header">
+          <span class="section-number">03</span>
+          <h2 class="section-title">Infrastructure <span class="title-gradient">de Test</span></h2>
+          <div class="section-line"></div>
+        </div>
+
+        <div class="infra-grid">
+          <div class="infra-card defense">
+            <div class="infra-icon">
+              <i class="fas fa-shield-alt"></i>
+            </div>
+            <h3>VM-DEFENSE</h3>
+            <div class="ip">192.168.88.139</div>
+            <p>Serveur Rocky Linux cible à sécuriser. Héberge le service <span class="term" data-def="Protocole sécurisé pour se connecter à distance à un serveur, comme un accès à distance chiffré.">SSH</span> et les solutions de protection (<span class="term" data-def="Programme qui bloque automatiquement les adresses IP qui tentent de se connecter trop souvent (protection contre les attaques).">Fail2Ban</span>, FirewallD).</p>
+          </div>
+
+          <div class="infra-card attaque">
+            <div class="infra-icon">
+              <i class="fas fa-skull-crossbones"></i>
+            </div>
+            <h3>VM-ATTAQUE</h3>
+            <div class="ip">192.168.88.138</div>
+            <p>Machine d'attaque équipée de Hydra pour simuler les tentatives de force brute sur le service <span class="term" data-def="Protocole sécurisé pour se connecter à distance à un serveur, comme un accès à distance chiffré.">SSH</span>.</p>
+          </div>
+        </div>
+
+        <div class="alert alert-info">
+          <i class="fas fa-info-circle"></i>
+          <div>
+            <strong>Environnement isolé</strong><br>
+            Les deux machines virtuelles sont sur le même réseau <span class="term" data-def="Logiciel qui permet de faire tourner plusieurs systèmes (machines virtuelles) sur un seul serveur physique.">VMware</span> NAT (192.168.88.0/24)
+            pour permettre les tests en toute sécurité.
+          </div>
+        </div>
+
+        <div class="image-container">
+          <div class="zoomable-image">
+            <img src="projet-fail2ban-ssh_assets/capture_1.png" alt="Installation Rocky Linux" class="project-image" loading="lazy">
+          </div>
+          <p class="image-caption">Installation de Rocky Linux sur VM-DEFENSE dans <span class="term" data-def="Logiciel qui permet de faire tourner plusieurs systèmes (machines virtuelles) sur un seul serveur physique.">VMware</span> Workstation</p>
+        </div>
+
+        <div class="image-container">
+          <div class="zoomable-image">
+            <img src="projet-fail2ban-ssh_assets/capture_2.png" alt="Préparation initiale de la VM-DEFENSE" class="project-image" loading="lazy">
+          </div>
+          <p class="image-caption">Préparation initiale de la VM-DEFENSE : installation des paquets utiles et création du compte d'administration</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Phase 1: Hydra Attack -->
+    <section id="phase1" class="section">
+      <div class="section-container">
+        <div class="section-header">
+          <span class="section-number">04</span>
+          <h2 class="section-title">Phase 1 : <span class="title-gradient">Simulation d'attaque avec Hydra</span></h2>
+          <div class="section-line"></div>
+        </div>
+
+        <div class="step-card">
+          <div class="step-number">1</div>
+          <h3 class="step-title">Installation de Hydra sur VM-ATTAQUE</h3>
+          <div class="step-content">
+            <p>
+              J'ai commencé par installer Hydra sur la machine d'attaque. Hydra est un outil de
+              force brute capable de tester rapidement de nombreuses combinaisons utilisateur/mot de passe
+              contre divers services réseau.
+            </p>
+
+            <div class="code-block">
+              <div class="code-header">
+                <span>Installation Hydra</span>
+                <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button>
+              </div>
+              <div class="code-content">
+<pre><span class="comment"># Installation de Hydra sur Rocky Linux</span>
+<span class="command">sudo dnf install -y hydra</span>
+
+<span class="comment"># Vérification de l'installation</span>
+<span class="command">hydra -h</span></pre>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="step-card">
+          <div class="step-number">2</div>
+          <h3 class="step-title">Préparation des dictionnaires</h3>
+          <div class="step-content">
+            <p>
+              Pour l'attaque, j'ai créé deux fichiers de dictionnaire : un pour les noms d'utilisateurs
+              et un pour les mots de passe. Ces fichiers contiennent des combinaisons courantes.
+            </p>
+
+            <div class="code-block">
+              <div class="code-header">
+                <span>Création des dictionnaires</span>
+                <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button>
+              </div>
+              <div class="code-content">
+<pre><span class="comment"># Fichier users.txt - Liste d'utilisateurs à tester</span>
+<span class="command">cat &gt; users.txt &lt;&lt; EOF</span>
+root
+admin
+user
+test
+guest
+<span class="command">EOF</span>
+
+<span class="comment"># Fichier passwords.txt - Liste de mots de passe à tester</span>
+<span class="command">cat &gt; passwords.txt &lt;&lt; EOF</span>
+123456
+password
+admin
+root
+qwerty
+letmein
+<span class="command">EOF</span></pre>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="step-card">
+          <div class="step-number">3</div>
+          <h3 class="step-title">Exécution de l'attaque par dictionnaire</h3>
+          <div class="step-content">
+            <p>
+              J'ai lancé l'attaque Hydra contre le service <span class="term" data-def="Protocole sécurisé pour se connecter à distance à un serveur, comme un accès à distance chiffré.">SSH</span> de VM-DEFENSE pour tester
+              toutes les combinaisons utilisateur/mot de passe de mes dictionnaires.
+            </p>
+
+            <div class="code-block">
+              <div class="code-header">
+                <span>Commande Hydra</span>
+                <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button>
+              </div>
+              <div class="code-content">
+<pre><span class="comment"># Attaque par dictionnaire SSH</span>
+<span class="command">hydra -L users.txt -P passwords.txt ssh://192.168.88.139 -t 4 -vV</span>
+
+<span class="comment"># Options utilisées :</span>
+<span class="comment"># -L : fichier de liste d'utilisateurs</span>
+<span class="comment"># -P : fichier de liste de mots de passe</span>
+<span class="comment"># -t 4 : 4 threads parallèles</span>
+<span class="comment"># -vV : mode verbose</span></pre>
+              </div>
+            </div>
+
+            <div class="alert alert-danger">
+              <i class="fas fa-exclamation-triangle"></i>
+              <div>
+                <strong>Résultat de l'attaque</strong><br>
+                Sans protection, Hydra à pu tester des centaines de combinaisons par minute,
+                démontrant la vulnérabilité d'un serveur SSH non protégé face aux attaques par force brute.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Phase 2: SSH Hardening -->
+    <section id="phase2" class="section" style="background: var(--bg-card-solid);">
+      <div class="section-container">
+        <div class="section-header">
+          <span class="section-number">05</span>
+          <h2 class="section-title">Phase 2 : <span class="title-gradient">Durcissement <span class="term" data-def="Protocole sécurisé pour se connecter à distance à un serveur, comme un accès à distance chiffré.">SSH</span></span></h2>
+          <div class="section-line"></div>
+        </div>
+
+        <div class="step-card">
+          <div class="step-number">1</div>
+          <h3 class="step-title">Changement du port <span class="term" data-def="Protocole sécurisé pour se connecter à distance à un serveur, comme un accès à distance chiffré.">SSH</span></h3>
+          <div class="step-content">
+            <p>
+              La première mesure de sécurité consiste à changer le port <span class="term" data-def="Protocole sécurisé pour se connecter à distance à un serveur, comme un accès à distance chiffré.">SSH</span> par défaut (22)
+              vers un port non standard (15000). Cela réduit considérablement les tentatives
+              d'attaque automatisées qui ciblent le port 22.
+            </p>
+
+            <div class="code-block">
+              <div class="code-header">
+                <span>/etc/ssh/sshd_config</span>
+                <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button>
+              </div>
+              <div class="code-content">
+<pre><span class="comment"># Modification du port SSH</span>
+<span class="keyword">Port</span> <span class="string">15000</span>
+
+<span class="comment"># Désactivation de l'accès root direct</span>
+<span class="keyword">PermitRootLogin</span> <span class="string">no</span>
+
+<span class="comment"># Activation de l'authentification par clé uniquement</span>
+<span class="keyword">PubkeyAuthentication</span> <span class="string">yes</span>
+<span class="keyword">PasswordAuthentication</span> <span class="string">no</span></pre>
+              </div>
+            </div>
+
+            <div class="image-container">
+              <div class="zoomable-image">
+                <img src="projet-fail2ban-ssh_assets/capture_6.png" alt="Configuration sshd_config" class="project-image" loading="lazy">
+              </div>
+              <p class="image-caption">Fichier de configuration /etc/ssh/sshd_config avec PermitRootLogin no</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="step-card">
+          <div class="step-number">2</div>
+          <h3 class="step-title">Configuration SELinux</h3>
+          <div class="step-content">
+            <p>
+              SELinux étant actif sur Rocky Linux, j'ai dû autoriser le nouveau port <span class="term" data-def="Protocole sécurisé pour se connecter à distance à un serveur, comme un accès à distance chiffré.">SSH</span>
+              dans la politique de sécurité.
+            </p>
+
+            <div class="code-block">
+              <div class="code-header">
+                <span>Configuration SELinux pour SSH</span>
+                <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button>
+              </div>
+              <div class="code-content">
+<pre><span class="comment"># Vérifier le statut SELinux</span>
+<span class="command">getenforce</span>
+Enforcing
+
+<span class="comment"># Ajouter le port 15000 au contexte SSH</span>
+<span class="command">sudo semanage port -a -t ssh_port_t -p tcp 15000</span>
+
+<span class="comment"># Vérifier que le port est bien ajouté</span>
+<span class="command">sudo semanage port -l | grep ssh</span>
+ssh_port_t                     tcp      15000, 22</pre>
+              </div>
+            </div>
+
+            <div class="image-container">
+              <div class="zoomable-image">
+                <img src="projet-fail2ban-ssh_assets/capture_3.png" alt="Vérification du nouveau port SSH dans SELinux" class="project-image" loading="lazy">
+              </div>
+              <p class="image-caption">Ajustements système autour du nouveau port <span class="term" data-def="Protocole sécurisé pour se connecter à distance à un serveur, comme un accès à distance chiffré.">SSH</span> avec vérification du contexte SELinux <code>ssh_port_t</code></p>
+            </div>
+          </div>
+        </div>
+
+        <div class="step-card">
+          <div class="step-number">3</div>
+          <h3 class="step-title">Configuration FirewallD</h3>
+          <div class="step-content">
+            <p>
+              J'ai ensuite configuré FirewallD pour autoriser les connexions sur le nouveau
+              port <span class="term" data-def="Protocole sécurisé pour se connecter à distance à un serveur, comme un accès à distance chiffré.">SSH</span> et bloquer le port 22.
+            </p>
+
+            <div class="code-block">
+              <div class="code-header">
+                <span>Configuration FirewallD</span>
+                <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button>
+              </div>
+              <div class="code-content">
+<pre><span class="comment"># Ajouter le nouveau port SSH</span>
+<span class="command">sudo firewall-cmd --permanent --add-port=15000/tcp</span>
+
+<span class="comment"># Supprimer le service SSH standard (port 22)</span>
+<span class="command">sudo firewall-cmd --permanent --remove-service=ssh</span>
+
+<span class="comment"># Recharger la configuration</span>
+<span class="command">sudo firewall-cmd --reload</span>
+
+<span class="comment"># Vérifier les règles actives</span>
+<span class="command">sudo firewall-cmd --list-all</span>
+public (active)
+  target: default
+  interfaces: ens160
+  ports: 15000/tcp</pre>
+              </div>
+            </div>
+
+            <div class="image-container">
+              <div class="zoomable-image">
+                <img src="projet-fail2ban-ssh_assets/capture_4.png" alt="Configuration FirewallD SSH" class="project-image" loading="lazy">
+              </div>
+              <p class="image-caption">Configuration du service <span class="term" data-def="Protocole sécurisé pour se connecter à distance à un serveur, comme un accès à distance chiffré.">SSH</span> dans FirewallD avec le port 15000</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="step-card">
+          <div class="step-number">4</div>
+          <h3 class="step-title">Génération des clés <span class="term" data-def="Protocole sécurisé pour se connecter à distance à un serveur, comme un accès à distance chiffré.">SSH</span></h3>
+          <div class="step-content">
+            <p>
+              Pour renforcer davantage la sécurité, j'ai mis en place l'authentification
+              par clé publique/privée, qui est beaucoup plus sécurisée que les mots de passe.
+            </p>
+
+            <div class="code-block">
+              <div class="code-header">
+                <span>Configuration de l'authentification par clé</span>
+                <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button>
+              </div>
+              <div class="code-content">
+<pre><span class="comment"># Sur la machine cliente - Générer la paire de clés</span>
+<span class="command">ssh-keygen -t ed25519 -C "admin@vm-defense"</span>
+
+<span class="comment"># Copier la clé publique vers le serveur</span>
+<span class="command">ssh-copy-id -p 15000 user@192.168.88.139</span>
+
+<span class="comment"># Test de connexion avec la clé</span>
+<span class="command">ssh -p 15000 user@192.168.88.139</span></pre>
+              </div>
+            </div>
+
+            <div class="image-container">
+              <div class="zoomable-image">
+                <img src="projet-fail2ban-ssh_assets/capture_5.png" alt="Test connexion SSH port 15000" class="project-image" loading="lazy">
+              </div>
+              <p class="image-caption">Test de connexion <span class="term" data-def="Protocole sécurisé pour se connecter à distance à un serveur, comme un accès à distance chiffré.">SSH</span> réussi sur le port 15000</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Récapitulatif SSH -->
+        <div style="background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 16px; padding: 1.5rem; margin-top: 2rem; overflow: hidden;">
+          <h4 style="margin-bottom: 1rem; color: var(--text-primary);"><i class="fas fa-clipboard-check" style="color: var(--accent); margin-right: 0.5rem;"></i> Récapitulatif des mesures <span class="term" data-def="Protocole sécurisé pour se connecter à distance à un serveur, comme un accès à distance chiffré.">SSH</span></h4>
+          <div class="table-wrapper">
+            <table class="config-table">
+              <thead>
+                <tr>
+                  <th>Paramètre</th>
+                  <th>Avant</th>
+                  <th>Après</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Port <span class="term" data-def="Protocole sécurisé pour se connecter à distance à un serveur, comme un accès à distance chiffré.">SSH</span></td>
+                  <td><code>22</code></td>
+                  <td><code>15000</code></td>
+                </tr>
+                <tr>
+                  <td>Accès root</td>
+                  <td><code>yes</code></td>
+                  <td><code>no</code></td>
+                </tr>
+                <tr>
+                  <td>Auth. mot de passe</td>
+                  <td><code>yes</code></td>
+                  <td><code>no</code></td>
+                </tr>
+                <tr>
+                  <td>Auth. clé</td>
+                  <td><code>yes</code></td>
+                  <td><code>yes</code> (obligatoire)</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Phase 3: Fail2Ban -->
+    <section id="phase3" class="section">
+      <div class="section-container">
+        <div class="section-header">
+          <span class="section-number">06</span>
+          <h2 class="section-title">Phase 3 : <span class="title-gradient">Déploiement de <span class="term" data-def="Programme qui bloque automatiquement les adresses IP qui tentent de se connecter trop souvent (protection contre les attaques).">Fail2Ban</span></span></h2>
+          <div class="section-line"></div>
+        </div>
+
+        <div class="alert alert-info" style="margin-bottom: 2rem;">
+          <i class="fas fa-info-circle"></i>
+          <div>
+            <strong>Qu'est-ce que Fail2Ban ?</strong><br>
+            Fail2Ban est un framework de prévention d'intrusion qui surveille les fichiers de logs
+            et bannit les adresses IP montrant des signes d'activité malveillante. Il fonctionne
+            en détectant les tentatives d'authentification échouées répétées et en bloquant
+            automatiquement les adresses IP sources vià des règles de pare-feu.
+          </div>
+        </div>
+
+        <div class="step-card">
+          <div class="step-number">1</div>
+          <h3 class="step-title">Installation de <span class="term" data-def="Programme qui bloque automatiquement les adresses IP qui tentent de se connecter trop souvent (protection contre les attaques).">Fail2Ban</span></h3>
+          <div class="step-content">
+            <div class="code-block">
+              <div class="code-header">
+                <span>Installation sur Rocky Linux</span>
+                <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button>
+              </div>
+              <div class="code-content">
+<pre><span class="comment"># Activer le dépôt EPEL</span>
+<span class="command">sudo dnf install -y epel-release</span>
+
+<span class="comment"># Installer Fail2Ban</span>
+<span class="command">sudo dnf install -y fail2ban fail2ban-firewalld</span>
+
+<span class="comment"># Activer et démarrer le service</span>
+<span class="command">sudo systemctl enable --now fail2ban</span></pre>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="step-card">
+          <div class="step-number">2</div>
+          <h3 class="step-title">Configuration de la jail <span class="term" data-def="Protocole sécurisé pour se connecter à distance à un serveur, comme un accès à distance chiffré.">SSH</span> personnalisée</h3>
+          <div class="step-content">
+            <p>
+              J'ai créé une jail personnalisée pour <span class="term" data-def="Protocole sécurisé pour se connecter à distance à un serveur, comme un accès à distance chiffré.">SSH</span> avec des paramètres adaptés à notre
+              configuration (port 15000) et des règles de bannissement strictes.
+            </p>
+
+            <div class="code-block">
+              <div class="code-header">
+                <span>/etc/fail2ban/jail.local</span>
+                <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button>
+              </div>
+              <div class="code-content">
+<pre><span class="keyword">[DEFAULT]</span>
+<span class="comment"># Adresse email pour les notifications</span>
+destemail = admin@localhost
+sender = fail2ban@localhost
+
+<span class="comment"># Action par défaut : bannir via firewalld</span>
+banaction = firewallcmd-rich-rules
+banaction_allports = firewallcmd-rich-rules
+
+<span class="keyword">[sshd]</span>
+<span class="comment"># Activer la jail SSH</span>
+enabled = true
+
+<span class="comment"># Port SSH personnalisé</span>
+port = 15000
+
+<span class="comment"># Fichier de log à surveiller</span>
+logpath = /var/log/secure
+
+<span class="comment"># Nombre de tentatives avant bannissement</span>
+maxretry = 5
+
+<span class="comment"># Fenêtre de temps pour compter les tentatives (10 minutes)</span>
+findtime = 10m
+
+<span class="comment"># Durée du bannissement (1 heure)</span>
+bantime = 1h
+
+<span class="comment"># Backend pour la détection</span>
+backend = systemd</pre>
+              </div>
+            </div>
+
+            <div class="alert alert-warning">
+              <i class="fas fa-lightbulb"></i>
+              <div>
+                <strong>Paramètres de la jail</strong><br>
+                Avec cette configuration, une IP sera bannie pendant 1 heure après 5 tentatives
+                échouées en 10 minutes. Ces valeurs peuvent être ajustées selon le niveau de
+                sécurité souhaité.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="step-card">
+          <div class="step-number">3</div>
+          <h3 class="step-title">Vérification de la configuration</h3>
+          <div class="step-content">
+            <div class="code-block">
+              <div class="code-header">
+                <span>Commandes de vérification</span>
+                <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button>
+              </div>
+              <div class="code-content">
+<pre><span class="comment"># Redémarrer Fail2Ban pour appliquer la configuration</span>
+<span class="command">sudo systemctl restart fail2ban</span>
+
+<span class="comment"># Vérifier le statut de la jail SSH</span>
+<span class="command">sudo fail2ban-client status sshd</span>
+Status for the jail: sshd
+|- Filter
+|  |- Currently failed:  0
+|  |- Total failed:      0
+|  `- Journal matches:   _SYSTEMD_UNIT=sshd.service + _COMM=sshd
+`- Actions
+   |- Currently banned:  0
+   |- Total banned:      0
+   `- Banned IP list:</pre>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="step-card">
+          <div class="step-number">4</div>
+          <h3 class="step-title">Test du bannissement</h3>
+          <div class="step-content">
+            <p>
+              J'ai relancé l'attaque Hydra depuis VM-ATTAQUE pour vérifier que <span class="term" data-def="Programme qui bloque automatiquement les adresses IP qui tentent de se connecter trop souvent (protection contre les attaques).">Fail2Ban</span>
+              détecte et bloque bien les tentatives d'intrusion.
+            </p>
+
+            <div class="code-block">
+              <div class="code-header">
+                <span>Vérification du bannissement</span>
+                <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button>
+              </div>
+              <div class="code-content">
+<pre><span class="comment"># Sur VM-DEFENSE - Vérifier les IP bannies</span>
+<span class="command">sudo fail2ban-client status sshd</span>
+Status for the jail: sshd
+|- Filter
+|  |- Currently failed:  0
+|  |- Total failed:      23
+|  `- Journal matches:   _SYSTEMD_UNIT=sshd.service + _COMM=sshd
+`- Actions
+   |- Currently banned:  1
+   |- Total banned:      1
+   `- Banned IP list:    192.168.88.138
+
+<span class="comment"># Vérifier les règles firewall</span>
+<span class="command">sudo firewall-cmd --list-rich-rules</span>
+rule family="ipv4" source address="192.168.88.138" port port="15000" protocol="tcp" reject</pre>
+              </div>
+            </div>
+
+            <div class="alert alert-success">
+              <i class="fas fa-check-circle"></i>
+              <div>
+                <strong>Fail2Ban fonctionne !</strong><br>
+                L'adresse IP de l'attaquant (192.168.88.138) a été automatiquement bannie
+                après avoir dépassé le seuil de 5 tentatives échouées.
+              </div>
+            </div>
+
+            <div class="image-container">
+              <div class="zoomable-image">
+                <img src="projet-fail2ban-ssh_assets/capture_8.png" alt="Status Fail2Ban IP bannie" class="project-image" loading="lazy">
+              </div>
+              <p class="image-caption">Status <span class="term" data-def="Programme qui bloque automatiquement les adresses IP qui tentent de se connecter trop souvent (protection contre les attaques).">Fail2Ban</span> montrant l'IP 192.168.88.138 bannie</p>
+            </div>
+
+            <div class="image-container">
+              <div class="zoomable-image">
+                <img src="projet-fail2ban-ssh_assets/capture_7.png" alt="PuTTY connexion refusée" class="project-image" loading="lazy">
+              </div>
+              <p class="image-caption">Tentative de connexion refusée depuis l'IP bannie (timeout)</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Phase 4: Evidence Collection -->
+    <section id="phase4" class="section" style="background: var(--bg-card-solid);">
+      <div class="section-container">
+        <div class="section-header">
+          <span class="section-number">07</span>
+          <h2 class="section-title">Phase 4 : <span class="title-gradient">Collecte des preuves</span></h2>
+          <div class="section-line"></div>
+        </div>
+
+        <p class="about-text">
+          Pour une analyse forensique complète, j'ai collecté les logs pertinents
+          montrant les tentatives d'attaque et les actions de <span class="term" data-def="Programme qui bloque automatiquement les adresses IP qui tentent de se connecter trop souvent (protection contre les attaques).">Fail2Ban</span>.
+        </p>
+
+        <div class="code-block">
+          <div class="code-header">
+            <span>Commandes de collecte de preuves</span>
+            <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button>
+          </div>
+          <div class="code-content">
+<pre><span class="comment"># Logs des tentatives SSH échouées</span>
+<span class="command">sudo journalctl -u sshd | grep "Failed password"</span>
+
+<span class="comment"># Logs Fail2Ban</span>
+<span class="command">sudo cat /var/log/fail2ban.log | grep -E "(Ban|Unban)"</span>
+
+<span class="comment"># Historique des IP bannies</span>
+<span class="command">sudo fail2ban-client get sshd banip --with-time</span>
+
+<span class="comment"># Export des preuves horodatées</span>
+<span class="command">sudo journalctl -u sshd --since "1 hour ago" &gt; /tmp/ssh_evidence.log</span></pre>
+          </div>
+        </div>
+
+        <div class="code-block" style="margin-top: 1.5rem;">
+          <div class="code-header">
+            <span>Extrait /var/log/fail2ban.log</span>
+          </div>
+          <div class="code-content">
+<pre>2026-02-17 10:23:50,123 fail2ban.filter   [1234]: INFO    [sshd] Found 192.168.88.138
+2026-02-17 10:23:50,456 fail2ban.actions  [1234]: NOTICE  [sshd] Ban 192.168.88.138
+2026-02-17 11:23:50,789 fail2ban.actions  [1234]: NOTICE  [sshd] Unban 192.168.88.138</pre>
+          </div>
+        </div>
+
+        <div class="image-container">
+          <div class="zoomable-image">
+            <img src="projet-fail2ban-ssh_assets/capture_10.png" alt="Collecte des preuves" class="project-image" loading="lazy">
+          </div>
+          <p class="image-caption">Archivage des fichiers de configuration et logs pour analyse forensique</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Administration Fail2Ban -->
+    <section id="admin" class="section">
+      <div class="section-container">
+        <div class="section-header">
+          <span class="section-number">08</span>
+          <h2 class="section-title">Administration <span class="title-gradient">de <span class="term" data-def="Programme qui bloque automatiquement les adresses IP qui tentent de se connecter trop souvent (protection contre les attaques).">Fail2Ban</span></span></h2>
+          <div class="section-line"></div>
+        </div>
+
+        <div class="code-block">
+          <div class="code-header">
+            <span>Gestion des bannissements</span>
+            <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button>
+          </div>
+          <div class="code-content">
+<pre><span class="comment"># Débannir manuellement une IP</span>
+<span class="command">sudo fail2ban-client set sshd unbanip 192.168.88.138</span>
+
+<span class="comment"># Bannir manuellement une IP</span>
+<span class="command">sudo fail2ban-client set sshd banip 192.168.88.138</span>
+
+<span class="comment"># Voir toutes les IP bannies</span>
+<span class="command">sudo fail2ban-client status sshd</span>
+
+<span class="comment"># Recharger la configuration sans redémarrer</span>
+<span class="command">sudo fail2ban-client reload</span>
+
+<span class="comment"># Suivre les logs Fail2Ban en temps réel</span>
+<span class="command">sudo tail -f /var/log/fail2ban.log</span></pre>
+          </div>
+        </div>
+
+        <div class="image-container">
+          <div class="zoomable-image">
+            <img src="projet-fail2ban-ssh_assets/capture_9.png" alt="Débannissement IP" class="project-image" loading="lazy">
+          </div>
+          <p class="image-caption">Débannissement manuel d'une IP avec fail2ban-client</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Compétences -->
+    <section id="competences" class="section" style="background: var(--bg-card-solid);">
+      <div class="section-container">
+        <div class="section-header">
+          <span class="section-number">09</span>
+          <h2 class="section-title">Compétences <span class="title-gradient">Mobilisées</span></h2>
+          <div class="section-line"></div>
+        </div>
+
+        <div class="competences-grid">
+          <div class="competence-card">
+            <div class="competence-header">
+              <span class="competence-badge">B1</span>
+              <span class="competence-title">Gérer le patrimoine informatique</span>
+            </div>
+            <p class="competence-desc">
+              Recensement et documentation de l'infrastructure de test,
+              gestion des configurations <span class="term" data-def="Protocole sécurisé pour se connecter à distance à un serveur, comme un accès à distance chiffré.">SSH</span> et des règles de sécurité.
+            </p>
+          </div>
+
+          <div class="competence-card">
+            <div class="competence-header">
+              <span class="competence-badge">B2</span>
+              <span class="competence-title">Répondre aux incidents</span>
+            </div>
+            <p class="competence-desc">
+              Détection et réponse automatisée aux tentatives d'intrusion,
+              collecte de preuves pour analyse forensique.
+            </p>
+          </div>
+
+          <div class="competence-card">
+            <div class="competence-header">
+              <span class="competence-badge">B3</span>
+              <span class="competence-title">Développer la présence en ligne</span>
+            </div>
+            <p class="competence-desc">
+              Sécurisation des accès distants et protection des services
+              exposés sur le réseau.
+            </p>
+          </div>
+
+          <div class="competence-card">
+            <div class="competence-header">
+              <span class="competence-badge">B4</span>
+              <span class="competence-title">Travailler en mode projet</span>
+            </div>
+            <p class="competence-desc">
+              Planification et exécution méthodique des phases de test
+              et de déploiement des solutions de sécurité.
+            </p>
+          </div>
+
+          <div class="competence-card">
+            <div class="competence-header">
+              <span class="competence-badge">B5</span>
+              <span class="competence-title">Sécuriser les services</span>
+            </div>
+            <p class="competence-desc">
+              Mise en oeuvre de <span class="term" data-def="Programme qui bloque automatiquement les adresses IP qui tentent de se connecter trop souvent (protection contre les attaques).">Fail2Ban</span>, durcissement <span class="term" data-def="Protocole sécurisé pour se connecter à distance à un serveur, comme un accès à distance chiffré.">SSH</span>, configuration
+              SELinux et FirewallD pour une défense en profondeur.
+            </p>
+          </div>
+
+          <div class="competence-card">
+            <div class="competence-header">
+              <span class="competence-badge">B6</span>
+              <span class="competence-title">Administrer les systèmes</span>
+            </div>
+            <p class="competence-desc">
+              Administration système Linux, gestion des services systemd,
+              configuration du pare-feu et des politiques SELinux.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Conclusion -->
+    <section id="conclusion" class="section">
+      <div class="section-container">
+        <div class="section-header">
+          <span class="section-number">10</span>
+          <h2 class="section-title">Conclusion <span class="title-gradient">et Bilan</span></h2>
+          <div class="section-line"></div>
+        </div>
+
+        <p class="about-text">
+          Ce projet m'a permis de mettre en pratique une approche de sécurité en profondeur
+          pour protéger un service <span class="term" data-def="Protocole sécurisé pour se connecter à distance à un serveur, comme un accès à distance chiffré.">SSH</span> contre les attaques par force brute. Les principales
+          leçons apprises sont :
+        </p>
+
+        <div class="conclusion-timeline">
+          <div class="timeline-item">
+            <h4>Défense multicouche</h4>
+            <p>
+              La combinaison de plusieurs mesures (changement de port, désactivation root,
+              clés <span class="term" data-def="Protocole sécurisé pour se connecter à distance à un serveur, comme un accès à distance chiffré.">SSH</span>, <span class="term" data-def="Programme qui bloque automatiquement les adresses IP qui tentent de se connecter trop souvent (protection contre les attaques).">Fail2Ban</span>) offre une protection bien plus robuste qu'une seule mesure isolée.
+            </p>
+          </div>
+
+          <div class="timeline-item">
+            <h4>Automatisation de la réponse</h4>
+            <p>
+              <span class="term" data-def="Programme qui bloque automatiquement les adresses IP qui tentent de se connecter trop souvent (protection contre les attaques).">Fail2Ban</span> permet de réagir automatiquement aux menaces sans intervention manuelle,
+              ce qui est essentiel pour un serveur en production.
+            </p>
+          </div>
+
+          <div class="timeline-item">
+            <h4>Importance des logs</h4>
+            <p>
+              La collecte et l'analyse des logs sont cruciales pour comprendre les attaques
+              et améliorer continuellement la posture de sécurité.
+            </p>
+          </div>
+
+          <div class="timeline-item">
+            <h4>Test avant production</h4>
+            <p>
+              L'utilisation d'un environnement de test avec une VM d'attaque permet de
+              valider les configurations avant déploiement en production.
+            </p>
+          </div>
+        </div>
+
+        <div class="section-footer" style="margin-top: 2rem; display: flex; flex-wrap: wrap; gap: 1rem;">
+          <a href="epreuve-e5.html" class="btn-more"><i class="fas fa-arrow-left"></i> Retour E5</a>
+          <a href="../index.html#projets" class="btn-more"><i class="fas fa-folder"></i> Projets</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="main-footer" role="contentinfo">
+    <div class="footer-container">
+      <div class="footer-content">
+        <p class="footer-text">2026 <span class="footer-copyright">Franck Raymond</span> - Tous droits réservés.</p>
+        <div class="timeline-tags" style="margin-top: 0.5rem;">
+          <span class="tag">Fail2Ban</span>
+          <span class="tag">SSH</span>
+          <span class="tag">Rocky Linux</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Lightbox -->
+  <div class="lightbox" id="lightbox">
+    <div class="lightbox-content">
+      <button class="lightbox-close" onclick="closeLightbox()">×</button>
+      <button class="lightbox-nav lightbox-prev" onclick="navigateLightbox(-1)"><i class="fas fa-chevron-left"></i></button>
+      <img id="lightbox-img" src="" alt="">
+      <button class="lightbox-nav lightbox-next" onclick="navigateLightbox(1)"><i class="fas fa-chevron-right"></i></button>
+      <div class="lightbox-counter" id="lightbox-counter"></div>
+    </div>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+  <script src="../script.js?v=20261028-b753f7964f"></script>
+  <script>
+    // Copy code functionality
+    function copyCode(btn) {
+      const codeBlock = btn.closest('.code-block');
+      const code = codeBlock.querySelector('pre').textContent;
+      navigator.clipboard.writeText(code).then(() => {
+        btn.innerHTML = '<i class="fas fa-check"></i>';
+        setTimeout(() => {
+          btn.innerHTML = '<i class="fas fa-copy"></i>';
+        }, 2000);
+      });
+    }
+
+    // Lightbox functionality
+    let currentImageIndex = 0;
+    let images = [];
+
+    document.addEventListener('DOMContentLoaded', function() {
+      const zoomableImages = document.querySelectorAll('.image-container img, .zoomable-image img, .project-image');
+      images = Array.from(zoomableImages);
+      // Remove duplicates
+      images = [...new Set(images)];
+
+      images.forEach((img, index) => {
+        img.addEventListener('click', () => openLightbox(index));
+      });
+    });
+
+    function openLightbox(index) {
+      currentImageIndex = index;
+      const lightbox = document.getElementById('lightbox');
+      const lightboxImg = document.getElementById('lightbox-img');
+      const counter = document.getElementById('lightbox-counter');
+
+      lightboxImg.src = images[index].src;
+      counter.textContent = `${index + 1} / ${images.length}`;
+      lightbox.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeLightbox() {
+      document.getElementById('lightbox').classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
+    function navigateLightbox(direction) {
+      currentImageIndex += direction;
+      if (currentImageIndex < 0) currentImageIndex = images.length - 1;
+      if (currentImageIndex >= images.length) currentImageIndex = 0;
+
+      const lightboxImg = document.getElementById('lightbox-img');
+      const counter = document.getElementById('lightbox-counter');
+      lightboxImg.src = images[currentImageIndex].src;
+      counter.textContent = `${currentImageIndex + 1} / ${images.length}`;
+    }
+
+    document.addEventListener('keydown', function(e) {
+      const lightbox = document.getElementById('lightbox');
+      if (!lightbox.classList.contains('active')) return;
+
+      if (e.key === 'Escape') closeLightbox();
+      if (e.key === 'ArrowLeft') navigateLightbox(-1);
+      if (e.key === 'ArrowRight') navigateLightbox(1);
+    });
+
+    document.getElementById('lightbox').addEventListener('click', function(e) {
+      if (e.target === this) closeLightbox();
+    });
+  </script>
+
+
+
+<script src="/assets/portfolio-glossary.js" defer=""></script><script src="/assets/legacy-unified.js?v=20261028-8c422e514f" defer=""></script></body></html>

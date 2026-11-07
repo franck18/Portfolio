@@ -1,0 +1,450 @@
+<!DOCTYPE html><html lang="fr"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Veille Technologique - Cloud Computing AWS vs Azure - BTS SIO SISR">
+    <title>Veille cloud computing | Franck Raymond</title>
+    
+    <link rel="stylesheet" href="/tailwind-output.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&amp;family=Outfit:wght@300;400;500;600;700;800;900&amp;family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        .veille-hero {
+            min-height: 80vh;
+            display: flex;
+            align-items: center;
+            padding-top: 8rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .veille-icon-frame {
+            width: 180px;
+            height: 180px;
+            border-radius: 30px;
+            border: 3px solid var(--accent);
+            background: var(--bg-card);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            box-shadow: 0 0 60px rgba(6, 182, 212, 0.25);
+        }
+
+        .veille-icon-frame i { font-size: 3rem; }
+        .aws-icon { color: #ff9900; }
+        .azure-icon { color: #0078d4; }
+
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.9rem;
+            background: var(--bg-card);
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+        }
+
+        .comparison-table th {
+            background: var(--gradient-1);
+            color: white;
+            padding: 1rem;
+            text-align: left;
+            font-weight: 700;
+        }
+
+        .comparison-table td {
+            padding: 1rem;
+            border-bottom: 1px solid var(--border);
+            color: var(--text-secondary);
+        }
+
+        .comparison-table tr:nth-child(even) { background: var(--bg-card-solid); }
+        .comparison-table a { color: var(--primary); }
+
+        .stat-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .stat-card:hover {
+            border-color: var(--primary);
+            transform: translateY(-5px);
+        }
+
+        .stat-value {
+            font-size: 2.5rem;
+            font-weight: 800;
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label { color: var(--text-muted); font-size: 0.9rem; }
+
+        .source-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            transition: all 0.3s;
+        }
+
+        .source-card:hover {
+            border-color: var(--primary);
+            transform: translateX(5px);
+        }
+
+        .source-icon {
+            width: 50px;
+            height: 50px;
+            background: rgba(99, 102, 241, 0.1);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+            color: var(--primary);
+        }
+    
+        /* Tooltips termes techniques */
+        .term {
+            border-bottom: 1px dashed var(--primary);
+            cursor: help;
+            position: relative;
+            display: inline;
+        }
+        .term::after {
+            content: attr(data-def);
+            position: absolute;
+            bottom: calc(100% + 8px);
+            left: 50%;
+            transform: translateX(-50%);
+            background: #1e293b;
+            color: #f8fafc;
+            font-size: 0.78rem;
+            line-height: 1.5;
+            padding: 0.6rem 0.9rem;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            white-space: normal;
+            width: 220px;
+            text-align: left;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.2s;
+            z-index: 100;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+        }
+        .term:hover::after { opacity: 1; }
+</style>
+<meta name="theme-color" content="#111214"><link rel="stylesheet" href="/assets/legacy-unified.css?v=20260831-2"><meta name="author" content="Franck Raymond"><meta name="robots" content="index,follow,max-image-preview:large"><meta property="og:type" content="website"><meta property="og:site_name" content="Portfolio de Franck Raymond"><meta property="og:title" content="Veille cloud computing | Franck Raymond"><meta property="og:description" content="Veille Technologique - Cloud Computing AWS vs Azure - BTS SIO SISR"><meta property="og:url" content="https://franckraymond.tech/veille-cloud.html"><meta property="og:image" content="https://franckraymond.tech/franck.webp"><meta property="og:image:alt" content="Portrait professionnel de Franck Raymond"><meta property="og:locale" content="fr_FR"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Veille cloud computing | Franck Raymond"><meta name="twitter:description" content="Veille Technologique - Cloud Computing AWS vs Azure - BTS SIO SISR"><meta name="twitter:image" content="https://franckraymond.tech/franck.webp"><link rel="canonical" href="https://franckraymond.tech/veille-cloud.html"><link rel="icon" href="/favicon-32x32.png" sizes="32x32" type="image/png"><link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180"><link rel="manifest" href="/site.webmanifest"><script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"Veille cloud computing | Franck Raymond","url":"https://franckraymond.tech/veille-cloud.html","description":"Veille Technologique - Cloud Computing AWS vs Azure - BTS SIO SISR","isPartOf":{"@type":"WebSite","name":"Portfolio de Franck Raymond","url":"https://franckraymond.tech/"},"about":{"@type":"Person","name":"Franck Raymond","url":"https://franckraymond.tech/"}}</script>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,400&amp;family=Geist:wght@400;500;600&amp;display=swap">
+<link rel="stylesheet" href="/assets/editorial-tokens.css?v=20261106-modern">
+<link rel="stylesheet" href="/assets/editorial.css?v=20261106-modern">
+<script src="/assets/editorial-theme.js?v=20261028-1fe0ee8c9d"></script>
+</head>
+<body data-theme="light" class="portfolio-legacy editorial-site">
+
+    <div class="bg-mesh"></div>
+    <div class="noise-overlay"></div>
+    <div class="grid-lines"></div>
+
+    <header class="main-header" id="header">
+        <nav class="nav-container">
+            <a href="index.html" class="brand-logo">
+                <span class="logo-bracket">&lt;</span>
+                <span class="logo-text">FR</span>
+                <span class="logo-bracket">/&gt;</span>
+            </a>
+            <div class="nav-menu" id="navMenu">
+                <a href="index.html" class="nav-link"><i class="fas fa-home"></i> Accueil</a>
+                <a href="profil.html" class="nav-link"><i class="fas fa-user"></i> Profil</a>
+                <a href="index.html#skills" class="nav-link"><i class="fas fa-code"></i> Compétences</a>
+                <a href="experience.html" class="nav-link"><i class="fas fa-briefcase"></i> Expériences</a>
+                <a href="/projets.html#veille" class="nav-link active"><i class="fas fa-newspaper"></i> Veille</a>
+                <a href="index.html#contact" class="nav-link"><i class="fas fa-envelope"></i> Contact</a>
+            
+<a class="nav-link" href="https://opengym.jsuisfray.blitz.cloud/"><span class="nav-text">FrayFit</span></a></div>
+            <div class="nav-controls">
+                <button class="theme-toggle" id="themeToggle"><i class="fas fa-moon"></i></button>
+                <button class="menu-toggle" id="menuToggle"><span></span><span></span><span></span></button>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="veille-hero">
+            <div class="section-container">
+                <div class="hero-container">
+                    <div class="hero-content">
+                        <div class="hero-greeting" style="color: var(--accent);">VEILLE TECHNOLOGIQUE BTS SIO</div>
+                        <h1 class="hero-name">
+                            <span class="term" data-def="Serveurs distants accessibles par internet, gérés par des entreprises comme Microsoft (Azure) ou Amazon (AWS).">Cloud</span> <span class="name-value" style="background: linear-gradient(135deg, #ff9900, #0078d4); -webkit-background-clip: text;">Computing</span>
+                        </h1>
+                        <p class="hero-title">AWS vs Azure — Analyse stratégique 2026</p>
+                        <p class="hero-description">
+                            Évolution des hyperviseurs, conteneurisation (<span class="term" data-def="Outil qui fait tourner des applications dans des environnements isolés, sans modifier le reste du système.">Docker</span>/Kubernetes), <span class="term" data-def="Serveurs distants accessibles par internet, gérés par des entreprises comme Microsoft (Azure) ou Amazon (AWS).">Cloud</span> Hybride et certifications pour les administrateurs systèmes.
+                        </p>
+                        <div class="hero-buttons">
+                            <a href="https://aws.amazon.com/fr/" target="_blank" class="btn btn-primary" style="background: linear-gradient(135deg, #ff9900, #ec7211);">
+                                <i class="fab fa-aws"></i> AWS
+                            </a>
+                            <a href="https://azure.microsoft.com/fr-fr/" target="_blank" class="btn btn-secondary" style="border-color: #0078d4; color: #0078d4;">
+                                <i class="fab fa-microsoft"></i> Azure
+                            </a>
+                        </div>
+                    </div>
+                    <div class="hero-image-wrapper">
+                        <div class="veille-icon-frame">
+                            <i class="fab fa-aws aws-icon"></i>
+                            <i class="fab fa-microsoft azure-icon"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="section-container">
+                <div class="section-header">
+                    <span class="section-number">01</span>
+                    <h2 class="section-title">Pourquoi <span class="title-gradient">cette Veille ?</span></h2>
+                    <div class="section-line"></div>
+                </div>
+                
+                <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; margin-bottom: 3rem;">
+                    <div class="stat-card">
+                        <div class="stat-value">64%</div>
+                        <div class="stat-label">Part de marché AWS + Azure</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">25%</div>
+                        <div class="stat-label">Croissance annuelle</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">90%</div>
+                        <div class="stat-label">PME en migration</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">190+</div>
+                        <div class="stat-label">Pays couverts</div>
+                    </div>
+                </div>
+
+                <p class="about-text" style="max-width: 800px;">
+                    Le <span class="term" data-def="Serveurs distants accessibles par internet, gérés par des entreprises comme Microsoft (Azure) ou Amazon (AWS).">Cloud</span> Computing transforme les métiers SISR. Les compétences en administration cloud deviennent essentielles : certifications AZ-104, AWS Solutions Architect, et maîtrise de l'Infrastructure as Code (<span class="term" data-def="Outil pour créer et gérer des infrastructures (cloud ou locales) depuis des fichiers de configuration.">Terraform</span>).
+                </p>
+            </div>
+        </section>
+
+        <section id="comparaison" class="section" style="background: var(--bg-card-solid);">
+            <div class="section-container">
+                <div class="section-header">
+                    <span class="section-number">02</span>
+                    <h2 class="section-title">Comparatif <span class="title-gradient">Services</span></h2>
+                    <div class="section-line"></div>
+                </div>
+
+                <div style="overflow-x: auto;">
+                    <table class="comparison-table">
+                        <thead>
+                            <tr>
+                                <th>Service</th>
+                                <th><i class="fab fa-aws"></i> AWS</th>
+                                <th><i class="fab fa-microsoft"></i> Azure</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong><span class="term" data-def="Ordinateur simulé qui tourne à l'intérieur d'un vrai serveur physique.">VM</span> (IaaS)</strong></td>
+                                <td><a href="https://aws.amazon.com/ec2/" target="_blank">EC2</a></td>
+                                <td><a href="https://azure.microsoft.com/fr-fr/services/virtual-machines/" target="_blank">Virtual Machines</a></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Serverless</strong></td>
+                                <td><a href="https://aws.amazon.com/lambda/" target="_blank">Lambda</a></td>
+                                <td><a href="https://azure.microsoft.com/fr-fr/services/functions/" target="_blank">Functions</a></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Stockage Objet</strong></td>
+                                <td><a href="https://aws.amazon.com/s3/" target="_blank">S3</a></td>
+                                <td><a href="https://azure.microsoft.com/fr-fr/services/storage/blobs/" target="_blank">Blob Storage</a></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Base de Données</strong></td>
+                                <td><a href="https://aws.amazon.com/rds/" target="_blank">RDS / DynamoDB</a></td>
+                                <td><a href="https://azure.microsoft.com/fr-fr/services/sql-database/" target="_blank">Azure SQL / Cosmos DB</a></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Conteneurs</strong></td>
+                                <td><a href="https://aws.amazon.com/eks/" target="_blank">EKS</a></td>
+                                <td><a href="https://azure.microsoft.com/fr-fr/services/kubernetes-service/" target="_blank">AKS</a></td>
+                            </tr>
+                            <tr>
+                                <td><strong>IA/ML</strong></td>
+                                <td><a href="https://aws.amazon.com/bedrock/" target="_blank">Bedrock</a></td>
+                                <td><a href="https://azure.microsoft.com/fr-fr/products/ai-services/" target="_blank">Azure AI</a></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="section-container">
+                <div class="section-header">
+                    <span class="section-number">03</span>
+                    <h2 class="section-title">Tendances <span class="title-gradient">2026</span></h2>
+                    <div class="section-line"></div>
+                </div>
+
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-marker"></div>
+                        <div class="timeline-content">
+                            <div class="timeline-header">
+                                <span class="timeline-year">Tendance #1</span>
+                                <span class="timeline-badge">HOT</span>
+                            </div>
+                            <h3 class="timeline-title"><span class="term" data-def="Serveurs distants accessibles par internet, gérés par des entreprises comme Microsoft (Azure) ou Amazon (AWS).">Cloud</span> Hybride Dominant</h3>
+                            <p class="timeline-description">
+                                85% des entreprises adoptent l'hybride (Azure <span class="term" data-def="Annuaire centralisé qui gère tous les utilisateurs et ordinateurs d'une entreprise. L'admin y crée les comptes et définit qui a accès à quoi.">AD</span> + On-Premise). Azure Arc et AWS Outposts unifient la gestion multi-<span class="term" data-def="Serveurs distants accessibles par internet, gérés par des entreprises comme Microsoft (Azure) ou Amazon (AWS).">cloud</span>.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-marker"></div>
+                        <div class="timeline-content">
+                            <div class="timeline-header">
+                                <span class="timeline-year">Tendance #2</span>
+                                <span class="timeline-badge">IA</span>
+                            </div>
+                            <h3 class="timeline-title">IA Everywhere</h3>
+                            <p class="timeline-description">
+                                Copilot intégré aux consoles d'administration. L'IA optimise automatiquement les coûts et la performance des workloads.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-marker"></div>
+                        <div class="timeline-content">
+                            <div class="timeline-header">
+                                <span class="timeline-year">Tendance #3</span>
+                                <span class="timeline-badge">SEC</span>
+                            </div>
+                            <h3 class="timeline-title">Zero Trust Obligatoire</h3>
+                            <p class="timeline-description">
+                                RGPD et souveraineté des données imposent des régions locales. AWS Paris Region et Azure France Central en première ligne.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" style="background: var(--bg-card-solid);">
+            <div class="section-container">
+                <div class="section-header">
+                    <span class="section-number">04</span>
+                    <h2 class="section-title">Mon Plan <span class="title-gradient">Formation</span></h2>
+                    <div class="section-line"></div>
+                </div>
+
+                <div class="skills-grid">
+                    <div class="skill-category">
+                        <h3 class="category-title"><i class="fas fa-certificate" style="margin-right: 0.5rem;"></i> Certifications Visées</h3>
+                        <div class="skill-items">
+                            <a href="https://learn.microsoft.com/fr-fr/credentials/certifications/azure-administrator/" target="_blank" class="skill-item">
+                                <i class="fab fa-microsoft"></i> AZ-104 Azure Administrator
+                            </a>
+                            <a href="https://aws.amazon.com/certification/certified-solutions-architect-associate/" target="_blank" class="skill-item">
+                                <i class="fab fa-aws"></i> AWS Solutions Architect
+                            </a>
+                        </div>
+                    </div>
+                    <div class="skill-category">
+                        <h3 class="category-title"><i class="fas fa-tools" style="margin-right: 0.5rem;"></i> Outils à Maîtriser</h3>
+                        <div class="skill-items">
+                            <a href="https://www.terraform.io/" target="_blank" class="skill-item">
+                                <i class="fas fa-code-branch"></i> <span class="term" data-def="Outil pour créer et gérer des infrastructures (cloud ou locales) depuis des fichiers de configuration.">Terraform</span> (IaC)
+                            </a>
+                            <a href="https://www.docker.com/" target="_blank" class="skill-item">
+                                <i class="fab fa-docker"></i> <span class="term" data-def="Outil qui fait tourner des applications dans des environnements isolés, sans modifier le reste du système.">Docker</span> / Kubernetes
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="section-container">
+                <div class="section-header">
+                    <span class="section-number">05</span>
+                    <h2 class="section-title">Sources <span class="title-gradient">de Veille</span></h2>
+                    <div class="section-line"></div>
+                </div>
+
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem;">
+                    <a href="https://aws.amazon.com/blogs/aws/" target="_blank" class="source-card">
+                        <div class="source-icon"><i class="fab fa-aws"></i></div>
+                        <div>
+                            <strong style="color: var(--text-primary);">AWS Blog</strong>
+                            <p style="color: var(--text-muted); font-size: 0.85rem;">Actualités officielles AWS</p>
+                        </div>
+                    </a>
+                    <a href="https://azure.microsoft.com/fr-fr/blog/" target="_blank" class="source-card">
+                        <div class="source-icon"><i class="fab fa-microsoft"></i></div>
+                        <div>
+                            <strong style="color: var(--text-primary);">Azure Blog</strong>
+                            <p style="color: var(--text-muted); font-size: 0.85rem;">Actualités officielles Azure</p>
+                        </div>
+                    </a>
+                    <a href="https://www.lemondeinformatique.fr/" target="_blank" class="source-card">
+                        <div class="source-icon"><i class="fas fa-newspaper"></i></div>
+                        <div>
+                            <strong style="color: var(--text-primary);">Le Monde Informatique</strong>
+                            <p style="color: var(--text-muted); font-size: 0.85rem;">Presse tech française</p>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="section-footer" style="margin-top: 4rem;">
+                    <a href="/projets.html#veille" class="btn-more">
+                        <i class="fas fa-arrow-left"></i> Retour à l'accueil
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="main-footer">
+        <div class="footer-container">
+            <div class="footer-content">
+                <p class="footer-text">© 2026 <span class="footer-copyright">Franck Raymond</span> — Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        window.addEventListener('scroll', () => {
+            document.getElementById('header').classList.toggle('scrolled', window.scrollY > 50);
+        });
+        document.getElementById('menuToggle').addEventListener('click', () => {
+            document.getElementById('navMenu').classList.toggle('active');
+        });
+    </script>
+
+
+<script src="/assets/portfolio-glossary.js?v=20260831-2" defer=""></script><script src="/assets/legacy-unified.js?v=20261028-8c422e514f" defer=""></script></body></html>

@@ -1,0 +1,642 @@
+<!DOCTYPE html><html lang="fr"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Expériences professionnelles de Franck Raymond - Alternances en informatique">
+    <title>Expériences professionnelles | Franck Raymond</title>
+
+    <link rel="stylesheet" href="/tailwind-output.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&amp;family=Outfit:wght@300;400;500;600;700;800;900&amp;family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        /* ===== HERO ===== */
+        .page-hero {
+            padding-top: 10rem;
+            padding-bottom: 4rem;
+            text-align: center;
+            position: relative;
+        }
+
+        .page-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: min(600px, 100%);
+            height: 500px;
+            background: radial-gradient(circle, rgba(99, 102, 241, 0.12) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .page-title {
+            font-size: 3.2rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            line-height: 1.15;
+        }
+
+        .page-subtitle {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            max-width: 580px;
+            margin: 0 auto 2.5rem;
+            line-height: 1.7;
+        }
+
+        /* ===== STATS BAR ===== */
+        .stats-bar {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            flex-wrap: wrap;
+            margin-top: 2.5rem;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 2rem;
+            font-weight: 700;
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            display: block;
+        }
+
+        .stat-label {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            margin-top: 0.2rem;
+        }
+
+        /* ===== TIMELINE VERTICAL ===== */
+        .exp-timeline {
+            position: relative;
+            max-width: 860px;
+            margin: 0 auto;
+            padding-bottom: 5rem;
+        }
+
+        .exp-timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(to bottom, var(--primary), transparent);
+            transform: translateX(-50%);
+        }
+
+        .tl-item {
+            display: flex;
+            gap: 3rem;
+            align-items: flex-start;
+            margin-bottom: 4rem;
+            position: relative;
+        }
+
+        .tl-item:nth-child(odd) {
+            flex-direction: row;
+        }
+
+        .tl-item:nth-child(even) {
+            flex-direction: row-reverse;
+        }
+
+        .tl-dot {
+            position: absolute;
+            left: 50%;
+            top: 2.2rem;
+            transform: translateX(-50%);
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: var(--primary);
+            border: 3px solid var(--bg-main);
+            box-shadow: 0 0 0 3px rgba(99,102,241,0.3);
+            z-index: 2;
+            flex-shrink: 0;
+        }
+
+        .tl-date-col {
+            flex: 0 0 calc(50% - 3rem);
+            display: flex;
+            justify-content: flex-end;
+            padding-top: 1.8rem;
+        }
+
+        .tl-item:nth-child(even) .tl-date-col {
+            justify-content: flex-start;
+        }
+
+        .tl-date-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 50px;
+            padding: 0.4rem 1rem;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.8rem;
+            color: var(--primary);
+            font-weight: 600;
+            white-space: nowrap;
+        }
+
+        .tl-card-col {
+            flex: 0 0 calc(50% - 3rem);
+        }
+
+        /* ===== EXPERIENCE CARD ===== */
+        .exp-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            overflow: hidden;
+            transition: all 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            display: flex;
+            flex-direction: column;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .exp-card:hover {
+            border-color: var(--primary);
+            transform: translateY(-6px);
+            box-shadow: 0 20px 50px rgba(99, 102, 241, 0.15);
+        }
+
+        .exp-card-header {
+            height: 140px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .exp-card-header.mairie {
+            background: linear-gradient(135deg, rgba(168, 85, 247, 0.2) 0%, rgba(99, 102, 241, 0.1) 100%);
+        }
+
+        .exp-card-header.hopital {
+            background: linear-gradient(135deg, rgba(6, 182, 212, 0.2) 0%, rgba(99, 102, 241, 0.1) 100%);
+        }
+
+        .exp-card-header.auchan {
+            background: linear-gradient(135deg, rgba(245, 158, 11, 0.2) 0%, rgba(16, 185, 129, 0.12) 100%);
+        }
+
+        .exp-card-header i.bg-icon {
+            position: absolute;
+            font-size: 8rem;
+            color: white;
+            opacity: 0.04;
+        }
+
+        .exp-card-header .icon-main {
+            font-size: 3rem;
+            color: var(--primary);
+            z-index: 2;
+            transition: transform 0.4s;
+        }
+
+        .exp-card:hover .icon-main {
+            transform: scale(1.15) rotate(-5deg);
+        }
+
+        .exp-card-header h3 {
+            position: absolute;
+            bottom: 0.8rem;
+            left: 0;
+            right: 0;
+            text-align: center;
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            z-index: 2;
+        }
+
+        .exp-card-body {
+            padding: 1.5rem;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+        }
+
+        .exp-card-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .exp-role {
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            line-height: 1.3;
+        }
+
+        .exp-badge {
+            background: var(--gradient-1);
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 50px;
+            font-size: 0.68rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+
+        .exp-badge.completed {
+            background: var(--bg-hover);
+            color: var(--text-secondary);
+        }
+
+        .exp-description {
+            color: var(--text-secondary);
+            font-size: 0.88rem;
+            line-height: 1.65;
+            flex: 1;
+        }
+
+        .exp-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.4rem;
+            margin-top: 0.2rem;
+        }
+
+        .exp-tag {
+            background: rgba(99, 102, 241, 0.1);
+            color: var(--primary);
+            border: 1px solid rgba(99, 102, 241, 0.2);
+            padding: 0.2rem 0.6rem;
+            border-radius: 6px;
+            font-size: 0.72rem;
+            font-weight: 600;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .exp-link {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--primary);
+            font-weight: 600;
+            font-size: 0.88rem;
+            transition: all 0.3s;
+            margin-top: 0.4rem;
+        }
+
+        .exp-link i {
+            transition: transform 0.3s;
+            font-size: 0.8rem;
+        }
+
+        .exp-card:hover .exp-link i {
+            transform: translateX(5px);
+        }
+
+        /* ===== MOBILE ===== */
+        @media (max-width: 768px) {
+            .page-title { font-size: 2.2rem; }
+
+            .exp-timeline::before { left: 1.2rem; }
+
+            .tl-item,
+            .tl-item:nth-child(even) {
+                flex-direction: column;
+                padding-left: 3rem;
+                gap: 1rem;
+            }
+
+            .tl-dot {
+                left: 1.2rem;
+                top: 0.5rem;
+            }
+
+            .tl-date-col,
+            .tl-item:nth-child(even) .tl-date-col {
+                flex: none;
+                justify-content: flex-start;
+                padding-top: 0;
+            }
+
+            .tl-card-col {
+                flex: none;
+                width: 100%;
+            }
+
+            .stats-bar { gap: 2rem; }
+        }
+    
+        /* Tooltips termes techniques */
+        .term {
+            border-bottom: 1px dashed var(--primary);
+            cursor: help;
+            position: relative;
+            display: inline;
+        }
+        .term::after {
+            content: attr(data-def);
+            position: absolute;
+            bottom: calc(100% + 8px);
+            left: 50%;
+            transform: translateX(-50%);
+            background: #1e293b;
+            color: #f8fafc;
+            font-size: 0.78rem;
+            line-height: 1.5;
+            padding: 0.6rem 0.9rem;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            white-space: normal;
+            width: 220px;
+            text-align: left;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.2s;
+            z-index: 100;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+        }
+        .term:hover::after { opacity: 1; }
+</style>
+<meta name="theme-color" content="#111214"><link rel="stylesheet" href="/assets/legacy-unified.css?v=20260831-2"><meta name="author" content="Franck Raymond"><meta name="robots" content="index,follow,max-image-preview:large"><meta property="og:type" content="website"><meta property="og:site_name" content="Portfolio de Franck Raymond"><meta property="og:title" content="Expériences professionnelles | Franck Raymond"><meta property="og:description" content="Expériences professionnelles de Franck Raymond - Alternances en informatique"><meta property="og:url" content="https://franckraymond.tech/experience.html"><meta property="og:image" content="https://franckraymond.tech/franck.webp"><meta property="og:image:alt" content="Portrait professionnel de Franck Raymond"><meta property="og:locale" content="fr_FR"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Expériences professionnelles | Franck Raymond"><meta name="twitter:description" content="Expériences professionnelles de Franck Raymond - Alternances en informatique"><meta name="twitter:image" content="https://franckraymond.tech/franck.webp"><link rel="canonical" href="https://franckraymond.tech/experience.html"><link rel="icon" href="/favicon-32x32.png" sizes="32x32" type="image/png"><link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180"><link rel="manifest" href="/site.webmanifest"><script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"Expériences professionnelles | Franck Raymond","url":"https://franckraymond.tech/experience.html","description":"Expériences professionnelles de Franck Raymond - Alternances en informatique","isPartOf":{"@type":"WebSite","name":"Portfolio de Franck Raymond","url":"https://franckraymond.tech/"},"about":{"@type":"Person","name":"Franck Raymond","url":"https://franckraymond.tech/"}}</script><link rel="stylesheet" href="/assets/portfolio-library.css?v=20260906-1">
+<style>@media(max-width:768px){.exp-timeline .tl-item:nth-child(n){flex-direction:column;min-width:0;max-width:100%;box-sizing:border-box}.exp-timeline .tl-card-col{min-width:0;width:100%;max-width:100%}.exp-timeline .exp-card{min-width:0;overflow-wrap:anywhere}.exp-timeline .tl-date-badge{white-space:normal}}</style>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,400&amp;family=Geist:wght@400;500;600&amp;display=swap">
+<link rel="stylesheet" href="/assets/editorial-tokens.css?v=20261106-modern">
+<link rel="stylesheet" href="/assets/editorial.css?v=20261106-modern">
+<script src="/assets/editorial-theme.js?v=20261028-1fe0ee8c9d"></script>
+</head>
+<body data-theme="light" class="portfolio-legacy editorial-site">
+
+    <div class="bg-mesh"></div>
+    <div class="noise-overlay"></div>
+    <div class="grid-lines"></div>
+
+    <a class="skip-link" href="#main-content">Aller au contenu</a>
+<header class="main-header" id="header">
+        <nav class="nav-container" aria-label="Navigation principale">
+            <a href="index.html" class="brand-logo" aria-label="Accueil — Franck Raymond">
+                <span class="logo-bracket">&lt;</span>
+                <span class="logo-text">FR</span>
+                <span class="logo-bracket">/&gt;</span>
+            </a>
+            <div class="nav-menu" id="navMenu"><a href="/index.html" class="nav-link"><span class="nav-text">Accueil</span></a>
+<a href="/projets.html" class="nav-link"><span class="nav-text">Projets</span></a>
+<a href="/profil.html" class="nav-link"><span class="nav-text">Profil</span></a>
+<a href="/index.html#skills" class="nav-link"><span class="nav-text">Compétences</span></a>
+<a href="/experience.html" class="nav-link" aria-current="page"><span class="nav-text">Expériences</span></a>
+<a href="/index.html#contact" class="nav-link"><span class="nav-text">Contact</span></a>
+<a class="nav-link" href="https://opengym.jsuisfray.blitz.cloud/"><span class="nav-text">FrayFit</span></a></div>
+            <div class="nav-controls">
+                <button class="theme-toggle" id="themeToggle" aria-label="Changer le thème">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <button class="menu-toggle" id="menuToggle" aria-label="Menu">
+                    <span></span><span></span><span></span>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <main id="main-content">
+        <!-- Hero -->
+        <section class="page-hero">
+            <div class="section-container">
+                <p style="font-family:'JetBrains Mono',monospace;font-size:0.8rem;color:var(--primary);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:0.8rem;">
+                    <i class="fas fa-briefcase" style="margin-right:0.5rem;"></i>Parcours professionnel
+                </p>
+                <h1 class="page-title">
+                    Mes <span class="text-gradient">Expériences</span>
+                </h1>
+                <p class="page-subtitle">
+                    De mes premiers pas dans l'informatique d'entreprise jusqu'à l'administration
+                    de systèmes critiques — un parcours orienté terrain et montée en compétences.
+                </p>
+                <p style="margin:1.25rem auto 0;max-width:760px;color:var(--primary);font-weight:600;"><i class="fas fa-briefcase" style="margin-right:0.5rem;"></i>En alternance chez Delannoy Dewailly · Bachelor ASRBD — <a href="index.html#contact" style="color:var(--primary);text-decoration:underline;">Me contacter</a></p>
+
+                <!-- Stats -->
+                <div class="stats-bar">
+                    <div class="stat-item">
+                        <span class="stat-number">≈ 3</span>
+                        <span class="stat-label">ans d'alternance</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">4</span>
+                        <span class="stat-label">expériences</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">2</span>
+                        <span class="stat-label">secteurs différents</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">2019</span>
+                        <span class="stat-label">premier stage IT</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Timeline -->
+        <div class="section-container">
+            <div class="exp-timeline">
+
+                <!-- Delannoy Dewailly -->
+                <div class="tl-item">
+                  <div class="tl-date-col"><span class="tl-date-badge">En cours · 1 an</span></div>
+                  <div class="tl-dot"></div>
+                  <div class="tl-card-col"><div class="exp-card">
+                    <div class="exp-card-header mairie"><i class="fas fa-building bg-icon" aria-hidden="true"></i><i class="fas fa-network-wired icon-main" aria-hidden="true"></i><h3>Delannoy Dewailly</h3></div>
+                    <div class="exp-card-body"><div class="exp-card-meta"><span class="exp-role">Administrateur systèmes et réseaux</span><span class="exp-badge">Alternance en cours</span></div>
+                    <p class="exp-description">Alternance d’un an dans le cadre du Bachelor ASRBD — Administrateur systèmes, réseaux et bases de données — à l’EPSI Lille.</p>
+                    <div class="exp-tags"><span class="exp-tag">Administration systèmes</span><span class="exp-tag">Réseaux</span><span class="exp-tag">Bachelor ASRBD</span></div></div>
+                  </div></div>
+                </div>
+                <!-- Mairie de La Madeleine -->
+                <div class="tl-item">
+                    <div class="tl-date-col">
+                        <span class="tl-date-badge">
+                            <i class="fas fa-circle" style="font-size:0.5rem;"></i>
+                            Sept 2025 — Août 2026
+                        </span>
+                    </div>
+                    <div class="tl-dot"></div>
+                    <div class="tl-card-col">
+                        <a href="exp-mairie.html" class="exp-card">
+                            <div class="exp-card-header mairie">
+                                <i class="fas fa-university bg-icon"></i>
+                                <i class="fas fa-network-wired icon-main"></i>
+                                <h3>Mairie de La Madeleine</h3>
+                            </div>
+                            <div class="exp-card-body">
+                                <div class="exp-card-meta">
+                                    <span class="exp-role">Technicien Systèmes &amp; Réseaux</span>
+                                    <span class="exp-badge">Alternance terminée</span>
+                                </div>
+                                <p class="exp-description">
+                                    Participation à l'exploitation d'une infrastructure communale : suivi de la supervision <span class="term" data-def="Logiciel de surveillance qui vérifie en temps réel que les serveurs et équipements réseau fonctionnent correctement.">Zabbix</span>, analyse de journaux avec <span class="term" data-def="Outil qui collecte et centralise les journaux (logs) de tous les serveurs pour les analyser facilement.">Graylog</span>,
+                                    préparation d'une migration VoIP, opérations encadrées sur <span class="term" data-def="Annuaire centralisé qui gère tous les utilisateurs et ordinateurs d'une entreprise. L'admin y crée les comptes et définit qui a accès à quoi.">Active Directory</span> et support aux agents.
+                                </p>
+                                <div class="exp-tags">
+                                    <span class="exp-tag">Windows Server</span>
+                                    <span class="exp-tag">Linux</span>
+                                    <span class="exp-tag"><span class="term" data-def="Logiciel de surveillance qui vérifie en temps réel que les serveurs et équipements réseau fonctionnent correctement.">Zabbix</span></span>
+                                    <span class="exp-tag"><span class="term" data-def="Outil qui collecte et centralise les journaux (logs) de tous les serveurs pour les analyser facilement.">Graylog</span></span>
+                                    <span class="exp-tag"><span class="term" data-def="Annuaire centralisé qui gère tous les utilisateurs et ordinateurs d'une entreprise. L'admin y crée les comptes et définit qui a accès à quoi.">AD</span> / <span class="term" data-def="Règles appliquées automatiquement à tous les ordinateurs d'une entreprise (ex: fond d'écran imposé, logiciels installés d'office).">GPO</span></span>
+                                    <span class="exp-tag">VoIP</span>
+                                </div>
+                                <span class="exp-link">
+                                    Voir les détails <i class="fas fa-arrow-right"></i>
+                                </span>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- CHU Tourcoing -->
+                <div class="tl-item">
+                    <div class="tl-date-col">
+                        <span class="tl-date-badge">
+                            <i class="fas fa-circle" style="font-size:0.5rem;"></i>
+                            Oct 2023 — Août 2025
+                        </span>
+                    </div>
+                    <div class="tl-dot"></div>
+                    <div class="tl-card-col">
+                        <a href="exp-hopital.html" class="exp-card">
+                            <div class="exp-card-header hopital">
+                                <i class="fas fa-hospital bg-icon"></i>
+                                <i class="fas fa-laptop-medical icon-main"></i>
+                                <h3>Centre Hospitalier de Tourcoing</h3>
+                            </div>
+                            <div class="exp-card-body">
+                                <div class="exp-card-meta">
+                                    <span class="exp-role">Technicien Informatique</span>
+                                    <span class="exp-badge completed">Terminé</span>
+                                </div>
+                                <p class="exp-description">
+                                    Maintenance en condition opérationnelle d'un parc informatique hospitalier critique.
+                                    Support N1/N2, gestion des comptes <span class="term" data-def="Annuaire centralisé qui gère tous les utilisateurs et ordinateurs d'une entreprise. L'admin y crée les comptes et définit qui a accès à quoi.">Active Directory</span> et déploiement de postes.
+                                </p>
+                                <div class="exp-tags">
+                                    <span class="exp-tag">Support N1/N2</span>
+                                    <span class="exp-tag"><span class="term" data-def="Annuaire centralisé qui gère tous les utilisateurs et ordinateurs d'une entreprise. L'admin y crée les comptes et définit qui a accès à quoi.">Active Directory</span></span>
+                                    <span class="exp-tag"><span class="term" data-def="Logiciel de gestion des tickets informatiques — les utilisateurs signalent leurs problèmes et les techniciens les traitent.">GLPI</span></span>
+                                    <span class="exp-tag">Hardware</span>
+                                </div>
+                                <span class="exp-link">
+                                    Voir les détails <i class="fas fa-arrow-right"></i>
+                                </span>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Centrale Auchan -->
+                <div class="tl-item">
+                    <div class="tl-date-col">
+                        <span class="tl-date-badge">
+                            <i class="fas fa-circle" style="font-size:0.5rem;"></i>
+                            Avril 2019
+                        </span>
+                    </div>
+                    <div class="tl-dot"></div>
+                    <div class="tl-card-col">
+                        <a href="exp-auchan.html" class="exp-card">
+                            <div class="exp-card-header auchan">
+                                <i class="fas fa-store bg-icon"></i>
+                                <i class="fas fa-database icon-main"></i>
+                                <h3>Centrale d'Auchan</h3>
+                            </div>
+                            <div class="exp-card-body">
+                                <div class="exp-card-meta">
+                                    <span class="exp-role">Stage d'observation en informatique</span>
+                                    <span class="exp-badge completed">Terminé</span>
+                                </div>
+                                <p class="exp-description">
+                                    Première immersion en entreprise au centre de recherche de Villeneuve-d'Ascq.
+                                    Découverte des métiers IT, des langages Talend, RMS, TXT et des logiciels
+                                    Oracle, Space, Apollo et Athéna.
+                                </p>
+                                <div class="exp-tags">
+                                    <span class="exp-tag">Talend</span>
+                                    <span class="exp-tag">Oracle</span>
+                                    <span class="exp-tag">Apollo</span>
+                                    <span class="exp-tag">Athéna</span>
+                                    <span class="exp-tag">RMS</span>
+                                </div>
+                                <span class="exp-link">
+                                    Voir les détails <i class="fas fa-arrow-right"></i>
+                                </span>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Retour -->
+            <div class="section-footer" style="padding-bottom:5rem;">
+                <a href="index.html" class="btn-more">
+                    <i class="fas fa-arrow-left"></i> Retour à l'accueil
+                </a>
+            </div>
+        </div>
+    </main>
+
+    <footer class="main-footer">
+        <div class="footer-container">
+            <div class="footer-content">
+                <p class="footer-text">© 2026 <span class="footer-copyright">Franck Raymond</span> — Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Header scroll
+        window.addEventListener('scroll', () => {
+            document.getElementById('header').classList.toggle('scrolled', window.scrollY > 50);
+        });
+
+        // Mobile menu
+        document.getElementById('menuToggle').addEventListener('click', () => {
+            document.getElementById('navMenu').classList.toggle('active');
+        });
+
+        // Theme toggle
+        const themeToggle = document.getElementById('themeToggle');
+        const body = document.body;
+
+        function applyTheme(theme) {
+            body.setAttribute('data-theme', theme);
+            themeToggle.querySelector('i').className = theme === 'dark' ? 'fas fa-moon' : 'fas fa-sun';
+            localStorage.setItem('theme', theme);
+        }
+
+        // Init from localStorage
+        applyTheme(localStorage.getItem('portfolio-theme') || localStorage.getItem('theme') || 'light');
+
+        themeToggle.addEventListener('click', () => {
+            applyTheme(body.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
+        });
+    </script>
+
+
+<script src="/assets/portfolio-glossary.js?v=20260831-2" defer=""></script><script src="/assets/legacy-unified.js?v=20261028-8c422e514f" defer=""></script></body></html>

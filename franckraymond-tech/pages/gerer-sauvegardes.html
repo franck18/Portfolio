@@ -1,0 +1,545 @@
+<!DOCTYPE html><html lang="fr"><head>
+
+  <meta charset="UTF-8">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Gerer des sauvegardes | Portfolio</title>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&amp;family=Outfit:wght@300;400;500;600;700;800;900&amp;family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="../style.css">
+
+  <style>
+        /* Tooltips termes techniques */
+        .term {
+            border-bottom: 1px dashed var(--primary);
+            cursor: help;
+            position: relative;
+            display: inline;
+        }
+        .term::after {
+            content: attr(data-def);
+            position: absolute;
+            bottom: calc(100% + 8px);
+            left: 50%;
+            transform: translateX(-50%);
+            background: #1e293b;
+            color: #f8fafc;
+            font-size: 0.78rem;
+            line-height: 1.5;
+            padding: 0.6rem 0.9rem;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            white-space: normal;
+            width: 220px;
+            text-align: left;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.2s;
+            z-index: 100;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+        }
+        .term:hover::after { opacity: 1; }
+  </style>
+<meta name="theme-color" content="#111214"><link rel="stylesheet" href="/assets/legacy-unified.css?v=20260831-2"><meta name="description" content="Portfolio de Franck Raymond : projets en administration systèmes, réseaux, supervision et cybersécurité."><meta name="author" content="Franck Raymond"><meta name="robots" content="index,follow,max-image-preview:large"><meta property="og:type" content="website"><meta property="og:site_name" content="Portfolio de Franck Raymond"><meta property="og:title" content="Gerer des sauvegardes | Portfolio"><meta property="og:description" content="Portfolio de Franck Raymond : projets en administration systèmes, réseaux, supervision et cybersécurité."><meta property="og:url" content="https://franckraymond.tech/pages/gerer-sauvegardes.html"><meta property="og:image" content="https://franckraymond.tech/franck.webp"><meta property="og:image:alt" content="Portrait professionnel de Franck Raymond"><meta property="og:locale" content="fr_FR"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Gerer des sauvegardes | Portfolio"><meta name="twitter:description" content="Portfolio de Franck Raymond : projets en administration systèmes, réseaux, supervision et cybersécurité."><meta name="twitter:image" content="https://franckraymond.tech/franck.webp"><link rel="canonical" href="https://franckraymond.tech/pages/gerer-sauvegardes.html"><link rel="icon" href="/favicon-32x32.png" sizes="32x32" type="image/png"><link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180"><link rel="manifest" href="/site.webmanifest"><script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"Gerer des sauvegardes | Portfolio","url":"https://franckraymond.tech/pages/gerer-sauvegardes.html","description":"Portfolio de Franck Raymond : projets en administration systèmes, réseaux, supervision et cybersécurité.","isPartOf":{"@type":"WebSite","name":"Portfolio de Franck Raymond","url":"https://franckraymond.tech/"},"about":{"@type":"Person","name":"Franck Raymond","url":"https://franckraymond.tech/"}}</script>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,400&amp;family=Geist:wght@400;500;600&amp;display=swap">
+<link rel="stylesheet" href="/assets/editorial-tokens.css?v=20261106-modern">
+<link rel="stylesheet" href="/assets/editorial.css?v=20261106-modern">
+<script src="/assets/editorial-theme.js?v=20261028-1fe0ee8c9d"></script>
+</head>
+
+<body data-theme="light" class="portfolio-legacy editorial-site">
+
+  <div class="bg-mesh"></div>
+
+  <div class="noise-overlay"></div>
+
+  <div class="grid-lines"></div>
+
+
+
+  <header class="main-header" id="header">
+
+    <nav class="nav-container" aria-label="Navigation principale">
+
+      <div class="nav-brand">
+
+        <a href="../index.html" class="brand-logo">
+
+          <span class="logo-bracket">&lt;</span>
+
+          <span class="logo-text">FR</span>
+
+          <span class="logo-bracket">/&gt;</span>
+
+        </a>
+
+      </div>
+
+      <div class="nav-menu" id="navMenu">
+
+        <a href="../index.html" class="nav-link">
+
+          <i class="fas fa-home"></i>
+
+          <span class="nav-text">Accueil</span>
+
+        </a>
+
+        <a href="../index.html#skills" class="nav-link active">
+
+          <i class="fas fa-code"></i>
+
+          <span class="nav-text">Compétences</span>
+
+        </a>
+
+        <a href="../index.html#experience" class="nav-link">
+
+          <i class="fas fa-briefcase"></i>
+
+          <span class="nav-text">Expériences</span>
+
+        </a>
+
+        <a href="../index.html#contact" class="nav-link">
+
+          <i class="fas fa-envelope"></i>
+
+          <span class="nav-text">Contact</span>
+
+        </a>
+
+      
+<a class="nav-link" href="https://opengym.jsuisfray.blitz.cloud/"><span class="nav-text">FrayFit</span></a></div>
+
+      <div class="nav-controls">
+
+        <button class="theme-toggle" id="themeToggle" title="Changer le thème" aria-label="Basculer entre mode sombre et clair">
+
+          <i class="fas fa-moon"></i>
+
+        </button>
+
+        <button class="menu-toggle" id="menuToggle" aria-label="Ouvrir le menu mobile" aria-expanded="false">
+
+          <span></span><span></span><span></span>
+
+        </button>
+
+      </div>
+
+    </nav>
+
+  </header>
+
+
+
+  <main>
+
+    <section class="hero-section page-hero">
+
+      <div class="hero-glow"></div>
+
+      <div class="hero-glow-2"></div>
+
+      <div class="hero-container">
+
+        <div class="hero-content">
+
+          <div class="hero-greeting page-badge">Support &amp; mise a disposition</div>
+
+          <h1 class="hero-name"><span class="name-gradient">Gerer des sauvegardes</span></h1>
+
+          <p class="hero-description">
+
+            Sauvegardes techniques pour répondre aux exigences de PRA.
+
+          </p>
+
+<div class="hero-buttons">
+
+            <a href="#validation" class="btn btn-primary"><i class="fas fa-link"></i> Validation</a>
+
+            <a href="#preuves" class="btn btn-secondary"><i class="fas fa-image"></i> Preuves</a>
+
+          </div>
+
+        </div>
+
+        <div class="hero-image-wrapper">
+
+          <div class="hero-image-container">
+
+            <div class="profile-image-frame">
+
+              <i class="fas fa-database page-icon"></i>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+
+    <section id="validation" class="section">
+
+  <div class="section-container">
+
+    <div class="section-header">
+
+      <span class="section-number">01</span>
+
+      <h2 class="section-title">Comment je l'ai <span class="title-gradient">validée</span></h2>
+
+      <div class="section-line"></div>
+
+    </div>
+
+    <div class="about-content">
+
+      <div>
+
+        <p class="about-text">
+
+          <strong>J'ai validé cette compétence en faisant concrètement ceci :</strong> J'ai valide cette compétence en prevoyant des sauvegardes avant chaque modification critique et en testant leur exploitation. J'ai combine snapshots <span class="term" data-def="Logiciel qui permet de faire tourner plusieurs systèmes (machines virtuelles) sur un seul serveur physique.">VMware</span>, sauvegardes de configurations réseau, export des bases et vérification des restaurations pour ne pas rester sur une sauvegarde uniquement theorique.
+
+        </p>
+
+        <p class="about-text" style="margin-top: 1rem;">
+
+          Ce travail m'a permis de valider ma capacité à mettre en place une sauvegarde exploitable, l'adapter aux différents services et vérifier qu'une restauration reste possible. J'ai surtout retenu qu'une sauvegarde n'a de valeur que si elle peut être restauree dans de bonnes conditions.
+
+        </p>
+
+        <div class="timeline-achievements">
+
+              <div class="achievement-item"><i class="fas fa-check-circle"></i><span>Prendre des snapshots avant les changements sensibles</span></div>
+
+      <div class="achievement-item"><i class="fas fa-check-circle"></i><span>Sauvegarder les configurations Cisco et les bases de services</span></div>
+
+      <div class="achievement-item"><i class="fas fa-check-circle"></i><span>Vérifier la restauration et documenter le processus</span></div>
+
+      <div class="achievement-item"><i class="fas fa-check-circle"></i><span>Adapter la méthode de sauvegarde selon le type de service ou de données</span></div>
+
+      <div class="achievement-item"><i class="fas fa-check-circle"></i><span>Prevoir un retour arriere avant les modifications a risque</span></div>
+
+        </div>
+
+      </div>
+
+      <div>
+
+        <div class="skill-category">
+
+          <h3 class="category-title"><i class="fas fa-diagram-project"></i> TP et projets reliés</h3>
+
+          <div class="timeline-tags">
+
+                <a href="projet-zabbix-r5.html" class="tag"><i class="fas fa-link"></i> <span class="term" data-def="Logiciel de surveillance qui vérifie en temps réel que les serveurs et équipements réseau fonctionnent correctement.">Zabbix</span></a>
+
+        <a href="projet-alger-medilab.html" class="tag"><i class="fas fa-link"></i> Projet ALGER</a>
+
+          </div>
+
+        </div>
+
+        <div class="skill-category" style="margin-top: 1.5rem;">
+
+          <h3 class="category-title"><i class="fas fa-graduation-cap"></i> Ce que j'ai validé</h3>
+
+          <div class="timeline-tags">
+
+                <span class="tag">Sauvegarde</span>
+
+        <span class="tag">Restauration</span>
+
+        <span class="tag">Protection des données</span>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+
+    <section id="actions" class="section" style="background: var(--bg-card-solid);">
+
+      <div class="section-container">
+
+        <div class="section-header">
+
+          <span class="section-number">02</span>
+
+          <h2 class="section-title">Actions <span class="title-gradient">&amp; réalisations</span></h2>
+
+          <div class="section-line"></div>
+
+        </div>
+
+        <div class="about-content">
+
+          <div>
+
+            <p class="about-text">Mise en place d'une stratégie de sauvegarde complète.</p>
+
+            <div class="timeline-achievements">
+
+              <div class="achievement-item"><i class="fas fa-check-circle"></i><span>Création de snapshots <span class="term" data-def="Logiciel qui permet de faire tourner plusieurs systèmes (machines virtuelles) sur un seul serveur physique.">VMware</span>/Hyper-V avant modifications critiques</span></div>
+
+              <div class="achievement-item"><i class="fas fa-check-circle"></i><span>Sauvegarde automatisée des configurations Cisco (running-config)</span></div>
+
+              <div class="achievement-item"><i class="fas fa-check-circle"></i><span>Mise en place de Windows Server Backup pour les DC</span></div>
+
+              <div class="achievement-item"><i class="fas fa-check-circle"></i><span><span class="term" data-def="Programme automatique qui effectue des tâches répétitives sans intervention manuelle.">Scripts</span> de sauvegarde rsync/tar pour serveurs Linux</span></div>
+
+              <div class="achievement-item"><i class="fas fa-check-circle"></i><span>Export régulier des bases de données (mysqldump, pg_dump)</span></div>
+
+              <div class="achievement-item"><i class="fas fa-check-circle"></i><span>Tests de restauration pour valider les sauvegardes</span></div>
+
+              <div class="achievement-item"><i class="fas fa-check-circle"></i><span>Documentation de la procédure PRA</span></div>
+
+              <div class="achievement-item"><i class="fas fa-check-circle"></i><span>Vérification de la cohérence entre sauvegarde prise et risque couvert</span></div>
+
+              <div class="achievement-item"><i class="fas fa-check-circle"></i><span>Distinction entre sauvegarde courte durée, snapshot technique et restauration complète</span></div>
+
+            </div>
+
+          </div>
+
+          <div>
+
+            <div class="skill-category">
+
+              <h3 class="category-title"><i class="fas fa-layer-group"></i> Outils et technologies</h3>
+
+              <div class="timeline-tags">
+
+                <span class="tag"><span class="term" data-def="Logiciel qui permet de faire tourner plusieurs systèmes (machines virtuelles) sur un seul serveur physique.">VMware</span> Snapshots</span>
+
+                <span class="tag">Hyper-V</span>
+
+                <span class="tag">Windows Server Backup</span>
+
+                <span class="tag">rsync</span>
+
+                <span class="tag">mysqldump</span>
+
+                <span class="tag">Cisco archive</span>
+
+              </div>
+
+            </div>
+
+            <div class="skill-category" style="margin-top: 1.5rem;">
+
+              <h3 class="category-title"><i class="fas fa-graduation-cap"></i> Compétences BTS SIO</h3>
+
+              <div class="timeline-tags">
+
+                <span class="tag">Gerer les sauvegardes</span>
+
+                <span class="tag">Assurer la continuité</span>
+
+                <span class="tag">Appliquer le PRA</span>
+
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+
+    <section id="difficultes" class="section">
+
+      <div class="section-container">
+
+        <div class="section-header">
+
+          <span class="section-number">03</span>
+
+          <h2 class="section-title">Difficultés <span class="title-gradient">&amp; solutions</span></h2>
+
+          <div class="section-line"></div>
+
+        </div>
+
+        <div class="about-content">
+
+          <div>
+
+            <p class="about-text">La difficulte principale est d'eviter la fausse sécurité: on croit souvent être protege tant que les sauvegardes existent, alors que le vrai enjeu est la restauration.</p>
+
+            <div class="timeline-achievements">
+
+              <div class="achievement-item"><i class="fas fa-exclamation-triangle" style="color: var(--accent-primary);"></i><span><strong>Problème :</strong> Espace disque insuffisant pour les sauvegardes completes</span></div>
+
+              <div class="achievement-item"><i class="fas fa-lightbulb" style="color: var(--accent-secondary);"></i><span><strong>Solution :</strong> Mise en place de sauvegardes incrementielles et rotation des anciennes</span></div>
+
+            </div>
+
+            <div class="timeline-achievements" style="margin-top: 1rem;">
+
+              <div class="achievement-item"><i class="fas fa-exclamation-triangle" style="color: var(--accent-primary);"></i><span><strong>Problème :</strong> Echec de restauration d'un snapshot <span class="term" data-def="Logiciel qui permet de faire tourner plusieurs systèmes (machines virtuelles) sur un seul serveur physique.">VMware</span></span></div>
+
+              <div class="achievement-item"><i class="fas fa-lightbulb" style="color: var(--accent-secondary);"></i><span><strong>Solution :</strong> Mise en place de tests de restauration réguliers et alertes sur echecs</span></div>
+
+            </div>
+
+            <div class="timeline-achievements" style="margin-top: 1rem;">
+
+              <div class="achievement-item"><i class="fas fa-exclamation-triangle" style="color: var(--accent-primary);"></i><span><strong>Problème :</strong> Confusion entre un snapshot de confort et une vraie sauvegarde de reprise</span></div>
+
+              <div class="achievement-item"><i class="fas fa-lightbulb" style="color: var(--accent-secondary);"></i><span><strong>Solution :</strong> Clarification des usages de chaque mecanisme et documentation des limites</span></div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+
+    <section id="bilan" class="section" style="background: var(--bg-card-solid);">
+
+      <div class="section-container">
+
+        <div class="section-header">
+
+          <span class="section-number">04</span>
+
+          <h2 class="section-title">Bilan <span class="title-gradient">personnel</span></h2>
+
+          <div class="section-line"></div>
+
+        </div>
+
+        <div class="about-content">
+
+          <div>
+
+            <p class="about-text">Cette compétence m'a rendu plus prudent et plus rigoureux avant toute modification importante. Je pense davantage à la reprise, au retour arriere et à la capacité de restaurer rapidement un service plutôt qu'à la seule phase de changement.</p>
+
+            <p class="about-text" style="margin-top: 1rem;">Personnellement, j'ai gagné en maturite sur la gestion du risque. Je sais mieux distinguer ce qui protege vraiment un service et ce qui donne seulement l'impression d'être couvert.</p>
+
+          </div>
+
+          <div>
+
+            <div class="timeline-achievements">
+
+              <div class="achievement-item"><i class="fas fa-check-circle"></i><span>Vision plus realiste de la protection des données</span></div>
+
+              <div class="achievement-item"><i class="fas fa-check-circle"></i><span>Reflexe de tester avant de faire confiance a une sauvegarde</span></div>
+
+              <div class="achievement-item"><i class="fas fa-check-circle"></i><span>Meilleure anticipation des scénarios de retour arriere</span></div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+
+    <section id="preuves" class="section" style="background: var(--bg-card-solid);">
+
+      <div class="section-container">
+
+        <div class="section-header">
+
+          <span class="section-number">05</span>
+
+          <h2 class="section-title">Preuves <span class="title-gradient">&amp; captures</span></h2>
+
+          <div class="section-line"></div>
+
+        </div>
+
+        <p class="about-text">Cette page sert de synthèse. Les captures détaillées, configurations et resultats sont visibles dans les TP et projets reliés ci-dessus.</p>
+
+        <div class="gallery-grid">
+
+          <p class="about-text" style="grid-column: 1 / -1;">Les captures et documents de cette section ne sont pas encore publiés.</p>
+
+          
+
+          
+
+          
+
+          
+
+          
+
+        </div>
+
+        <div class="section-footer">
+
+          <a href="../index.html#skills" class="btn-more"><i class="fas fa-arrow-left"></i> Retour aux compétences</a>
+
+        </div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+
+
+  <footer class="main-footer" role="contentinfo">
+
+    <div class="footer-container">
+
+      <div class="footer-content">
+
+        <p class="footer-text">2026 <span class="footer-copyright">Franck Raymond</span> - Tous droits réservés.</p>
+
+      </div>
+
+    </div>
+
+  </footer>
+
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+
+  <script src="../script.js?v=20261028-b753f7964f"></script>
+
+
+
+
+
+<script src="/assets/portfolio-glossary.js?v=20260831-2" defer=""></script><script src="/assets/legacy-unified.js?v=20261028-8c422e514f" defer=""></script></body></html>

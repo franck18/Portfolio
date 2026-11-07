@@ -1,0 +1,273 @@
+<!DOCTYPE html><html lang="en" dir="ltr" data-theme="light"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Case study of a self-hosted infrastructure managed independently with Linux, Docker, Nginx, DNS, TLS certificates, monitoring and backups.">
+  <meta name="author" content="Franck Raymond">
+  <meta name="robots" content="index,follow,max-image-preview:large">
+  <meta name="theme-color" content="#111214">
+  <title>Personal homelab | Portfolio Franck Raymond</title>
+  <link rel="canonical" href="https://franckraymond.tech/en/pages/projet-homelab.html">
+  <link rel="alternate" hreflang="fr" href="https://franckraymond.tech/pages/projet-homelab.html">
+  <link rel="alternate" hreflang="en" href="https://franckraymond.tech/en/pages/projet-homelab.html">
+  <link rel="alternate" hreflang="x-default" href="https://franckraymond.tech/pages/projet-homelab.html">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Franck Raymond Portfolio">
+  <meta property="og:title" content="Personal homelab | Portfolio Franck Raymond">
+  <meta property="og:description" content="Case study of a self-hosted infrastructure managed independently with Linux, Docker, Nginx, DNS, TLS certificates, monitoring and backups.">
+  <meta property="og:url" content="https://franckraymond.tech/en/pages/projet-homelab.html">
+  <meta property="og:image" content="https://franckraymond.tech/franck.webp">
+  <meta property="og:image:alt" content="Professional portrait of Franck Raymond">
+  <meta property="og:image:width" content="1024">
+  <meta property="og:image:height" content="1024">
+  <meta property="og:locale" content="en_GB">
+  <meta property="og:locale:alternate" content="fr_FR">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Personal homelab | Portfolio Franck Raymond">
+  <meta name="twitter:description" content="Case study of a self-hosted infrastructure managed independently with Linux, Docker, Nginx, DNS, TLS certificates, monitoring and backups.">
+  <meta name="twitter:image" content="https://franckraymond.tech/franck.webp">
+  <meta name="twitter:image:alt" content="Professional portrait of Franck Raymond">
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Person",
+      "@id": "https://franckraymond.tech/#person",
+      "name": "Franck Raymond",
+      "url": "https://franckraymond.tech/",
+      "image": "https://franckraymond.tech/franck.webp",
+      "jobTitle": "Systems and Network Administrator",
+      "description": "Systems and Network Administrator at Delannoy Dewailly, studying for the Bachelor ASRBD at EPSI Lille on a one-year work-study placement.",
+      "email": "mailto:franckrmnd@gmail.com",
+      "sameAs": [
+        "https://www.linkedin.com/in/franck-r-21a8a4184",
+        "https://github.com/franckraymond"
+      ],
+      "knowsAbout": [
+        "Systems administration",
+        "Computer networks",
+        "Cybersecurity",
+        "Monitoring",
+        "Linux",
+        "Windows Server"
+      ]
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://franckraymond.tech/#website",
+      "url": "https://franckraymond.tech/",
+      "name": "Franck Raymond Portfolio",
+      "inLanguage": [
+        "fr-FR",
+        "en-GB"
+      ],
+      "publisher": {
+        "@id": "https://franckraymond.tech/#person"
+      }
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://franckraymond.tech/en/pages/projet-homelab.html#webpage",
+      "url": "https://franckraymond.tech/en/pages/projet-homelab.html",
+      "name": "Personal homelab | Portfolio Franck Raymond",
+      "description": "Case study of a self-hosted infrastructure managed independently with Linux, Docker, Nginx, DNS, TLS certificates, monitoring and backups.",
+      "isPartOf": {
+        "@id": "https://franckraymond.tech/#website"
+      },
+      "about": {
+        "@id": "https://franckraymond.tech/#person"
+      },
+      "inLanguage": "en-GB"
+    }
+  ]
+}
+</script>
+  <link rel="stylesheet" href="../../tailwind-output.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&amp;family=Outfit:wght@400;500;600;700;800&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../style.css">
+  <link rel="stylesheet" href="../../assets/portfolio-v2.css?v=20260831-2">
+  
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,400&amp;family=Geist:wght@400;500;600&amp;display=swap">
+<link rel="stylesheet" href="/assets/editorial-tokens.css?v=20261106-modern">
+<link rel="stylesheet" href="/assets/editorial.css?v=20261106-modern">
+<script src="/assets/editorial-theme.js?v=20261028-1fe0ee8c9d"></script>
+</head>
+<body data-theme="light" class="portfolio-v2 editorial-site">
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  <div class="bg-mesh" aria-hidden="true"></div>
+  <div class="noise-overlay" aria-hidden="true"></div>
+  <div class="grid-lines" aria-hidden="true"></div>
+
+  <header class="main-header" id="header">
+    <nav class="nav-container" aria-label="Main navigation">
+      <a href="/en/index.html" class="brand-logo" aria-label="Home — Franck Raymond">
+        <span class="logo-bracket" aria-hidden="true">&lt;</span>
+        <span class="logo-text">FR</span>
+        <span class="logo-bracket" aria-hidden="true">/&gt;</span>
+      </a>
+      <div class="nav-menu" id="navMenu">
+        <a href="/en/index.html" class="nav-link"><i class="fas fa-home" aria-hidden="true"></i><span class="nav-text">Home</span></a>
+        <a href="/en/projets.html" class="nav-link"><i class="fas fa-diagram-project" aria-hidden="true"></i><span class="nav-text">Projects</span></a>
+        <a href="/en/index.html#skills" class="nav-link"><i class="fas fa-code" aria-hidden="true"></i><span class="nav-text">Skills</span></a>
+        <a href="/en/index.html#experience" class="nav-link"><i class="fas fa-briefcase" aria-hidden="true"></i><span class="nav-text">Experience</span></a>
+        <a href="/en/index.html#contact" class="nav-link"><i class="fas fa-envelope" aria-hidden="true"></i><span class="nav-text">Contact</span></a>
+              <a class="nav-link" href="https://opengym.jsuisfray.blitz.cloud/"><span class="nav-text">FrayFit</span></a>
+      </div>
+      <div class="nav-controls">
+        <div class="language-switcher">
+          <button class="language-toggle" id="languageToggle" type="button" aria-label="Choose language" aria-controls="languageMenu" aria-expanded="false" data-open-label="Choose language" data-close-label="Close language menu">
+            <i class="fas fa-globe" aria-hidden="true"></i><span>EN</span>
+          </button>
+          <div class="language-menu" id="languageMenu" aria-label="Language selection" hidden="">
+            <a href="/pages/projet-homelab.html" lang="fr" hreflang="fr" data-language="fr">FR <span>Français</span></a>
+            <a href="/en/pages/projet-homelab.html" lang="en" hreflang="en" data-language="en" aria-current="page">EN <span>English</span></a>
+          </div>
+        </div>
+        <button class="theme-toggle" id="themeToggle" type="button" aria-label="Switch to light theme" data-light-label="Switch to light theme" data-dark-label="Switch to dark theme">
+          <i class="fas fa-sun" aria-hidden="true"></i>
+        </button>
+        <button class="menu-toggle" id="menuToggle" type="button" aria-label="Open menu" aria-controls="navMenu" aria-expanded="false" data-open-label="Open menu" data-close-label="Close menu">
+          <span aria-hidden="true"></span><span aria-hidden="true"></span><span aria-hidden="true"></span>
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <main id="main-content">
+    
+<article class="case-study">
+  <header class="case-hero">
+    <div class="case-container case-hero-grid">
+      <div>
+        <p class="case-kicker"><i class="fas fa-server" aria-hidden="true"></i>Operations and self-hosting</p>
+        <h1>Personal homelab</h1>
+        <p class="case-lead">A personal infrastructure used as an ongoing learning environment to administer real services, manage updates, monitor resources and resolve incidents outside school projects.</p>
+        <div class="case-tags" aria-label="Tools and technologies used">
+          <span>Debian</span><span>Rocky Linux</span><span>Docker Compose</span><span>Nginx</span><span>DNS</span><span>TLS</span><span>UFW</span><span>Fail2Ban</span>
+        </div>
+      </div>
+      <dl class="case-facts" aria-label="Key information">
+        
+        <div><dt>Context</dt><dd>Ongoing personal project</dd></div>
+        
+        <div><dt>Responsibility</dt><dd>Complete independent administration</dd></div>
+        
+        <div><dt>Services</dt><dd>DNS, reverse proxy, containers and monitoring</dd></div>
+        
+        <div><dt>Security</dt><dd>TLS, firewall, SSH keys and Fail2Ban</dd></div>
+        
+      </dl>
+    </div>
+  </header>
+
+  <nav class="case-nav" aria-label="Project contents">
+    <div class="case-container">
+      <a href="#analyse">Need</a>
+      <a href="#architecture">Solution</a>
+      <a href="#realisation">Work completed</a>
+      <a href="#validation">Checks</a>
+      <a href="#recul">Improvements</a>
+      
+    </div>
+  </nav>
+
+  <section class="case-band" id="analyse">
+    <div class="case-container">
+      <div class="case-section-heading"><span>01</span><div><p>Before starting</p><h2>The need and my role</h2></div></div>
+      <div class="case-two-columns">
+        <div class="case-copy"><h3>The need</h3><p>Build a realistic environment for learning how to operate services over time: deployment, updates, certificates, monitoring, backups and incident resolution.</p></div>
+        <div class="case-copy"><h3>My role</h3><p>I personally administer the infrastructure. I handle the Linux systems, containers, network, security and monitoring.</p></div>
+      </div>
+      <div class="case-list-grid">
+        <div class="case-list-item"><i class="fas fa-diamond" aria-hidden="true"></i><span>Maintain services without a dedicated operations team.</span></div><div class="case-list-item"><i class="fas fa-diamond" aria-hidden="true"></i><span>Isolate containers and preserve persistent data.</span></div><div class="case-list-item"><i class="fas fa-diamond" aria-hidden="true"></i><span>Renew certificates and limit exposed services.</span></div><div class="case-list-item"><i class="fas fa-diamond" aria-hidden="true"></i><span>Detect resource issues and retain usable backups.</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="case-band case-band-alt" id="architecture">
+    <div class="case-container">
+      <div class="case-section-heading"><span>02</span><div><p>Why I chose this approach</p><h2>The chosen solution</h2></div></div>
+      <div class="case-decision">
+        <h3>Containerised services behind a single Nginx entry point</h3>
+        <p>Docker Compose groups services, networks and volumes; Nginx centralises routing by subdomain; Let's Encrypt certificates secure web access. This structure reduces scattered configuration while keeping direct Linux administration.</p>
+      </div>
+      <div class="case-list-grid case-list-grid-wide">
+        <div class="case-list-item"><i class="fas fa-arrow-right" aria-hidden="true"></i><span>Internal and external DNS resolution is provided for hosted services.</span></div><div class="case-list-item"><i class="fas fa-arrow-right" aria-hidden="true"></i><span>Nginx acts as a reverse proxy and routes subdomains.</span></div><div class="case-list-item"><i class="fas fa-arrow-right" aria-hidden="true"></i><span>Docker Compose manages services with isolated networks and persistent volumes.</span></div><div class="case-list-item"><i class="fas fa-arrow-right" aria-hidden="true"></i><span>Let's Encrypt provides certificates with automated renewal.</span></div><div class="case-list-item"><i class="fas fa-arrow-right" aria-hidden="true"></i><span>UFW filters exposed services and SSH access uses keys.</span></div><div class="case-list-item"><i class="fas fa-arrow-right" aria-hidden="true"></i><span>Monitoring covers CPU, memory, disk and network use.</span></div>
+      </div>
+      
+    </div>
+  </section>
+
+  <section class="case-band" id="realisation">
+    <div class="case-container">
+      <div class="case-section-heading"><span>03</span><div><p>From plan to practice</p><h2>What I completed</h2></div></div>
+      <ol class="case-steps">
+        <li><span>01</span><p>Installed and administered Debian and Rocky Linux systems.</p></li><li><span>02</span><p>Organised services with Docker and Docker Compose.</p></li><li><span>03</span><p>Configured DNS and subdomain routing in Nginx.</p></li><li><span>04</span><p>Set up TLS certificates and their renewal.</p></li><li><span>05</span><p>Applied firewall rules and SSH hardening.</p></li><li><span>06</span><p>Added monitoring, alerts and automated backups.</p></li>
+      </ol>
+      <p class="case-technical-link"><a href="../../pages/dossier-technique-projet-homelab.html" hreflang="fr"><i class="fas fa-terminal" aria-hidden="true"></i>Full technical document — French</a></p>
+    </div>
+  </section>
+
+  <section class="case-band case-band-alt" id="validation">
+    <div class="case-container">
+      <div class="case-section-heading"><span>04</span><div><p>Checking that it works</p><h2>How I checked my work</h2></div></div>
+      <div class="case-two-columns">
+        <div><h3>Tests performed</h3><ul class="case-check-list"><li><i class="fas fa-check" aria-hidden="true"></i>Checked DNS resolution and access to each service by subdomain.</li><li><i class="fas fa-check" aria-hidden="true"></i>Checked certificate renewal and firewall rules.</li><li><i class="fas fa-check" aria-hidden="true"></i>Monitored system resources and generated alerts for unusual conditions.</li><li><i class="fas fa-check" aria-hidden="true"></i>A documented backup restoration procedure still needs to be published.</li></ul></div>
+        <div><h3>Observed results</h3><ul class="case-check-list case-results"><li><i class="fas fa-circle-check" aria-hidden="true"></i>A working self-hosted infrastructure is maintained outside school projects.</li><li><i class="fas fa-circle-check" aria-hidden="true"></i>Services use isolated Docker networks and persistent volumes.</li><li><i class="fas fa-circle-check" aria-hidden="true"></i>Operations include secure access, certificates, monitoring and backups.</li></ul></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="case-band" id="recul">
+    <div class="case-container">
+      <div class="case-section-heading"><span>05</span><div><p>Looking back</p><h2>Limits and improvements</h2></div></div>
+      <div class="case-two-columns">
+        <div><h3>Security and operation</h3><ul class="case-check-list"><li><i class="fas fa-shield-halved" aria-hidden="true"></i>Network exposure is limited with UFW.</li><li><i class="fas fa-shield-halved" aria-hidden="true"></i>SSH access uses keys and is supplemented by Fail2Ban.</li><li><i class="fas fa-shield-halved" aria-hidden="true"></i>Web services use TLS encryption.</li><li><i class="fas fa-shield-halved" aria-hidden="true"></i>System logs are centralised and analysed as described in the initial project.</li></ul></div>
+        <div><h3>What I would improve</h3><ul class="case-check-list case-limitations"><li><i class="fas fa-triangle-exclamation" aria-hidden="true"></i>The number of services, availability and operating period have not yet been quantified.</li><li><i class="fas fa-triangle-exclamation" aria-hidden="true"></i>RPO/RTO objectives and restoration results still need to be measured.</li><li><i class="fas fa-triangle-exclamation" aria-hidden="true"></i>Configuration automation is not yet demonstrated through an Ansible repository or equivalent.</li></ul></div>
+      </div>
+    </div>
+  </section>
+
+  
+
+  <section class="case-band case-sources">
+    <div class="case-container case-two-columns">
+      <div><h2>Skills demonstrated</h2><ul class="case-compact-list"><li>Administer Linux systems over time.</li><li>Structure containerised services and their dependencies.</li><li>Secure access and manage TLS certificates.</li><li>Monitor, back up and maintain an independent infrastructure.</li></ul></div>
+      <div><h2>Sources used</h2><ul class="case-compact-list"><li><a href="https://docs.docker.com/compose/" target="_blank" rel="noopener noreferrer">Docker — Compose documentation</a></li><li><a href="https://docs.nginx.com/nginx/admin-guide/web-server/reverse-proxy/" target="_blank" rel="noopener noreferrer">NGINX — Reverse Proxy</a></li><li><a href="https://letsencrypt.org/getting-started/" target="_blank" rel="noopener noreferrer">Let's Encrypt — Getting Started</a></li><li><a href="https://github.com/fail2ban/fail2ban" target="_blank" rel="noopener noreferrer">Fail2Ban — Official project</a></li></ul></div>
+    </div>
+  </section>
+</article>
+
+<dialog class="case-lightbox" id="caseLightbox" aria-label="Enlarged evidence image">
+  <button type="button" data-lightbox-close="" aria-label="Close image"><i class="fas fa-xmark" aria-hidden="true"></i></button>
+  <img src="" alt="">
+</dialog>
+
+  </main>
+
+  <footer class="main-footer">
+    <div class="footer-container">
+      <div class="footer-content">
+        <p class="footer-text">© 2026 <span class="footer-copyright">Franck Raymond</span>. All rights reserved.</p>
+        <div class="footer-socials" aria-label="Professional profiles">
+          <a href="https://github.com/franckraymond" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><i class="fab fa-github" aria-hidden="true"></i></a>
+          <a href="https://www.linkedin.com/in/franck-r-21a8a4184" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fab fa-linkedin" aria-hidden="true"></i></a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../../assets/portfolio-glossary.js?v=20260831-2" defer=""></script>
+  <script src="../../assets/portfolio-v2.js?v=20261028-493b8041ab" defer=""></script>
+  
+
+
+</body></html>

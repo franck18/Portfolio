@@ -1,0 +1,853 @@
+<!DOCTYPE html>
+<html lang="fr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Interconnexion Switchs Extreme Networks | Portfolio</title>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&amp;family=Outfit:wght@300;400;500;600;700;800;900&amp;family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="../style.css" rel="stylesheet"/>
+<style>
+    /* Galerie Extreme Networks */
+    .en-gallery {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+
+    @media (max-width: 900px) {
+      .en-gallery {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .en-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      overflow: hidden;
+      transition: all 0.3s ease;
+    }
+
+    .en-card:hover {
+      border-color: var(--primary);
+      transform: translateY(-5px);
+      box-shadow: 0 20px 40px rgba(99, 102, 241, 0.15);
+    }
+
+    .en-card-media {
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+      aspect-ratio: 16/10;
+      background: var(--bg-darker);
+    }
+
+    .en-card-media img,
+    .en-card-media video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.3s ease;
+    }
+
+    .en-card:hover .en-card-media img,
+    .en-card:hover .en-card-media video {
+      transform: scale(1.05);
+    }
+
+    .en-card-media::after {
+      content: '\f065';
+      font-family: 'Font Awesome 6 Free';
+      font-weight: 900;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 2rem;
+      color: white;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+    }
+
+    .en-card-media.video-media::after {
+      content: '\f04b';
+    }
+
+    .en-card:hover .en-card-media::after {
+      opacity: 0.8;
+    }
+
+    .en-card-content {
+      padding: 1.5rem;
+    }
+
+    .en-card-content h3 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 0.75rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .en-card-content h3 i {
+      color: var(--primary);
+    }
+
+    .en-card-content p {
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+
+    /* Matériel cards */
+    .materiel-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem;
+      margin-top: 1.5rem;
+    }
+
+    @media (max-width: 768px) {
+      .materiel-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .materiel-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.5rem;
+      transition: all 0.3s;
+    }
+
+    .materiel-card:hover {
+      border-color: var(--primary);
+    }
+
+    .materiel-card h4 {
+      color: var(--primary);
+      font-size: 0.9rem;
+      margin-bottom: 0.5rem;
+      font-family: var(--font-code);
+    }
+
+    .materiel-card p {
+      color: var(--text-primary);
+      font-weight: 600;
+    }
+
+    .materiel-card span {
+      color: var(--text-muted);
+      font-size: 0.85rem;
+    }
+
+    /* Lightbox */
+    #lightbox {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.95);
+      z-index: 2000;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      padding: 2rem;
+    }
+
+    #lightbox.active {
+      display: flex;
+    }
+
+    #lightbox-img,
+    #lightbox-video {
+      max-width: 95%;
+      max-height: 90vh;
+      border-radius: 8px;
+      box-shadow: 0 25px 50px rgba(0,0,0,0.5);
+    }
+
+    #lightbox-video {
+      display: none;
+    }
+
+    .lightbox-close {
+      position: absolute;
+      top: 1.5rem;
+      right: 2rem;
+      font-size: 2.5rem;
+      color: white;
+      cursor: pointer;
+      transition: color 0.2s;
+    }
+
+    .lightbox-close:hover {
+      color: var(--primary);
+    }
+  
+        /* Tooltips termes techniques */
+        .term {
+            border-bottom: 1px dashed var(--primary);
+            cursor: help;
+            position: relative;
+            display: inline;
+        }
+        .term::after {
+            content: attr(data-def);
+            position: absolute;
+            bottom: calc(100% + 8px);
+            left: 50%;
+            transform: translateX(-50%);
+            background: #1e293b;
+            color: #f8fafc;
+            font-size: 0.78rem;
+            line-height: 1.5;
+            padding: 0.6rem 0.9rem;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            white-space: normal;
+            width: 220px;
+            text-align: left;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.2s;
+            z-index: 100;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+        }
+        .term:hover::after { opacity: 1; }
+</style>
+<meta content="#111214" name="theme-color"/><link href="/assets/legacy-unified.css?v=20260831-2" rel="stylesheet"/><meta content="Portfolio de Franck Raymond : projets en administration systèmes, réseaux, supervision et cybersécurité." name="description"/><meta content="Franck Raymond" name="author"/><meta content="index,follow,max-image-preview:large" name="robots"/><meta content="website" property="og:type"/><meta content="Portfolio de Franck Raymond" property="og:site_name"/><meta content="Interconnexion Switchs Extreme Networks | Portfolio" property="og:title"/><meta content="Portfolio de Franck Raymond : projets en administration systèmes, réseaux, supervision et cybersécurité." property="og:description"/><meta content="https://franckraymond.tech/pages/extreme-networks.html" property="og:url"/><meta content="https://franckraymond.tech/franck.webp" property="og:image"/><meta content="Portrait professionnel de Franck Raymond" property="og:image:alt"/><meta content="fr_FR" property="og:locale"/><meta content="summary_large_image" name="twitter:card"/><meta content="Interconnexion Switchs Extreme Networks | Portfolio" name="twitter:title"/><meta content="Portfolio de Franck Raymond : projets en administration systèmes, réseaux, supervision et cybersécurité." name="twitter:description"/><meta content="https://franckraymond.tech/franck.webp" name="twitter:image"/><link href="https://franckraymond.tech/pages/extreme-networks.html" rel="canonical"/><link href="/favicon-32x32.png" rel="icon" sizes="32x32" type="image/png"/><link href="/apple-touch-icon.png" rel="apple-touch-icon" sizes="180x180"/><link href="/site.webmanifest" rel="manifest"/><script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"Interconnexion Switchs Extreme Networks | Portfolio","url":"https://franckraymond.tech/pages/extreme-networks.html","description":"Portfolio de Franck Raymond : projets en administration systèmes, réseaux, supervision et cybersécurité.","isPartOf":{"@type":"WebSite","name":"Portfolio de Franck Raymond","url":"https://franckraymond.tech/"},"about":{"@type":"Person","name":"Franck Raymond","url":"https://franckraymond.tech/"}}</script><link href="/assets/portfolio-refresh.css?v=20260906-2" rel="stylesheet"/>
+<link href="/assets/portfolio-library.css?v=20260906-1" rel="stylesheet"/>
+<link href="/assets/interactive-labs.css?v=20260908-1" rel="stylesheet"/>
+<link href="/assets/plain-language.css?v=20260917-1" rel="stylesheet"/>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,400&amp;family=Geist:wght@400;500;600&amp;display=swap">
+<link rel="stylesheet" href="/assets/editorial-tokens.css?v=20261106-modern">
+<link rel="stylesheet" href="/assets/editorial.css?v=20261106-modern">
+<script src="/assets/editorial-theme.js?v=20261028-1fe0ee8c9d"></script>
+</head>
+<body class="portfolio-legacy plain-migration editorial-site" data-theme="light">
+<div class="bg-mesh"></div>
+<div class="noise-overlay"></div>
+<div class="grid-lines"></div>
+<header class="main-header" id="header">
+<nav aria-label="Navigation principale" class="nav-container">
+<div class="nav-brand">
+<a class="brand-logo" href="../index.html">
+<span class="logo-bracket">&lt;</span>
+<span class="logo-text">FR</span>
+<span class="logo-bracket">/&gt;</span>
+</a>
+</div>
+<div class="nav-menu" id="navMenu"><a class="nav-link" href="/index.html"><span class="nav-text">Accueil</span></a>
+<a class="nav-link" href="/projets.html"><span class="nav-text">Projets</span></a>
+<a class="nav-link" href="/profil.html"><span class="nav-text">Profil</span></a>
+<a class="nav-link" href="/index.html#skills"><span class="nav-text">Compétences</span></a>
+<a class="nav-link" href="/experience.html"><span class="nav-text">Expériences</span></a>
+<a class="nav-link" href="/index.html#contact"><span class="nav-text">Contact</span></a>
+<a class="nav-link" href="https://opengym.jsuisfray.blitz.cloud/"><span class="nav-text">FrayFit</span></a></div>
+<div class="nav-controls">
+<button aria-label="Basculer entre mode sombre et clair" class="theme-toggle" id="themeToggle" title="Changer le thème">
+<i class="fas fa-moon"></i>
+</button>
+<button aria-expanded="false" aria-label="Ouvrir le menu mobile" class="menu-toggle" id="menuToggle">
+<span></span><span></span><span></span>
+</button>
+</div>
+</nav>
+</header>
+<main>
+<section class="hero-section page-hero">
+<div class="hero-glow"></div>
+<div class="hero-glow-2"></div>
+<div class="hero-container">
+<div class="hero-content">
+<div class="hero-greeting page-badge">Systèmes &amp; Réseaux</div>
+<h1 class="hero-name"><span class="name-gradient">Switchs Extreme Networks</span></h1>
+<p class="hero-description">
+            Interconnexion et configuration de switchs hétérogènes pour assurer la continuité de service en environnement de production.
+          </p>
+<div class="hero-buttons">
+<a class="btn btn-primary" href="#actions"><i class="fas fa-list"></i> Réalisations</a>
+<a class="btn btn-secondary" href="#migration-voip"><i class="fas fa-phone-alt"></i> Migration VoIP</a>
+<a class="btn btn-secondary" href="#preuves"><i class="fas fa-image"></i> Preuves</a>
+</div>
+</div>
+<div class="hero-image-wrapper">
+<div class="hero-image-container">
+<div class="profile-image-frame">
+<i class="fas fa-ethernet page-icon"></i>
+</div>
+</div>
+</div>
+</div>
+</section><aside class="plain-guide"><p class="plain-kicker">En clair</p><h2>Changer le réseau en vérifiant la téléphonie</h2><p>Le remplacement des équipements Avaya par Extreme Networks demandait de vérifier que les téléphones recevaient les bons réglages.</p><p><strong>Mon rôle et le résultat :</strong> J’ai participé à la préparation, aux tests et au diagnostic de la téléphonie sur le réseau informatique.</p><details><summary>Les mots utiles pour lire ce projet</summary><p>Un switch relie les équipements. Un VLAN sépare certains échanges, par exemple ceux des téléphones. LLDP-MED aide les téléphones à recevoir les paramètres attendus.</p></details></aside><section class="interactive-lab" data-interactive-lab="migration" id="explorer-migration"><noscript><div class="lab-wrap lab-noscript"><h2>Explorer la migration réseau</h2><p>Activez JavaScript pour comparer les vues avant et après. Le projet détaillé reste disponible ci-dessous.</p></div></noscript></section><section aria-labelledby="visual-title" class="refresh-case home-band" id="lecture-visuelle"><div class="home-container"><h2 id="visual-title">Comprendre l’intervention</h2><p class="refresh-case-lead">Une lecture visuelle des étapes, complétée par les preuves du projet.</p><div class="case-flow" data-case-flow=""><div class="case-flow-main"><div class="flow-diagram"><button aria-pressed="true" class="flow-node selected" data-flow-node="0" type="button"><span class="flow-symbol"><svg aria-hidden="true" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewbox="0 0 24 24"><rect height="12" rx="2" width="20" x="2" y="6"></rect><path d="M5 10h3v3H5zM10 10h3v3h-3zM15 10h3v3h-3zM5 16h14"></path></svg></span><span>Commutateur</span></button><svg aria-hidden="true" class="flow-arrow" viewbox="0 0 60 24"><path d="M2 12h53m-8-7 8 7-8 7" fill="none" stroke="currentColor" stroke-width="1.5"></path></svg><button aria-pressed="false" class="flow-node" data-flow-node="1" type="button"><span class="flow-symbol"><svg aria-hidden="true" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewbox="0 0 24 24"><path d="M4 4h16v16H4zM8 8h8v8H8z" stroke-dasharray="3 2"></path></svg></span><span>VLAN voix</span></button><svg aria-hidden="true" class="flow-arrow" viewbox="0 0 60 24"><path d="M2 12h53m-8-7 8 7-8 7" fill="none" stroke="currentColor" stroke-width="1.5"></path></svg><button aria-pressed="false" class="flow-node" data-flow-node="2" type="button"><span class="flow-symbol"><svg aria-hidden="true" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewbox="0 0 24 24"><rect height="20" rx="2" width="11" x="7" y="2"></rect><path d="M10 6h5v5h-5zM10 15h1M14 15h1M10 18h1M14 18h1M4 5v14"></path></svg></span><span>Téléphone IP</span></button></div><div class="case-flow-controls"><button aria-pressed="true" data-flow-step="0" type="button">1. Préparation</button><button aria-pressed="false" data-flow-step="1" type="button">2. Diagnostic</button><button aria-pressed="false" data-flow-step="2" type="button">3. Recul</button></div></div><div aria-live="polite" class="case-flow-inspector"><h3 data-flow-title="">Préparation</h3><p data-flow-description="">Participation à la préparation des commutateurs et des liaisons, puis aux essais de migration avec l’équipe.</p></div><script class="case-flow-data" type="application/json">[["Préparation", "Participation à la préparation des commutateurs et des liaisons, puis aux essais de migration avec l’équipe."], ["Diagnostic", "Les téléphones ne récupèrent pas leur configuration attendue. Le diagnostic porte sur DHCP, le VLAN voix et les annonces LLDP-MED."], ["Recul", "Le retour d’expérience décrit les tests et le retour temporaire aux anciens commutateurs. Une interconnexion fonctionnelle ne suffit pas à valider toute la téléphonie."]]</script></div><p class="diagram-caption">Représentation pédagogique</p><div class="refresh-case-footer"><div><h3>Mon rôle</h3><p>Préparation, essais et diagnostic au sein de l’équipe informatique.</p></div><div><h3>Preuves &amp; limites</h3><p><a href="#preuves">Consulter les preuves</a> · <a href="#migration-voip">Lire les vérifications et le contexte</a></p></div></div></div></section>
+<section class="section" id="contexte">
+<div class="section-container">
+<div class="section-header">
+<span class="section-number">01</span>
+<h2 class="section-title">Contexte <span class="title-gradient">&amp; objectifs</span></h2>
+<div class="section-line"></div>
+</div>
+<div class="about-content">
+<div>
+<p class="about-text">
+              Mise en place d'une architecture réseau commutée (L2) reliant des équipements de générations différentes pour assurer la <strong>continuité de service</strong> et la <strong>flexibilité du brassage</strong> en environnement de test/production.
+            </p>
+<p class="about-text" style="margin-top: 1rem;">
+<strong>Problématique :</strong> Comment interconnecter des équipements réseau de générations et systèmes d'exploitation différents tout en garantissant une segmentation <span aria-label="VLAN. Réseau virtuel qui isole des groupes de machines entre elles, même si elles partagent les mêmes câbles." class="term" data-def="Réseau virtuel qui isole des groupes de machines entre elles, même si elles partagent les mêmes câbles." tabindex="0">VLAN</span> efficace et des performances optimales ?
+            </p>
+<div class="materiel-grid">
+<div class="materiel-card">
+<h4><i class="fas fa-microchip"></i> Switch 1 (Récent)</h4>
+<p>Extreme Networks 5320-24P-8XE</p>
+<span>OS : SwitchEngine / EXOS</span>
+</div>
+<div class="materiel-card">
+<h4><i class="fas fa-server"></i> Switch 2 (Ancien)</h4>
+<p>Extreme Networks ERS 3626GTS-PWR+</p>
+<span>OS : BOSS / ERS</span>
+</div>
+<div class="materiel-card">
+<h4><i class="fas fa-link"></i> Liaison Uplink</h4>
+<p>10 Gbps Full Duplex</p>
+<span>Câbles SFP+ DAC passifs 1m</span>
+</div>
+<div class="materiel-card">
+<h4><i class="fas fa-project-diagram"></i> VLANs configurés</h4>
+<p>Data (1), Voix (2), WiFi Guest (100)</p>
+<span>Segmentation 802.1Q</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="section" id="actions" style="background: var(--bg-card-solid);">
+<div class="section-container">
+<div class="section-header">
+<span class="section-number">02</span>
+<h2 class="section-title">Actions <span class="title-gradient">&amp; réalisations</span></h2>
+<div class="section-line"></div>
+</div>
+<div class="about-content">
+<div>
+<p class="about-text">Configuration complète d'une infrastructure réseau multi-<span aria-label="VLAN. Réseau virtuel qui isole des groupes de machines entre elles, même si elles partagent les mêmes câbles." class="term" data-def="Réseau virtuel qui isole des groupes de machines entre elles, même si elles partagent les mêmes câbles." tabindex="0">VLAN</span> avec interconnexion haut débit entre équipements hétérogènes.</p>
+<h3 class="about-subtitle" style="margin-top: 2rem; color: var(--primary);"><i class="fas fa-terminal"></i> Gestion des OS Hétérogènes</h3>
+<div class="timeline-achievements">
+<div class="achievement-item"><i class="fas fa-check-circle"></i><span>Adaptation des commandes CLI entre syntaxe EXOS (<code>configure vlan...</code>) et ERS/BOSS (<code>vlan members add...</code>)</span></div>
+<div class="achievement-item"><i class="fas fa-check-circle"></i><span>Résolution des incompatibilités de syntaxe lors de la création des VLANs</span></div>
+</div>
+<h3 class="about-subtitle" style="margin-top: 2rem; color: var(--primary);"><i class="fas fa-sitemap"></i> Configuration <span aria-label="VLAN. Réseau virtuel qui isole des groupes de machines entre elles, même si elles partagent les mêmes câbles." class="term" data-def="Réseau virtuel qui isole des groupes de machines entre elles, même si elles partagent les mêmes câbles." tabindex="0">VLAN</span> (802.1Q)</h3>
+<div class="timeline-achievements">
+<div class="achievement-item"><i class="fas fa-check-circle"></i><span>Création et nommage des VLANs : Data (VID 1), Voix (VID 2), WiFi_Guest (VID 100)</span></div>
+<div class="achievement-item"><i class="fas fa-check-circle"></i><span><span aria-label="VLAN. Réseau virtuel qui isole des groupes de machines entre elles, même si elles partagent les mêmes câbles." class="term" data-def="Réseau virtuel qui isole des groupes de machines entre elles, même si elles partagent les mêmes câbles." tabindex="0">VLAN</span> 1 (Data) en Untagged/PVID (Natif) pour l'accès direct des PC</span></div>
+<div class="achievement-item"><i class="fas fa-check-circle"></i><span>VLAN 2 &amp; 100 en Tagged pour téléphones IP et bornes Wi-Fi</span></div>
+<div class="achievement-item"><i class="fas fa-check-circle"></i><span>Ports "universels" (Tagged sur tous les ports) pour flexibilité totale</span></div>
+</div>
+<h3 class="about-subtitle" style="margin-top: 2rem; color: var(--primary);"><i class="fas fa-bolt"></i> Uplink &amp; Performance</h3>
+<div class="timeline-achievements">
+<div class="achievement-item"><i class="fas fa-check-circle"></i><span>Configuration des ports SFP+ (Ports 27/28) pour l'interconnexion</span></div>
+<div class="achievement-item"><i class="fas fa-check-circle"></i><span>Validation de l'auto-négociation et stabilité du lien à 10 Gbps Full Duplex</span></div>
+</div>
+</div>
+<div>
+<div class="skill-category">
+<h3 class="category-title"><i class="fas fa-layer-group"></i> Technologies utilisées</h3>
+<div class="timeline-tags">
+<span class="tag">Extreme EXOS</span>
+<span class="tag">Extreme BOSS/ERS</span>
+<span class="tag">802.1Q</span>
+<span class="tag">SFP+ 10G</span>
+<span class="tag">VLAN Tagging</span>
+<span class="tag">Trunking</span>
+</div>
+</div>
+<div class="skill-category" style="margin-top: 1.5rem;">
+<h3 class="category-title"><i class="fas fa-graduation-cap"></i> Compétences validées</h3>
+<div class="timeline-tags">
+<span class="tag">Administration CLI</span>
+<span class="tag">Protocole 802.1Q</span>
+<span class="tag">Troubleshooting SFP+</span>
+<span class="tag">Interopérabilité Legacy/Moderne</span>
+</div>
+</div>
+<div class="skill-category" style="margin-top: 1.5rem;">
+<h3 class="category-title"><i class="fas fa-book"></i> Compétences BTS SIO</h3>
+<div class="timeline-tags">
+<span class="tag">Configurer les équipements réseau</span>
+<span class="tag">Administrer un réseau local</span>
+<span class="tag">Assurer la continuité de service</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="section" id="difficultes">
+<div class="section-container">
+<div class="section-header">
+<span class="section-number">03</span>
+<h2 class="section-title">Difficultés <span class="title-gradient">&amp; solutions</span></h2>
+<div class="section-line"></div>
+</div>
+<div class="about-content">
+<div>
+<div class="timeline-achievements">
+<div class="achievement-item"><i class="fas fa-exclamation-triangle" style="color: var(--orange);"></i><span><strong>Problème :</strong> Syntaxes CLI incompatibles entre EXOS et BOSS</span></div>
+<div class="achievement-item"><i class="fas fa-lightbulb" style="color: var(--green);"></i><span><strong>Solution :</strong> Documentation des équivalences de commandes et adaptation pour chaque OS</span></div>
+</div>
+<div class="timeline-achievements" style="margin-top: 1rem;">
+<div class="achievement-item"><i class="fas fa-exclamation-triangle" style="color: var(--orange);"></i><span><strong>Problème :</strong> Compatibilité des modules SFP+ entre générations d'équipements</span></div>
+<div class="achievement-item"><i class="fas fa-lightbulb" style="color: var(--green);"></i><span><strong>Solution :</strong> Utilisation de câbles DAC passifs Extreme Networks certifiés pour garantir la compatibilité</span></div>
+</div>
+<div class="timeline-achievements" style="margin-top: 1rem;">
+<div class="achievement-item"><i class="fas fa-exclamation-triangle" style="color: var(--orange);"></i><span><strong>Problème :</strong> Gestion du VLAN natif différente entre les deux OS</span></div>
+<div class="achievement-item"><i class="fas fa-lightbulb" style="color: var(--green);"></i><span><strong>Solution :</strong> Configuration explicite du PVID sur les deux équipements pour assurer la cohérence</span></div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="section" id="migration-voip" style="background: var(--bg-card-solid);">
+<div class="section-container">
+<div class="section-header">
+<span class="section-number">04</span>
+<h2 class="section-title">Migration <span class="title-gradient">VoIP Avaya</span></h2>
+<div class="section-line"></div>
+</div>
+<div class="about-content">
+<div>
+<p class="about-text">
+              Dans le cadre du renouvellement de l'infrastructure réseau de la <strong>Mairie de La Madeleine</strong>, les commutateurs historiques Avaya sont remplacés par des équipements Extreme Networks (Série 5320/5420). Lors de la bascule initiale, les téléphones IP Avaya n'ont pas réussi à récupérer leur configuration réseau via <span aria-label="DHCP. Service qui attribue automatiquement une adresse réseau à chaque appareil qui se connecte." class="term" data-def="Service qui attribue automatiquement une adresse réseau à chaque appareil qui se connecte." tabindex="0">DHCP</span>, entraînant une interruption de service.
+            </p>
+<h3 class="about-subtitle" style="margin-top: 2rem; color: var(--primary);"><i class="fas fa-exchange-alt"></i> Différences Avaya vs Extreme Networks</h3>
+<div class="comparison-table" style="margin-top: 1.5rem; overflow-x: auto;">
+<div aria-label="Comparaison des équipements réseau, tableau défilant" role="region" style="max-width:100%;overflow-x:auto;" tabindex="0"><table style="width: 100%; border-collapse: collapse; font-size: 0.9rem;">
+<thead>
+<tr style="background: var(--primary); color: white;">
+<th style="padding: 1rem; text-align: left; border-radius: 8px 0 0 0;">Caractéristique</th>
+<th style="padding: 1rem; text-align: left;">Switch Avaya (Legacy)</th>
+<th style="padding: 1rem; text-align: left; border-radius: 0 8px 0 0;">Switch Extreme (EXOS)</th>
+</tr>
+</thead>
+<tbody>
+<tr style="background: var(--bg-card);">
+<td style="padding: 1rem; border-bottom: 1px solid var(--border);"><strong>Découverte VoIP</strong></td>
+<td style="padding: 1rem; border-bottom: 1px solid var(--border);">Automatique (ADAC) - Mécanismes propriétaires</td>
+<td style="padding: 1rem; border-bottom: 1px solid var(--border);">Manuelle (LLDP-MED) - Configuration explicite requise</td>
+</tr>
+<tr>
+<td style="padding: 1rem; border-bottom: 1px solid var(--border);"><strong>Gestion <span aria-label="VLAN. Réseau virtuel qui isole des groupes de machines entre elles, même si elles partagent les mêmes câbles." class="term" data-def="Réseau virtuel qui isole des groupes de machines entre elles, même si elles partagent les mêmes câbles." tabindex="0">VLAN</span> Port</strong></td>
+<td style="padding: 1rem; border-bottom: 1px solid var(--border);">Port-based flexible, <span aria-label="VLAN. Réseau virtuel qui isole des groupes de machines entre elles, même si elles partagent les mêmes câbles." class="term" data-def="Réseau virtuel qui isole des groupes de machines entre elles, même si elles partagent les mêmes câbles." tabindex="0">VLAN</span> voix taggué auto</td>
+<td style="padding: 1rem; border-bottom: 1px solid var(--border);">Stricte Tagged/Untagged - Data Untagged, Voix Tagged</td>
+</tr>
+<tr style="background: var(--bg-card);">
+<td style="padding: 1rem; border-bottom: 1px solid var(--border);"><strong>Protocole Découverte</strong></td>
+<td style="padding: 1rem; border-bottom: 1px solid var(--border);">ADAC ou TLVs propriétaires Avaya</td>
+<td style="padding: 1rem; border-bottom: 1px solid var(--border);">Standard LLDP-MED (Media Endpoint Discovery)</td>
+</tr>
+<tr>
+<td style="padding: 1rem;"><strong>Syntaxe CLI</strong></td>
+<td style="padding: 1rem;">Nortel legacy (<code>config vlan &lt;id&gt; ports add...</code>)</td>
+<td style="padding: 1rem;">EXOS modulaire (<code>configure vlan &lt;nom&gt; add ports...</code>)</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="alert-box" style="margin-top: 1.5rem; padding: 1rem 1.5rem; background: rgba(99, 102, 241, 0.1); border-left: 4px solid var(--primary); border-radius: 0 8px 8px 0;">
+<p style="margin: 0; color: var(--text-primary);"><i class="fas fa-info-circle" style="color: var(--primary); margin-right: 0.5rem;"></i><strong>Conclusion :</strong> Les switchs Avaya simplifiaient la connexion des téléphones grâce à des automatismes propriétaires. Avec Extreme, il faut configurer le standard <strong>LLDP-MED</strong> pour obtenir le même résultat.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="section" id="config-lldp">
+<div class="section-container">
+<div class="section-header">
+<span class="section-number">05</span>
+<h2 class="section-title">Configuration <span class="title-gradient">LLDP-MED</span></h2>
+<div class="section-line"></div>
+</div>
+<div class="about-content">
+<div>
+<p class="about-text">Configuration validée sur switch Extreme 5320 en version EXOS permettant aux téléphones Avaya de découvrir automatiquement leur <span aria-label="VLAN. Réseau virtuel qui isole des groupes de machines entre elles, même si elles partagent les mêmes câbles." class="term" data-def="Réseau virtuel qui isole des groupes de machines entre elles, même si elles partagent les mêmes câbles." tabindex="0">VLAN</span>.</p>
+<h3 class="about-subtitle" style="margin-top: 2rem; color: var(--primary);"><i class="fas fa-layer-group"></i> A. Configuration des VLANs</h3>
+<pre class="code-block" style="background: var(--bg-darker); padding: 1.5rem; border-radius: 8px; overflow-x: auto; font-family: var(--font-code); font-size: 0.85rem; margin-top: 1rem; border: 1px solid var(--border);"><span style="color: #6b7280;"># 1. Création des VLANs</span>
+<span style="color: var(--primary);">create vlan</span> "Data" <span style="color: var(--green);">tag 1</span>     <span style="color: #6b7280;"># VLAN par défaut pour les PC</span>
+<span style="color: var(--primary);">create vlan</span> "Voix" <span style="color: var(--green);">tag 2</span>     <span style="color: #6b7280;"># VLAN dédié à la téléphonie</span>
+
+<span style="color: #6b7280;"># 2. Configuration du port utilisateur (Téléphone + PC)</span>
+<span style="color: var(--primary);">configure vlan</span> Data <span style="color: var(--orange);">add ports 2 untagged</span>  <span style="color: #6b7280;"># PC en VLAN 1</span>
+<span style="color: var(--primary);">configure vlan</span> Voix <span style="color: var(--orange);">add ports 2 tagged</span>    <span style="color: #6b7280;"># Téléphone en VLAN 2</span></pre>
+<h3 class="about-subtitle" style="margin-top: 2rem; color: var(--primary);"><i class="fas fa-broadcast-tower"></i> B. Configuration LLDP-MED (Coeur de la solution)</h3>
+<pre class="code-block" style="background: var(--bg-darker); padding: 1.5rem; border-radius: 8px; overflow-x: auto; font-family: var(--font-code); font-size: 0.85rem; margin-top: 1rem; border: 1px solid var(--border);"><span style="color: #6b7280;"># 1. Activer LLDP sur les ports</span>
+<span style="color: var(--primary);">enable lldp</span> ports 2
+
+<span style="color: #6b7280;"># 2. Annoncer les capacités MED</span>
+<span style="color: var(--primary);">configure lldp</span> port 2 <span style="color: var(--orange);">advertise vendor-specific med capabilities</span>
+
+<span style="color: #6b7280;"># 3. Indiquer le VLAN Voix au téléphone</span>
+<span style="color: var(--primary);">configure lldp</span> port 2 <span style="color: var(--orange);">advertise vendor-specific dot1 vlan-name vlan Voix</span>
+
+<span style="color: #6b7280;"># 4. Appliquer la politique QoS (DSCP 46 = Prioritaire)</span>
+<span style="color: var(--primary);">configure lldp</span> port 2 <span style="color: var(--orange);">advertise vendor-specific med policy application voice vlan Voix dscp 46</span>
+
+<span style="color: #6b7280;"># 5. Gestion alimentation PoE via LLDP</span>
+<span style="color: var(--primary);">configure lldp</span> port 2 <span style="color: var(--orange);">advertise vendor-specific med power-via-mdi</span></pre>
+<h3 class="about-subtitle" style="margin-top: 2rem; color: var(--primary);"><i class="fas fa-plug"></i> C. Configuration PoE et Physique</h3>
+<pre class="code-block" style="background: var(--bg-darker); padding: 1.5rem; border-radius: 8px; overflow-x: auto; font-family: var(--font-code); font-size: 0.85rem; margin-top: 1rem; border: 1px solid var(--border);"><span style="color: #6b7280;"># Activer le PoE</span>
+<span style="color: var(--primary);">enable inline-power</span> ports 2
+
+<span style="color: #6b7280;"># Forcer 100Mbps Full-Duplex (stabilité anciens postes Avaya)</span>
+<span style="color: var(--primary);">configure ports 2</span> auto off <span style="color: var(--green);">speed 100 duplex full</span></pre>
+<h3 class="about-subtitle" style="margin-top: 2rem; color: var(--primary);"><i class="fas fa-network-wired"></i> D. Configuration Uplink</h3>
+<pre class="code-block" style="background: var(--bg-darker); padding: 1.5rem; border-radius: 8px; overflow-x: auto; font-family: var(--font-code); font-size: 0.85rem; margin-top: 1rem; border: 1px solid var(--border);"><span style="color: #6b7280;"># Port reliant le switch au coeur de réseau (port 13)</span>
+<span style="color: var(--primary);">configure vlan</span> Data <span style="color: var(--orange);">add ports 13 untagged</span>  <span style="color: #6b7280;"># Natif/Management</span>
+<span style="color: var(--primary);">configure vlan</span> Voix <span style="color: var(--orange);">add ports 13 tagged</span>    <span style="color: #6b7280;"># Voix taggué</span></pre>
+</div>
+<div>
+<div class="skill-category">
+<h3 class="category-title"><i class="fas fa-clipboard-check"></i> Bilan des Tests en Lab</h3>
+<div class="timeline-achievements" style="margin-top: 1rem;">
+<div class="achievement-item"><i class="fas fa-check-circle" style="color: var(--green);"></i><span><strong>Alimentation :</strong> Téléphone alimenté via PoE (~1.6W)</span></div>
+<div class="achievement-item"><i class="fas fa-check-circle" style="color: var(--green);"></i><span><strong>Découverte VLAN :</strong> LLDP-MED bascule auto sur VLAN 2</span></div>
+<div class="achievement-item"><i class="fas fa-check-circle" style="color: var(--green);"></i><span><strong>Connectivité PC :</strong> PC branché derrière téléphone OK (VLAN 1)</span></div>
+<div class="achievement-item"><i class="fas fa-check-circle" style="color: var(--green);"></i><span><strong>Mise à jour :</strong> Téléphone télécharge firmware et redémarre</span></div>
+<div class="achievement-item"><i class="fas fa-clock" style="color: var(--orange);"></i><span><strong><span aria-label="DHCP. Service qui attribue automatiquement une adresse réseau à chaque appareil qui se connecte." class="term" data-def="Service qui attribue automatiquement une adresse réseau à chaque appareil qui se connecte." tabindex="0">DHCP</span> Voix :</strong> En attente config relais DHCP production</span></div>
+</div>
+</div>
+<div class="skill-category" style="margin-top: 1.5rem;">
+<h3 class="category-title"><i class="fas fa-tasks"></i> Prérequis Production</h3>
+<div class="timeline-achievements" style="margin-top: 1rem;">
+<div class="achievement-item"><i class="fas fa-arrow-right" style="color: var(--primary);"></i><span>Configurer IP Helper (Relais DHCP) sur VLAN Voix</span></div>
+<div class="achievement-item"><i class="fas fa-arrow-right" style="color: var(--primary);"></i><span>Vérifier Option DHCP 242 (MCIPADD) pour serveur Avaya</span></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="section" id="preuves" style="background: var(--bg-card-solid);">
+<div class="section-container">
+<div class="section-header">
+<span class="section-number">06</span>
+<h2 class="section-title">Preuves <span class="title-gradient">&amp; captures</span></h2>
+<div class="section-line"></div>
+</div>
+<p class="about-text">Documentation visuelle de l'intervention technique sur l'infrastructure réseau, de la préparation du matériel à la mise en production.</p>
+<h3 class="about-subtitle" style="margin-top: 2rem; margin-bottom: 1rem; color: var(--primary);"><i class="fas fa-network-wired"></i> Interconnexion Switchs</h3>
+<div class="en-gallery">
+<!-- 1. Préparation et planification -->
+<div class="en-card">
+<div class="en-card-media" onclick="openLightbox(this)">
+<img alt="Préparation du matériel : câbles DAC SFP+ Extreme Networks et notes de planification VLAN" loading="lazy" src="interconnexion-switchs-extreme/IMG_3268-optimized.webp" data-full-src="interconnexion-switchs-extreme/IMG_3268.jpg" width="1920" height="2560" decoding="async"/>
+</div>
+<div class="en-card-content">
+<h3><i class="fas fa-clipboard-list"></i> Préparation et planification</h3>
+<p>Matériel prêt à être installé : deux câbles DAC SFP+ Extreme Networks (1m, 10 Gbps) avec le plan de configuration <span aria-label="VLAN. Réseau virtuel qui isole des groupes de machines entre elles, même si elles partagent les mêmes câbles." class="term" data-def="Réseau virtuel qui isole des groupes de machines entre elles, même si elles partagent les mêmes câbles." tabindex="0">VLAN</span> détaillé sur le bloc-notes (Data, Voix, WiFi Guest).</p>
+</div>
+</div>
+<!-- 2. Gros plan connecteur SFP+ -->
+<div class="en-card">
+<div class="en-card-media" onclick="openLightbox(this)">
+<img alt="Gros plan sur le connecteur SFP+ DAC Extreme Networks avec tirette de déverrouillage" loading="lazy" src="interconnexion-switchs-extreme/IMG_3269-optimized.webp" data-full-src="interconnexion-switchs-extreme/IMG_3269.jpg" width="1920" height="2560" decoding="async"/>
+</div>
+<div class="en-card-content">
+<h3><i class="fas fa-search-plus"></i> Détail connecteur SFP+</h3>
+<p>Zoom sur le connecteur SFP+ DAC (réf. 4050-00044-02). Visible : la tirette noire de déverrouillage et les broches de connexion dorées garantissant une liaison 10 Gbps fiable.</p>
+</div>
+</div>
+<!-- 3. Vue d'ensemble baie -->
+<div class="en-card">
+<div class="en-card-media" onclick="openLightbox(this)">
+<img alt="Vue d'ensemble de la baie de brassage avec câblage réseau et équipements" loading="lazy" src="interconnexion-switchs-extreme/IMG_3266-optimized.webp" data-full-src="interconnexion-switchs-extreme/IMG_3266.jpg" width="1920" height="2560" decoding="async"/>
+</div>
+<div class="en-card-content">
+<h3><i class="fas fa-server"></i> Vue d'ensemble de la baie</h3>
+<p>Local technique avec la baie de brassage en production. Câblage dense (bleu/noir), stockage de câbles de rechange classés par longueur, et moniteur de maintenance sur site.</p>
+</div>
+</div>
+<!-- 4. Vidéo switches en fonctionnement -->
+<div class="en-card">
+<div class="en-card-media video-media" onclick="openLightboxVideo(this)">
+<video loop="" muted="">
+<source src="interconnexion-switchs-extreme/IMG_3277.mov" type="video/mp4"/>
+</video>
+</div>
+<div class="en-card-content">
+<h3><i class="fas fa-play-circle"></i> Switches en fonctionnement</h3>
+<p>Vidéo des équipements actifs dans la baie : switches Extreme Networks (violet) et Avaya/Extreme 3626GTS-PWR+. LEDs vertes clignotantes indiquant l'activité réseau et les liaisons opérationnelles.</p>
+</div>
+</div>
+</div>
+<h3 class="about-subtitle" style="margin-top: 3rem; margin-bottom: 1rem; color: var(--primary);"><i class="fas fa-phone-alt"></i> Migration VoIP Avaya</h3>
+<div class="en-gallery">
+<!-- Schéma réseau -->
+<div class="en-card">
+<div class="en-card-media" onclick="openLightbox(this)">
+<img alt="Schéma de l'architecture réseau avec serveurs, téléphones et switchs" loading="lazy" src="migration-voip-avaya/schema-optimized.webp" data-full-src="migration-voip-avaya/schema.jpg" width="1920" height="2560" decoding="async"/>
+</div>
+<div class="en-card-content">
+<h3><i class="fas fa-project-diagram"></i> Schéma d'architecture</h3>
+<p>Plan de l'infrastructure réseau montrant la connexion entre les serveurs (coeur, téléphonie), les switchs 3626 et 5320, et les postes utilisateurs (accueil/standard).</p>
+</div>
+</div>
+<!-- Câbles SFP+ et VLANs -->
+<div class="en-card">
+<div class="en-card-media" onclick="openLightbox(this)">
+<img alt="Câbles SFP+ DAC avec notes de configuration VLAN" loading="lazy" src="migration-voip-avaya/cable-sfp-optimized.webp" data-full-src="migration-voip-avaya/cable-sfp.jpg" width="1920" height="2560" decoding="async"/>
+</div>
+<div class="en-card-content">
+<h3><i class="fas fa-ethernet"></i> Câbles SFP+ et config <span aria-label="VLAN. Réseau virtuel qui isole des groupes de machines entre elles, même si elles partagent les mêmes câbles." class="term" data-def="Réseau virtuel qui isole des groupes de machines entre elles, même si elles partagent les mêmes câbles." tabindex="0">VLAN</span></h3>
+<p>Câbles DAC SFP+ 1M avec notes manuscrites : VLAN1 "DATA" (non taggé), VLAN2 "Voix" (taggé), VLAN100 "WIFI-GUEST". Configuration pour serveur de fichiers.</p>
+</div>
+</div>
+<!-- Montage switch - problème initial -->
+<div class="en-card">
+<div class="en-card-media" onclick="openLightbox(this)">
+<img alt="Montage du switch Extreme dans la baie - téléphones ne récupèrent pas d'IP" loading="lazy" src="migration-voip-avaya/montage-switch-avaya-optimized.webp" data-full-src="migration-voip-avaya/montage-switch-avaya.jpg" width="1920" height="2560" decoding="async"/>
+</div>
+<div class="en-card-content">
+<h3><i class="fas fa-exclamation-triangle"></i> Montage initial - Problème IP</h3>
+<p>Switch Extreme monté dans la baie (visible en violet). Après installation, les téléphones Avaya ne remontaient pas d'IP via <span aria-label="DHCP. Service qui attribue automatiquement une adresse réseau à chaque appareil qui se connecte." class="term" data-def="Service qui attribue automatiquement une adresse réseau à chaque appareil qui se connecte." tabindex="0">DHCP</span> - absence de configuration LLDP-MED identifiée.</p>
+</div>
+</div>
+<!-- Téléphone sans IP -->
+<div class="en-card">
+<div class="en-card-media" onclick="openLightbox(this)">
+<img alt="Téléphone Avaya en mode Administration - attente DHCP" loading="lazy" src="migration-voip-avaya/telephone-avaya-vlan-voix-data-optimized.webp" data-full-src="migration-voip-avaya/telephone-avaya-vlan-voix-data.jpg" width="1920" height="2560" decoding="async"/>
+</div>
+<div class="en-card-content">
+<h3><i class="fas fa-phone-slash"></i> Téléphone sans IP</h3>
+<p>Téléphone Avaya bloqué en mode Administration. Malgré la configuration <span aria-label="VLAN. Réseau virtuel qui isole des groupes de machines entre elles, même si elles partagent les mêmes câbles." class="term" data-def="Réseau virtuel qui isole des groupes de machines entre elles, même si elles partagent les mêmes câbles." tabindex="0">VLAN</span> Voix et Data, le téléphone ne recevait pas d'adresse IP du serveur <span aria-label="DHCP. Service qui attribue automatiquement une adresse réseau à chaque appareil qui se connecte." class="term" data-def="Service qui attribue automatiquement une adresse réseau à chaque appareil qui se connecte." tabindex="0">DHCP</span>.</p>
+</div>
+</div>
+<!-- Baie de stockage/serveurs -->
+<div class="en-card">
+<div class="en-card-media" onclick="openLightbox(this)">
+<img alt="Vue de la baie de stockage et serveurs" loading="lazy" src="migration-voip-avaya/baie-stockage-optimized.webp" data-full-src="migration-voip-avaya/baie-stockage.jpg" width="1920" height="2560" decoding="async"/>
+</div>
+<div class="en-card-content">
+<h3><i class="fas fa-database"></i> Baie de stockage</h3>
+<p>Vue d'ensemble du local technique avec la baie de stockage, les serveurs et l'infrastructure réseau complète de la Mairie de La Madeleine.</p>
+</div>
+</div>
+<!-- Config IP en lab -->
+<div class="en-card">
+<div class="en-card-media" onclick="openLightbox(this)">
+<img alt="Configuration IP manuelle pour tests en laboratoire" loading="lazy" src="migration-voip-avaya/config-ip-switch-extreme-optimized.webp" data-full-src="migration-voip-avaya/config-ip-switch-extreme.jpg" width="1920" height="2560" decoding="async"/>
+</div>
+<div class="en-card-content">
+<h3><i class="fas fa-cogs"></i> Configuration IP Lab</h3>
+<p>Configuration manuelle des paramètres IP (255.255.255.0, passerelle 192.168.1.20, <span aria-label="DNS. Système qui traduit un nom de site (ex: google.com) en adresse réseau compréhensible par les machines." class="term" data-def="Système qui traduit un nom de site (ex: google.com) en adresse réseau compréhensible par les machines." tabindex="0">DNS</span> 8.8.8.8) pour tester la connectivité avec le switch Extreme en environnement de lab.</p>
+</div>
+</div>
+<!-- LLDP voisins détectés -->
+<div class="en-card">
+<div class="en-card-media" onclick="openLightbox(this)">
+<img alt="Commande show lldp neighbors - détection du téléphone Avaya" loading="lazy" src="migration-voip-avaya/switch-reconnaissance-appareils-optimized.webp" data-full-src="migration-voip-avaya/switch-reconnaissance-appareils.jpg" width="2560" height="1920" decoding="async"/>
+</div>
+<div class="en-card-content">
+<h3><i class="fas fa-terminal"></i> LLDP Neighbors - Succès</h3>
+<p>Commande <code>show lldp neighbors</code> montrant la détection réussie : PC (192.168.40) et téléphone Avaya (AVXC50797) sur les ports 1:2 et 1:7 via LLDP-MED.</p>
+</div>
+</div>
+<!-- Téléphone mise à jour -->
+<div class="en-card">
+<div class="en-card-media" onclick="openLightbox(this)">
+<img alt="Téléphone Avaya effectuant une mise à jour logicielle" loading="lazy" src="migration-voip-avaya/telephone-avaya-mise-a-jour-optimized.webp" data-full-src="migration-voip-avaya/telephone-avaya-mise-a-jour.jpg" width="1920" height="2560" decoding="async"/>
+</div>
+<div class="en-card-content">
+<h3><i class="fas fa-check-circle"></i> Téléphone - Mise à jour OK</h3>
+<p>Après configuration LLDP-MED, le téléphone Avaya a récupéré son IP et effectue automatiquement sa mise à jour logicielle - preuve de connectivité réseau fonctionnelle.</p>
+</div>
+</div>
+<!-- Rollback anciens switchs -->
+<div class="en-card">
+<div class="en-card-media" onclick="openLightbox(this)">
+<img alt="Baie avec anciens switchs remis en place temporairement" loading="lazy" src="migration-voip-avaya/anciens-switchs-remis-optimized.webp" data-full-src="migration-voip-avaya/anciens-switchs-remis.jpg" width="1920" height="2560" decoding="async"/>
+</div>
+<div class="en-card-content">
+<h3><i class="fas fa-undo"></i> Rollback temporaire</h3>
+<p>Les anciens switchs Avaya ont été remis en place temporairement suite aux problèmes de téléphonie, le temps de valider la configuration LLDP-MED en laboratoire.</p>
+</div>
+</div>
+<!-- Vidéo test lab -->
+<div class="en-card">
+<div class="en-card-media video-media" onclick="openLightboxVideo(this)">
+<video loop="" muted="">
+<source src="migration-voip-avaya/test en lab des deux nouveau switchs extreme 5420.mov" type="video/mp4"/>
+</video>
+</div>
+<div class="en-card-content">
+<h3><i class="fas fa-play-circle"></i> Tests Lab Extreme 5420</h3>
+<p>Vidéo des tests en laboratoire avec les deux nouveaux switchs Extreme 5420, validation de la configuration <span aria-label="VLAN. Réseau virtuel qui isole des groupes de machines entre elles, même si elles partagent les mêmes câbles." class="term" data-def="Réseau virtuel qui isole des groupes de machines entre elles, même si elles partagent les mêmes câbles." tabindex="0">VLAN</span> et LLDP-MED avant déploiement en production.</p>
+</div>
+</div>
+<!-- Vidéo port coeur -->
+<div class="en-card">
+<div class="en-card-media video-media" onclick="openLightboxVideo(this)">
+<video loop="" muted="">
+<source src="migration-voip-avaya/la j'ai remarqué que le port du switch coeur de la mairie ne clignotait pas , donc j'ai parlé avec mon tuteur pour tester si on pouvait voir avec un autre port et ca a marché.mov" type="video/mp4"/>
+</video>
+</div>
+<div class="en-card-content">
+<h3><i class="fas fa-play-circle"></i> Diagnostic port coeur</h3>
+<p>Identification d'un problème : le port du switch coeur de la mairie ne clignotait pas. Après discussion avec le tuteur, test sur un autre port qui a résolu le problème.</p>
+</div>
+</div>
+<!-- Vidéo ancien emplacement -->
+<div class="en-card">
+<div class="en-card-media video-media" onclick="openLightboxVideo(this)">
+<video loop="" muted="">
+<source src="migration-voip-avaya/ancien emplacement switch avaya.mov" type="video/mp4"/>
+</video>
+</div>
+<div class="en-card-content">
+<h3><i class="fas fa-play-circle"></i> Ancien emplacement Avaya</h3>
+<p>Documentation de l'ancien emplacement du switch Avaya avant le remplacement par les nouveaux équipements Extreme Networks.</p>
+</div>
+</div>
+</div>
+<div class="section-footer">
+<a class="btn-more" href="../index.html#skills"><i class="fas fa-arrow-left"></i> Retour aux compétences</a>
+</div>
+</div>
+</section>
+</main>
+<footer class="main-footer" role="contentinfo">
+<div class="footer-container">
+<div class="footer-content">
+<p class="footer-text">© 2026 <span class="footer-copyright">Franck Raymond</span> – Tous droits réservés.</p>
+</div>
+</div>
+</footer>
+<!-- Lightbox -->
+<div id="lightbox" onclick="closeLightbox()">
+<span class="lightbox-close">×</span>
+<img alt="Image agrandie" id="lightbox-img" src=""/>
+<video autoplay="" controls="" id="lightbox-video" loop=""></video>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+<script src="../script.js?v=20261028-b753f7964f"></script>
+<script>
+    // Lightbox pour images
+    function openLightbox(element) {
+      const img = element.querySelector('img');
+      const lightbox = document.getElementById('lightbox');
+      const lightboxImg = document.getElementById('lightbox-img');
+      const lightboxVideo = document.getElementById('lightbox-video');
+
+      lightboxVideo.style.display = 'none';
+      lightboxImg.style.display = 'block';
+      lightboxImg.src = img.dataset.fullSrc || img.src;
+      lightboxImg.alt = img.alt;
+      lightbox.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    // Lightbox pour vidéo
+    function openLightboxVideo(element) {
+      const video = element.querySelector('video source');
+      const lightbox = document.getElementById('lightbox');
+      const lightboxImg = document.getElementById('lightbox-img');
+      const lightboxVideo = document.getElementById('lightbox-video');
+
+      lightboxImg.style.display = 'none';
+      lightboxVideo.style.display = 'block';
+      lightboxVideo.src = video.src;
+      lightbox.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeLightbox() {
+      const lightbox = document.getElementById('lightbox');
+      const lightboxVideo = document.getElementById('lightbox-video');
+      lightbox.classList.remove('active');
+      lightboxVideo.pause();
+      document.body.style.overflow = '';
+    }
+
+    // Fermer avec Escape
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') closeLightbox();
+    });
+
+    // Lecture automatique au survol des vidéos
+    document.querySelectorAll('.en-card-media video').forEach(video => {
+      video.parentElement.addEventListener('mouseenter', () => video.play());
+      video.parentElement.addEventListener('mouseleave', () => video.pause());
+    });
+  </script>
+<script defer="" src="/assets/portfolio-glossary.js?v=20260917-1"></script><script defer="" src="/assets/legacy-unified.js?v=20261028-8c422e514f"></script><script defer="" src="/assets/portfolio-refresh.js?v=20260906-2"></script>
+<script defer="" src="/assets/interactive-labs.js?v=20261028-7903a4303d"></script>
+<script data-gallery-accessibility>
+(() => {
+  const lightbox = document.getElementById('lightbox');
+  if (!lightbox) return;
+  const triggers = document.querySelectorAll("[onclick^=\"openLightbox\"]");
+  triggers.forEach(trigger => {
+    trigger.tabIndex = 0;
+    trigger.setAttribute('role', 'button');
+    const image = trigger.matches('img') ? trigger : trigger.querySelector('img');
+    trigger.setAttribute('aria-label', image ? `Agrandir : ${image.alt || 'photographie'}` : 'Lire la vidéo');
+    trigger.addEventListener('keydown', event => {
+      if (event.key === 'Enter' || event.key === ' ') {
+        event.preventDefault();
+        trigger.click();
+      }
+    });
+  });
+  let close = lightbox.querySelector('.lightbox-close');
+  if (!close) {
+    close = document.createElement('button');
+    close.type = 'button';
+    close.className = 'lightbox-close';
+    close.textContent = '×';
+    close.style.cssText = 'position:absolute;top:20px;right:24px;z-index:2;color:white;background:#202020;border:1px solid #888;padding:8px 16px;font-size:30px;line-height:1;cursor:pointer';
+    close.addEventListener('click', () => { lightbox.style.display = 'none'; });
+    lightbox.appendChild(close);
+  }
+  close.setAttribute('aria-label', 'Fermer l’image agrandie');
+  close.tabIndex = 0;
+  if (close.tagName !== 'BUTTON') {
+    close.setAttribute('role', 'button');
+    close.addEventListener('keydown', event => {
+      if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); close.click(); }
+    });
+  }
+  const previous = lightbox.querySelector('#lightboxPrev');
+  const next = lightbox.querySelector('#lightboxNext');
+  previous?.setAttribute('aria-label', 'Image précédente');
+  next?.setAttribute('aria-label', 'Image suivante');
+  lightbox.setAttribute('role', 'dialog');
+  lightbox.setAttribute('aria-modal', 'true');
+  lightbox.setAttribute('aria-label', 'Aperçu du média');
+  let wasOpen = false;
+  let returnFocus = null;
+  const isOpen = () => lightbox.classList.contains('active') || lightbox.style.display === 'flex';
+  const sync = () => {
+    const open = isOpen();
+    if (open && !wasOpen) { returnFocus = document.activeElement; close.focus(); }
+    if (!open && wasOpen && returnFocus?.isConnected) returnFocus.focus({preventScroll:true});
+    wasOpen = open;
+  };
+  new MutationObserver(sync).observe(lightbox, {attributes:true, attributeFilter:['class', 'style']});
+  document.addEventListener('keydown', event => {
+    if (!isOpen()) return;
+    if (event.key === 'Escape') { event.preventDefault(); close.click(); return; }
+    if (event.key !== 'Tab') return;
+    const controls = [...lightbox.querySelectorAll('button, [tabindex="0"], video[controls]')]
+      .filter(control => control.getClientRects().length && !control.disabled);
+    const first = controls[0] || close;
+    const last = controls[controls.length - 1] || close;
+    if (event.shiftKey && document.activeElement === first) { event.preventDefault(); last.focus(); }
+    else if (!event.shiftKey && document.activeElement === last) { event.preventDefault(); first.focus(); }
+  }, true);
+})();
+</script>
+</body></html>

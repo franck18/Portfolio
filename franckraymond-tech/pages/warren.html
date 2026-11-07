@@ -1,0 +1,396 @@
+<!DOCTYPE html><html lang="fr"><head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Dossier Architecture Réseau | Franck Raymond</title>
+  <style>
+    :root {
+      /* Palette Cyber/Pro */
+      --bg-dark: #0f172a;
+      --bg-panel: rgba(30, 41, 59, 0.6);
+      --text-main: #e2e8f0;
+      --text-muted: #94a3b8;
+      
+      --accent-wan: #a855f7;    /* Violet */
+      --accent-fw: #f43f5e;     /* Rouge */
+      --accent-dmz: #f59e0b;    /* Orange */
+      --accent-core: #3b82f6;   /* Bleu */
+      --accent-srv: #10b981;    /* Vert (Serveurs) */
+      --accent-vlan: #64748b;   /* Gris (Utilisateurs) */
+      
+      --border: rgba(255, 255, 255, 0.1);
+    }
+
+    body {
+      margin: 0;
+      background-color: var(--bg-dark);
+      background-image: 
+        radial-gradient(circle at 50% 0%, rgba(59, 130, 246, 0.15), transparent 40%);
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      color: var(--text-main);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+      padding: 40px 20px;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1200px;
+      display: grid;
+      gap: 30px;
+    }
+
+    /* --- Header --- */
+    header {
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 20px;
+      margin-bottom: 10px;
+    }
+    h1 { margin: 0; font-size: 1.8rem; font-weight: 700; color: #fff; }
+    .subtitle { color: var(--text-muted); font-size: 0.95rem; margin-top: 5px; }
+
+    /* --- Cards --- */
+    .card {
+      backdrop-filter: blur(12px);
+      background: var(--bg-panel);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 24px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    }
+
+    h2 {
+      margin-top: 0;
+      font-size: 1.2rem;
+      border-left: 4px solid var(--accent-core);
+      padding-left: 12px;
+      margin-bottom: 20px;
+    }
+
+    /* --- SVG Styles --- */
+    svg { width: 100%; height: auto; overflow: visible; }
+    text { font-family: 'Segoe UI', sans-serif; pointer-events: none; }
+    
+    .lbl-title { font-weight: 700; font-size: 13px; fill: #fff; }
+    .lbl-sub { font-size: 10px; fill: var(--text-muted); }
+    .lbl-ip { font-family: 'Consolas', monospace; font-size: 10px; fill: #6ee7b7; }
+    
+    .node-rect {
+      fill: rgba(15, 23, 42, 0.9);
+      stroke-width: 2px;
+      transition: all 0.2s;
+    }
+    /* Couleurs spécifiques */
+    .stroke-wan { stroke: var(--accent-wan); }
+    .stroke-fw { stroke: var(--accent-fw); }
+    .stroke-dmz { stroke: var(--accent-dmz); stroke-dasharray: 4 2; }
+    .stroke-core { stroke: var(--accent-core); }
+    .stroke-srv { stroke: var(--accent-srv); }
+    .stroke-vlan { stroke: var(--accent-vlan); }
+
+    .link { fill: none; stroke: #475569; stroke-width: 1.5; }
+    .link-vrrp { stroke: #10b981; stroke-dasharray: 3 3; opacity: 0.6; }
+
+    /* Zones */
+    .zone { fill: rgba(255,255,255,0.02); stroke: rgba(255,255,255,0.05); rx: 12; }
+    .zone-lbl { font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; }
+
+    /* --- Table Styles --- */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.9rem;
+    }
+    th {
+      text-align: left;
+      padding: 12px;
+      background: rgba(255,255,255,0.05);
+      color: var(--text-muted);
+      font-weight: 600;
+      border-bottom: 2px solid var(--border);
+    }
+    td {
+      padding: 12px;
+      border-bottom: 1px solid var(--border);
+      color: var(--text-main);
+    }
+    tr:last-child td { border-bottom: none; }
+    tr:hover td { background: rgba(255,255,255,0.02); }
+    
+    .tag {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-size: 0.75rem;
+      font-weight: 600;
+    }
+    .tag-master { background: rgba(59, 130, 246, 0.2); color: #60a5fa; border: 1px solid rgba(59, 130, 246, 0.3); }
+    .tag-backup { background: rgba(148, 163, 184, 0.2); color: #cbd5e1; border: 1px solid rgba(148, 163, 184, 0.3); }
+    .tag-vrrp { background: rgba(16, 185, 129, 0.2); color: #34d399; border: 1px solid rgba(16, 185, 129, 0.3); }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .container { grid-template-columns: 1fr; }
+    }
+  </style>
+<meta name="theme-color" content="#111214"><link rel="stylesheet" href="/assets/legacy-unified.css?v=20260831-2"><meta name="description" content="Portfolio de Franck Raymond : projets en administration systèmes, réseaux, supervision et cybersécurité."><meta name="author" content="Franck Raymond"><meta name="robots" content="index,follow,max-image-preview:large"><meta property="og:type" content="website"><meta property="og:site_name" content="Portfolio de Franck Raymond"><meta property="og:title" content="Dossier Architecture Réseau | Franck Raymond"><meta property="og:description" content="Portfolio de Franck Raymond : projets en administration systèmes, réseaux, supervision et cybersécurité."><meta property="og:url" content="https://franckraymond.tech/pages/warren.html"><meta property="og:image" content="https://franckraymond.tech/franck.webp"><meta property="og:image:alt" content="Portrait professionnel de Franck Raymond"><meta property="og:locale" content="fr_FR"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Dossier Architecture Réseau | Franck Raymond"><meta name="twitter:description" content="Portfolio de Franck Raymond : projets en administration systèmes, réseaux, supervision et cybersécurité."><meta name="twitter:image" content="https://franckraymond.tech/franck.webp"><link rel="canonical" href="https://franckraymond.tech/pages/warren.html"><link rel="icon" href="/favicon-32x32.png" sizes="32x32" type="image/png"><link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180"><link rel="manifest" href="/site.webmanifest"><script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"Dossier Architecture Réseau | Franck Raymond","url":"https://franckraymond.tech/pages/warren.html","description":"Portfolio de Franck Raymond : projets en administration systèmes, réseaux, supervision et cybersécurité.","isPartOf":{"@type":"WebSite","name":"Portfolio de Franck Raymond","url":"https://franckraymond.tech/"},"about":{"@type":"Person","name":"Franck Raymond","url":"https://franckraymond.tech/"}}</script>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,400&amp;family=Geist:wght@400;500;600&amp;display=swap">
+<link rel="stylesheet" href="/assets/editorial-tokens.css?v=20261106-modern">
+<link rel="stylesheet" href="/assets/editorial.css?v=20261106-modern">
+<script src="/assets/editorial-theme.js?v=20261028-1fe0ee8c9d"></script>
+</head>
+<body data-theme="light" class="portfolio-legacy editorial-site">
+
+  <div class="container">
+    
+    <header>
+      <h1>Architecture Réseau Haute Disponibilité</h1>
+      <div class="subtitle">Schéma Topologique &amp; Plan d'Adressage IP • BTS SIO</div>
+    </header>
+
+    <!-- SECTION 1: SCHÉMA SVG -->
+    <div class="card">
+      <h2>Topologie Logique (VRRP / VLANs)</h2>
+      <svg viewBox="0 0 1000 780">
+        <defs>
+          <marker id="arrow" markerWidth="8" markerHeight="8" refX="8" refY="4" orient="auto">
+            <path d="M0,0 L8,4 L0,8" fill="#475569"></path>
+          </marker>
+        </defs>
+
+        <!-- ZONES -->
+        <!-- DMZ -->
+        <rect x="50" y="180" width="220" height="200" class="zone"></rect>
+        <text x="70" y="205" class="zone-lbl" fill="#f59e0b">DMZ (VLAN 100)</text>
+
+        <!-- Server Zone -->
+        <rect x="730" y="440" width="220" height="280" class="zone"></rect>
+        <text x="750" y="465" class="zone-lbl" fill="#10b981">Srv Internes (VLAN 99)</text>
+
+        <!-- LIENS -->
+        <!-- WAN -> FW -->
+        <line x1="500" y1="60" x2="500" y2="100" class="link" marker-end="url(#arrow)"></line>
+        
+        <!-- FW -> Cores -->
+        <path d="M500 140 L400 280" class="link"></path> <!-- Vers Core A -->
+        <path d="M500 140 L600 280" class="link"></path> <!-- Vers Core B -->
+        
+        <!-- FW -> DMZ -->
+        <path d="M440 120 L160 180" class="link" style="stroke-dasharray:4 4; opacity:0.5"></path>
+
+        <!-- Inter-Core -->
+        <line x1="480" y1="320" x2="520" y2="320" class="link" style="stroke-width:3"></line>
+
+        <!-- Cores -> Access VLANs (Bus style) -->
+        <path d="M350 360 L150 500" class="link"></path> <!-- Vers VLAN 10 -->
+        <path d="M400 360 L280 500" class="link"></path> <!-- Vers VLAN 20 -->
+        <path d="M450 360 L410 500" class="link"></path> <!-- Vers VLAN 30 -->
+        <path d="M550 360 L540 500" class="link"></path> <!-- Vers VLAN 40 -->
+        <path d="M600 360 L670 500" class="link"></path> <!-- Vers VLAN 50 -->
+        
+        <!-- Cores -> Server Zone -->
+        <path d="M650 320 L840 440" class="link"></path>
+
+        <!-- NOEUDS -->
+        
+        <!-- Internet -->
+        <g transform="translate(470, 20)">
+          <circle cx="30" cy="30" r="30" class="node-rect stroke-wan"></circle>
+          <text x="30" y="35" text-anchor="middle" class="lbl-title">Internet</text>
+        </g>
+
+        <!-- Firewall -->
+        <g transform="translate(400, 100)">
+          <rect width="200" height="40" rx="6" class="node-rect stroke-fw"></rect>
+          <text x="100" y="25" text-anchor="middle" class="lbl-title">Pare-feu / Routeur</text>
+        </g>
+
+        <!-- DMZ Servers -->
+        <g transform="translate(70, 230)">
+          <rect width="180" height="50" rx="6" class="node-rect stroke-dmz"></rect>
+          <text x="90" y="20" text-anchor="middle" class="lbl-title">Srv Web Public</text>
+          <text x="90" y="40" text-anchor="middle" class="lbl-ip">192.168.100.10</text>
+        </g>
+        <g transform="translate(70, 300)">
+          <rect width="180" height="50" rx="6" class="node-rect stroke-dmz"></rect>
+          <text x="90" y="20" text-anchor="middle" class="lbl-title">Srv DNS Public</text>
+          <text x="90" y="40" text-anchor="middle" class="lbl-ip">192.168.100.11</text>
+        </g>
+
+        <!-- CORE SWITCHES -->
+        <g transform="translate(280, 280)">
+          <rect width="200" height="80" rx="8" class="node-rect stroke-core"></rect>
+          <text x="100" y="25" text-anchor="middle" class="lbl-title">3Com 3500 (Maître)</text>
+          <text x="100" y="45" text-anchor="middle" class="lbl-sub">Prio: 110 • IP: .1</text>
+        </g>
+        <g transform="translate(520, 280)">
+          <rect width="200" height="80" rx="8" class="node-rect stroke-core"></rect>
+          <text x="100" y="25" text-anchor="middle" class="lbl-title">3Com 3500 (Backup)</text>
+          <text x="100" y="45" text-anchor="middle" class="lbl-sub">Prio: 90 • IP: .2</text>
+        </g>
+
+        <!-- INTERNAL SERVERS (VLAN 99) -->
+        <g transform="translate(750, 490)">
+          <rect width="180" height="50" rx="6" class="node-rect stroke-srv"></rect>
+          <text x="90" y="20" text-anchor="middle" class="lbl-title">DHCP / Syslog</text>
+          <text x="90" y="40" text-anchor="middle" class="lbl-ip">192.168.99.10</text>
+        </g>
+        <g transform="translate(750, 560)">
+          <rect width="180" height="50" rx="6" class="node-rect stroke-srv"></rect>
+          <text x="90" y="20" text-anchor="middle" class="lbl-title">DNS Interne</text>
+          <text x="90" y="40" text-anchor="middle" class="lbl-ip">192.168.99.11</text>
+        </g>
+        <g transform="translate(750, 630)">
+          <rect width="180" height="50" rx="6" class="node-rect stroke-srv"></rect>
+          <text x="90" y="20" text-anchor="middle" class="lbl-title">Intranet</text>
+          <text x="90" y="40" text-anchor="middle" class="lbl-ip">192.168.99.12</text>
+        </g>
+
+        <!-- USER VLANS ROW -->
+        <!-- V10 -->
+        <g transform="translate(50, 500)">
+          <rect width="110" height="60" rx="6" class="node-rect stroke-vlan"></rect>
+          <text x="55" y="20" text-anchor="middle" class="lbl-title">VLAN 10</text>
+          <text x="55" y="35" text-anchor="middle" class="lbl-sub">Direction</text>
+          <text x="55" y="50" text-anchor="middle" class="lbl-ip">VIP: .254</text>
+        </g>
+        <!-- V20 -->
+        <g transform="translate(180, 500)">
+          <rect width="110" height="60" rx="6" class="node-rect stroke-vlan"></rect>
+          <text x="55" y="20" text-anchor="middle" class="lbl-title">VLAN 20</text>
+          <text x="55" y="35" text-anchor="middle" class="lbl-sub">Commercial</text>
+          <text x="55" y="50" text-anchor="middle" class="lbl-ip">VIP: .254</text>
+        </g>
+        <!-- V30 -->
+        <g transform="translate(310, 500)">
+          <rect width="110" height="60" rx="6" class="node-rect stroke-vlan"></rect>
+          <text x="55" y="20" text-anchor="middle" class="lbl-title">VLAN 30</text>
+          <text x="55" y="35" text-anchor="middle" class="lbl-sub">Logistique</text>
+          <text x="55" y="50" text-anchor="middle" class="lbl-ip">VIP: .254</text>
+        </g>
+        <!-- V40 -->
+        <g transform="translate(440, 500)">
+          <rect width="110" height="60" rx="6" class="node-rect stroke-vlan"></rect>
+          <text x="55" y="20" text-anchor="middle" class="lbl-title">VLAN 40</text>
+          <text x="55" y="35" text-anchor="middle" class="lbl-sub">R&amp;D</text>
+          <text x="55" y="50" text-anchor="middle" class="lbl-ip">VIP: .254</text>
+        </g>
+        <!-- V50 -->
+        <g transform="translate(570, 500)">
+          <rect width="110" height="60" rx="6" class="node-rect stroke-vlan"></rect>
+          <text x="55" y="20" text-anchor="middle" class="lbl-title">VLAN 50</text>
+          <text x="55" y="35" text-anchor="middle" class="lbl-sub">Visiteurs</text>
+          <text x="55" y="50" text-anchor="middle" class="lbl-ip">VIP: .254</text>
+        </g>
+
+      </svg>
+    </div>
+
+    <!-- SECTION 2: TABLEAU D'ADRESSAGE -->
+    <div class="card">
+      <h2>Plan d'Adressage &amp; Rôles</h2>
+      <table>
+        <thead>
+          <tr>
+            <th width="25%">Équipement / Service</th>
+            <th width="20%">Interface / VLAN</th>
+            <th width="25%">Adresse IP Configurée</th>
+            <th width="30%">Rôle / Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- 3Com Maître -->
+          <tr>
+            <td rowspan="3" style="border-bottom: 2px solid var(--border)">
+              <strong>3Com 3500 (Maître)</strong>
+              <div style="margin-top:4px;"><span class="tag tag-master">Priorité 110</span></div>
+            </td>
+            <td>VLAN 10, 20, 30...</td>
+            <td class="lbl-ip">192.168.xx.1</td>
+            <td>Routage Inter-VLAN Actif</td>
+          </tr>
+          <tr>
+            <td>VLAN 99</td>
+            <td class="lbl-ip">192.168.99.1</td>
+            <td>Gateway Serveurs (Master)</td>
+          </tr>
+          <tr style="border-bottom: 2px solid var(--border)">
+            <td>VLAN 1 (Mgmt)</td>
+            <td class="lbl-ip">192.168.1.2</td>
+            <td>Administration Switch</td>
+          </tr>
+
+          <!-- 3Com Backup -->
+          <tr>
+            <td rowspan="3" style="border-bottom: 2px solid var(--border)">
+              <strong>3Com 3500 (Backup)</strong>
+              <div style="margin-top:4px;"><span class="tag tag-backup">Priorité 90</span></div>
+            </td>
+            <td>VLAN 10, 20, 30...</td>
+            <td class="lbl-ip">192.168.xx.2</td>
+            <td>Routage Inter-VLAN Secours</td>
+          </tr>
+          <tr>
+            <td>VLAN 99</td>
+            <td class="lbl-ip">192.168.99.2</td>
+            <td>Gateway Serveurs (Backup)</td>
+          </tr>
+          <tr style="border-bottom: 2px solid var(--border)">
+            <td>VLAN 1 (Mgmt)</td>
+            <td class="lbl-ip">192.168.1.3</td>
+            <td>Administration Switch</td>
+          </tr>
+
+          <!-- VRRP -->
+          <tr style="border-bottom: 2px solid var(--border)">
+            <td>
+              <strong>Cluster VRRP</strong>
+              <div style="margin-top:4px;"><span class="tag tag-vrrp">Virtuel</span></div>
+            </td>
+            <td>Tous VLANs</td>
+            <td class="lbl-ip">192.168.xx.254</td>
+            <td><strong>Passerelle par défaut</strong> pour tous les postes clients et serveurs</td>
+          </tr>
+
+          <!-- Services Internes -->
+          <tr>
+            <td>Serveur DHCP / Syslog</td>
+            <td>VLAN 99</td>
+            <td class="lbl-ip">192.168.99.10</td>
+            <td>Distribution IP centralisée &amp; Logs</td>
+          </tr>
+          <tr>
+            <td>Serveur DNS Interne</td>
+            <td>VLAN 99</td>
+            <td class="lbl-ip">192.168.99.11</td>
+            <td>Résolution noms locaux (AD)</td>
+          </tr>
+          <tr style="border-bottom: 2px solid var(--border)">
+            <td>Intranet</td>
+            <td>VLAN 99</td>
+            <td class="lbl-ip">192.168.99.12</td>
+            <td>Portail interne entreprise</td>
+          </tr>
+
+          <!-- DMZ -->
+          <tr>
+            <td>Serveur Web Public</td>
+            <td>VLAN 100 (DMZ)</td>
+            <td class="lbl-ip">192.168.100.10</td>
+            <td>Site Vitrine / Front-end</td>
+          </tr>
+          <tr>
+            <td>Serveur DNS Public</td>
+            <td>VLAN 100 (DMZ)</td>
+            <td class="lbl-ip">192.168.100.11</td>
+            <td>Résolution domaine public</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+
+
+<script src="/assets/portfolio-glossary.js?v=20260831-2" defer=""></script><script src="/assets/legacy-unified.js?v=20261028-8c422e514f" defer=""></script></body></html>

@@ -1,0 +1,604 @@
+<!DOCTYPE html><html lang="fr"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Infrastructure IA auto-hébergée avec Ollama et Open WebUI sur Rocky Linux 9 dans un environnement VMware ESXi - Projet validé pour l'Épreuve E5 du BTS SIO SISR">
+  <meta name="keywords" content="BTS SIO, SISR, Épreuve E5, Ollama, Open WebUI, Rocky Linux, VMware ESXi, Docker, IA">
+  <title>Infrastructure IA avec Ollama | Portfolio</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&amp;family=Outfit:wght@300;400;500;600;700;800;900&amp;family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../style.css">
+  <style>
+        /* Tooltips termes techniques */
+        .term {
+            border-bottom: 1px dashed var(--primary);
+            cursor: help;
+            position: relative;
+            display: inline;
+        }
+        .term::after {
+            content: attr(data-def);
+            position: absolute;
+            bottom: calc(100% + 8px);
+            left: 50%;
+            transform: translateX(-50%);
+            background: #1e293b;
+            color: #f8fafc;
+            font-size: 0.78rem;
+            line-height: 1.5;
+            padding: 0.6rem 0.9rem;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            white-space: normal;
+            width: 220px;
+            text-align: left;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.2s;
+            z-index: 100;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+        }
+        .term:hover::after { opacity: 1; }
+  </style>
+<meta name="theme-color" content="#111214"><link rel="stylesheet" href="/assets/legacy-unified.css"><meta name="author" content="Franck Raymond"><meta name="robots" content="index,follow,max-image-preview:large"><meta property="og:type" content="website"><meta property="og:site_name" content="Portfolio de Franck Raymond"><meta property="og:title" content="Infrastructure IA avec Ollama | Portfolio"><meta property="og:description" content="Infrastructure IA auto-hébergée avec Ollama et Open WebUI sur Rocky Linux 9 dans un environnement VMware ESXi - Projet validé pour l'Épreuve E5 du BTS SIO SISR"><meta property="og:url" content="https://franckraymond.tech/pages/dossier-technique-projet-ia-ollama.html"><meta property="og:image" content="https://franckraymond.tech/franck.webp"><meta property="og:image:alt" content="Portrait professionnel de Franck Raymond"><meta property="og:locale" content="fr_FR"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Infrastructure IA avec Ollama | Portfolio"><meta name="twitter:description" content="Infrastructure IA auto-hébergée avec Ollama et Open WebUI sur Rocky Linux 9 dans un environnement VMware ESXi - Projet validé pour l'Épreuve E5 du BTS SIO SISR"><meta name="twitter:image" content="https://franckraymond.tech/franck.webp"><link rel="canonical" href="https://franckraymond.tech/pages/dossier-technique-projet-ia-ollama.html"><link rel="icon" href="/favicon-32x32.png" sizes="32x32" type="image/png"><link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180"><link rel="manifest" href="/site.webmanifest"><script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"Infrastructure IA avec Ollama | Portfolio","url":"https://franckraymond.tech/pages/dossier-technique-projet-ia-ollama.html","description":"Infrastructure IA auto-hébergée avec Ollama et Open WebUI sur Rocky Linux 9 dans un environnement VMware ESXi - Projet validé pour l'Épreuve E5 du BTS SIO SISR","isPartOf":{"@type":"WebSite","name":"Portfolio de Franck Raymond","url":"https://franckraymond.tech/"},"about":{"@type":"Person","name":"Franck Raymond","url":"https://franckraymond.tech/"}}</script>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,400&amp;family=Geist:wght@400;500;600&amp;display=swap">
+<link rel="stylesheet" href="/assets/editorial-tokens.css?v=20261106-modern">
+<link rel="stylesheet" href="/assets/editorial.css?v=20261106-modern">
+<script src="/assets/editorial-theme.js?v=20261028-1fe0ee8c9d"></script>
+</head>
+
+<body data-theme="light" class="portfolio-legacy editorial-site">
+  <div class="bg-mesh"></div>
+  <div class="noise-overlay"></div>
+  <div class="grid-lines"></div>
+
+  <header class="main-header" id="header">
+    <nav class="nav-container" aria-label="Navigation principale">
+      <div class="nav-brand">
+        <a href="../index.html" class="brand-logo">
+          <span class="logo-bracket">&lt;</span>
+          <span class="logo-text">FR</span>
+          <span class="logo-bracket">/&gt;</span>
+        </a>
+      </div>
+      <div class="nav-menu" id="navMenu">
+        <a href="../index.html" class="nav-link">
+          <i class="fas fa-home"></i>
+          <span class="nav-text">Accueil</span>
+        </a>
+        <a href="/profil.html" class="nav-link">
+          <i class="fas fa-user"></i>
+          <span class="nav-text">Profil</span>
+        </a>
+        <a href="../index.html#skills" class="nav-link">
+          <i class="fas fa-code"></i>
+          <span class="nav-text">Compétences</span>
+        </a>
+        <a href="/projets.html" class="nav-link active">
+          <i class="fas fa-diagram-project"></i>
+          <span class="nav-text">Projets</span>
+        </a>
+        <a href="../index.html#experience" class="nav-link">
+          <i class="fas fa-briefcase"></i>
+          <span class="nav-text">Expériences</span>
+        </a>
+        <a href="/projets.html#veille" class="nav-link">
+          <i class="fas fa-newspaper"></i>
+          <span class="nav-text">Veille</span>
+        </a>
+        <a href="../index.html#contact" class="nav-link">
+          <i class="fas fa-envelope"></i>
+          <span class="nav-text">Contact</span>
+        </a>
+      
+<a class="nav-link" href="https://opengym.jsuisfray.blitz.cloud/"><span class="nav-text">FrayFit</span></a></div>
+      <div class="nav-controls">
+        <button class="theme-toggle" id="themeToggle" title="Changer le thème" aria-label="Basculer entre mode sombre et clair">
+          <i class="fas fa-moon"></i>
+        </button>
+        <button class="menu-toggle" id="menuToggle" aria-label="Ouvrir le menu mobile" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero-section page-hero">
+      <div class="hero-glow"></div>
+      <div class="hero-glow-2"></div>
+      <div class="hero-container">
+        <div class="hero-content">
+          <div style="display: flex; gap: 0.75rem; justify-content: center; flex-wrap: wrap; margin-bottom: 1rem;">
+            <div class="hero-greeting page-badge">Intelligence Artificielle</div>
+            <a href="epreuve-e5.html" class="page-badge" style="background: rgba(34, 197, 94, 0.1); border-color: rgba(34, 197, 94, 0.3); color: rgb(74, 222, 128); text-decoration: none; transition: all 0.3s;">
+              <i class="fas fa-graduation-cap"></i> Validé pour E5
+            </a>
+          </div>
+          <h1 class="hero-name"><span class="name-gradient">Infrastructure IA auto-hébergée avec <span class="term" data-def="Logiciel gratuit qui fait tourner une IA directement sur ta machine, sans internet.">Ollama</span></span></h1>
+          <p class="hero-description">
+            Déploiement d'une solution d'IA locale (<span class="term" data-def="Logiciel gratuit qui fait tourner une IA directement sur ta machine, sans internet.">Ollama</span> + Open WebUI) sur Rocky Linux 9 dans une <span class="term" data-def="Ordinateur simulé qui tourne à l'intérieur d'un vrai serveur physique.">VM</span> <span class="term" data-def="Logiciel qui permet de faire tourner plusieurs systèmes (machines virtuelles) sur un seul serveur physique.">VMware</span> ESXi.
+          </p>
+<div class="hero-buttons">
+            <a href="#architecture" class="btn btn-primary"><i class="fas fa-sitemap"></i> Voir l'architecture</a>
+            <a href="#resultats" class="btn btn-secondary"><i class="fas fa-image"></i> Résultats</a>
+            <a href="epreuve-e5.html" class="btn btn-secondary"><i class="fas fa-graduation-cap"></i> Compétences E5</a>
+          </div>
+        </div>
+        <div class="hero-image-wrapper">
+          <div class="hero-image-container">
+            <div class="profile-image-frame">
+              <i class="fas fa-brain page-icon"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contexte" class="section">
+      <div class="section-container">
+        <div class="section-header">
+          <span class="section-number">01</span>
+          <h2 class="section-title">Contexte <span class="title-gradient">du projet</span></h2>
+          <div class="section-line"></div>
+        </div>
+        <div class="about-content">
+          <div>
+            <p class="about-text">
+              Dans le cadre du BTS SIO (option SISR), j'ai mis en place une infrastructure IA auto-hébergée afin de
+              tester des modèles de langage (<span class="term" data-def="Modèle d'IA entraîné sur du texte, capable de répondre à des questions, rédiger ou générer du code. ChatGPT en est un exemple.">LLM</span>) directement sur un serveur local, sans dépendre d'un service <span class="term" data-def="Serveurs distants accessibles par internet, gérés par des entreprises comme Microsoft (Azure) ou Amazon (AWS).">cloud</span>.
+              L'objectif est de comprendre la chaîne complète : virtualisation, administration Linux, conteneurs <span class="term" data-def="Outil qui fait tourner des applications dans des environnements isolés, sans modifier le reste du système.">Docker</span>,
+              services réseau et consommation d'<span class="term" data-def="Interface qui permet à des programmes de communiquer entre eux — ici, pour envoyer des requêtes à un service depuis du code.">API</span>.
+            </p>
+            <p class="about-text">
+              La solution s'appuie sur <strong><span class="term" data-def="Logiciel gratuit qui fait tourner une IA directement sur ta machine, sans internet.">Ollama</span></strong> (moteur d'exécution des modèles) et <strong>Open
+                WebUI</strong> (interface web) déployés sur une <span class="term" data-def="Ordinateur simulé qui tourne à l'intérieur d'un vrai serveur physique.">VM</span> Rocky Linux hébergée sur <strong><span class="term" data-def="Logiciel qui permet de faire tourner plusieurs systèmes (machines virtuelles) sur un seul serveur physique.">VMware</span> ESXi</strong>.
+            </p>
+            <p class="about-text">
+              <strong>Spécifications :</strong> Rocky Linux 9, 2 vCPU, 8 Go RAM, 60 Go de stockage.
+            </p>
+          </div>
+          <div>
+            <div class="skill-category">
+              <h3 class="category-title"><i class="fas fa-layer-group"></i> Outils et technologies</h3>
+              <div class="timeline-tags">
+                <span class="tag"><span class="term" data-def="Logiciel qui permet de faire tourner plusieurs systèmes (machines virtuelles) sur un seul serveur physique.">VMware</span> ESXi</span>
+                <span class="tag">Rocky Linux 9</span>
+                <span class="tag"><span class="term" data-def="Logiciel gratuit qui fait tourner une IA directement sur ta machine, sans internet.">Ollama</span></span>
+                <span class="tag">Open WebUI</span>
+                <span class="tag"><span class="term" data-def="Outil qui fait tourner des applications dans des environnements isolés, sans modifier le reste du système.">Docker</span></span>
+                <span class="tag"><span class="term" data-def="Modèle d'IA entraîné sur du texte, capable de répondre à des questions, rédiger ou générer du code. ChatGPT en est un exemple.">LLM</span> (Phi-3, Llama 3.2)</span>
+              </div>
+            </div>
+            <div class="skill-category" style="margin-top: 1.5rem;">
+              <h3 class="category-title"><i class="fas fa-file-signature"></i> Livrables</h3>
+              <div class="timeline-tags">
+                <span class="tag"><span class="term" data-def="Ordinateur simulé qui tourne à l'intérieur d'un vrai serveur physique.">VM</span> fonctionnelle</span>
+                <span class="tag">Interface web accessible</span>
+                <span class="tag">Schéma d'architecture</span>
+                <span class="tag">Documentation d'installation</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="competences-e5" class="section" style="background: var(--bg-card-solid);">
+      <div class="section-container">
+        <div class="section-header">
+          <span class="section-number">02</span>
+          <h2 class="section-title">Compétences E5 <span class="title-gradient">validées</span></h2>
+          <div class="section-line"></div>
+        </div>
+        <p class="about-text" style="text-align: center; margin-bottom: 2rem;">
+          Ce projet valide plusieurs compétences du référentiel BTS SIO pour l'Épreuve E5.
+          <a href="epreuve-e5.html" style="color: var(--primary-light); text-decoration: underline;">Voir le tableau complet E5 →</a>
+        </p>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem;">
+          <div class="skill-category" style="background: var(--bg-card); padding: 1.5rem; border-radius: 12px; border: 1px solid var(--border);">
+            <h3 class="category-title"><i class="fas fa-project-diagram"></i> Bloc 4 : Travailler en mode projet</h3>
+            <ul style="list-style: none; padding-left: 0; margin-top: 1rem;">
+              <li style="padding: 0.5rem 0; color: var(--text-secondary); display: flex; align-items: flex-start; gap: 0.5rem;">
+                <i class="fas fa-check-circle" style="color: var(--primary); margin-top: 0.25rem; min-width: 16px;"></i>
+                <span>Analyser les objectifs et les modalités d'organisation d'un projet</span>
+              </li>
+              <li style="padding: 0.5rem 0; color: var(--text-secondary); display: flex; align-items: flex-start; gap: 0.5rem;">
+                <i class="fas fa-check-circle" style="color: var(--primary); margin-top: 0.25rem; min-width: 16px;"></i>
+                <span>Planifier les activités de déploiement</span>
+              </li>
+            </ul>
+          </div>
+          <div class="skill-category" style="background: var(--bg-card); padding: 1.5rem; border-radius: 12px; border: 1px solid var(--border);">
+            <h3 class="category-title"><i class="fas fa-rocket"></i> Bloc 5 : Mettre à disposition un service</h3>
+            <ul style="list-style: none; padding-left: 0; margin-top: 1rem;">
+              <li style="padding: 0.5rem 0; color: var(--text-secondary); display: flex; align-items: flex-start; gap: 0.5rem;">
+                <i class="fas fa-check-circle" style="color: var(--primary); margin-top: 0.25rem; min-width: 16px;"></i>
+                <span>Réaliser les tests d'intégration et d'acceptation d'un service</span>
+              </li>
+              <li style="padding: 0.5rem 0; color: var(--text-secondary); display: flex; align-items: flex-start; gap: 0.5rem;">
+                <i class="fas fa-check-circle" style="color: var(--primary); margin-top: 0.25rem; min-width: 16px;"></i>
+                <span>Déployer un service (<span class="term" data-def="Logiciel gratuit qui fait tourner une IA directement sur ta machine, sans internet.">Ollama</span> + Open WebUI)</span>
+              </li>
+            </ul>
+          </div>
+          <div class="skill-category" style="background: var(--bg-card); padding: 1.5rem; border-radius: 12px; border: 1px solid var(--border);">
+            <h3 class="category-title"><i class="fas fa-graduation-cap"></i> Bloc 6 : Développement professionnel</h3>
+            <ul style="list-style: none; padding-left: 0; margin-top: 1rem;">
+              <li style="padding: 0.5rem 0; color: var(--text-secondary); display: flex; align-items: flex-start; gap: 0.5rem;">
+                <i class="fas fa-check-circle" style="color: var(--primary); margin-top: 0.25rem; min-width: 16px;"></i>
+                <span>Mettre en œuvre des outils et stratégies de veille informationnelle (IA/<span class="term" data-def="Modèle d'IA entraîné sur du texte, capable de répondre à des questions, rédiger ou générer du code. ChatGPT en est un exemple.">LLM</span>)</span>
+              </li>
+              <li style="padding: 0.5rem 0; color: var(--text-secondary); display: flex; align-items: flex-start; gap: 0.5rem;">
+                <i class="fas fa-check-circle" style="color: var(--primary); margin-top: 0.25rem; min-width: 16px;"></i>
+                <span>Mettre en place son environnement d'apprentissage personnel</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="objectifs" class="section">
+      <div class="section-container">
+        <div class="section-header">
+          <span class="section-number">03</span>
+          <h2 class="section-title">Objectifs <span class="title-gradient">du projet</span></h2>
+          <div class="section-line"></div>
+        </div>
+        <div class="timeline-achievements">
+          <div class="achievement-item"><i class="fas fa-check-circle"></i><span>Déployer une solution IA auto-hébergée
+              sur une infrastructure locale.</span></div>
+          <div class="achievement-item"><i class="fas fa-check-circle"></i><span>Installer et configurer <span class="term" data-def="Logiciel gratuit qui fait tourner une IA directement sur ta machine, sans internet.">Ollama</span> pour
+              l'exécution de modèles <span class="term" data-def="Modèle d'IA entraîné sur du texte, capable de répondre à des questions, rédiger ou générer du code. ChatGPT en est un exemple.">LLM</span>.</span></div>
+          <div class="achievement-item"><i class="fas fa-check-circle"></i><span>Mettre en place Open WebUI comme
+              interface utilisateur.</span></div>
+          <div class="achievement-item"><i class="fas fa-check-circle"></i><span>Optimiser les performances avec des
+              contraintes matérielles (8 Go RAM).</span></div>
+          <div class="achievement-item"><i class="fas fa-check-circle"></i><span>Sécuriser l'accès réseau et configurer
+              le <span class="term" data-def="Système qui filtre le trafic réseau et bloque les connexions non autorisées.">firewall</span> (ports et services).</span></div>
+          <div class="achievement-item"><i class="fas fa-check-circle"></i><span>Tester plusieurs modèles IA légers
+              (Phi-3, Llama 3.2 3B).</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="architecture" class="section">
+      <div class="section-container">
+        <div class="section-header">
+          <span class="section-number">04</span>
+          <h2 class="section-title">Architecture <span class="title-gradient">et schémas</span></h2>
+          <div class="section-line"></div>
+        </div>
+        <div class="about-content">
+          <div>
+            <p class="about-text">
+              L'hyperviseur <strong><span class="term" data-def="Logiciel qui permet de faire tourner plusieurs systèmes (machines virtuelles) sur un seul serveur physique.">VMware</span> ESXi</strong> héberge une <span class="term" data-def="Ordinateur simulé qui tourne à l'intérieur d'un vrai serveur physique.">VM</span> <strong>Rocky Linux 9</strong>. <span class="term" data-def="Logiciel gratuit qui fait tourner une IA directement sur ta machine, sans internet.">Ollama</span> tourne en
+              tant que service <strong>systemd</strong> et expose une <span class="term" data-def="Interface qui permet à des programmes de communiquer entre eux — ici, pour envoyer des requêtes à un service depuis du code.">API</span> HTTP sur le port <strong>11434</strong>.
+              Open WebUI est déployé en <strong>conteneur <span class="term" data-def="Outil qui fait tourner des applications dans des environnements isolés, sans modifier le reste du système.">Docker</span></strong> et fournit l'interface web sur le port
+              <strong>8080</strong>.
+            </p>
+            <p class="about-text">
+              <strong>Flux :</strong> Navigateur → Open WebUI → <span class="term" data-def="Logiciel gratuit qui fait tourner une IA directement sur ta machine, sans internet.">Ollama</span> → Modèle <span class="term" data-def="Modèle d'IA entraîné sur du texte, capable de répondre à des questions, rédiger ou générer du code. ChatGPT en est un exemple.">LLM</span> (Phi-3, Llama 3.2).
+            </p>
+            <div class="timeline-achievements">
+              <div class="achievement-item"><i class="fas fa-server"></i><span><span class="term" data-def="Ordinateur simulé qui tourne à l'intérieur d'un vrai serveur physique.">VM</span> Rocky Linux 9 sur <span class="term" data-def="Logiciel qui permet de faire tourner plusieurs systèmes (machines virtuelles) sur un seul serveur physique.">VMware</span> ESXi</span>
+              </div>
+              <div class="achievement-item"><i class="fas fa-brain"></i><span><span class="term" data-def="Logiciel gratuit qui fait tourner une IA directement sur ta machine, sans internet.">Ollama</span> (<span class="term" data-def="Interface qui permet à des programmes de communiquer entre eux — ici, pour envoyer des requêtes à un service depuis du code.">API</span> HTTP :11434) + modèles
+                  <span class="term" data-def="Modèle d'IA entraîné sur du texte, capable de répondre à des questions, rédiger ou générer du code. ChatGPT en est un exemple.">LLM</span></span></div>
+              <div class="achievement-item"><i class="fab fa-docker"></i><span>Open WebUI en conteneur (HTTP
+                  :8080)</span></div>
+              <div class="achievement-item"><i class="fas fa-network-wired"></i><span>Accès LAN + règles firewalld</span>
+              </div>
+            </div>
+          </div>
+          <div class="gallery-grid">
+            <div class="photo-container">
+              <img src="projet-ia-ollama_assets/architecture-ia.svg" alt="Schéma Architecture IA auto-hébergée" class="project-image" loading="lazy">
+              <p class="image-caption">Schéma global (ESXi → <span class="term" data-def="Ordinateur simulé qui tourne à l'intérieur d'un vrai serveur physique.">VM</span> Rocky Linux → Open WebUI + <span class="term" data-def="Logiciel gratuit qui fait tourner une IA directement sur ta machine, sans internet.">Ollama</span>)</p>
+            </div>
+            <p class="about-text" style="grid-column: 1 / -1;">Les captures complémentaires de cette section ne sont pas encore publiées.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="etapes" class="section" style="background: var(--bg-card-solid);">
+      <div class="section-container">
+        <div class="section-header">
+          <span class="section-number">05</span>
+          <h2 class="section-title">Étapes <span class="title-gradient">d'implémentation</span></h2>
+          <div class="section-line"></div>
+        </div>
+        <div class="timeline-achievements">
+          <div class="achievement-item"><i class="fas fa-check-circle"></i><span>Création de la <span class="term" data-def="Ordinateur simulé qui tourne à l'intérieur d'un vrai serveur physique.">VM</span> sur <span class="term" data-def="Logiciel qui permet de faire tourner plusieurs systèmes (machines virtuelles) sur un seul serveur physique.">VMware</span> ESXi (RHEL 9
+              64-bit) et installation Rocky Linux 9 (minimal).</span></div>
+          <div class="achievement-item"><i class="fas fa-check-circle"></i><span>Mise à jour du système et installation
+              des outils de base : <code>curl</code>, <code>wget</code>, <code>git</code>, <code>nano</code>.</span></div>
+          <div class="achievement-item"><i class="fas fa-check-circle"></i><span>Configuration sécurité : SELinux en mode
+              permissif (si nécessaire) et ouverture des ports nécessaires (ex: 8080, et 11434 si l'<span class="term" data-def="Interface qui permet à des programmes de communiquer entre eux — ici, pour envoyer des requêtes à un service depuis du code.">API</span> <span class="term" data-def="Logiciel gratuit qui fait tourner une IA directement sur ta machine, sans internet.">Ollama</span> est exposée)
+              via <code>firewall-cmd</code>.</span></div>
+          <div class="achievement-item"><i class="fas fa-check-circle"></i><span>Installation d'<span class="term" data-def="Logiciel gratuit qui fait tourner une IA directement sur ta machine, sans internet.">Ollama</span> via le <span class="term" data-def="Programme automatique qui effectue des tâches répétitives sans intervention manuelle.">script</span>
+              officiel + vérification du service (<code>systemctl status ollama</code>).</span></div>
+          <div class="achievement-item"><i class="fas fa-check-circle"></i><span>Téléchargement et tests des modèles :
+              <code>ollama pull phi3</code>, <code>ollama pull llama3.2:3b</code>, puis test en CLI.</span></div>
+          <div class="achievement-item"><i class="fas fa-check-circle"></i><span>Configuration <span class="term" data-def="Logiciel gratuit qui fait tourner une IA directement sur ta machine, sans internet.">Ollama</span> pour l'écoute réseau
+              (override systemd / variables d'environnement).</span></div>
+          <div class="achievement-item"><i class="fas fa-check-circle"></i><span>Installation de <span class="term" data-def="Outil qui fait tourner des applications dans des environnements isolés, sans modifier le reste du système.">Docker</span> CE et déploiement
+              d'Open WebUI en conteneur (liaison vers l'<span class="term" data-def="Interface qui permet à des programmes de communiquer entre eux — ici, pour envoyer des requêtes à un service depuis du code.">API</span> <span class="term" data-def="Logiciel gratuit qui fait tourner une IA directement sur ta machine, sans internet.">Ollama</span>).</span></div>
+          <div class="achievement-item"><i class="fas fa-check-circle"></i><span>Validation : accès navigateur à Open WebUI
+              et tests de conversation / sélection de modèles.</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="difficultes" class="section">
+      <div class="section-container">
+        <div class="section-header">
+          <span class="section-number">06</span>
+          <h2 class="section-title">Difficultés <span class="title-gradient">rencontrées</span></h2>
+          <div class="section-line"></div>
+        </div>
+        <div class="timeline-achievements">
+          <div class="achievement-item"><i class="fas fa-exclamation-triangle"></i><span>Contraintes matérielles : 8 Go de
+              RAM limitent le choix des modèles et les performances.</span></div>
+          <div class="achievement-item"><i class="fas fa-exclamation-triangle"></i><span><span class="term" data-def="Logiciel gratuit qui fait tourner une IA directement sur ta machine, sans internet.">Ollama</span> écoute en localhost par
+              défaut : adaptation nécessaire pour l'accès réseau.</span></div>
+          <div class="achievement-item"><i class="fas fa-exclamation-triangle"></i><span>Dépendances <span class="term" data-def="Outil qui fait tourner des applications dans des environnements isolés, sans modifier le reste du système.">Docker</span> sur
+              Rocky/RHEL : configuration des dépôts et services.</span></div>
+          <div class="achievement-item"><i class="fas fa-exclamation-triangle"></i><span>Optimisation pour éviter le swap
+              lors du chargement de modèles.</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="solutions" class="section" style="background: var(--bg-card-solid);">
+      <div class="section-container">
+        <div class="section-header">
+          <span class="section-number">07</span>
+          <h2 class="section-title">Solutions <span class="title-gradient">appliquées</span></h2>
+          <div class="section-line"></div>
+        </div>
+        <div class="timeline-achievements">
+          <div class="achievement-item"><i class="fas fa-lightbulb"></i><span>Choix de modèles légers : Phi-3 et Llama 3.2
+              3B, adaptés à 8 Go RAM.</span></div>
+          <div class="achievement-item"><i class="fas fa-lightbulb"></i><span>Override systemd / variable d'environnement
+              pour exposer l'<span class="term" data-def="Interface qui permet à des programmes de communiquer entre eux — ici, pour envoyer des requêtes à un service depuis du code.">API</span> <span class="term" data-def="Logiciel gratuit qui fait tourner une IA directement sur ta machine, sans internet.">Ollama</span> (0.0.0.0:11434).</span></div>
+          <div class="achievement-item"><i class="fas fa-lightbulb"></i><span>Déploiement Open WebUI avec paramètres réseau
+              adaptés (mapping de port ou <code>--network=host</code>).</span></div>
+          <div class="achievement-item"><i class="fas fa-lightbulb"></i><span>Règles <code>firewalld</code> pour autoriser
+              les ports nécessaires : 8080 (Open WebUI) et, si besoin, 11434 (<span class="term" data-def="Interface qui permet à des programmes de communiquer entre eux — ici, pour envoyer des requêtes à un service depuis du code.">API</span> <span class="term" data-def="Logiciel gratuit qui fait tourner une IA directement sur ta machine, sans internet.">Ollama</span> exposée).</span></div>
+          <div class="achievement-item"><i class="fas fa-lightbulb"></i><span>Tests de stabilité et ajustements pour
+              limiter l'usage mémoire.</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="commandes" class="section">
+      <div class="section-container">
+        <div class="section-header">
+          <span class="section-number">08</span>
+          <h2 class="section-title">Commandes <span class="title-gradient">clés</span></h2>
+          <div class="section-line"></div>
+        </div>
+        <p class="about-text">
+          Voici les principales commandes utilisées pour déployer et configurer l'infrastructure IA.
+        </p>
+        <div style="display: grid; gap: 1.5rem; margin-top: 2rem;">
+          <div style="background: var(--bg-card); padding: 1.5rem; border-radius: 12px; border: 1px solid var(--border);">
+            <h3 style="color: var(--primary-light); margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem;">
+              <i class="fas fa-download"></i> Installation d'<span class="term" data-def="Logiciel gratuit qui fait tourner une IA directement sur ta machine, sans internet.">Ollama</span>
+            </h3>
+            <pre style="background: var(--bg-card-solid); padding: 1rem; border-radius: 8px; overflow-x: auto; font-family: var(--font-code); font-size: 0.85rem; margin: 0;"><code># Télécharger et installer Ollama
+curl -fsSL https://ollama.com/install.sh | sh
+
+# Vérifier le service
+systemctl status ollama
+systemctl enable ollama --now</code></pre>
+          </div>
+          <div style="background: var(--bg-card); padding: 1.5rem; border-radius: 12px; border: 1px solid var(--border);">
+            <h3 style="color: var(--primary-light); margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem;">
+              <i class="fas fa-network-wired"></i> Configuration réseau (expose <span class="term" data-def="Interface qui permet à des programmes de communiquer entre eux — ici, pour envoyer des requêtes à un service depuis du code.">API</span>)
+            </h3>
+            <pre style="background: var(--bg-card-solid); padding: 1rem; border-radius: 8px; overflow-x: auto; font-family: var(--font-code); font-size: 0.85rem; margin: 0;"><code># Créer un override systemd pour exposer l'API
+sudo mkdir -p /etc/systemd/system/ollama.service.d
+sudo nano /etc/systemd/system/ollama.service.d/override.conf
+
+# Contenu du fichier override.conf :
+[Service]
+Environment="OLLAMA_HOST=0.0.0.0:11434"
+
+# Recharger et redémarrer
+sudo systemctl daemon-reload
+sudo systemctl restart ollama</code></pre>
+          </div>
+          <div style="background: var(--bg-card); padding: 1.5rem; border-radius: 12px; border: 1px solid var(--border);">
+            <h3 style="color: var(--primary-light); margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem;">
+              <i class="fas fa-shield-alt"></i> Configuration firewalld
+            </h3>
+            <pre style="background: var(--bg-card-solid); padding: 1rem; border-radius: 8px; overflow-x: auto; font-family: var(--font-code); font-size: 0.85rem; margin: 0;"><code># Ouvrir le port 8080 (Open WebUI)
+sudo firewall-cmd --permanent --add-port=8080/tcp
+
+# Ouvrir le port 11434 (API Ollama, optionnel)
+sudo firewall-cmd --permanent --add-port=11434/tcp
+
+# Recharger le firewall
+sudo firewall-cmd --reload
+
+# Vérifier les ports ouverts
+sudo firewall-cmd --list-ports</code></pre>
+          </div>
+          <div style="background: var(--bg-card); padding: 1.5rem; border-radius: 12px; border: 1px solid var(--border);">
+            <h3 style="color: var(--primary-light); margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem;">
+              <i class="fas fa-brain"></i> Téléchargement et test des modèles
+            </h3>
+            <pre style="background: var(--bg-card-solid); padding: 1rem; border-radius: 8px; overflow-x: auto; font-family: var(--font-code); font-size: 0.85rem; margin: 0;"><code># Télécharger le modèle Phi-3
+ollama pull phi3
+
+# Télécharger Llama 3.2 (3B)
+ollama pull llama3.2:3b
+
+# Lister les modèles installés
+ollama list
+
+# Tester un modèle en CLI
+ollama run phi3 "Bonjour, peux-tu te présenter ?"</code></pre>
+          </div>
+          <div style="background: var(--bg-card); padding: 1.5rem; border-radius: 12px; border: 1px solid var(--border);">
+            <h3 style="color: var(--primary-light); margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem;">
+              <i class="fab fa-docker"></i> Déploiement d'Open WebUI
+            </h3>
+            <pre style="background: var(--bg-card-solid); padding: 1rem; border-radius: 8px; overflow-x: auto; font-family: var(--font-code); font-size: 0.85rem; margin: 0;"><code># Installer Docker
+sudo dnf config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
+sudo dnf install -y docker-ce docker-ce-cli containerd.io
+sudo systemctl enable docker --now
+
+# Déployer Open WebUI
+docker run -d \
+  --name open-webui \
+  -p 8080:8080 \
+  -e OLLAMA_BASE_URL=http://localhost:11434 \
+  -v open-webui:/app/backend/data \
+  --restart always \
+  ghcr.io/open-webui/open-webui:main
+
+# Vérifier le conteneur
+docker ps
+docker logs open-webui</code></pre>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="resultats" class="section">
+      <div class="section-container">
+        <div class="section-header">
+          <span class="section-number">09</span>
+          <h2 class="section-title">Résultats <span class="title-gradient">et captures</span></h2>
+          <div class="section-line"></div>
+        </div>
+        <p class="about-text">
+          La <span class="term" data-def="Ordinateur simulé qui tourne à l'intérieur d'un vrai serveur physique.">VM</span> héberge une solution IA locale opérationnelle : l'interface Open WebUI est accessible depuis le réseau et
+          permet de dialoguer avec des modèles <span class="term" data-def="Modèle d'IA entraîné sur du texte, capable de répondre à des questions, rédiger ou générer du code. ChatGPT en est un exemple.">LLM</span> exécutés par <span class="term" data-def="Logiciel gratuit qui fait tourner une IA directement sur ta machine, sans internet.">Ollama</span>.
+        </p>
+        <p class="about-text">
+          <i class="fas fa-search-plus"></i> Astuce : cliquez sur une image pour l'agrandir (zoom).
+        </p>
+        <div class="gallery-grid">
+          <div class="photo-container">
+            <img src="projet-ia-ollama_assets/01-maj-systeme.png" alt="SSH et mise à jour du système (dnf update)" class="project-image" loading="lazy">
+            <p class="image-caption"><span class="term" data-def="Protocole sécurisé pour se connecter à distance à un serveur, comme un accès à distance chiffré.">SSH</span> + mise à jour système (<code>dnf update -y</code>)</p>
+          </div>
+
+          <div class="photo-container">
+            <img src="projet-ia-ollama_assets/02-outils-base.png" alt="Installation des outils de base (curl, wget, git, nano)" class="project-image" loading="lazy">
+            <p class="image-caption">Installation des outils de base (curl, wget, git, nano)</p>
+          </div>
+
+          <div class="photo-container">
+            <img src="projet-ia-ollama_assets/03-securite-firewall.png" alt="Sécurité : SELinux et ouverture des ports (firewalld)" class="project-image" loading="lazy">
+            <p class="image-caption">Sécurité : SELinux + ouverture des ports via <code>firewall-cmd</code></p>
+          </div>
+
+          <div class="photo-container">
+            <img src="projet-ia-ollama_assets/04-install-ollama.png" alt="Installation d'Ollama (script officiel)" class="project-image" loading="lazy">
+            <p class="image-caption">Installation d'<span class="term" data-def="Logiciel gratuit qui fait tourner une IA directement sur ta machine, sans internet.">Ollama</span> (zstd + <span class="term" data-def="Programme automatique qui effectue des tâches répétitives sans intervention manuelle.">script</span> officiel)</p>
+          </div>
+
+          <div class="photo-container">
+            <img src="projet-ia-ollama_assets/05-ollama-cli.png" alt="Vérification du service Ollama (systemctl status)" class="project-image" loading="lazy">
+            <p class="image-caption">Service <span class="term" data-def="Logiciel gratuit qui fait tourner une IA directement sur ta machine, sans internet.">Ollama</span> actif (<code>systemctl status ollama</code>)</p>
+          </div>
+
+          <div class="photo-container">
+            <img src="projet-ia-ollama_assets/06-pull-phi3.png" alt="Téléchargement du modèle Phi-3 (ollama pull phi3)" class="project-image" loading="lazy">
+            <p class="image-caption">Téléchargement du modèle Phi-3 (<code>ollama pull phi3</code>)</p>
+          </div>
+
+          <div class="photo-container">
+            <img src="projet-ia-ollama_assets/07-chat-exemple.png" alt="Test du modèle en CLI et configuration systemd (override)" class="project-image" loading="lazy">
+            <p class="image-caption">Test en CLI + override systemd (configuration <span class="term" data-def="Logiciel gratuit qui fait tourner une IA directement sur ta machine, sans internet.">Ollama</span>)</p>
+          </div>
+
+          <div class="photo-container">
+            <img src="projet-ia-ollama_assets/08-install-docker.png" alt="Installation de Docker sur Rocky Linux" class="project-image" loading="lazy">
+            <p class="image-caption">Installation de <span class="term" data-def="Outil qui fait tourner des applications dans des environnements isolés, sans modifier le reste du système.">Docker</span> (pré-requis Open WebUI)</p>
+          </div>
+
+          <div class="photo-container">
+            <img src="projet-ia-ollama_assets/09-deploiement-openwebui.png" alt="Déploiement du conteneur Open WebUI (docker run)" class="project-image" loading="lazy">
+            <p class="image-caption">Déploiement d'Open WebUI (conteneur <span class="term" data-def="Outil qui fait tourner des applications dans des environnements isolés, sans modifier le reste du système.">Docker</span>)</p>
+          </div>
+
+          <div class="photo-container">
+            <img src="projet-ia-ollama_assets/10-openwebui-interface.png" alt="Interface Open WebUI accessible via navigateur" class="project-image" loading="lazy">
+            <p class="image-caption">Open WebUI accessible via <code>http://IP:8080</code> (phi3:latest)</p>
+          </div>
+
+          <div class="photo-container">
+            <img src="projet-ia-ollama_assets/11-chat-openwebui.png" alt="Exemple de conversation dans Open WebUI" class="project-image" loading="lazy">
+            <p class="image-caption">Exemple de conversation dans Open WebUI (réponse du modèle)</p>
+          </div>
+
+          <p class="about-text" style="grid-column: 1 / -1;">Les captures complémentaires de cette section ne sont pas encore publiées.</p>
+        </div>
+        <div class="section-footer">
+          <a href="../index.html#projets" class="btn-more"><i class="fas fa-arrow-left"></i> Retour aux projets</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="main-footer" role="contentinfo">
+    <div class="footer-container">
+      <div class="footer-content">
+        <p class="footer-text">2025 <span class="footer-copyright">Franck Raymond</span> - Tous droits réservés.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Lightbox (zoom images) -->
+  <div id="lightbox" aria-hidden="true">
+    <img id="lightbox-img" src="" alt="Image agrandie">
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+  <script src="../script.js?v=20261028-b753f7964f"></script>
+  <script>
+    (() => {
+      const lightbox = document.getElementById('lightbox');
+      const lightboxImg = document.getElementById('lightbox-img');
+      if (!lightbox || !lightboxImg) return;
+
+      function openLightbox(img) {
+        lightboxImg.src = img.dataset.fullSrc || img.src;
+        lightboxImg.alt = img.alt || 'Image agrandie';
+        lightbox.classList.add('active');
+        lightbox.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = 'hidden';
+      }
+
+      function closeLightbox() {
+        lightbox.classList.remove('active');
+        lightbox.setAttribute('aria-hidden', 'true');
+        document.body.style.overflow = '';
+        lightboxImg.src = '';
+      }
+
+      document.querySelectorAll('.gallery-grid img.project-image').forEach((img) => {
+        img.style.cursor = 'zoom-in';
+        img.addEventListener('click', () => openLightbox(img));
+      });
+
+      // Close on click anywhere on the overlay.
+      lightbox.addEventListener('click', closeLightbox);
+
+      // Close on Escape.
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') closeLightbox();
+      });
+    })();
+  </script>
+
+
+
+<script src="/assets/portfolio-glossary.js" defer=""></script><script src="/assets/legacy-unified.js?v=20261028-8c422e514f" defer=""></script></body></html>

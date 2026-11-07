@@ -1,0 +1,459 @@
+<!DOCTYPE html><html lang="fr"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Zabbix | Portfolio</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&amp;family=Outfit:wght@300;400;500;600;700;800;900&amp;family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../style.css">
+  <style>
+    /* Galerie Zabbix - Grille responsive */
+    .zabbix-gallery {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+
+    @media (max-width: 900px) {
+      .zabbix-gallery {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .zabbix-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      overflow: hidden;
+      transition: all 0.3s ease;
+    }
+
+    .zabbix-card:hover {
+      border-color: var(--primary);
+      transform: translateY(-5px);
+      box-shadow: 0 20px 40px rgba(99, 102, 241, 0.15);
+    }
+
+    .zabbix-card-img {
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+      aspect-ratio: 16/10;
+      background: var(--bg-darker);
+    }
+
+    .zabbix-card-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.3s ease;
+    }
+
+    .zabbix-card:hover .zabbix-card-img img {
+      transform: scale(1.05);
+    }
+
+    .zabbix-card-img::after {
+      content: '\f065';
+      font-family: 'Font Awesome 6 Free';
+      font-weight: 900;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 2rem;
+      color: white;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+    }
+
+    .zabbix-card:hover .zabbix-card-img::after {
+      opacity: 0.8;
+    }
+
+    .zabbix-card-content {
+      padding: 1.5rem;
+    }
+
+    .zabbix-card-content h3 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 0.75rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .zabbix-card-content h3 i {
+      color: var(--primary);
+    }
+
+    .zabbix-card-content p {
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+
+    /* Lightbox */
+    #lightbox {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.95);
+      z-index: 2000;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      padding: 2rem;
+    }
+
+    #lightbox.active {
+      display: flex;
+    }
+
+    #lightbox-img {
+      max-width: 95%;
+      max-height: 90vh;
+      border-radius: 8px;
+      box-shadow: 0 25px 50px rgba(0,0,0,0.5);
+    }
+
+    .lightbox-close {
+      position: absolute;
+      top: 1.5rem;
+      right: 2rem;
+      font-size: 2.5rem;
+      color: white;
+      cursor: pointer;
+      transition: color 0.2s;
+    }
+
+    .lightbox-close:hover {
+      color: var(--primary);
+    }
+  
+        /* Tooltips termes techniques */
+        .term {
+            border-bottom: 1px dashed var(--primary);
+            cursor: help;
+            position: relative;
+            display: inline;
+        }
+        .term::after {
+            content: attr(data-def);
+            position: absolute;
+            bottom: calc(100% + 8px);
+            left: 50%;
+            transform: translateX(-50%);
+            background: #1e293b;
+            color: #f8fafc;
+            font-size: 0.78rem;
+            line-height: 1.5;
+            padding: 0.6rem 0.9rem;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            white-space: normal;
+            width: 220px;
+            text-align: left;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.2s;
+            z-index: 100;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+        }
+        .term:hover::after { opacity: 1; }
+</style>
+<meta name="theme-color" content="#111214"><link rel="stylesheet" href="/assets/legacy-unified.css?v=20260831-2"><meta name="description" content="Portfolio de Franck Raymond : projets en administration systèmes, réseaux, supervision et cybersécurité."><meta name="author" content="Franck Raymond"><meta name="robots" content="index,follow,max-image-preview:large"><meta property="og:type" content="website"><meta property="og:site_name" content="Portfolio de Franck Raymond"><meta property="og:title" content="Zabbix | Portfolio"><meta property="og:description" content="Portfolio de Franck Raymond : projets en administration systèmes, réseaux, supervision et cybersécurité."><meta property="og:url" content="https://franckraymond.tech/pages/zabbix.html"><meta property="og:image" content="https://franckraymond.tech/franck.webp"><meta property="og:image:alt" content="Portrait professionnel de Franck Raymond"><meta property="og:locale" content="fr_FR"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Zabbix | Portfolio"><meta name="twitter:description" content="Portfolio de Franck Raymond : projets en administration systèmes, réseaux, supervision et cybersécurité."><meta name="twitter:image" content="https://franckraymond.tech/franck.webp"><link rel="canonical" href="https://franckraymond.tech/pages/zabbix.html"><link rel="icon" href="/favicon-32x32.png" sizes="32x32" type="image/png"><link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180"><link rel="manifest" href="/site.webmanifest"><script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"Zabbix | Portfolio","url":"https://franckraymond.tech/pages/zabbix.html","description":"Portfolio de Franck Raymond : projets en administration systèmes, réseaux, supervision et cybersécurité.","isPartOf":{"@type":"WebSite","name":"Portfolio de Franck Raymond","url":"https://franckraymond.tech/"},"about":{"@type":"Person","name":"Franck Raymond","url":"https://franckraymond.tech/"}}</script>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,400&amp;family=Geist:wght@400;500;600&amp;display=swap">
+<link rel="stylesheet" href="/assets/editorial-tokens.css?v=20261106-modern">
+<link rel="stylesheet" href="/assets/editorial.css?v=20261106-modern">
+<script src="/assets/editorial-theme.js?v=20261028-1fe0ee8c9d"></script>
+</head>
+<body data-theme="light" class="portfolio-legacy editorial-site">
+  <div class="bg-mesh"></div>
+  <div class="noise-overlay"></div>
+  <div class="grid-lines"></div>
+
+  <header class="main-header" id="header">
+    <nav class="nav-container" aria-label="Navigation principale">
+      <div class="nav-brand">
+        <a href="../index.html" class="brand-logo">
+          <span class="logo-bracket">&lt;</span>
+          <span class="logo-text">FR</span>
+          <span class="logo-bracket">/&gt;</span>
+        </a>
+      </div>
+      <div class="nav-menu" id="navMenu">
+        <a href="../index.html" class="nav-link">
+          <i class="fas fa-home"></i>
+          <span class="nav-text">Accueil</span>
+        </a>
+        <a href="../index.html#skills" class="nav-link active">
+          <i class="fas fa-code"></i>
+          <span class="nav-text">Compétences</span>
+        </a>
+        <a href="../index.html#experience" class="nav-link">
+          <i class="fas fa-briefcase"></i>
+          <span class="nav-text">Expériences</span>
+        </a>
+        <a href="../index.html#contact" class="nav-link">
+          <i class="fas fa-envelope"></i>
+          <span class="nav-text">Contact</span>
+        </a>
+      
+<a class="nav-link" href="https://opengym.jsuisfray.blitz.cloud/"><span class="nav-text">FrayFit</span></a></div>
+      <div class="nav-controls">
+        <button class="theme-toggle" id="themeToggle" title="Changer le thème" aria-label="Basculer entre mode sombre et clair">
+          <i class="fas fa-moon"></i>
+        </button>
+        <button class="menu-toggle" id="menuToggle" aria-label="Ouvrir le menu mobile" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero-section page-hero">
+      <div class="hero-glow"></div>
+      <div class="hero-glow-2"></div>
+      <div class="hero-container">
+        <div class="hero-content">
+          <div class="hero-greeting page-badge">Supervision &amp; sécurité</div>
+          <h1 class="hero-name"><span class="name-gradient"><span class="term" data-def="Logiciel de surveillance qui vérifie en temps réel que les serveurs et équipements réseau fonctionnent correctement.">Zabbix</span></span></h1>
+          <p class="hero-description">
+            Supervision dinfrastructures pour détecter rapidement les incidents.
+          </p>
+          <div class="hero-buttons">
+            <a href="#actions" class="btn btn-primary"><i class="fas fa-list"></i> Actions</a>
+            <a href="#preuves" class="btn btn-secondary"><i class="fas fa-image"></i> Preuves</a>
+          </div>
+        </div>
+        <div class="hero-image-wrapper">
+          <div class="hero-image-container">
+            <div class="profile-image-frame">
+              <i class="fas fa-chart-line page-icon"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contexte" class="section">
+      <div class="section-container">
+        <div class="section-header">
+          <span class="section-number">01</span>
+          <h2 class="section-title">Contexte <span class="title-gradient">&amp; objectifs</span></h2>
+          <div class="section-line"></div>
+        </div>
+        <div class="about-content">
+          <div>
+            <p class="about-text">
+              Dans le cadre de mes projets techniques, j'ai deploye et configure en laboratoire <span class="term" data-def="Logiciel de surveillance qui vérifie en temps réel que les serveurs et équipements réseau fonctionnent correctement.">Zabbix</span> pour superviser une infrastructure composee de plusieurs serveurs (Windows Server, Linux Debian/Rocky) et équipements réseau. L'objectif etait de mettre en place une supervision proactive permettant de détecter les incidents avant qu'ils n'impactent les utilisateurs, et d'avoir une visibilité complète sur l'état de santé de l'infrastructure.
+            </p>
+            <p class="about-text" style="margin-top: 1rem;">
+              <strong>Problématique :</strong> Comment assurer une disponibilité maximale des services en anticipant les pannes et en reagissant rapidement aux anomalies ?
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="actions" class="section" style="background: var(--bg-card-solid);">
+      <div class="section-container">
+        <div class="section-header">
+          <span class="section-number">02</span>
+          <h2 class="section-title">Actions <span class="title-gradient">&amp; réalisations</span></h2>
+          <div class="section-line"></div>
+        </div>
+        <div class="about-content">
+          <div>
+            <p class="about-text">Mise en place complète d'une solution de supervision avec <span class="term" data-def="Logiciel de surveillance qui vérifie en temps réel que les serveurs et équipements réseau fonctionnent correctement.">Zabbix</span> Server.</p>
+            <div class="timeline-achievements">
+              <div class="achievement-item"><i class="fas fa-check-circle"></i><span>Installation de <span class="term" data-def="Logiciel de surveillance qui vérifie en temps réel que les serveurs et équipements réseau fonctionnent correctement.">Zabbix</span> Server 6.x sur Debian avec base MariaDB</span></div>
+              <div class="achievement-item"><i class="fas fa-check-circle"></i><span>Déploiement des agents <span class="term" data-def="Logiciel de surveillance qui vérifie en temps réel que les serveurs et équipements réseau fonctionnent correctement.">Zabbix</span> sur les hôtes Windows et Linux</span></div>
+              <div class="achievement-item"><i class="fas fa-check-circle"></i><span>Configuration des templates pour supervision CPU, RAM, disques, services</span></div>
+              <div class="achievement-item"><i class="fas fa-check-circle"></i><span>Création de triggers personnalisés (seuils d'alerte adaptes)</span></div>
+              <div class="achievement-item"><i class="fas fa-check-circle"></i><span>Mise en place des notifications par email en cas d'incident</span></div>
+              <div class="achievement-item"><i class="fas fa-check-circle"></i><span>Création de dashboards personnalisés pour visualisation en temps réel</span></div>
+              <div class="achievement-item"><i class="fas fa-check-circle"></i><span>Configuration de la decouverte automatique (LLD) pour les interfaces réseau</span></div>
+            </div>
+          </div>
+          <div>
+            <div class="skill-category">
+              <h3 class="category-title"><i class="fas fa-layer-group"></i> Outils et technologies</h3>
+              <div class="timeline-tags">
+                <span class="tag"><span class="term" data-def="Logiciel de surveillance qui vérifie en temps réel que les serveurs et équipements réseau fonctionnent correctement.">Zabbix</span> Server 6.x</span>
+                <span class="tag">Zabbix Agent</span>
+                <span class="tag">MariaDB</span>
+                <span class="tag">SNMP</span>
+                <span class="tag">Templates</span>
+                <span class="tag">Triggers</span>
+              </div>
+            </div>
+            <div class="skill-category" style="margin-top: 1.5rem;">
+              <h3 class="category-title"><i class="fas fa-graduation-cap"></i> Compétences BTS SIO</h3>
+              <div class="timeline-tags">
+                <span class="tag">Superviser les ressources</span>
+                <span class="tag">Déployer des services</span>
+                <span class="tag">Gerer les incidents</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="difficultes" class="section">
+      <div class="section-container">
+        <div class="section-header">
+          <span class="section-number">03</span>
+          <h2 class="section-title">Difficultés <span class="title-gradient">&amp; solutions</span></h2>
+          <div class="section-line"></div>
+        </div>
+        <div class="about-content">
+          <div>
+            <div class="timeline-achievements">
+              <div class="achievement-item"><i class="fas fa-exclamation-triangle" style="color: var(--accent-primary);"></i><span><strong>Problème :</strong> Communication agent bloquee par le <span class="term" data-def="Système qui filtre le trafic réseau et bloque les connexions non autorisées.">pare-feu</span> Windows</span></div>
+              <div class="achievement-item"><i class="fas fa-lightbulb" style="color: var(--accent-secondary);"></i><span><strong>Solution :</strong> Ouverture du port 10050 (agent) et 10051 (server) via <span class="term" data-def="Règles appliquées automatiquement à tous les ordinateurs d'une entreprise (ex: fond d'écran imposé, logiciels installés d'office).">GPO</span></span></div>
+            </div>
+            <div class="timeline-achievements" style="margin-top: 1rem;">
+              <div class="achievement-item"><i class="fas fa-exclamation-triangle" style="color: var(--accent-primary);"></i><span><strong>Problème :</strong> Trop d'alertes non pertinentes (faux positifs)</span></div>
+              <div class="achievement-item"><i class="fas fa-lightbulb" style="color: var(--accent-secondary);"></i><span><strong>Solution :</strong> Ajustement des seuils des triggers et ajout de conditions de severite</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="preuves" class="section" style="background: var(--bg-card-solid);">
+      <div class="section-container">
+        <div class="section-header">
+          <span class="section-number">04</span>
+          <h2 class="section-title">Supervision <span class="title-gradient">– <span class="term" data-def="Logiciel de surveillance qui vérifie en temps réel que les serveurs et équipements réseau fonctionnent correctement.">Zabbix</span></span></h2>
+          <div class="section-line"></div>
+        </div>
+        <p class="about-text">Captures d'écran illustrant la mise en place complète de <span class="term" data-def="Logiciel de surveillance qui vérifie en temps réel que les serveurs et équipements réseau fonctionnent correctement.">Zabbix</span> pour la supervision d'infrastructure.</p>
+        <p class="about-text" style="font-size: 0.9rem; color: var(--text-muted); margin-top: 0.5rem;">
+          <i class="fas fa-info-circle"></i> Note : Certaines informations sensibles ont été floutées pour des raisons de sécurité.
+        </p>
+
+        <div class="zabbix-gallery">
+          <!-- 1. Liste des hôtes / Inventaire -->
+          <div class="zabbix-card">
+            <div class="zabbix-card-img" onclick="openLightbox(this)">
+              <img src="zabbix-photo/zabbix-hotes-supervision-snmp-zbx.jpeg" alt="Liste des hôtes supervisés dans Zabbix avec agents Zabbix et SNMP" loading="lazy">
+            </div>
+            <div class="zabbix-card-content">
+              <h3><i class="fas fa-server"></i> Inventaire des hôtes supervisés</h3>
+              <p>Vue de l'ensemble des équipements supervisés : serveurs Windows/Linux avec agent <span class="term" data-def="Logiciel de surveillance qui vérifie en temps réel que les serveurs et équipements réseau fonctionnent correctement.">Zabbix</span> (ZBX) et équipements réseau via SNMP. Démontre la capacité à inventorier et superviser une infrastructure hétérogène.</p>
+            </div>
+          </div>
+
+          <!-- 2. Dashboard Global View -->
+          <div class="zabbix-card">
+            <div class="zabbix-card-img" onclick="openLightbox(this)">
+              <img src="zabbix-photo/zabbix-dashboard-global-view-problemes-perf-optimized.webp" data-full-src="zabbix-photo/zabbix-dashboard-global-view-problemes-perf.jpeg" alt="Dashboard Zabbix Global View avec vue d'ensemble des problèmes et performances" loading="lazy" width="1536" height="1152" decoding="async">
+            </div>
+            <div class="zabbix-card-content">
+              <h3><i class="fas fa-tachometer-alt"></i> Dashboard "Global View"</h3>
+              <p>Tableau de bord personnalisé offrant une vision globale de l'état de santé de l'infrastructure : problèmes actifs, performances système, et indicateurs clés en temps réel.</p>
+            </div>
+          </div>
+
+          <!-- 3. Graphique CPU Switch Cœur 1 -->
+          <div class="zabbix-card">
+            <div class="zabbix-card-img" onclick="openLightbox(this)">
+              <img src="zabbix-photo/zabbix-graph-cpu-switch-coeur-1-derniere-heure.jpeg" alt="Graphique de charge CPU du Switch Cœur 1 sur la dernière heure dans Zabbix" loading="lazy">
+            </div>
+            <div class="zabbix-card-content">
+              <h3><i class="fas fa-chart-line"></i> Graphique CPU – Switch Cœur 1</h3>
+              <p>Suivi de la charge CPU du switch de cœur de réseau sur la dernière heure. Permet d'identifier les pics de charge et d'anticiper les problèmes de performance réseau.</p>
+            </div>
+          </div>
+
+          <!-- 4. Zoom graphique CPU -->
+          <div class="zabbix-card">
+            <div class="zabbix-card-img" onclick="openLightbox(this)">
+              <img src="zabbix-photo/zabbix-graph-cpu-switch-coeur-1-zoom.jpeg" alt="Vue détaillée du graphique CPU Switch Cœur 1 avec zoom sur les variations" loading="lazy">
+            </div>
+            <div class="zabbix-card-content">
+              <h3><i class="fas fa-search-plus"></i> Analyse détaillée CPU</h3>
+              <p>Zoom sur les variations de charge CPU permettant une analyse fine des comportements. Utile pour le diagnostic et l'optimisation des performances réseau.</p>
+            </div>
+          </div>
+
+          <!-- 5. Alerte mail Link Down -->
+          <div class="zabbix-card">
+            <div class="zabbix-card-img" onclick="openLightbox(this)">
+              <img src="zabbix-photo/zabbix-alerte-mail-link-down-interface-exos-optimized.webp" data-full-src="zabbix-photo/zabbix-alerte-mail-link-down-interface-exos.jpeg" alt="Notification email Zabbix alertant d'un Link Down sur interface switch Extreme EXOS" loading="lazy" width="1536" height="1152" decoding="async">
+            </div>
+            <div class="zabbix-card-content">
+              <h3><i class="fas fa-envelope-open-text"></i> Alerte Email – Link Down</h3>
+              <p>Exemple de notification email automatique lors de la détection d'une interface réseau down sur un switch Extreme EXOS. Prouve l'efficacité du système d'alerting pour une réaction rapide.</p>
+            </div>
+          </div>
+
+          <!-- 6. Configuration médias/notifications -->
+          <div class="zabbix-card">
+            <div class="zabbix-card-img" onclick="openLightbox(this)">
+              <img src="zabbix-photo/zabbix-configuration-medias-notifications-webhook-mail.jpeg" alt="Configuration des médias de notification Zabbix : webhooks et email" loading="lazy">
+            </div>
+            <div class="zabbix-card-content">
+              <h3><i class="fas fa-cog"></i> Configuration des notifications</h3>
+              <p>Paramétrage des différents canaux de notification : email SMTP et webhooks. Permet d'alerter les équipes via plusieurs moyens selon la criticité des incidents.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="section-footer">
+          <a href="../index.html#skills" class="btn-more"><i class="fas fa-arrow-left"></i> Retour aux compétences</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Lightbox pour agrandir les images -->
+    <div id="lightbox" onclick="closeLightbox()">
+      <span class="lightbox-close">×</span>
+      <img id="lightbox-img" src="" alt="Image agrandie">
+    </div>
+  </main>
+
+  <footer class="main-footer" role="contentinfo">
+    <div class="footer-container">
+      <div class="footer-content">
+        <p class="footer-text">2026 <span class="footer-copyright">Franck Raymond</span> - Tous droits réservés.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+  <script src="../script.js?v=20261028-b753f7964f"></script>
+  <script>
+    // Lightbox functions
+    function openLightbox(element) {
+      const img = element.querySelector('img');
+      const lightbox = document.getElementById('lightbox');
+      const lightboxImg = document.getElementById('lightbox-img');
+      lightboxImg.src = img.dataset.fullSrc || img.src;
+      lightboxImg.alt = img.alt;
+      lightbox.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeLightbox() {
+      const lightbox = document.getElementById('lightbox');
+      lightbox.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
+    // Fermer avec Escape
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') closeLightbox();
+    });
+  </script>
+
+
+<script src="/assets/portfolio-glossary.js?v=20260831-2" defer=""></script><script src="/assets/legacy-unified.js?v=20261028-8c422e514f" defer=""></script></body></html>

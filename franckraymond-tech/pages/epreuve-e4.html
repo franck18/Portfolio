@@ -1,0 +1,431 @@
+<!DOCTYPE html><html lang="fr"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Épreuve E4 | Portfolio Franck Raymond</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&amp;family=Outfit:wght@300;400;500;600;700;800;900&amp;family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../style.css">
+    <style>
+        /* E4 Specific Styles */
+        .e4-table-container {
+            overflow-x: auto;
+            margin-top: 2rem;
+        }
+
+        .e4-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            background: var(--bg-card);
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+        }
+
+        .e4-table thead th {
+            background: linear-gradient(135deg, rgba(0, 168, 255, 0.15), rgba(14, 165, 233, 0.15));
+            padding: 1.25rem 1rem;
+            text-align: center;
+            font-weight: 700;
+            font-size: 0.95rem;
+            color: var(--text-primary);
+            border-bottom: 2px solid var(--primary);
+            vertical-align: top;
+        }
+
+        .e4-table thead th .bloc-number {
+            display: block;
+            font-family: var(--font-code);
+            font-size: 0.75rem;
+            color: var(--primary-light);
+            margin-bottom: 0.5rem;
+            padding: 0.25rem 0.5rem;
+            background: rgba(0, 168, 255, 0.2);
+            border-radius: 6px;
+            width: fit-content;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .e4-table tbody td {
+            padding: 1rem;
+            border-bottom: 1px solid var(--border);
+            border-right: 1px solid var(--border);
+            vertical-align: top;
+            background: var(--bg-card-solid);
+        }
+
+        .e4-table tbody td:last-child {
+            border-right: none;
+        }
+
+        .e4-table tbody tr:last-child td {
+            border-bottom: none;
+        }
+
+        .competence-link {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.75rem 1rem;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+            margin-bottom: 0.75rem;
+            transition: all 0.3s;
+            text-decoration: none;
+        }
+
+        .competence-link:last-child {
+            margin-bottom: 0;
+        }
+
+        .competence-link:hover {
+            border-color: var(--primary);
+            background: rgba(0, 168, 255, 0.1);
+            color: var(--text-primary);
+            transform: translateX(5px);
+        }
+
+        .competence-link i {
+            color: var(--primary);
+            font-size: 1rem;
+            min-width: 20px;
+        }
+
+        .empty-cell {
+            color: var(--text-muted);
+            font-style: italic;
+            font-size: 0.8rem;
+            text-align: center;
+            padding: 1rem;
+        }
+
+        .page-hero {
+            min-height: 50vh;
+            padding: 10rem 0 4rem;
+        }
+
+        .page-hero .hero-container {
+            grid-template-columns: 1fr;
+            text-align: center;
+            gap: 2rem;
+        }
+
+        .page-hero .hero-description {
+            max-width: 700px;
+            margin: 0 auto 2rem;
+        }
+
+        .page-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            background: rgba(0, 168, 255, 0.1);
+            border: 1px solid var(--border);
+            border-radius: 50px;
+            font-family: var(--font-code);
+            font-size: 0.9rem;
+            color: var(--primary-light);
+        }
+
+        .page-icon {
+            font-size: 4rem;
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        @media (max-width: 1200px) {
+            .e4-table thead th {
+                min-width: 200px;
+            }
+        }
+    
+        /* Tooltips termes techniques */
+        .term {
+            border-bottom: 1px dashed var(--primary);
+            cursor: help;
+            position: relative;
+            display: inline;
+        }
+        .term::after {
+            content: attr(data-def);
+            position: absolute;
+            bottom: calc(100% + 8px);
+            left: 50%;
+            transform: translateX(-50%);
+            background: #1e293b;
+            color: #f8fafc;
+            font-size: 0.78rem;
+            line-height: 1.5;
+            padding: 0.6rem 0.9rem;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            white-space: normal;
+            width: 220px;
+            text-align: left;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.2s;
+            z-index: 100;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+        }
+        .term:hover::after { opacity: 1; }
+</style>
+<meta name="theme-color" content="#111214"><link rel="stylesheet" href="/assets/legacy-unified.css?v=20260831-2"><meta name="description" content="Portfolio de Franck Raymond : projets en administration systèmes, réseaux, supervision et cybersécurité."><meta name="author" content="Franck Raymond"><meta name="robots" content="index,follow,max-image-preview:large"><meta property="og:type" content="website"><meta property="og:site_name" content="Portfolio de Franck Raymond"><meta property="og:title" content="Épreuve E4 | Portfolio Franck Raymond"><meta property="og:description" content="Portfolio de Franck Raymond : projets en administration systèmes, réseaux, supervision et cybersécurité."><meta property="og:url" content="https://franckraymond.tech/pages/epreuve-e4.html"><meta property="og:image" content="https://franckraymond.tech/franck.webp"><meta property="og:image:alt" content="Portrait professionnel de Franck Raymond"><meta property="og:locale" content="fr_FR"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Épreuve E4 | Portfolio Franck Raymond"><meta name="twitter:description" content="Portfolio de Franck Raymond : projets en administration systèmes, réseaux, supervision et cybersécurité."><meta name="twitter:image" content="https://franckraymond.tech/franck.webp"><link rel="canonical" href="https://franckraymond.tech/pages/epreuve-e4.html"><link rel="icon" href="/favicon-32x32.png" sizes="32x32" type="image/png"><link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180"><link rel="manifest" href="/site.webmanifest"><script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"Épreuve E4 | Portfolio Franck Raymond","url":"https://franckraymond.tech/pages/epreuve-e4.html","description":"Portfolio de Franck Raymond : projets en administration systèmes, réseaux, supervision et cybersécurité.","isPartOf":{"@type":"WebSite","name":"Portfolio de Franck Raymond","url":"https://franckraymond.tech/"},"about":{"@type":"Person","name":"Franck Raymond","url":"https://franckraymond.tech/"}}</script>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,400&amp;family=Geist:wght@400;500;600&amp;display=swap">
+<link rel="stylesheet" href="/assets/editorial-tokens.css?v=20261106-modern">
+<link rel="stylesheet" href="/assets/editorial.css?v=20261106-modern">
+<script src="/assets/editorial-theme.js?v=20261028-1fe0ee8c9d"></script>
+</head>
+
+<body data-theme="light" class="portfolio-legacy editorial-site">
+    <div class="bg-mesh"></div>
+    <div class="noise-overlay"></div>
+    <div class="grid-lines"></div>
+
+    <header class="main-header" id="header">
+        <nav class="nav-container" aria-label="Navigation principale">
+            <div class="nav-brand">
+                <a href="../index.html" class="brand-logo">
+                    <span class="logo-bracket">&lt;</span>
+                    <span class="logo-text">FR</span>
+                    <span class="logo-bracket">/&gt;</span>
+                </a>
+            </div>
+            <div class="nav-menu" id="navMenu">
+                <a href="../index.html" class="nav-link">
+                    <i class="fas fa-home"></i>
+                    <span class="nav-text">Accueil</span>
+                </a>
+                <a href="../index.html#skills" class="nav-link">
+                    <i class="fas fa-code"></i>
+                    <span class="nav-text">Compétences</span>
+                </a>
+                <a href="epreuve-e4.html" class="nav-link active">
+                    <i class="fas fa-graduation-cap"></i>
+                    <span class="nav-text">Épreuve E4</span>
+                </a>
+                <a href="../index.html#experience" class="nav-link">
+                    <i class="fas fa-briefcase"></i>
+                    <span class="nav-text">Expériences</span>
+                </a>
+                <a href="../index.html#contact" class="nav-link">
+                    <i class="fas fa-envelope"></i>
+                    <span class="nav-text">Contact</span>
+                </a>
+            
+<a class="nav-link" href="https://opengym.jsuisfray.blitz.cloud/"><span class="nav-text">FrayFit</span></a></div>
+            <div class="nav-controls">
+                <button class="theme-toggle" id="themeToggle" title="Changer le thème" aria-label="Basculer entre mode sombre et clair">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <button class="menu-toggle" id="menuToggle" aria-label="Ouvrir le menu mobile" aria-expanded="false">
+                    <span></span><span></span><span></span>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <div style="background:#22c55e;color:#fff;text-align:center;padding:0.75rem;font-weight:700;border-radius:8px;margin-bottom:1.5rem;">
+            ✅ BTS SIO SISR — Épreuve E4 passée
+        </div>
+        <section class="hero-section page-hero">
+            <div class="hero-glow"></div>
+            <div class="hero-glow-2"></div>
+            <div class="hero-container">
+                <div class="hero-content">
+                    <div class="page-badge"><i class="fas fa-graduation-cap"></i> BTS SIO SISR</div>
+                    <h1 class="hero-name"><span class="name-gradient">Épreuve E4</span></h1>
+                    <p class="hero-description">
+                        Tableau de synthèse des compétences validées à travers mes projets et missions en entreprise.
+                        Chaque bloc correspond à une activité du référentiel BTS SIO.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section id="tableau-competences" class="section">
+            <div class="section-container">
+                <div class="section-header">
+                    <span class="section-number">01</span>
+                    <h2 class="section-title">Tableau des <span class="title-gradient">compétences</span></h2>
+                    <div class="section-line"></div>
+                </div>
+
+                <div class="e4-table-container">
+                    <table class="e4-table">
+                        <thead>
+                            <tr>
+                                <th>
+                                    <span class="bloc-number">Bloc 1</span>
+                                    Gérer le patrimoine informatique
+                                </th>
+                                <th>
+                                    <span class="bloc-number">Bloc 2</span>
+                                    Répondre aux incidents et demandes
+                                </th>
+                                <th>
+                                    <span class="bloc-number">Bloc 3</span>
+                                    Développer la présence en ligne
+                                </th>
+                                <th>
+                                    <span class="bloc-number">Bloc 4</span>
+                                    Travailler en mode projet
+                                </th>
+                                <th>
+                                    <span class="bloc-number">Bloc 5</span>
+                                    Mettre à disposition un service
+                                </th>
+                                <th>
+                                    <span class="bloc-number">Bloc 6</span>
+                                    Organiser son développement pro
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <!-- Bloc 1: Gérer le patrimoine informatique -->
+                                <td>
+                                    <a href="mettre-habilitation.html" class="competence-link">
+                                        <i class="fas fa-user-shield"></i>
+                                        <span>Gérer les habilitations</span>
+                                    </a>
+                                    <a href="gerer-sauvegardes.html" class="competence-link">
+                                        <i class="fas fa-database"></i>
+                                        <span>Gérer les sauvegardes</span>
+                                    </a>
+                                    <a href="verifier-continuite.html" class="competence-link">
+                                        <i class="fas fa-sync-alt"></i>
+                                        <span>Vérifier la continuité</span>
+                                    </a>
+                                    <a href="windows-server-ad.html" class="competence-link">
+                                        <i class="fab fa-windows"></i>
+                                        <span>Windows Server / <span class="term" data-def="Annuaire centralisé qui gère tous les utilisateurs et ordinateurs d'une entreprise. L'admin y crée les comptes et définit qui a accès à quoi.">AD</span></span>
+                                    </a>
+                                    <a href="securite-ad.html" class="competence-link">
+                                        <i class="fas fa-shield-alt"></i>
+                                        <span>Sécurité AD</span>
+                                    </a>
+                                </td>
+
+                                <!-- Bloc 2: Répondre aux incidents et demandes -->
+                                <td>
+                                    <a href="collecter-demandes.html" class="competence-link">
+                                        <i class="fas fa-clipboard-list"></i>
+                                        <span>Collecter les demandes</span>
+                                    </a>
+                                    <a href="traiter-demandes-services.html" class="competence-link">
+                                        <i class="fas fa-tools"></i>
+                                        <span>Traiter demandes services</span>
+                                    </a>
+                                    <a href="traiter-demandes-applications.html" class="competence-link">
+                                        <i class="fas fa-laptop-code"></i>
+                                        <span>Traiter demandes applis</span>
+                                    </a>
+                                    <a href="projet-graylog-syslog.html" class="competence-link">
+                                        <i class="fas fa-file-alt"></i>
+                                        <span><span class="term" data-def="Protocole standard pour envoyer les journaux (logs) d'un équipement vers un serveur central.">Syslog</span> / <span class="term" data-def="Outil qui collecte et centralise les journaux (logs) de tous les serveurs pour les analyser facilement.">Graylog</span></span>
+                                    </a>
+                                </td>
+
+                                <!-- Bloc 3: Développer la présence en ligne -->
+                                <td>
+                                    <a href="valoriser-image.html" class="competence-link">
+                                        <i class="fas fa-image"></i>
+                                        <span>Valoriser l'image</span>
+                                    </a>
+                                </td>
+
+                                <!-- Bloc 4: Travailler en mode projet -->
+                                <td>
+                                    <a href="analyser-objectifs.html" class="competence-link">
+                                        <i class="fas fa-bullseye"></i>
+                                        <span>Analyser les objectifs</span>
+                                    </a>
+                                    <a href="realiser-tests.html" class="competence-link">
+                                        <i class="fas fa-vial"></i>
+                                        <span>Réaliser les tests</span>
+                                    </a>
+                                    <a href="developper-projet.html" class="competence-link">
+                                        <i class="fas fa-project-diagram"></i>
+                                        <span>Développer un projet</span>
+                                    </a>
+                                </td>
+
+                                <!-- Bloc 5: Mettre à disposition un service -->
+                                <td>
+                                    <a href="deployer-service.html" class="competence-link">
+                                        <i class="fas fa-rocket"></i>
+                                        <span>Déployer un service</span>
+                                    </a>
+                                    <a href="accompagner-utilisateurs.html" class="competence-link">
+                                        <i class="fas fa-user-friends"></i>
+                                        <span>Accompagner utilisateurs</span>
+                                    </a>
+                                    <a href="projet-ad-dhcp-dns-gpo.html" class="competence-link">
+                                        <i class="fas fa-network-wired"></i>
+                                        <span><span class="term" data-def="Système qui traduit un nom de site (ex: google.com) en adresse réseau compréhensible par les machines.">DNS</span> / <span class="term" data-def="Service qui attribue automatiquement une adresse réseau à chaque appareil qui se connecte.">DHCP</span></span>
+                                    </a>
+                                    <a href="vlan-routage.html" class="competence-link">
+                                        <i class="fas fa-sitemap"></i>
+                                        <span><span class="term" data-def="Réseau virtuel qui isole des groupes de machines entre elles, même si elles partagent les mêmes câbles.">VLAN</span> &amp; Routage</span>
+                                    </a>
+                                    <a href="linux-rocky-debian.html" class="competence-link">
+                                        <i class="fab fa-linux"></i>
+                                        <span>Linux Rocky / Debian</span>
+                                    </a>
+                                </td>
+
+                                <!-- Bloc 6: Organiser son développement professionnel -->
+                                <td>
+                                    <a href="mettre-environnement.html" class="competence-link">
+                                        <i class="fas fa-cogs"></i>
+                                        <span>Mettre en place environnement</span>
+                                    </a>
+                                    <a href="mettre-veille.html" class="competence-link">
+                                        <i class="fas fa-rss"></i>
+                                        <span>Mettre en place veille</span>
+                                    </a>
+                                    <a href="gerer-identite.html" class="competence-link">
+                                        <i class="fas fa-id-card"></i>
+                                        <span>Gérer son identité pro</span>
+                                    </a>
+                                    <a href="bloodhound.html" class="competence-link">
+                                        <i class="fas fa-search"></i>
+                                        <span>BloodHound</span>
+                                    </a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="section-footer">
+                    <a href="../index.html" class="btn-more"><i class="fas fa-arrow-left"></i> Retour à l'accueil</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="main-footer" role="contentinfo">
+        <div class="footer-container">
+            <div class="footer-content">
+                <p class="footer-text">2025 <span class="footer-copyright">Franck Raymond</span> - Tous droits réservés.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+    <script src="../script.js?v=20261028-b753f7964f"></script>
+
+
+
+<script src="/assets/portfolio-glossary.js?v=20260831-2" defer=""></script><script src="/assets/legacy-unified.js?v=20261028-8c422e514f" defer=""></script></body></html>

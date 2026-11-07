@@ -1,0 +1,174 @@
+<!DOCTYPE html><html lang="fr"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BloodHound — synthèse de compétence BTS | Portfolio Franck Raymond</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&amp;family=Outfit:wght@300;400;500;600;700;800;900&amp;family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../style.css">
+  <style>
+        /* Tooltips termes techniques */
+        .term {
+            border-bottom: 1px dashed var(--primary);
+            cursor: help;
+            position: relative;
+            display: inline;
+        }
+        .term::after {
+            content: attr(data-def);
+            position: absolute;
+            bottom: calc(100% + 8px);
+            left: 50%;
+            transform: translateX(-50%);
+            background: #1e293b;
+            color: #f8fafc;
+            font-size: 0.78rem;
+            line-height: 1.5;
+            padding: 0.6rem 0.9rem;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            white-space: normal;
+            width: 220px;
+            text-align: left;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.2s;
+            z-index: 100;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+        }
+        .term:hover::after { opacity: 1; }
+  </style>
+<meta name="theme-color" content="#111214"><link rel="stylesheet" href="/assets/legacy-unified.css?v=20260831-2"><meta name="description" content="Synthèse de compétence BTS SIO sur BloodHound et les relations Active Directory. Les captures justificatives ne sont pas encore publiées."><meta name="author" content="Franck Raymond"><meta name="robots" content="index,follow,max-image-preview:large"><meta property="og:type" content="website"><meta property="og:site_name" content="Portfolio de Franck Raymond"><meta property="og:title" content="BloodHound — synthèse de compétence BTS | Portfolio Franck Raymond"><meta property="og:description" content="Synthèse de compétence BTS SIO sur BloodHound et les relations Active Directory. Les captures justificatives ne sont pas encore publiées."><meta property="og:url" content="https://franckraymond.tech/pages/bloodhound-ad.html"><meta property="og:image" content="https://franckraymond.tech/franck.webp"><meta property="og:image:alt" content="Portrait professionnel de Franck Raymond"><meta property="og:locale" content="fr_FR"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="BloodHound — synthèse de compétence BTS | Portfolio Franck Raymond"><meta name="twitter:description" content="Synthèse de compétence BTS SIO sur BloodHound et les relations Active Directory. Les captures justificatives ne sont pas encore publiées."><meta name="twitter:image" content="https://franckraymond.tech/franck.webp"><link rel="canonical" href="https://franckraymond.tech/pages/bloodhound-ad.html"><link rel="icon" href="/favicon-32x32.png" sizes="32x32" type="image/png"><link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180"><link rel="manifest" href="/site.webmanifest"><script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"BloodHound — synthèse de compétence BTS | Portfolio Franck Raymond","url":"https://franckraymond.tech/pages/bloodhound-ad.html","description":"Synthèse de compétence BTS SIO sur BloodHound et les relations Active Directory. Les captures justificatives ne sont pas encore publiées.","isPartOf":{"@type":"WebSite","name":"Portfolio de Franck Raymond","url":"https://franckraymond.tech/"},"about":{"@type":"Person","name":"Franck Raymond","url":"https://franckraymond.tech/"}}</script>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,400&amp;family=Geist:wght@400;500;600&amp;display=swap">
+<link rel="stylesheet" href="/assets/editorial-tokens.css?v=20261106-modern">
+<link rel="stylesheet" href="/assets/editorial.css?v=20261106-modern">
+<script src="/assets/editorial-theme.js?v=20261028-1fe0ee8c9d"></script>
+</head>
+<body data-theme="light" class="portfolio-legacy editorial-site">
+  <div class="bg-mesh"></div>
+  <div class="noise-overlay"></div>
+  <div class="grid-lines"></div>
+
+  <header class="main-header" id="header">
+    <nav class="nav-container" aria-label="Navigation principale">
+      <div class="nav-brand">
+        <a href="../index.html" class="brand-logo">
+          <span class="logo-bracket">&lt;</span>
+          <span class="logo-text">FR</span>
+          <span class="logo-bracket">/&gt;</span>
+        </a>
+      </div>
+      <div class="nav-menu" id="navMenu">
+        <a href="../index.html" class="nav-link">
+          <i class="fas fa-home"></i>
+          <span class="nav-text">Accueil</span>
+        </a>
+        <a href="../index.html#skills" class="nav-link active">
+          <i class="fas fa-code"></i>
+          <span class="nav-text">Compétences</span>
+        </a>
+        <a href="../index.html#experience" class="nav-link">
+          <i class="fas fa-briefcase"></i>
+          <span class="nav-text">Expériences</span>
+        </a>
+        <a href="../index.html#contact" class="nav-link">
+          <i class="fas fa-envelope"></i>
+          <span class="nav-text">Contact</span>
+        </a>
+      
+<a class="nav-link" href="https://opengym.jsuisfray.blitz.cloud/"><span class="nav-text">FrayFit</span></a></div>
+      <div class="nav-controls">
+        <button class="theme-toggle" id="themeToggle" title="Changer le thème" aria-label="Basculer entre mode sombre et clair">
+          <i class="fas fa-moon"></i>
+        </button>
+        <button class="menu-toggle" id="menuToggle" aria-label="Ouvrir le menu mobile" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero-section page-hero">
+      <div class="hero-glow"></div>
+      <div class="hero-glow-2"></div>
+      <div class="hero-container">
+        <div class="hero-content">
+          <div class="hero-greeting page-badge">Supervision &amp; sécurité</div>
+          <h1 class="hero-name"><span class="name-gradient">BloodHound — synthèse de compétence BTS</span></h1>
+          <p class="hero-description">
+            Audit d’<span class="term" data-def="Annuaire centralisé qui gère tous les utilisateurs et ordinateurs d'une entreprise. L'admin y crée les comptes et définit qui a accès à quoi.">Active Directory</span> pour identifier les chemins d’attaque.
+          </p>
+          <div class="hero-buttons">
+            <a href="#actions" class="btn btn-primary"><i class="fas fa-list"></i> Actions</a>
+            <a href="#preuves" class="btn btn-secondary"><i class="fas fa-image"></i> Preuves</a>
+          </div>
+        </div>
+        <div class="hero-image-wrapper">
+          <div class="hero-image-container">
+            <div class="profile-image-frame">
+              <i class="fas fa-user-secret page-icon"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="actions" class="section">
+      <div class="section-container">
+        <div class="section-header">
+          <span class="section-number">01</span>
+          <h2 class="section-title">Actions <span class="title-gradient">&amp; outils</span></h2>
+          <div class="section-line"></div>
+        </div>
+        <div class="about-content">
+          <div>
+            <p class="about-text">Audit des relations <span class="term" data-def="Annuaire centralisé qui gère tous les utilisateurs et ordinateurs d'une entreprise. L'admin y crée les comptes et définit qui a accès à quoi.">AD</span> pour reduire les risques.</p>
+            <div class="timeline-achievements">
+              <div class="achievement-item"><i class="fas fa-check-circle"></i><span>Analyse des relations <span class="term" data-def="Annuaire centralisé qui gère tous les utilisateurs et ordinateurs d'une entreprise. L'admin y crée les comptes et définit qui a accès à quoi.">AD</span></span></div>
+              <div class="achievement-item"><i class="fas fa-check-circle"></i><span>Détection des privilèges a risque</span></div>
+              <div class="achievement-item"><i class="fas fa-check-circle"></i><span>Propositions de remediations</span></div>
+            </div>
+          </div>
+          <div>
+            <div class="skill-category">
+              <h3 class="category-title"><i class="fas fa-layer-group"></i> Outils et contexte</h3>
+              <div class="timeline-tags">
+                <span class="tag">BloodHound</span>
+                <span class="tag"><span class="term" data-def="Annuaire centralisé qui gère tous les utilisateurs et ordinateurs d'une entreprise. L'admin y crée les comptes et définit qui a accès à quoi.">Active Directory</span></span>
+                <span class="tag"><span class="term" data-def="Langage de script de Microsoft pour automatiser des tâches d'administration sur Windows.">PowerShell</span></span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="preuves" class="section" style="background: var(--bg-card-solid);">
+      <div class="section-container">
+        <div class="section-header">
+          <span class="section-number">02</span>
+          <h2 class="section-title">Preuves <span class="title-gradient">&amp; captures</span></h2>
+          <div class="section-line"></div>
+        </div>
+        <p class="about-text">Les captures et documents de cette section ne sont pas encore publiés.</p>
+        
+        <div class="section-footer">
+          <a href="../index.html#skills" class="btn-more"><i class="fas fa-arrow-left"></i> Retour aux compétences</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="main-footer" role="contentinfo">
+    <div class="footer-container">
+      <div class="footer-content">
+        <p class="footer-text">2026 <span class="footer-copyright">Franck Raymond</span> - Tous droits réservés.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+  <script src="../script.js?v=20261028-b753f7964f"></script>
+
+
+<script src="/assets/portfolio-glossary.js?v=20260831-2" defer=""></script><script src="/assets/legacy-unified.js?v=20261028-8c422e514f" defer=""></script></body></html>

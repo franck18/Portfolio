@@ -1,0 +1,783 @@
+<!DOCTYPE html><html lang="fr" dir="ltr"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Guide de présentation orale BTS SIO SISR - Franck Raymond">
+    <title>Présentation du parcours et des projets | Franck Raymond</title>
+
+    <link rel="stylesheet" href="/tailwind-output.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&amp;family=Outfit:wght@300;400;500;600;700;800;900&amp;family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        .page-hero {
+            padding-top: 10rem;
+            padding-bottom: 3rem;
+            text-align: center;
+            position: relative;
+        }
+
+        .page-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(99, 102, 241, 0.12) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .page-title {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .page-subtitle {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Timeline de la présentation */
+        .pres-timeline {
+            position: relative;
+            max-width: 950px;
+            margin: 0 auto;
+            padding: 2rem 0;
+        }
+
+        .pres-timeline::before {
+            content: '';
+            position: absolute;
+            left: 30px;
+            top: 0;
+            width: 3px;
+            height: 100%;
+            background: linear-gradient(180deg, #6366f1, #a855f7, #ec4899, #06b6d4, #10b981);
+            border-radius: 3px;
+        }
+
+        .pres-block {
+            position: relative;
+            padding-left: 80px;
+            margin-bottom: 3rem;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .pres-block.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .pres-marker {
+            position: absolute;
+            left: 14px;
+            top: 0;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.85rem;
+            z-index: 2;
+            color: white;
+        }
+
+        .pres-block:nth-child(1) .pres-marker { background: #6366f1; }
+        .pres-block:nth-child(2) .pres-marker { background: #8b5cf6; }
+        .pres-block:nth-child(3) .pres-marker { background: #a855f7; }
+        .pres-block:nth-child(4) .pres-marker { background: #d946ef; }
+        .pres-block:nth-child(5) .pres-marker { background: #ec4899; }
+        .pres-block:nth-child(6) .pres-marker { background: #06b6d4; }
+        .pres-block:nth-child(7) .pres-marker { background: #10b981; }
+
+        .pres-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            overflow: hidden;
+            transition: all 0.4s;
+        }
+
+        .pres-card:hover {
+            border-color: var(--primary);
+            transform: translateX(8px);
+            box-shadow: 0 20px 60px rgba(99, 102, 241, 0.15);
+        }
+
+        .pres-card-header {
+            padding: 1.5rem 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid var(--border);
+            cursor: pointer;
+        }
+
+        .pres-card-header:hover {
+            background: rgba(99, 102, 241, 0.05);
+        }
+
+        .pres-header-left {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .pres-header-left i {
+            font-size: 1.3rem;
+            color: var(--primary);
+        }
+
+        .pres-header-left h3 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        .pres-duration {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+            color: var(--accent);
+            background: rgba(6, 182, 212, 0.1);
+            padding: 0.3rem 0.8rem;
+            border-radius: 8px;
+            border: 1px solid rgba(6, 182, 212, 0.2);
+        }
+
+        .pres-card-body {
+            padding: 2rem;
+        }
+
+        /* Messages clés */
+        .key-message {
+            background: rgba(99, 102, 241, 0.08);
+            border-left: 3px solid var(--primary);
+            padding: 1rem 1.5rem;
+            border-radius: 0 12px 12px 0;
+            margin-bottom: 1.5rem;
+        }
+
+        .key-message-label {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--primary-light);
+            margin-bottom: 0.3rem;
+        }
+
+        .key-message p {
+            color: var(--text-primary);
+            font-weight: 500;
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+
+        /* Script / Ce que tu dois dire */
+        .speech-block {
+            background: var(--bg-card-solid);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            position: relative;
+        }
+
+        .speech-block::before {
+            content: '\f130';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            position: absolute;
+            top: 1.2rem;
+            left: 1.2rem;
+            color: var(--primary);
+            opacity: 0.3;
+            font-size: 1.2rem;
+        }
+
+        .speech-label {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--accent);
+            margin-bottom: 0.75rem;
+            padding-left: 2rem;
+        }
+
+        .speech-text {
+            color: var(--text-secondary);
+            line-height: 1.8;
+            font-size: 0.95rem;
+            padding-left: 0.5rem;
+            border-left: 2px solid rgba(99, 102, 241, 0.15);
+            margin-left: 0.5rem;
+        }
+
+        .speech-text strong {
+            color: var(--text-primary);
+        }
+
+        .speech-text em {
+            color: var(--primary-light);
+            font-style: normal;
+            font-weight: 500;
+        }
+
+        /* Conseils */
+        .tip-box {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+            background: rgba(16, 185, 129, 0.08);
+            border: 1px solid rgba(16, 185, 129, 0.2);
+            border-radius: 12px;
+            padding: 1rem 1.25rem;
+            margin-top: 1rem;
+        }
+
+        .tip-box i {
+            color: var(--green);
+            margin-top: 0.15rem;
+        }
+
+        .tip-box p {
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+            line-height: 1.5;
+        }
+
+        /* Slide indicator */
+        .slide-ref {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.75rem;
+            color: var(--orange);
+            background: rgba(245, 158, 11, 0.1);
+            padding: 0.2rem 0.6rem;
+            border-radius: 6px;
+            margin-bottom: 0.75rem;
+        }
+
+        /* Progress bar */
+        .progress-bar-container {
+            position: fixed;
+            top: 70px;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: var(--bg-darker);
+            z-index: 99;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background: var(--gradient-1);
+            width: 0%;
+            transition: width 0.3s;
+            border-radius: 0 2px 2px 0;
+        }
+
+        /* Timer */
+        .total-time {
+            text-align: center;
+            margin: 2rem 0 3rem;
+        }
+
+        .total-time-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 50px;
+            padding: 0.75rem 2rem;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .total-time-badge i {
+            color: var(--primary);
+            font-size: 1.2rem;
+        }
+
+        .total-time-badge span {
+            color: var(--text-primary);
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        .total-time-badge small {
+            color: var(--text-muted);
+            font-size: 0.8rem;
+        }
+
+        /* Print styles */
+        @media print {
+            .main-header, .main-footer, .progress-bar-container { display: none; }
+            .pres-block { opacity: 1 !important; transform: none !important; page-break-inside: avoid; }
+            .pres-card { border: 1px solid #ddd; box-shadow: none; }
+            body { background: white; color: #1a1a1a; }
+            .page-title { -webkit-text-fill-color: #6366f1; }
+        }
+
+        @media (max-width: 768px) {
+            .page-title { font-size: 2rem; }
+            .pres-block { padding-left: 60px; }
+            .pres-timeline::before { left: 20px; }
+            .pres-marker { left: 4px; width: 30px; height: 30px; font-size: 0.75rem; }
+            .pres-card-header { flex-direction: column; align-items: flex-start; gap: 0.75rem; }
+        }
+    
+        /* Tooltips termes techniques */
+        .term {
+            border-bottom: 1px dashed var(--primary);
+            cursor: help;
+            position: relative;
+            display: inline;
+        }
+        .term::after {
+            content: attr(data-def);
+            position: absolute;
+            bottom: calc(100% + 8px);
+            left: 50%;
+            transform: translateX(-50%);
+            background: #1e293b;
+            color: #f8fafc;
+            font-size: 0.78rem;
+            line-height: 1.5;
+            padding: 0.6rem 0.9rem;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            white-space: normal;
+            width: 220px;
+            text-align: left;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.2s;
+            z-index: 100;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+        }
+        .term:hover::after { opacity: 1; }
+</style>
+<meta name="theme-color" content="#111214"><link rel="stylesheet" href="/assets/legacy-unified.css?v=20260831-2"><meta name="author" content="Franck Raymond"><meta name="robots" content="index,follow,max-image-preview:large"><meta property="og:type" content="website"><meta property="og:site_name" content="Portfolio de Franck Raymond"><meta property="og:title" content="Présentation du parcours et des projets | Franck Raymond"><meta property="og:description" content="Guide de présentation orale BTS SIO SISR - Franck Raymond"><meta property="og:url" content="https://franckraymond.tech/presentation.html"><meta property="og:image" content="https://franckraymond.tech/franck.webp"><meta property="og:image:alt" content="Portrait professionnel de Franck Raymond"><meta property="og:locale" content="fr_FR"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Présentation du parcours et des projets | Franck Raymond"><meta name="twitter:description" content="Guide de présentation orale BTS SIO SISR - Franck Raymond"><meta name="twitter:image" content="https://franckraymond.tech/franck.webp"><link rel="canonical" href="https://franckraymond.tech/presentation.html"><link rel="icon" href="/favicon-32x32.png" sizes="32x32" type="image/png"><link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180"><link rel="manifest" href="/site.webmanifest"><script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"Présentation du parcours et des projets | Franck Raymond","url":"https://franckraymond.tech/presentation.html","description":"Guide de présentation orale BTS SIO SISR - Franck Raymond","isPartOf":{"@type":"WebSite","name":"Portfolio de Franck Raymond","url":"https://franckraymond.tech/"},"about":{"@type":"Person","name":"Franck Raymond","url":"https://franckraymond.tech/"}}</script>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,400&amp;family=Geist:wght@400;500;600&amp;display=swap">
+<link rel="stylesheet" href="/assets/editorial-tokens.css?v=20261106-modern">
+<link rel="stylesheet" href="/assets/editorial.css?v=20261106-modern">
+<script src="/assets/editorial-theme.js?v=20261028-1fe0ee8c9d"></script>
+</head>
+<body data-theme="light" class="portfolio-legacy editorial-site">
+    <!-- Background -->
+    <div class="bg-mesh"></div>
+    <div class="noise-overlay"></div>
+
+    <!-- Header -->
+    <header class="main-header" id="header">
+        <nav class="nav-container">
+            <a href="index.html" class="brand-logo">
+                <span class="logo-bracket">&lt;</span>
+                <span class="logo-text">FR</span>
+                <span class="logo-bracket">/&gt;</span>
+            </a>
+            <div class="nav-menu" id="navMenu">
+                <a href="index.html" class="nav-link"><i class="fas fa-home"></i> Accueil</a>
+                <a href="profil.html" class="nav-link"><i class="fas fa-user"></i> Profil</a>
+                <a href="index.html#skills" class="nav-link"><i class="fas fa-code"></i> Compétences</a>
+                <a href="experience.html" class="nav-link"><i class="fas fa-briefcase"></i> Expériences</a>
+                <a href="/projets.html#veille" class="nav-link"><i class="fas fa-newspaper"></i> Veille</a>
+                <a href="index.html#contact" class="nav-link"><i class="fas fa-envelope"></i> Contact</a>
+            
+<a class="nav-link" href="https://opengym.jsuisfray.blitz.cloud/"><span class="nav-text">FrayFit</span></a></div>
+            <div class="nav-controls">
+                <button class="theme-toggle" id="themeToggle" aria-label="Changer le thème">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <button class="menu-toggle" id="menuToggle" aria-label="Menu">
+                    <span></span><span></span><span></span>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Progress bar -->
+    <div class="progress-bar-container">
+        <div class="progress-bar" id="progressBar"></div>
+    </div>
+
+    <main>
+        <!-- Hero -->
+        <section class="page-hero">
+            <div class="section-container">
+                <h1 class="page-title"><i class="fas fa-microphone-alt" style="margin-right: 0.5rem;"></i> Présentation Orale</h1>
+                <p class="page-subtitle">Guide complet pour l'épreuve orale BTS SIO SISR — Plan, messages clés et <span class="term" data-def="Programme automatique qui effectue des tâches répétitives sans intervention manuelle.">script</span> de ce que tu dois dire.</p>
+            </div>
+        </section>
+
+        <!-- Total time -->
+        <div class="total-time">
+            <div class="total-time-badge">
+                <i class="fas fa-stopwatch"></i>
+                <span>10 minutes</span>
+                <small>| 7 parties</small>
+            </div>
+        </div>
+
+        <!-- Contenu -->
+        <div class="section-container" style="padding-bottom: 4rem;">
+            <div class="pres-timeline">
+
+                <!-- ========== PARTIE 1 : INTRODUCTION ========== -->
+                <div class="pres-block">
+                    <div class="pres-marker">1</div>
+                    <div class="pres-card">
+                        <div class="pres-card-header" onclick="toggleCard(this)">
+                            <div class="pres-header-left">
+                                <i class="fas fa-handshake"></i>
+                                <h3>Introduction &amp; Présentation</h3>
+                            </div>
+                            <span class="pres-duration"><i class="fas fa-clock"></i> ~1 min</span>
+                        </div>
+                        <div class="pres-card-body">
+                            <div class="key-message">
+                                <div class="key-message-label">Message clé</div>
+                                <p>Je suis un étudiant passionné par l'infrastructure IT, formé dans deux environnements exigeants qui m'ont donné une vraie maturité professionnelle.</p>
+                            </div>
+
+                            <div class="speech-block">
+                                <div class="speech-label">Ce que tu dis</div>
+                                <div class="speech-text">
+                                    <p>Bonjour, je m'appelle <strong>Franck Raymond</strong>, je suis étudiant en <strong>BTS SIO option SISR</strong> au Lycée Gaston Berger.</p>
+                                    <br>
+                                    <p>Depuis toujours, je suis fasciné par le fonctionnement des systèmes informatiques et la manière dont ils interconnectent le monde. Ce qui me motivé, c'est de <em>comprendre comment ça marche sous le capot</em> : les réseaux, les serveurs, la sécurité.</p>
+                                    <br>
+                                    <p>J'ai eu la chance de réaliser mon parcours en alternance dans <strong>deux structures très différentes</strong> : d'abord au <em>Centre Hospitalier de Tourcoing</em>, puis à la <em>Mairie de La Madeleine</em>. Ces deux expériences m'ont permis de développer des compétences techniques solides, mais aussi un vrai sens des responsabilités.</p>
+                                    <br>
+                                    <p>Je vais vous présenter mon parcours, mes réalisations techniques et ma veille technologique.</p>
+                                </div>
+                            </div>
+
+                            <div class="tip-box">
+                                <i class="fas fa-lightbulb"></i>
+                                <p><strong>Conseil :</strong> Regarde le jury dans les yeux, parle calmement. C'est la première impression, elle compte beaucoup. Montre ton portfolio ouvert sur la page d'accueil.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ========== PARTIE 2 : HOPITAL ========== -->
+                <div class="pres-block">
+                    <div class="pres-marker">2</div>
+                    <div class="pres-card">
+                        <div class="pres-card-header" onclick="toggleCard(this)">
+                            <div class="pres-header-left">
+                                <i class="fas fa-hospital"></i>
+                                <h3>Expérience 1 — Centre Hospitalier de Tourcoing</h3>
+                            </div>
+                            <span class="pres-duration"><i class="fas fa-clock"></i> ~2 min</span>
+                        </div>
+                        <div class="pres-card-body">
+                            <div class="key-message">
+                                <div class="key-message-label">Message clé</div>
+                                <p>Travailler en milieu hospitalier m'a appris la rigueur, la gestion du stress et l'importance de la continuité de service — une panne informatique peut impacter directement les soins aux patients.</p>
+                            </div>
+
+                            <div class="slide-ref"><i class="fas fa-desktop"></i> Ouvre : exp-hôpital.html</div>
+
+                            <div class="speech-block">
+                                <div class="speech-label">Ce que tu dis</div>
+                                <div class="speech-text">
+                                    <p>Ma première alternance s'est déroulée au <strong>Centre Hospitalier de Tourcoing</strong>, d'octobre 2023 à août 2025. C'est un environnement très particulier : le service informatique fonctionne <em>24h/24</em>, les données sont extrêmement sensibles — on parle de <em>données de santé</em>, soumises à des contraintes RGPD très strictes.</p>
+                                    <br>
+                                    <p>Mes missions principales étaient :</p>
+                                    <br>
+                                    <p>- Le <strong>support utilisateur niveau 1 et 2</strong> : résolution d'incidents, escalade des cas complexes. J'ai appris à diagnostiquer rapidement sous pression.</p>
+                                    <br>
+                                    <p>- La <strong>gestion du parc informatique</strong> avec <span class="term" data-def="Logiciel de gestion des tickets informatiques — les utilisateurs signalent leurs problèmes et les techniciens les traitent.">GLPI</span> : inventaire, déploiement et maintenance des postes.</p>
+                                    <br>
+                                    <p>- L'<strong>administration <span class="term" data-def="Annuaire centralisé qui gère tous les utilisateurs et ordinateurs d'une entreprise. L'admin y crée les comptes et définit qui a accès à quoi.">Active Directory</span></strong> : création de comptes, gestion des droits NTFS, accès aux applications médicales comme le DPI, le Dossier Patient Informatisé.</p>
+                                    <br>
+                                    <p>- La <strong>masterisation de postes</strong> : préparation et déploiement standardisé des stations de travail.</p>
+                                    <br>
+                                    <p>Ce que j'en retiens, c'est que dans un hôpital, <em>chaque minute compte</em>. Une imprimante en panne aux urgences, ce n'est pas un simple ticket — c'est potentiellement un impact sur la prise en charge d'un patient. Ça m'a donné un sens aigu de la <strong>priorité et de la réactivité</strong>.</p>
+                                </div>
+                            </div>
+
+                            <div class="tip-box">
+                                <i class="fas fa-lightbulb"></i>
+                                <p><strong>Conseil :</strong> Montre les photos de l'hôpital pour illustrer. Insiste sur le côté humain et l'environnement critique. Le jury apprécie qu'on montre qu'on comprend les enjeux métier, pas juste la technique.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ========== PARTIE 3 : MAIRIE ========== -->
+                <div class="pres-block">
+                    <div class="pres-marker">3</div>
+                    <div class="pres-card">
+                        <div class="pres-card-header" onclick="toggleCard(this)">
+                            <div class="pres-header-left">
+                                <i class="fas fa-landmark"></i>
+                                <h3>Expérience 2 — Mairie de La Madeleine</h3>
+                            </div>
+                            <span class="pres-duration"><i class="fas fa-clock"></i> ~2 min 30</span>
+                        </div>
+                        <div class="pres-card-body">
+                            <div class="key-message">
+                                <div class="key-message-label">Message clé</div>
+                                <p>à la mairie, j'ai évolué vers des missions d'administration système avancée : supervision, centralisation des <span class="term" data-def="Fichiers de journaux qui enregistrent tout ce qui se passe sur un serveur (connexions, erreurs, actions).">logs</span>, audit de sécurité <span class="term" data-def="Annuaire centralisé qui gère tous les utilisateurs et ordinateurs d'une entreprise. L'admin y crée les comptes et définit qui a accès à quoi.">Active Directory</span>. J'ai gagné en autonomie et en expertise.</p>
+                            </div>
+
+                            <div class="slide-ref"><i class="fas fa-desktop"></i> Ouvre : exp-mairie.html</div>
+
+                            <div class="speech-block">
+                                <div class="speech-label">Ce que tu dis</div>
+                                <div class="speech-text">
+                                    <p>De septembre 2025 à août 2026, j’ai effectué mon alternance à la <strong>Mairie de La Madeleine</strong>. Ici, le contexte est différent : on est sur de la <em>modernisation d'infrastructure</em> et du <em>renforcement de la sécurité</em>.</p>
+                                    <br>
+                                    <p>J'ai travaillé sur plusieurs projets concrets :</p>
+                                    <br>
+                                    <p>Premièrement, l'<strong>administration <span class="term" data-def="Annuaire centralisé qui gère tous les utilisateurs et ordinateurs d'une entreprise. L'admin y crée les comptes et définit qui a accès à quoi.">Active Directory</span></strong> avancée : gestion des <span class="term" data-def="Règles appliquées automatiquement à tous les ordinateurs d'une entreprise (ex: fond d'écran imposé, logiciels installés d'office).">GPO</span>, configuration <span class="term" data-def="Système qui traduit un nom de site (ex: google.com) en adresse réseau compréhensible par les machines.">DNS</span> et <span class="term" data-def="Service qui attribue automatiquement une adresse réseau à chaque appareil qui se connecte.">DHCP</span>, structuration des unités d'organisation.</p>
+                                    <br>
+                                    <p>Deuxièmement, la <strong>supervision avec <span class="term" data-def="Logiciel de surveillance qui vérifie en temps réel que les serveurs et équipements réseau fonctionnent correctement.">Zabbix</span></strong> : j'ai audité en lecture seule la plateforme en place (139 hôtes actifs) et j'ai déployé la solution de bout en bout en laboratoire pour en maîtriser l'installation et les alertes.</p>
+                                    <br>
+                                    <p>Troisièmement, la centralisation des logs avec <strong><span class="term" data-def="Outil qui collecte et centralise les journaux (logs) de tous les serveurs pour les analyser facilement.">Graylog</span></strong>. C'est un sujet dont je suis particulièrement fier : j'ai audité la plateforme en place à la collectivité, puis déployé la solution de bout en bout en laboratoire — collecte des journaux Windows et Linux, dashboards de sécurité et alertes automatiques.</p>
+                                    <br>
+                                    <p>Et enfin, un <strong>audit de sécurité <span class="term" data-def="Annuaire centralisé qui gère tous les utilisateurs et ordinateurs d'une entreprise. L'admin y crée les comptes et définit qui a accès à quoi.">Active Directory</span></strong> : j'ai analysé les droits et les délégations dans le domaine et proposé des remédiations concrètes.</p>
+                                    <br>
+                                    <p>Ce qui a changé par rapport à l'hôpital, c'est mon niveau d'<strong>autonomie</strong>. Je ne fais plus seulement du support — je <em>conçois et déploie des solutions</em>.</p>
+                                </div>
+                            </div>
+
+                            <div class="tip-box">
+                                <i class="fas fa-lightbulb"></i>
+                                <p><strong>Conseil :</strong> C'est la partie la plus technique. Montre la page <span class="term" data-def="Outil qui collecte et centralise les journaux (logs) de tous les serveurs pour les analyser facilement.">Graylog</span> de ton portfolio. Le jury va probablement te poser des questions sur ce projet — prépare-toi à expliquer l'architecture de Graylog (Sidecar + NXLog).</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ========== PARTIE 4 : PROJET TECHNIQUE ========== -->
+                <div class="pres-block">
+                    <div class="pres-marker">4</div>
+                    <div class="pres-card">
+                        <div class="pres-card-header" onclick="toggleCard(this)">
+                            <div class="pres-header-left">
+                                <i class="fas fa-project-diagram"></i>
+                                <h3>Zoom technique — <span class="term" data-def="Outil qui collecte et centralise les journaux (logs) de tous les serveurs pour les analyser facilement.">Graylog</span></h3>
+                            </div>
+                            <span class="pres-duration"><i class="fas fa-clock"></i> ~1 min 30</span>
+                        </div>
+                        <div class="pres-card-body">
+                            <div class="key-message">
+                                <div class="key-message-label">Message clé</div>
+                                <p>Ces deux sujets montrent ma capacité à déployer des solutions complètes de bout en bout en laboratoire, puis à les auditer et les exploiter en environnement professionnel, avec une approche orientée sécurité.</p>
+                            </div>
+
+                            <div class="slide-ref"><i class="fas fa-desktop"></i> Ouvre : <span class="term" data-def="Fichiers de journaux qui enregistrent tout ce qui se passe sur un serveur (connexions, erreurs, actions).">logs</span>.html</div>
+
+                            <div class="speech-block">
+                                <div class="speech-label">Ce que tu dis — <span class="term" data-def="Outil qui collecte et centralise les journaux (logs) de tous les serveurs pour les analyser facilement.">Graylog</span></div>
+                                <div class="speech-text">
+                                    <p>Permettez-moi de zoomer sur le projet <strong><span class="term" data-def="Outil qui collecte et centralise les journaux (logs) de tous les serveurs pour les analyser facilement.">Graylog</span></strong>. L'objectif était de <em>centraliser tous les journaux d'événements</em> de l'infrastructure pour pouvoir détecter des incidents de sécurité et faciliter les audits.</p>
+                                    <br>
+                                    <p>Concrètement, en laboratoire, j'ai déployé <strong><span class="term" data-def="Outil qui collecte et centralise les journaux (logs) de tous les serveurs pour les analyser facilement.">Graylog</span> Sidecar avec NXLog</strong> sur les postes Windows pour collecter les événements critiques : connexions réussies, tentatives échouées, verrouillages de comptes. Côté Linux, j'ai configuré <strong>rsyslog</strong>. J'ai ensuite créé des streams séparés — Sécurité, Système, Applications — avec des dashboards temps réel et des alertes par mail.</p>
+                                </div>
+                            </div>
+
+                            <div class="tip-box">
+                                <i class="fas fa-lightbulb"></i>
+                                <p><strong>Conseil :</strong> Reste synthétique, ne rentre pas dans tous les détails techniques. Le jury pourra approfondir pendant les questions. Montre les captures d'écran des dashboards <span class="term" data-def="Outil qui collecte et centralise les journaux (logs) de tous les serveurs pour les analyser facilement.">Graylog</span>.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ========== PARTIE 5 : VEILLE TECHNO ========== -->
+                <div class="pres-block">
+                    <div class="pres-marker">5</div>
+                    <div class="pres-card">
+                        <div class="pres-card-header" onclick="toggleCard(this)">
+                            <div class="pres-header-left">
+                                <i class="fas fa-satellite-dish"></i>
+                                <h3>Veille Technologique</h3>
+                            </div>
+                            <span class="pres-duration"><i class="fas fa-clock"></i> ~1 min 30</span>
+                        </div>
+                        <div class="pres-card-body">
+                            <div class="key-message">
+                                <div class="key-message-label">Message clé</div>
+                                <p>Ma veille couvre 5 domaines stratégiques et montre que je reste informé des évolutions du secteur pour anticiper les besoins de l'infrastructure.</p>
+                            </div>
+
+                            <div class="slide-ref"><i class="fas fa-desktop"></i> Ouvre : index.html section veille</div>
+
+                            <div class="speech-block">
+                                <div class="speech-label">Ce que tu dis</div>
+                                <div class="speech-text">
+                                    <p>En parallèle de mes missions, j'assure une <strong>veille technologique</strong> sur cinq thématiques qui sont directement liées à mon métier :</p>
+                                    <br>
+                                    <p>- Le <strong><span class="term" data-def="Serveurs distants accessibles par internet, gérés par des entreprises comme Microsoft (Azure) ou Amazon (AWS).">Cloud</span> Computing</strong>, notamment la comparaison AWS / Azure — car la migration vers le cloud est un enjeu majeur pour toutes les organisations. J'ai étudié les différences entre les deux leaders du marché qui représentent ensemble 64% des parts de marché.</p>
+                                    <br>
+                                    <p>- La <strong>Cybersécurité</strong> : avec 330 incidents majeurs recensés par l'ANSSI en 2023 et un coût moyen de 1,8 million d'euros par attaque ransomware, c'est un sujet critique. J'ai analysé les menaces actuelles — LockBit, phishing, attaques supply chain — et les stratégies de défense comme le <em>Zero Trust</em>.</p>
+                                    <br>
+                                    <p>- La <strong>virtualisation</strong>, avec l'impact du rachat de <span class="term" data-def="Logiciel qui permet de faire tourner plusieurs systèmes (machines virtuelles) sur un seul serveur physique.">VMware</span> par Broadcom qui pousse vers des alternatives comme Proxmox.</p>
+                                    <br>
+                                    <p>- L'<strong>IA et l'automatisation</strong> : les <span class="term" data-def="Modèle d'IA entraîné sur du texte, capable de répondre à des questions, rédiger ou générer du code. ChatGPT en est un exemple.">LLM</span> locaux avec <span class="term" data-def="Logiciel gratuit qui fait tourner une IA directement sur ta machine, sans internet.">Ollama</span>, et l'Infrastructure as Code avec <span class="term" data-def="Outil qui configure automatiquement plusieurs serveurs à la fois, sans intervention manuelle.">Ansible</span> et <span class="term" data-def="Outil pour créer et gérer des infrastructures (cloud ou locales) depuis des fichiers de configuration.">Terraform</span>.</p>
+                                    <br>
+                                    <p>- Et la <strong>sécurité <span class="term" data-def="Annuaire centralisé qui gère tous les utilisateurs et ordinateurs d'une entreprise. L'admin y crée les comptes et définit qui a accès à quoi.">Active Directory</span></strong> : audit des droits, modèle de tiering.</p>
+                                    <br>
+                                    <p>Pour ma veille, j'utilise des sources comme <strong>CERT-FR de l'ANSSI</strong>, les blogs officiels AWS et Azure, ADSecurity.org, et Le Monde Informatique.</p>
+                                </div>
+                            </div>
+
+                            <div class="tip-box">
+                                <i class="fas fa-lightbulb"></i>
+                                <p><strong>Conseil :</strong> Ne détaille pas les 5 sujets en profondeur — survole rapidement et insiste sur 2 (Cybersécurité + <span class="term" data-def="Serveurs distants accessibles par internet, gérés par des entreprises comme Microsoft (Azure) ou Amazon (AWS).">Cloud</span> recommandés). Le jury appréciera que tu connaisses des chiffres concrets (330 incidents ANSSI, 1.8M de ransomware).</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ========== PARTIE 6 : COMPETENCES & E5 ========== -->
+                <div class="pres-block">
+                    <div class="pres-marker">6</div>
+                    <div class="pres-card">
+                        <div class="pres-card-header" onclick="toggleCard(this)">
+                            <div class="pres-header-left">
+                                <i class="fas fa-graduation-cap"></i>
+                                <h3>Compétences acquises &amp; Tableau E5</h3>
+                            </div>
+                            <span class="pres-duration"><i class="fas fa-clock"></i> ~30 sec</span>
+                        </div>
+                        <div class="pres-card-body">
+                            <div class="key-message">
+                                <div class="key-message-label">Message clé</div>
+                                <p>Mes compétences couvrent l'ensemble du référentiel SISR : administration système, réseau, sécurité, support et supervision.</p>
+                            </div>
+
+                            <div class="speech-block">
+                                <div class="speech-label">Ce que tu dis</div>
+                                <div class="speech-text">
+                                    <p>Pour résumer les compétences que j'ai développées, elles s'articulent autour de <strong>trois axes</strong> :</p>
+                                    <br>
+                                    <p><strong>Administration système</strong> : <span class="term" data-def="Annuaire centralisé qui gère tous les utilisateurs et ordinateurs d'une entreprise. L'admin y crée les comptes et définit qui a accès à quoi.">Active Directory</span>, <span class="term" data-def="Règles appliquées automatiquement à tous les ordinateurs d'une entreprise (ex: fond d'écran imposé, logiciels installés d'office).">GPO</span>, <span class="term" data-def="Système qui traduit un nom de site (ex: google.com) en adresse réseau compréhensible par les machines.">DNS</span>, <span class="term" data-def="Service qui attribue automatiquement une adresse réseau à chaque appareil qui se connecte.">DHCP</span>, Windows Server, Linux.</p>
+                                    <br>
+                                    <p><strong>Sécurité &amp; supervision</strong> : <span class="term" data-def="Outil qui collecte et centralise les journaux (logs) de tous les serveurs pour les analyser facilement.">Graylog</span>, <span class="term" data-def="Logiciel de surveillance qui vérifie en temps réel que les serveurs et équipements réseau fonctionnent correctement.">Zabbix</span>, audit <span class="term" data-def="Annuaire centralisé qui gère tous les utilisateurs et ordinateurs d'une entreprise. L'admin y crée les comptes et définit qui a accès à quoi.">AD</span>, modèle de tiering.</p>
+                                    <br>
+                                    <p><strong>Support &amp; déploiement</strong> : <span class="term" data-def="Logiciel de gestion des tickets informatiques — les utilisateurs signalent leurs problèmes et les techniciens les traitent.">GLPI</span>, masterisation, WDS/MDT, support N1/N2.</p>
+                                    <br>
+                                    <p>L'ensemble de ces compétences est détaillé dans mon <strong>tableau de synthèse E5</strong>, disponible sur mon portfolio.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ========== PARTIE 7 : CONCLUSION ========== -->
+                <div class="pres-block">
+                    <div class="pres-marker">7</div>
+                    <div class="pres-card">
+                        <div class="pres-card-header" onclick="toggleCard(this)">
+                            <div class="pres-header-left">
+                                <i class="fas fa-rocket"></i>
+                                <h3>Conclusion &amp; Perspectives</h3>
+                            </div>
+                            <span class="pres-duration"><i class="fas fa-clock"></i> ~1 min</span>
+                        </div>
+                        <div class="pres-card-body">
+                            <div class="key-message">
+                                <div class="key-message-label">Message clé</div>
+                                <p>Mon parcours montre une progression claire : du support technique vers l'administration système et la sécurité. Mon ambition est de devenir expert en administration système et cybersécurité.</p>
+                            </div>
+
+                            <div class="speech-block">
+                                <div class="speech-label">Ce que tu dis</div>
+                                <div class="speech-text">
+                                    <p>Pour conclure, ce BTS SIO SISR et mes deux alternances m'ont permis de construire un parcours cohérent avec une vraie <strong>progression</strong> :</p>
+                                    <br>
+                                    <p>à l'hôpital, j'ai appris les <em>fondamentaux</em> : le support, la rigueur, le travail sous pression dans un environnement critique.</p>
+                                    <br>
+                                    <p>à la mairie, j'ai évolué vers des missions d'<em>ingénierie</em> : prendre en main les outils de supervision et de centralisation des <span class="term" data-def="Fichiers de journaux qui enregistrent tout ce qui se passe sur un serveur (connexions, erreurs, actions).">logs</span>, auditer la sécurité <span class="term" data-def="Annuaire centralisé qui gère tous les utilisateurs et ordinateurs d'une entreprise. L'admin y crée les comptes et définit qui a accès à quoi.">Active Directory</span>.</p>
+                                    <br>
+                                    <p>Je poursuis maintenant mon parcours en <strong>Bachelor ASRBD à l’EPSI Lille</strong>, avec une alternance d’un an comme <strong>administrateur systèmes et réseaux chez Delannoy Dewailly</strong>. Je vise notamment les certifications <em>AZ-104</em> pour Azure et <em>AWS Solutions Architect</em> pour compléter mes compétences <span class="term" data-def="Serveurs distants accessibles par internet, gérés par des entreprises comme Microsoft (Azure) ou Amazon (AWS).">cloud</span>.</p>
+                                    <br>
+                                    <p>Ce qui me motivé chaque jour, c'est cette idée que l'infrastructure, c'est le socle invisible sur lequel tout repose. Et je veux être celui qui s'assure que <strong>ce socle est solide, sécurisé et performant</strong>.</p>
+                                    <br>
+                                    <p>Je vous remercie pour votre attention. Je suis disponible pour vos questions.</p>
+                                </div>
+                            </div>
+
+                            <div class="tip-box">
+                                <i class="fas fa-lightbulb"></i>
+                                <p><strong>Conseil :</strong> Termine avec assurance. Regarde le jury, souris. La phrase de fin sur le "socle invisible" est une bonne punchline — dis-la avec conviction. Ensuite, attends calmement les questions.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="main-footer">
+        <div class="footer-container">
+            <div class="footer-content">
+                <p class="footer-text">© 2026 <span class="footer-copyright">Franck Raymond</span> — Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js?v=20261028-b753f7964f"></script>
+    <script>
+        // Fade-in animation on scroll
+        document.addEventListener('DOMContentLoaded', () => {
+            const blocks = document.querySelectorAll('.pres-block');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach((entry, index) => {
+                    if (entry.isIntersecting) {
+                        setTimeout(() => {
+                            entry.target.classList.add('visible');
+                        }, index * 120);
+                    }
+                });
+            }, { threshold: 0.1 });
+            blocks.forEach(block => observer.observe(block));
+
+            // Progress bar
+            window.addEventListener('scroll', () => {
+                const scrollTop = window.scrollY;
+                const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+                const progress = (scrollTop / docHeight) * 100;
+                document.getElementById('progressBar').style.width = progress + '%';
+            });
+        });
+
+        // Toggle card collapse
+        function toggleCard(header) {
+            const body = header.nextElementSibling;
+            if (body.style.display === 'none') {
+                body.style.display = 'block';
+                body.style.animation = 'fadeIn 0.3s ease';
+            } else {
+                body.style.display = 'none';
+            }
+        }
+    </script>
+
+
+<script src="/assets/portfolio-glossary.js?v=20260831-2" defer=""></script><script src="/assets/legacy-unified.js?v=20261028-8c422e514f" defer=""></script></body></html>

@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html data-theme="light" dir="ltr" lang="fr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta content="Durcissement automatisé d&amp;#39;une cible Rocky Linux isolée avec sécurisation SSH, règles noyau, audit et vérification d&amp;#39;idempotence." name="description"/>
+<meta content="Franck Raymond" name="author"/>
+<meta content="index,follow,max-image-preview:large" name="robots"/>
+<meta content="#111214" name="theme-color"/>
+<title>Durcissement Linux avec Ansible | Portfolio Franck Raymond</title>
+<link href="https://franckraymond.tech/pages/projet-linux-hardening-ansible.html" rel="canonical"/>
+<link href="https://franckraymond.tech/pages/projet-linux-hardening-ansible.html" hreflang="fr" rel="alternate"/>
+<link href="https://franckraymond.tech/en/pages/projet-linux-hardening-ansible.html" hreflang="en" rel="alternate"/>
+<link href="https://franckraymond.tech/pages/projet-linux-hardening-ansible.html" hreflang="x-default" rel="alternate"/>
+<link href="/favicon-32x32.png" rel="icon" sizes="32x32" type="image/png"/>
+<link href="/apple-touch-icon.png" rel="apple-touch-icon" sizes="180x180"/>
+<link href="/site.webmanifest" rel="manifest"/>
+<meta content="website" property="og:type"/>
+<meta content="Portfolio de Franck Raymond" property="og:site_name"/>
+<meta content="Durcissement Linux avec Ansible | Portfolio Franck Raymond" property="og:title"/>
+<meta content="Durcissement automatisé d&amp;#39;une cible Rocky Linux isolée avec sécurisation SSH, règles noyau, audit et vérification d&amp;#39;idempotence." property="og:description"/>
+<meta content="https://franckraymond.tech/pages/projet-linux-hardening-ansible.html" property="og:url"/>
+<meta content="https://franckraymond.tech/franck.webp" property="og:image"/>
+<meta content="Portrait professionnel de Franck Raymond" property="og:image:alt"/>
+<meta content="1024" property="og:image:width"/>
+<meta content="1024" property="og:image:height"/>
+<meta content="fr_FR" property="og:locale"/>
+<meta content="en_GB" property="og:locale:alternate"/>
+<meta content="summary_large_image" name="twitter:card"/>
+<meta content="Durcissement Linux avec Ansible | Portfolio Franck Raymond" name="twitter:title"/>
+<meta content="Durcissement automatisé d&amp;#39;une cible Rocky Linux isolée avec sécurisation SSH, règles noyau, audit et vérification d&amp;#39;idempotence." name="twitter:description"/>
+<meta content="https://franckraymond.tech/franck.webp" name="twitter:image"/>
+<meta content="Portrait professionnel de Franck Raymond" name="twitter:image:alt"/>
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Person",
+        "@id": "https://franckraymond.tech/#person",
+        "name": "Franck Raymond",
+        "url": "https://franckraymond.tech/",
+        "image": "https://franckraymond.tech/franck.webp",
+        "jobTitle": "Administrateur systèmes et réseaux",
+        "description": "Technicien systèmes et réseaux, étudiant en Bachelor ASRBD à l’EPSI Lille.",
+        "email": "mailto:franckrmnd@gmail.com",
+        "sameAs": ["https://www.linkedin.com/in/franck-r-21a8a4184", "https://github.com/franckraymond"],
+        "knowsAbout": ["Administration systèmes", "Réseaux informatiques", "Cybersécurité", "Supervision", "Linux", "Windows Server"]
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://franckraymond.tech/#website",
+        "url": "https://franckraymond.tech/",
+        "name": "Portfolio de Franck Raymond",
+        "inLanguage": ["fr-FR", "en-GB"],
+        "publisher": { "@id": "https://franckraymond.tech/#person" }
+      },
+      {
+        "@type": "WebPage",
+        "@id": "https://franckraymond.tech/pages/projet-linux-hardening-ansible.html#webpage",
+        "url": "https://franckraymond.tech/pages/projet-linux-hardening-ansible.html",
+        "name": "Durcissement Linux avec Ansible | Portfolio Franck Raymond",
+        "description": "Durcissement automatisé d&#39;une cible Rocky Linux isolée avec sécurisation SSH, règles noyau, audit et vérification d&#39;idempotence.",
+        "isPartOf": { "@id": "https://franckraymond.tech/#website" },
+        "about": { "@id": "https://franckraymond.tech/#person" }
+      }
+    ]
+  }
+  </script>
+<link href="../tailwind-output.css" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&amp;family=Outfit:wght@400;500;600;700;800&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="../style.css" rel="stylesheet"/>
+<link href="../assets/portfolio-v2.css?v=20260831-2" rel="stylesheet"/>
+<link href="/assets/portfolio-refresh.css?v=20260906-2" rel="stylesheet"/>
+<link href="/assets/portfolio-library.css?v=20260906-1" rel="stylesheet"/>
+<link href="/assets/interactive-labs.css?v=20260908-1" rel="stylesheet"/>
+<link href="/assets/plain-language.css?v=20260917-1" rel="stylesheet"/>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,400&amp;family=Geist:wght@400;500;600&amp;display=swap">
+<link rel="stylesheet" href="/assets/editorial-tokens.css?v=20261106-modern">
+<link rel="stylesheet" href="/assets/editorial.css?v=20261106-modern">
+<script src="/assets/editorial-theme.js?v=20261028-1fe0ee8c9d"></script>
+</head>
+<body data-theme="light" class="portfolio-v2 editorial-site">
+<a class="skip-link" href="#main-content">Aller au contenu principal</a>
+<div aria-hidden="true" class="bg-mesh"></div>
+<div aria-hidden="true" class="noise-overlay"></div>
+<div aria-hidden="true" class="grid-lines"></div>
+<header class="main-header" id="header">
+<nav aria-label="Navigation principale" class="nav-container">
+<a aria-label="Accueil — Franck Raymond" class="brand-logo" href="/index.html">
+<span aria-hidden="true" class="logo-bracket">&lt;</span>
+<span class="logo-text">FR</span>
+<span aria-hidden="true" class="logo-bracket">/&gt;</span>
+</a>
+<div class="nav-menu" id="navMenu"><a class="nav-link" href="/index.html"><span class="nav-text">Accueil</span></a>
+<a class="nav-link" href="/projets.html"><span class="nav-text">Projets</span></a>
+<a class="nav-link" href="/profil.html"><span class="nav-text">Profil</span></a>
+<a class="nav-link" href="/index.html#skills"><span class="nav-text">Compétences</span></a>
+<a class="nav-link" href="/experience.html"><span class="nav-text">Expériences</span></a>
+<a class="nav-link" href="/index.html#contact"><span class="nav-text">Contact</span></a>
+<a class="nav-link" href="https://opengym.jsuisfray.blitz.cloud/"><span class="nav-text">FrayFit</span></a></div>
+<div class="nav-controls">
+<div class="language-switcher">
+<button aria-controls="languageMenu" aria-expanded="false" aria-label="Choisir la langue" class="language-toggle" data-close-label="Fermer le choix de langue" data-open-label="Choisir la langue" id="languageToggle" type="button">
+<i aria-hidden="true" class="fas fa-globe"></i><span>FR</span>
+</button>
+<div aria-label="Choix de la langue" class="language-menu" hidden="" id="languageMenu">
+<a aria-current="page" data-language="fr" href="/pages/projet-linux-hardening-ansible.html" hreflang="fr" lang="fr">FR <span>Français</span></a>
+<a data-language="en" href="/en/pages/projet-linux-hardening-ansible.html" hreflang="en" lang="en">EN <span>English</span></a>
+</div>
+</div>
+<button aria-label="Activer le thème clair" class="theme-toggle" data-dark-label="Activer le thème sombre" data-light-label="Activer le thème clair" id="themeToggle" type="button">
+<i aria-hidden="true" class="fas fa-sun"></i>
+</button>
+<button aria-controls="navMenu" aria-expanded="false" aria-label="Ouvrir le menu" class="menu-toggle" data-close-label="Fermer le menu" data-open-label="Ouvrir le menu" id="menuToggle" type="button">
+<span aria-hidden="true"></span><span aria-hidden="true"></span><span aria-hidden="true"></span>
+</button>
+</div>
+</nav>
+</header>
+<main id="main-content">
+<article class="case-study">
+<header class="case-hero">
+<div class="case-container case-hero-grid">
+<div>
+<p class="case-kicker"><i aria-hidden="true" class="fas fa-user-shield"></i>Systèmes &amp; cybersécurité</p>
+<h1>Durcissement Linux avec Ansible</h1>
+<p class="case-lead">Un rôle Ansible transforme une cible Rocky Linux volontairement permissive en système durci, puis vérifie automatiquement chaque contrôle sans toucher à l'accès principal de la VM.</p>
+<div aria-label="Outils et technologies utilisés" class="case-tags">
+<span>Rocky Linux</span><span>Ansible</span><span>OpenSSH</span><span>sysctl</span><span>auditd</span><span>Docker</span><span>Trivy</span>
+</div>
+</div>
+<dl aria-label="Informations principales" class="case-facts">
+<div><dt>Premier passage</dt><dd>12 changements appliqués</dd></div>
+<div><dt>Idempotence</dt><dd>changed=0 au second passage</dd></div>
+<div><dt>SSH</dt><dd>root et mots de passe désactivés</dd></div>
+<div><dt>Validation</dt><dd>5 contrôles, 0 échec</dd></div>
+</dl>
+</div>
+</header>
+<nav aria-label="Sommaire du projet" class="case-nav">
+<div class="case-container"><a href="#lecture-visuelle">Lecture visuelle</a>
+<a href="#analyse">Besoin</a>
+<a href="#architecture">Solution</a>
+<a href="#realisation">Réalisation</a>
+<a href="#validation">Vérification</a>
+<a href="#recul">Améliorations</a>
+<a href="#preuves">Preuves</a>
+</div>
+</nav>
+<aside class="plain-guide"><p class="plain-kicker">En clair</p><h2>Appliquer des réglages de sécurité de façon répétable</h2><p>Dans un laboratoire, j’ai utilisé Ansible pour appliquer automatiquement des réglages de sécurité à un serveur Linux.</p><p><strong>Mon rôle et le résultat :</strong> Le premier passage a appliqué 12 changements ; le second n’en a ajouté aucun. Le serveur avait conservé l’état attendu.</p><details><summary>Les mots utiles pour lire ce projet</summary><p>L’idempotence signifie qu’une même opération répétée ne crée pas de changement supplémentaire une fois le résultat atteint. Cela ne garantit pas, à lui seul, une sécurité complète.</p></details></aside><section class="interactive-lab" data-interactive-lab="ansible" id="comprendre-idempotence"><noscript><div class="lab-wrap lab-noscript"><h2>Comprendre l’idempotence</h2><p>Premier passage : 12 changements. Second passage : changed=0 et failed=0. Activez JavaScript pour parcourir la reconstitution.</p></div></noscript></section><section aria-labelledby="visual-title" class="refresh-case home-band" id="lecture-visuelle"><div class="home-container"><h2 id="visual-title">Comprendre l’intervention</h2><p class="refresh-case-lead">Une lecture visuelle des étapes, complétée par les preuves du projet.</p><div class="case-flow" data-case-flow=""><div class="case-flow-main"><div class="flow-diagram"><button aria-pressed="true" class="flow-node selected" data-flow-node="0" type="button"><span class="flow-symbol"><svg aria-hidden="true" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewbox="0 0 24 24"><path d="m9 5-6 7 6 7M15 5l6 7-6 7M14 3l-4 18"></path></svg></span><span>Ansible</span></button><svg aria-hidden="true" class="flow-arrow" viewbox="0 0 60 24"><path d="M2 12h53m-8-7 8 7-8 7" fill="none" stroke="currentColor" stroke-width="1.5"></path></svg><button aria-pressed="false" class="flow-node" data-flow-node="1" type="button"><span class="flow-symbol"><svg aria-hidden="true" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewbox="0 0 24 24"><rect height="18" rx="2" width="16" x="4" y="3"></rect><path d="M4 9h16M4 15h16M7 6h1M7 12h1M7 18h1M12 6h5M12 12h5M12 18h5"></path></svg></span><span>Cible Rocky Linux</span></button><svg aria-hidden="true" class="flow-arrow" viewbox="0 0 60 24"><path d="M2 12h53m-8-7 8 7-8 7" fill="none" stroke="currentColor" stroke-width="1.5"></path></svg><button aria-pressed="false" class="flow-node" data-flow-node="2" type="button"><span class="flow-symbol"><svg aria-hidden="true" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewbox="0 0 24 24"><path d="m3 6 2 2 4-4M12 6h9M3 13l2 2 4-4M12 13h9M3 20l2 2 4-4M12 20h9"></path></svg></span><span>Contrôles</span></button></div><div class="case-flow-controls"><button aria-pressed="true" data-flow-step="0" type="button">1. État initial</button><button aria-pressed="false" data-flow-step="1" type="button">2. Durcissement</button><button aria-pressed="false" data-flow-step="2" type="button">3. Validation</button></div></div><div aria-live="polite" class="case-flow-inspector"><h3 data-flow-title="">État initial</h3><p data-flow-description="">Une cible Rocky Linux isolée permet de mesurer les réglages SSH avant durcissement, sans inclure l’accès d’administration de la VM dans le playbook.</p></div><script class="case-flow-data" type="application/json">[["État initial", "Une cible Rocky Linux isolée permet de mesurer les réglages SSH avant durcissement, sans inclure l’accès d’administration de la VM dans le playbook."], ["Durcissement", "Le rôle Ansible applique 12 changements au premier passage : SSH, compte secops, sudo, paramètres noyau et audit."], ["Validation", "Le second passage retourne changed=0 et failed=0. Un playbook distinct vérifie les paramètres et les fichiers ; les captures restent consultables ci-dessous."]]</script></div><p class="diagram-caption">Représentation pédagogique</p><div class="refresh-case-footer"><div><h3>Mon rôle</h3><p>Conception et vérification d’un laboratoire personnel d’automatisation.</p></div><div><h3>Preuves &amp; limites</h3><p><a href="#preuves">Consulter les preuves</a> · <a href="#validation">Lire les vérifications et le contexte</a></p></div></div></div></section><section class="case-band" id="analyse">
+<div class="case-container">
+<div class="case-section-heading"><span>01</span><div><p>Avant de commencer</p><h2>Le besoin et mon rôle</h2></div></div>
+<div class="case-two-columns">
+<div class="case-copy"><h3>Le besoin</h3><p>Une installation Linux trop permissive peut accepter la connexion SSH de root, les mots de passe et des fonctions inutiles. Il fallait démontrer un durcissement réaliste, reproductible et mesurable sans risquer de bloquer l'accès à la VM principale.</p></div>
+<div class="case-copy"><h3>Mon rôle</h3><p>J'ai conçu le rôle Ansible, isolé la cible dans un conteneur Rocky Linux accessible uniquement en local, automatisé les mesures SSH, sudo, sysctl et auditd, puis écrit un playbook de vérification et des scans de sécurité.</p></div>
+</div>
+<div class="case-list-grid">
+<div class="case-list-item"><i aria-hidden="true" class="fas fa-diamond"></i><span>Ne jamais modifier le service SSH de la VM qui héberge le laboratoire.</span></div><div class="case-list-item"><i aria-hidden="true" class="fas fa-diamond"></i><span>Utiliser une authentification par clé sans publier de clé privée.</span></div><div class="case-list-item"><i aria-hidden="true" class="fas fa-diamond"></i><span>Conserver une exécution répétable avec un second passage sans changement.</span></div><div class="case-list-item"><i aria-hidden="true" class="fas fa-diamond"></i><span>Documenter l'exception nécessaire au processus SSH de la cible isolée.</span></div>
+</div>
+</div>
+</section>
+<section class="case-band case-band-alt" id="architecture">
+<div class="case-container">
+<div class="case-section-heading"><span>02</span><div><p>Pourquoi cette méthode</p><h2>La solution choisie</h2></div></div>
+<div class="case-decision">
+<h3>Une cible SSH conteneurisée administrée par Ansible</h3>
+<p>La VM joue le rôle de contrôleur et administre une cible Rocky Linux séparée sur 127.0.0.1:2222. Cette architecture permet de tester de vraies règles système et un redémarrage SSH, tout en maintenant l'accès d'administration de la VM hors du périmètre du playbook.</p>
+</div>
+<div class="case-list-grid case-list-grid-wide">
+<div class="case-list-item"><i aria-hidden="true" class="fas fa-arrow-right"></i><span>La VM Rocky Linux exécute Ansible comme nœud de contrôle.</span></div><div class="case-list-item"><i aria-hidden="true" class="fas fa-arrow-right"></i><span>Un conteneur Rocky Linux 9 fournit une cible SSH volontairement peu durcie.</span></div><div class="case-list-item"><i aria-hidden="true" class="fas fa-arrow-right"></i><span>Une clé temporaire générée localement initialise l'accès du compte secops.</span></div><div class="case-list-item"><i aria-hidden="true" class="fas fa-arrow-right"></i><span>Le rôle gère SSH, sudo, le vieillissement des mots de passe, sysctl et auditd.</span></div><div class="case-list-item"><i aria-hidden="true" class="fas fa-arrow-right"></i><span>Un playbook séparé relit la configuration effective et échoue si un contrôle manque.</span></div><div class="case-list-item"><i aria-hidden="true" class="fas fa-arrow-right"></i><span>Trivy analyse le dépôt et l'image avant la conservation des preuves.</span></div>
+</div>
+</div>
+</section>
+<section class="case-band" id="realisation">
+<div class="case-container">
+<div class="case-section-heading"><span>03</span><div><p>Passer du plan à la pratique</p><h2>Ce que j’ai réalisé</h2></div></div>
+<ol class="case-steps">
+<li><span>01</span><p>Construction d'une cible Rocky Linux isolée et exposée uniquement sur l'interface locale.</p></li><li><span>02</span><p>Mesure de l'état initial de SSH et de l'absence du compte secops.</p></li><li><span>03</span><p>Création du rôle Ansible et de ses variables, tâches, modèles et handlers.</p></li><li><span>04</span><p>Désactivation de root, des mots de passe, de X11 et du transfert TCP dans SSH.</p></li><li><span>05</span><p>Application des politiques sudo, mot de passe, noyau et audit.</p></li><li><span>06</span><p>Exécution du playbook une première fois, puis une seconde pour contrôler l'idempotence.</p></li><li><span>07</span><p>Validation finale des fichiers, paramètres effectifs et scans Trivy.</p></li>
+</ol>
+<p class="case-technical-link"><a href="../downloads/portfolio-projects-source.zip"><i aria-hidden="true" class="fas fa-terminal"></i>Consulter le dossier technique complet</a></p>
+</div>
+</section>
+<section class="case-band case-band-alt" id="validation">
+<div class="case-container">
+<div class="case-section-heading"><span>04</span><div><p>Contrôler le fonctionnement</p><h2>Comment j’ai vérifié</h2></div></div>
+<div class="case-two-columns">
+<div><h3>Tests réalisés</h3><ul class="case-check-list"><li><i aria-hidden="true" class="fas fa-check"></i>Comparaison des réglages SSH effectifs avant et après durcissement.</li><li><i aria-hidden="true" class="fas fa-check"></i>Deuxième exécution Ansible avec `changed=0` et `failed=0`.</li><li><i aria-hidden="true" class="fas fa-check"></i>Playbook de contrôle sur SSH, le compte secops et quatre fichiers protégés.</li><li><i aria-hidden="true" class="fas fa-check"></i>Scan Trivy du Dockerfile, des secrets et de l'image Rocky Linux.</li></ul></div>
+<div><h3>Résultats observés</h3><ul class="case-check-list case-results"><li><i aria-hidden="true" class="fas fa-circle-check"></i>Le premier passage applique 12 changements de sécurité sans échec.</li><li><i aria-hidden="true" class="fas fa-circle-check"></i>Le second passage confirme un état stable avec 17 tâches OK et aucun changement.</li><li><i aria-hidden="true" class="fas fa-circle-check"></i>La connexion SSH de root et l'authentification par mot de passe sont désactivées.</li><li><i aria-hidden="true" class="fas fa-circle-check"></i>Le compte secops, les politiques noyau et les règles d'audit sont installés.</li><li><i aria-hidden="true" class="fas fa-circle-check"></i>Aucune vulnérabilité élevée ou critique n'est détectée dans l'image analysée.</li></ul></div>
+</div>
+</div>
+</section>
+<section class="case-band" id="recul">
+<div class="case-container">
+<div class="case-section-heading"><span>05</span><div><p>Prendre du recul</p><h2>Limites et améliorations</h2></div></div>
+<div class="case-two-columns">
+<div><h3>Sécurité et utilisation</h3><ul class="case-check-list"><li><i aria-hidden="true" class="fas fa-shield-halved"></i>La cible est publiée uniquement sur 127.0.0.1 et n'est pas accessible depuis le réseau VMware.</li><li><i aria-hidden="true" class="fas fa-shield-halved"></i>Les clés privées et le dossier `.secrets` sont exclus du code publié.</li><li><i aria-hidden="true" class="fas fa-shield-halved"></i>Les permissions des fichiers SSH, sudo et d'identité sont contrôlées.</li><li><i aria-hidden="true" class="fas fa-shield-halved"></i>L'exception Trivy du processus SSH est limitée, datée et documentée avec ses protections compensatoires.</li></ul></div>
+<div><h3>Ce que j’améliorerais</h3><ul class="case-check-list case-limitations"><li><i aria-hidden="true" class="fas fa-triangle-exclamation"></i>La cible est un conteneur de laboratoire et non un serveur de production complet.</li><li><i aria-hidden="true" class="fas fa-triangle-exclamation"></i>SELinux, le chiffrement du disque et la gestion centralisée des identités restent hors périmètre.</li><li><i aria-hidden="true" class="fas fa-triangle-exclamation"></i>Une adaptation des variables serait nécessaire avant d'appliquer le rôle à plusieurs distributions.</li></ul></div>
+</div>
+</div>
+</section>
+<section class="case-band case-band-alt" id="preuves">
+<div class="case-container">
+<div class="case-section-heading"><span>06</span><div><p>Éléments visibles</p><h2>Preuves du fonctionnement</h2></div></div>
+<div class="case-gallery">
+<figure><button data-lightbox-alt="Configuration SSH avant durcissement et second passage Ansible sans changement" data-lightbox-src="projet-linux-hardening-ansible_assets/01-ansible-avant-apres.png" type="button"><img alt="Configuration SSH avant durcissement et second passage Ansible sans changement" loading="lazy" src="projet-linux-hardening-ansible_assets/01-ansible-avant-apres.png"/></button><figcaption>État initial permissif puis preuve d'idempotence avec changed=0.</figcaption></figure>
+<figure><button data-lightbox-alt="Playbook Ansible validant les contrôles de durcissement Linux" data-lightbox-src="projet-linux-hardening-ansible_assets/02-ansible-verification.png" type="button"><img alt="Playbook Ansible validant les contrôles de durcissement Linux" loading="lazy" src="projet-linux-hardening-ansible_assets/02-ansible-verification.png"/></button><figcaption>Vérification automatique de SSH, secops, sudo, sysctl et auditd.</figcaption></figure>
+</div>
+</div>
+</section>
+<section class="case-band case-sources">
+<div class="case-container case-two-columns">
+<div><h2>Compétences démontrées</h2><ul class="case-compact-list"><li>Automatiser une configuration Linux avec Ansible.</li><li>Durcir OpenSSH, sudo, le noyau et la journalisation d'audit.</li><li>Isoler une cible d'administration pour limiter le risque opérationnel.</li><li>Prouver l'idempotence et vérifier automatiquement l'état obtenu.</li></ul></div>
+<div><h2>Sources utilisées</h2><ul class="case-compact-list"><li><a href="https://docs.ansible.com/projects/ansible/latest/playbook_guide/playbooks_intro.html" rel="noopener noreferrer" target="_blank">Ansible — Playbooks et idempotence</a></li><li><a href="https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/9/html/security_hardening/assembly_securing-openssh_security-hardening" rel="noopener noreferrer" target="_blank">Red Hat — Sécurisation d'OpenSSH</a></li><li><a href="https://trivy.dev/latest/docs/scanner/misconfiguration/" rel="noopener noreferrer" target="_blank">Trivy — Scanner de mauvaises configurations</a></li></ul></div>
+</div>
+</section>
+</article>
+<dialog aria-label="Agrandissement de la preuve" class="case-lightbox" id="caseLightbox">
+<button aria-label="Fermer l’image" data-lightbox-close="" type="button"><i aria-hidden="true" class="fas fa-xmark"></i></button>
+<img alt="" src=""/>
+</dialog>
+</main>
+<footer class="main-footer">
+<div class="footer-container">
+<div class="footer-content">
+<p class="footer-text">© 2026 <span class="footer-copyright">Franck Raymond</span>. Tous droits réservés.</p>
+<div aria-label="Réseaux professionnels" class="footer-socials">
+<a aria-label="GitHub" href="https://github.com/franckraymond" rel="noopener noreferrer" target="_blank"><i aria-hidden="true" class="fab fa-github"></i></a>
+<a aria-label="LinkedIn" href="https://www.linkedin.com/in/franck-r-21a8a4184" rel="noopener noreferrer" target="_blank"><i aria-hidden="true" class="fab fa-linkedin"></i></a>
+</div>
+</div>
+</div>
+</footer>
+<script defer="" src="../assets/portfolio-glossary.js?v=20260917-1"></script>
+<script defer="" src="../assets/portfolio-v2.js?v=20261028-493b8041ab"></script>
+<script defer="" src="/assets/portfolio-refresh.js?v=20260906-2"></script>
+<script defer="" src="/assets/interactive-labs.js?v=20261028-7903a4303d"></script>
+</body></html>

@@ -1,0 +1,571 @@
+<!DOCTYPE html><html lang="fr"><head>
+
+  <meta charset="UTF-8">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Déployer un service | Portfolio</title>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&amp;family=Outfit:wght@300;400;500;600;700;800;900&amp;family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="../style.css">
+
+  <style>
+        /* Tooltips termes techniques */
+        .term {
+            border-bottom: 1px dashed var(--primary);
+            cursor: help;
+            position: relative;
+            display: inline;
+        }
+        .term::after {
+            content: attr(data-def);
+            position: absolute;
+            bottom: calc(100% + 8px);
+            left: 50%;
+            transform: translateX(-50%);
+            background: #1e293b;
+            color: #f8fafc;
+            font-size: 0.78rem;
+            line-height: 1.5;
+            padding: 0.6rem 0.9rem;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            white-space: normal;
+            width: 220px;
+            text-align: left;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.2s;
+            z-index: 100;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+        }
+        .term:hover::after { opacity: 1; }
+  </style>
+<meta name="theme-color" content="#111214"><link rel="stylesheet" href="/assets/legacy-unified.css?v=20260831-2"><meta name="description" content="Portfolio de Franck Raymond : projets en administration systèmes, réseaux, supervision et cybersécurité."><meta name="author" content="Franck Raymond"><meta name="robots" content="index,follow,max-image-preview:large"><meta property="og:type" content="website"><meta property="og:site_name" content="Portfolio de Franck Raymond"><meta property="og:title" content="Déployer un service | Portfolio"><meta property="og:description" content="Portfolio de Franck Raymond : projets en administration systèmes, réseaux, supervision et cybersécurité."><meta property="og:url" content="https://franckraymond.tech/pages/deployer-service.html"><meta property="og:image" content="https://franckraymond.tech/franck.webp"><meta property="og:image:alt" content="Portrait professionnel de Franck Raymond"><meta property="og:locale" content="fr_FR"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Déployer un service | Portfolio"><meta name="twitter:description" content="Portfolio de Franck Raymond : projets en administration systèmes, réseaux, supervision et cybersécurité."><meta name="twitter:image" content="https://franckraymond.tech/franck.webp"><link rel="canonical" href="https://franckraymond.tech/pages/deployer-service.html"><link rel="icon" href="/favicon-32x32.png" sizes="32x32" type="image/png"><link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180"><link rel="manifest" href="/site.webmanifest"><script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"Déployer un service | Portfolio","url":"https://franckraymond.tech/pages/deployer-service.html","description":"Portfolio de Franck Raymond : projets en administration systèmes, réseaux, supervision et cybersécurité.","isPartOf":{"@type":"WebSite","name":"Portfolio de Franck Raymond","url":"https://franckraymond.tech/"},"about":{"@type":"Person","name":"Franck Raymond","url":"https://franckraymond.tech/"}}</script>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,400&amp;family=Geist:wght@400;500;600&amp;display=swap">
+<link rel="stylesheet" href="/assets/editorial-tokens.css?v=20261106-modern">
+<link rel="stylesheet" href="/assets/editorial.css?v=20261106-modern">
+<script src="/assets/editorial-theme.js?v=20261028-1fe0ee8c9d"></script>
+</head>
+
+<body data-theme="light" class="portfolio-legacy editorial-site">
+
+  <div class="bg-mesh"></div>
+
+  <div class="noise-overlay"></div>
+
+  <div class="grid-lines"></div>
+
+
+
+  <header class="main-header" id="header">
+
+    <nav class="nav-container" aria-label="Navigation principale">
+
+      <div class="nav-brand">
+
+        <a href="../index.html" class="brand-logo">
+
+          <span class="logo-bracket">&lt;</span>
+
+          <span class="logo-text">FR</span>
+
+          <span class="logo-bracket">/&gt;</span>
+
+        </a>
+
+      </div>
+
+      <div class="nav-menu" id="navMenu">
+
+        <a href="../index.html" class="nav-link">
+
+          <i class="fas fa-home"></i>
+
+          <span class="nav-text">Accueil</span>
+
+        </a>
+
+        <a href="../index.html#skills" class="nav-link active">
+
+          <i class="fas fa-code"></i>
+
+          <span class="nav-text">Compétences</span>
+
+        </a>
+
+        <a href="../index.html#experience" class="nav-link">
+
+          <i class="fas fa-briefcase"></i>
+
+          <span class="nav-text">Expériences</span>
+
+        </a>
+
+        <a href="../index.html#contact" class="nav-link">
+
+          <i class="fas fa-envelope"></i>
+
+          <span class="nav-text">Contact</span>
+
+        </a>
+
+      
+<a class="nav-link" href="https://opengym.jsuisfray.blitz.cloud/"><span class="nav-text">FrayFit</span></a></div>
+
+      <div class="nav-controls">
+
+        <button class="theme-toggle" id="themeToggle" title="Changer le thème" aria-label="Basculer entre mode sombre et clair">
+
+          <i class="fas fa-moon"></i>
+
+        </button>
+
+        <button class="menu-toggle" id="menuToggle" aria-label="Ouvrir le menu mobile" aria-expanded="false">
+
+          <span></span><span></span><span></span>
+
+        </button>
+
+      </div>
+
+    </nav>
+
+  </header>
+
+
+
+  <main>
+
+    <section class="hero-section page-hero">
+
+      <div class="hero-glow"></div>
+
+      <div class="hero-glow-2"></div>
+
+      <div class="hero-container">
+
+        <div class="hero-content">
+
+          <div class="hero-greeting page-badge">Projet &amp; déploiement</div>
+
+          <h1 class="hero-name"><span class="name-gradient">Déployer un service</span></h1>
+
+          <p class="hero-description">
+
+            Mise en production et configuration de services réseau et supervision.
+
+          </p>
+
+<div class="hero-buttons">
+
+            <a href="#validation" class="btn btn-primary"><i class="fas fa-link"></i> Validation</a>
+
+            <a href="#preuves" class="btn btn-secondary"><i class="fas fa-image"></i> Preuves</a>
+
+          </div>
+
+        </div>
+
+        <div class="hero-image-wrapper">
+
+          <div class="hero-image-container">
+
+            <div class="profile-image-frame">
+
+              <i class="fas fa-rocket page-icon"></i>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+
+    <section id="validation" class="section">
+
+  <div class="section-container">
+
+    <div class="section-header">
+
+      <span class="section-number">01</span>
+
+      <h2 class="section-title">Comment je l'ai <span class="title-gradient">validée</span></h2>
+
+      <div class="section-line"></div>
+
+    </div>
+
+    <div class="about-content">
+
+      <div>
+
+        <p class="about-text">
+
+          <strong>J'ai validé cette compétence en faisant concrètement ceci :</strong> J'ai valide cette compétence en installant et publiant des services complets, pas seulement en les configurant sur le papier. J'ai déploie un service Web haute disponibilité, une plateforme <span class="term" data-def="Logiciel de surveillance qui vérifie en temps réel que les serveurs et équipements réseau fonctionnent correctement.">Zabbix</span> et plusieurs services d'infrastructure, puis j'ai verifie leur mise en service effective.
+
+        </p>
+
+        <p class="about-text" style="margin-top: 1rem;">
+
+          Ce travail m'a permis de valider ma capacité à installer un service, le configurer correctement et l'amener jusqu'à un etat exploitable en production ou en maquette. J'ai aussi appris a preparer les prerequis en amont pour eviter qu'un déploiement echoue a cause d'un détail réseau, système ou sécurité oublie.
+
+        </p>
+
+        <div class="timeline-achievements">
+
+              <div class="achievement-item"><i class="fas fa-check-circle"></i><span>Installer les composants applicatifs et système nécessaires</span></div>
+
+      <div class="achievement-item"><i class="fas fa-check-circle"></i><span>Configurer la publication, la supervision et la sécurité</span></div>
+
+      <div class="achievement-item"><i class="fas fa-check-circle"></i><span>Vérifier qu'un utilisateur ou un administrateur peut l'exploiter</span></div>
+
+      <div class="achievement-item"><i class="fas fa-check-circle"></i><span>Preparer les prerequis réseau, système et droits avant l'installation</span></div>
+
+      <div class="achievement-item"><i class="fas fa-check-circle"></i><span>Documenter la procédure pour pouvoir reproduire le déploiement proprement</span></div>
+
+        </div>
+
+      </div>
+
+      <div>
+
+        <div class="skill-category">
+
+          <h3 class="category-title"><i class="fas fa-diagram-project"></i> TP et projets reliés</h3>
+
+          <div class="timeline-tags">
+
+                <a href="projet-r5-web-ha.html" class="tag"><i class="fas fa-link"></i> Web HA</a>
+
+        <a href="projet-zabbix-r5.html" class="tag"><i class="fas fa-link"></i> <span class="term" data-def="Logiciel de surveillance qui vérifie en temps réel que les serveurs et équipements réseau fonctionnent correctement.">Zabbix</span></a>
+
+        <a href="projet-openclaw.html" class="tag"><i class="fas fa-link"></i> OpenClaw</a>
+
+          </div>
+
+        </div>
+
+        <div class="skill-category" style="margin-top: 1.5rem;">
+
+          <h3 class="category-title"><i class="fas fa-graduation-cap"></i> Ce que j'ai validé</h3>
+
+          <div class="timeline-tags">
+
+                <span class="tag">Installation de service</span>
+
+        <span class="tag">Configuration complète</span>
+
+        <span class="tag">Mise en exploitation</span>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+
+    <section id="actions" class="section" style="background: var(--bg-card-solid);">
+
+      <div class="section-container">
+
+        <div class="section-header">
+
+          <span class="section-number">02</span>
+
+          <h2 class="section-title">Actions <span class="title-gradient">&amp; réalisations</span></h2>
+
+          <div class="section-line"></div>
+
+        </div>
+
+        <div class="about-content">
+
+          <div>
+
+            <p class="about-text">Déploiement de services d'infrastructure complets.</p>
+
+            <div class="timeline-achievements">
+
+              <div class="achievement-item"><i class="fas fa-check-circle"></i><span>Déploiement d'<span class="term" data-def="Annuaire centralisé qui gère tous les utilisateurs et ordinateurs d'une entreprise. L'admin y crée les comptes et définit qui a accès à quoi.">Active Directory</span> avec structure OU et <span class="term" data-def="Règles appliquées automatiquement à tous les ordinateurs d'une entreprise (ex: fond d'écran imposé, logiciels installés d'office).">GPO</span></span></div>
+
+              <div class="achievement-item"><i class="fas fa-check-circle"></i><span>Installation et configuration des services <span class="term" data-def="Système qui traduit un nom de site (ex: google.com) en adresse réseau compréhensible par les machines.">DNS</span> et <span class="term" data-def="Service qui attribue automatiquement une adresse réseau à chaque appareil qui se connecte.">DHCP</span></span></div>
+
+              <div class="achievement-item"><i class="fas fa-check-circle"></i><span>Mise en place de <span class="term" data-def="Logiciel de surveillance qui vérifie en temps réel que les serveurs et équipements réseau fonctionnent correctement.">Zabbix</span> pour la supervision de l'infrastructure</span></div>
+
+              <div class="achievement-item"><i class="fas fa-check-circle"></i><span>Déploiement de <span class="term" data-def="Outil qui collecte et centralise les journaux (logs) de tous les serveurs pour les analyser facilement.">Graylog</span> pour la centralisation des <span class="term" data-def="Fichiers de journaux qui enregistrent tout ce qui se passe sur un serveur (connexions, erreurs, actions).">logs</span></span></div>
+
+              <div class="achievement-item"><i class="fas fa-check-circle"></i><span>Installation de serveurs web (Apache/<span class="term" data-def="Serveur web qui distribue les pages de sites internet et peut rediriger le trafic vers différents services.">Nginx</span>) sur Linux</span></div>
+
+              <div class="achievement-item"><i class="fas fa-check-circle"></i><span>Tests de validation avant mise en service</span></div>
+
+              <div class="achievement-item"><i class="fas fa-check-circle"></i><span>Documentation technique des procédures de déploiement</span></div>
+
+              <div class="achievement-item"><i class="fas fa-check-circle"></i><span>Configuration des comptes de service, droits et règles <span class="term" data-def="Système qui filtre le trafic réseau et bloque les connexions non autorisées.">firewall</span> nécessaires</span></div>
+
+              <div class="achievement-item"><i class="fas fa-check-circle"></i><span>Vérification de la persistence du service après redemarrage ou maintenance</span></div>
+
+            </div>
+
+          </div>
+
+          <div>
+
+            <div class="skill-category">
+
+              <h3 class="category-title"><i class="fas fa-layer-group"></i> Services déployés</h3>
+
+              <div class="timeline-tags">
+
+                <span class="tag"><span class="term" data-def="Annuaire centralisé qui gère tous les utilisateurs et ordinateurs d'une entreprise. L'admin y crée les comptes et définit qui a accès à quoi.">Active Directory</span></span>
+
+                <span class="tag"><span class="term" data-def="Système qui traduit un nom de site (ex: google.com) en adresse réseau compréhensible par les machines.">DNS</span>/<span class="term" data-def="Service qui attribue automatiquement une adresse réseau à chaque appareil qui se connecte.">DHCP</span></span>
+
+                <span class="tag"><span class="term" data-def="Logiciel de surveillance qui vérifie en temps réel que les serveurs et équipements réseau fonctionnent correctement.">Zabbix</span></span>
+
+                <span class="tag"><span class="term" data-def="Outil qui collecte et centralise les journaux (logs) de tous les serveurs pour les analyser facilement.">Graylog</span></span>
+
+                <span class="tag">Apache/<span class="term" data-def="Serveur web qui distribue les pages de sites internet et peut rediriger le trafic vers différents services.">Nginx</span></span>
+
+                <span class="tag">MariaDB</span>
+
+              </div>
+
+            </div>
+
+            <div class="skill-category" style="margin-top: 1.5rem;">
+
+              <h3 class="category-title"><i class="fas fa-graduation-cap"></i> Compétences BTS SIO</h3>
+
+              <div class="timeline-tags">
+
+                <span class="tag">Déployer des services</span>
+
+                <span class="tag">Configurer les systèmes</span>
+
+                <span class="tag">Documenter</span>
+
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+
+    <section id="difficultes" class="section">
+
+      <div class="section-container">
+
+        <div class="section-header">
+
+          <span class="section-number">03</span>
+
+          <h2 class="section-title">Difficultés <span class="title-gradient">&amp; solutions</span></h2>
+
+          <div class="section-line"></div>
+
+        </div>
+
+        <div class="about-content">
+
+          <div>
+
+            <p class="about-text">Le vrai déploiement commence souvent après l'installation du paquet. Les principales difficultés viennent des dépendances, des flux réseau, des droits système et des écarts entre l'environnement de test et l'environnement cible.</p>
+
+            <div class="timeline-achievements">
+
+              <div class="achievement-item"><i class="fas fa-exclamation-triangle" style="color: var(--accent-primary);"></i><span><strong>Problème :</strong> Service qui ne demarre pas après l'installation</span></div>
+
+              <div class="achievement-item"><i class="fas fa-lightbulb" style="color: var(--accent-secondary);"></i><span><strong>Solution :</strong> Analyse des <span class="term" data-def="Fichiers de journaux qui enregistrent tout ce qui se passe sur un serveur (connexions, erreurs, actions).">logs</span> système, vérification des dépendances et ports</span></div>
+
+            </div>
+
+            <div class="timeline-achievements" style="margin-top: 1rem;">
+
+              <div class="achievement-item"><i class="fas fa-exclamation-triangle" style="color: var(--accent-primary);"></i><span><strong>Problème :</strong> Configuration qui fonctionne en lab mais pas en prod</span></div>
+
+              <div class="achievement-item"><i class="fas fa-lightbulb" style="color: var(--accent-secondary);"></i><span><strong>Solution :</strong> Vérification des differences réseau/<span class="term" data-def="Système qui filtre le trafic réseau et bloque les connexions non autorisées.">firewall</span> et adaptation de la config</span></div>
+
+            </div>
+
+            <div class="timeline-achievements" style="margin-top: 1rem;">
+
+              <div class="achievement-item"><i class="fas fa-exclamation-triangle" style="color: var(--accent-primary);"></i><span><strong>Problème :</strong> Dépendances invisibles entre service, base de données et reverse proxy</span></div>
+
+              <div class="achievement-item"><i class="fas fa-lightbulb" style="color: var(--accent-secondary);"></i><span><strong>Solution :</strong> Vérification par couches, tests unitaires de chaque composant et validation bout en bout</span></div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+
+    <section id="bilan" class="section" style="background: var(--bg-card-solid);">
+
+      <div class="section-container">
+
+        <div class="section-header">
+
+          <span class="section-number">04</span>
+
+          <h2 class="section-title">Bilan <span class="title-gradient">personnel</span></h2>
+
+          <div class="section-line"></div>
+
+        </div>
+
+        <div class="about-content">
+
+          <div>
+
+            <p class="about-text">Cette compétence m'a fait passer d'une logique de configuration isolee a une logique de service complet. J'ai mieux compris qu'un déploiement réussi repose autant sur la technique que sur la préparation, la vérification et la capacité à rejouer proprement la procédure.</p>
+
+            <p class="about-text" style="margin-top: 1rem;">Personnellement, j'ai gagné en rigueur d'installation et en réflexes de validation. Je pense davantage aux dépendances, à la maintenance et à l'exploitabilite réelle du service, pas seulement a son fonctionnement immediat.</p>
+
+          </div>
+
+          <div>
+
+            <div class="timeline-achievements">
+
+              <div class="achievement-item"><i class="fas fa-check-circle"></i><span>Vision plus complète du cycle de déploiement d'un service</span></div>
+
+              <div class="achievement-item"><i class="fas fa-check-circle"></i><span>Meilleure anticipation des prerequis et points de blocage</span></div>
+
+              <div class="achievement-item"><i class="fas fa-check-circle"></i><span>Documentation plus utile pour la maintenance et la reproductibilite</span></div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+
+    <section id="preuves" class="section" style="background: var(--bg-card-solid);">
+
+      <div class="section-container">
+
+        <div class="section-header">
+
+          <span class="section-number">05</span>
+
+          <h2 class="section-title">Preuves <span class="title-gradient">&amp; captures</span></h2>
+
+          <div class="section-line"></div>
+
+        </div>
+
+        <p class="about-text">Cette page sert de synthèse. Les captures détaillées, configurations et resultats sont visibles dans les TP et projets reliés ci-dessus.</p>
+
+        <div class="gallery-grid">
+
+          <div class="gallery-item">
+
+            <img src="projet-glpi_assets/image2.png" alt="Services Apache et MariaDB actifs sur Rocky Linux" class="gallery-img">
+
+          </div>
+
+          <div class="gallery-item">
+
+            <img src="projet-glpi_assets/image1.png" alt="Configuration réseau du serveur GLPI (ip a)" class="gallery-img">
+
+          </div>
+
+          <div class="gallery-item">
+
+            <img src="projet-glpi_assets/image3.png" alt="Base de données GLPI verifiee dans MariaDB" class="gallery-img">
+
+          </div>
+
+          <div class="gallery-item">
+
+            <img src="projet-glpi_assets/image5.png" alt="Contextes SELinux configures pour GLPI" class="gallery-img">
+
+          </div>
+
+          <div class="gallery-item">
+
+            <img src="projet-glpi_assets/image6.png" alt="Serveur web opérationnel - HTTP 200 OK" class="gallery-img">
+
+          </div>
+
+          <div class="gallery-item">
+
+            <img src="projet-glpi_assets/image4.png" alt="Test accès GLPI via curl - redirection HTTP" class="gallery-img">
+
+          </div>
+
+        </div>
+
+        <div class="section-footer">
+
+          <a href="../index.html#skills" class="btn-more"><i class="fas fa-arrow-left"></i> Retour aux compétences</a>
+
+        </div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+
+
+  <footer class="main-footer" role="contentinfo">
+
+    <div class="footer-container">
+
+      <div class="footer-content">
+
+        <p class="footer-text">2026 <span class="footer-copyright">Franck Raymond</span> - Tous droits réservés.</p>
+
+      </div>
+
+    </div>
+
+  </footer>
+
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+
+  <script src="../script.js?v=20261028-b753f7964f"></script>
+
+
+
+
+
+<script src="/assets/portfolio-glossary.js?v=20260831-2" defer=""></script><script src="/assets/legacy-unified.js?v=20261028-8c422e514f" defer=""></script></body></html>

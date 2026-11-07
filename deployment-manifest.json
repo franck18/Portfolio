@@ -1,0 +1,486 @@
+{
+  "files": [
+    "veille-cybersecurite.html",
+    "securite-ad.html",
+    "schema-reseau.html",
+    "presentation.html",
+    "logs.html",
+    "zabbix.html",
+    "exp-mairie.html",
+    "veille-cloud.html",
+    "exp-auchan.html",
+    "exp-hopital.html",
+    "404.html",
+    "index.html",
+    "virtualisation.html",
+    "dossier-technique-404.html",
+    "dossier-technique-index.html",
+    "profil.html",
+    "projets.html",
+    "bloodhound.html",
+    "merci.html",
+    "veille-ia.html",
+    "experience.html",
+    "en/projets.html",
+    "en/404.html",
+    "en/merci.html",
+    "en/index.html",
+    "en/pages/projet-hsrp-lacp.html",
+    "en/pages/projet-fail2ban-ssh.html",
+    "en/pages/projet-ia-ollama.html",
+    "en/pages/projet-reseau-segmente-nftables.html",
+    "en/pages/projet-homelab.html",
+    "en/pages/projet-zabbix-r5.html",
+    "en/pages/projet-alger-medilab.html",
+    "en/pages/projet-pipeline-cicd-securisee.html",
+    "en/pages/projet-linux-hardening-ansible.html",
+    "pages/bloodhound.html",
+    "pages/projet-zabbix-r5.html",
+    "pages/mettre-habilitation.html",
+    "pages/projet-openclaw.html",
+    "pages/projet-alger-medilab.html",
+    "pages/projet-homelab.html",
+    "pages/gerer-sauvegardes.html",
+    "pages/projet-ad-dhcp-dns-gpo.html",
+    "pages/dossier-technique-projet-zabbix-r5.html",
+    "pages/projet-vmware-vlan.html",
+    "pages/participer-evolution-site.html",
+    "pages/collecter-demandes.html",
+    "pages/projet-spacefarm-2080.html",
+    "pages/deployer-service.html",
+    "pages/projet-scripting.html",
+    "pages/projet-graylog-syslog.html",
+    "pages/dossier-technique-projet-fail2ban-ssh.html",
+    "pages/projet-linux-hardening-ansible.html",
+    "pages/analyser-objectifs.html",
+    "pages/verifier-continuite.html",
+    "pages/projet-pipeline-cicd-securisee.html",
+    "pages/vlan-routage.html",
+    "pages/verifier-utilisation.html",
+    "pages/projet-reseau-segmente-nftables.html",
+    "pages/referencier-mesurer.html",
+    "pages/valoriser-image.html",
+    "pages/traiter-demandes-services.html",
+    "pages/securite-ad.html",
+    "pages/mettre-environnement.html",
+    "pages/developper-projet.html",
+    "pages/linux-rocky-debian.html",
+    "pages/windows-server-ad.html",
+    "pages/evaluer-indicateurs.html",
+    "pages/epreuve-e5.html",
+    "pages/accompagner-utilisateurs.html",
+    "pages/dossier-technique-projet-ia-ollama.html",
+    "pages/bloodhound-ad.html",
+    "pages/projet-hsrp-lacp.html",
+    "pages/projet-auchan-plan.html",
+    "pages/dossier-technique-projet-alger-medilab.html",
+    "pages/mettre-veille.html",
+    "pages/recenser-ressources.html",
+    "pages/warren.html",
+    "pages/extreme-networks.html",
+    "pages/dossier-technique-projet-homelab.html",
+    "pages/projet-ia-ollama.html",
+    "pages/dns-dhcp.html",
+    "pages/traiter-demandes-applications.html",
+    "pages/projet-glpi.html",
+    "pages/dossier-technique-projet-hsrp-lacp.html",
+    "pages/exploiter-referentiels.html",
+    "pages/projet-r5-web-ha.html",
+    "pages/realiser-tests.html",
+    "pages/syslog-graylog.html",
+    "pages/incident-vcenter-certificats.html",
+    "pages/zabbix.html",
+    "pages/gerer-identite.html",
+    "pages/epreuve-e4.html",
+    "pages/planifier-activites.html",
+    "pages/projet-fail2ban-ssh.html",
+    "assets/editorial.css",
+    "assets/editorial-tokens.css"
+  ],
+  "baseline": {
+    "veille-cybersecurite.html": {
+      "sha256": "8e37e91bd1bf6a770bac3c2e8584bd39dc5acb9843e127ac6ea93e9b5ea39ceb",
+      "size": 27621
+    },
+    "securite-ad.html": {
+      "sha256": "df071f97c5f4a43c3caab6073a35b234f5b3cc956803ba01b4ec22f88588cdd6",
+      "size": 22684
+    },
+    "schema-reseau.html": {
+      "sha256": "e22d44a6729625517aaac19d86ef0117ec3c1db36858fc482744fb6a70457148",
+      "size": 6341
+    },
+    "presentation.html": {
+      "sha256": "efc8e76bb9a6f6ed5ea6f1312ce1419c6f5088015a315dba5f9468de845e35a8",
+      "size": 47910
+    },
+    "logs.html": {
+      "sha256": "b9f7697309e9a01a0029767ce6894ddecdb84a33fd1d25d4a5d397e9b2e4bd93",
+      "size": 16830
+    },
+    "zabbix.html": {
+      "sha256": "137abe58cfbb24711f68c30ef0c86997469a97df1f4cb3828882f16d8290c31f",
+      "size": 17828
+    },
+    "exp-mairie.html": {
+      "sha256": "117a31f44f2a30ec7628df4b6c6c320571517404830f5f8cff0dc822c4010f36",
+      "size": 26320
+    },
+    "veille-cloud.html": {
+      "sha256": "c11a34958cbf6957ea544ae95b50a4f1b0466097ed527e2ea15019f99a5ca4cc",
+      "size": 25565
+    },
+    "exp-auchan.html": {
+      "sha256": "7da5ea93160f584815ca83a10d51921e7d23289fcd0b63cb09ca458e0f8557e7",
+      "size": 22683
+    },
+    "exp-hopital.html": {
+      "sha256": "3b246bd30b65fd902d235e084f91b324710cb30fc4a5c66f1855fb6c72d31e34",
+      "size": 28139
+    },
+    "404.html": {
+      "sha256": "89ab27c384de19949e4a647348fe57be125d604a31c528529f51ce128e91a51e",
+      "size": 9835
+    },
+    "index.html": {
+      "sha256": "c356529343503477be1a1635f37ca6a471be424ff12476add33788b7b482246b",
+      "size": 30252
+    },
+    "virtualisation.html": {
+      "sha256": "69c785c80c09052d901fe678de03d5f98c2b490782ce9b83e7a3291608f0e1f9",
+      "size": 31951
+    },
+    "dossier-technique-404.html": {
+      "sha256": "37cb800c8396ca92feb4f289f7663d499fd413d71c4f83383f404f53a3a6cd09",
+      "size": 8131
+    },
+    "dossier-technique-index.html": {
+      "sha256": "b2983918e9c6df172656a3c8fe780d4a7bea8a2fe6bef188aa25a06a43a065ba",
+      "size": 103974
+    },
+    "profil.html": {
+      "sha256": "af0e45731d15bbc646d9873dfa11a809d2ed9c97ceb4a075509b1d5b7545342c",
+      "size": 22220
+    },
+    "projets.html": {
+      "sha256": "088acb7df0bc82aaaec09f2dd25dbe9b5ed9cff6ed46b28c8659dc8f1c1aeb7c",
+      "size": 21811
+    },
+    "bloodhound.html": {
+      "sha256": "99d6b38dafe233933fd0066c8ff79cc256a9a762809b6597a002129abb4fc113",
+      "size": 18035
+    },
+    "merci.html": {
+      "sha256": "8420ee2c0ef8c92a18303baaf588a7f57a2ac8675528d4472dbfe9c4967e31f9",
+      "size": 9151
+    },
+    "veille-ia.html": {
+      "sha256": "40b59b666e728e85de86e31575c673f9e60d416cc2297a654aae1c2a9f6ae5cb",
+      "size": 29374
+    },
+    "experience.html": {
+      "sha256": "d61bc935c21e70c34344dbdb2fcbe80ae2b957f10d1aa58df74ff9dd23622f29",
+      "size": 29530
+    },
+    "en/projets.html": {
+      "sha256": "89ba744753c351e88a1539bd9116009ed0d83e58dbfb2e98e1a64081a462a498",
+      "size": 22410
+    },
+    "en/404.html": {
+      "sha256": "d1ccd23648f20a9ae8151750557b01effab1258f38c5812149db5fbf1af12cf2",
+      "size": 9846
+    },
+    "en/merci.html": {
+      "sha256": "3c9d985d1f20bb86172712a3b367e21096dda719494cbec5df093cce291fe5e0",
+      "size": 9657
+    },
+    "en/index.html": {
+      "sha256": "80f9fb740db2c4305155749d41fc492b77b9dff2e9aeb077926a5d38f1f2532b",
+      "size": 25481
+    },
+    "en/pages/projet-hsrp-lacp.html": {
+      "sha256": "dc5762919d4597048046d0969f11a0b68dd0248a72b1d03220985adbcac02a06",
+      "size": 20219
+    },
+    "en/pages/projet-fail2ban-ssh.html": {
+      "sha256": "7941fdfd9974234f2df35abf010edfeed4a8b5c6415b7a19a99e7570f4e97773",
+      "size": 22199
+    },
+    "en/pages/projet-ia-ollama.html": {
+      "sha256": "efb80c9aaf7a9fb7da894b2d088c0f88707f522a9652bea06d889191c5e6d5b5",
+      "size": 23045
+    },
+    "en/pages/projet-reseau-segmente-nftables.html": {
+      "sha256": "feb772e626698266f9000030e5a2c796c23d7a815a0d1f2260140807cd560e2b",
+      "size": 21649
+    },
+    "en/pages/projet-homelab.html": {
+      "sha256": "5cdb0b6576dbf02348e685596b369ac3af4f545f86dcc684877eb48dbe4cd79b",
+      "size": 19050
+    },
+    "en/pages/projet-zabbix-r5.html": {
+      "sha256": "e004e26ff9e92c0ca8a81483d2d81ccaccddcef2daa978cca341a39452cccc7a",
+      "size": 22350
+    },
+    "en/pages/projet-alger-medilab.html": {
+      "sha256": "f0f46c3301e9d0d11695714022315773da2ec4583f5a0c7a8fd8dc2122ccaf48",
+      "size": 19586
+    },
+    "en/pages/projet-pipeline-cicd-securisee.html": {
+      "sha256": "82e433d5ecea865ca6731d48ba7c9a425e31b32efb99ce5f918c2ee1c078d1c4",
+      "size": 21692
+    },
+    "en/pages/projet-linux-hardening-ansible.html": {
+      "sha256": "fac274342a4a20293f1e94ac6bd0edb6cc8fb42148b849684bde65d930e2b738",
+      "size": 21301
+    },
+    "pages/bloodhound.html": {
+      "sha256": "13e44f846fbec7f12af9607be37ae7d652580fab33cbb0d85dd0e68cbce71f8d",
+      "size": 12895
+    },
+    "pages/projet-zabbix-r5.html": {
+      "sha256": "7bd00fc1201aa304e8121b6d58736089c796b7c19eb8bf4b685f0370f2232fb6",
+      "size": 24056
+    },
+    "pages/mettre-habilitation.html": {
+      "sha256": "b5ce8236c2dfe8f70ddacc4c81bfc2c78db58b229e8aebaca3b6b127d2922f52",
+      "size": 20415
+    },
+    "pages/projet-openclaw.html": {
+      "sha256": "42529d597c92f847084f9d6661a957040ff37ce974af467b47fe5c004623c16a",
+      "size": 23728
+    },
+    "pages/projet-alger-medilab.html": {
+      "sha256": "ffb4dda472765f4542eaaa0688f0a91f5eeca056f8bf7e6f92011670d58e44d9",
+      "size": 20028
+    },
+    "pages/projet-homelab.html": {
+      "sha256": "812ea4490e3fcde1c3b1dba328955a504d06ec3e19994e5423a1cfdba0971889",
+      "size": 19722
+    },
+    "pages/gerer-sauvegardes.html": {
+      "sha256": "099d8dacc0d00536e4bcb20d0f14732dc0818fdb520e7c5c7f47022ee1bae224",
+      "size": 19971
+    },
+    "pages/projet-ad-dhcp-dns-gpo.html": {
+      "sha256": "ced2c91c3485f28d5f726124a077046e2d0c0d40cec26d80ff01e50db16f00cb",
+      "size": 45849
+    },
+    "pages/dossier-technique-projet-zabbix-r5.html": {
+      "sha256": "e7ceed9869993aa3595a4bf6e0a70cd425be8c2d092f9a71fdd183ed19bad07a",
+      "size": 44561
+    },
+    "pages/projet-vmware-vlan.html": {
+      "sha256": "8b9a1b62394cbd79aca7d16d74d3933554d859724226dfb51ae49879b2f127ea",
+      "size": 19433
+    },
+    "pages/participer-evolution-site.html": {
+      "sha256": "6f2976ddfa47940b1744fc4d763e863493c704c0df16ed53daa97772202e58c9",
+      "size": 53820
+    },
+    "pages/collecter-demandes.html": {
+      "sha256": "8350fde3ab99298745a312180a7dc785d81df3ac971b3dbe4fbabad921dc2c92",
+      "size": 21597
+    },
+    "pages/projet-spacefarm-2080.html": {
+      "sha256": "d303886d8736ae52c5dd4a371527288d2246ca34ec97680afd48b44dd979fc99",
+      "size": 17505
+    },
+    "pages/deployer-service.html": {
+      "sha256": "73b0b8dd66e97b53426ae7a3b1c9cf6555beb8e5922747182ce8848769048f56",
+      "size": 23123
+    },
+    "pages/projet-scripting.html": {
+      "sha256": "89678f1928044eeaf149e4df10922f6b07e88079b0cb642eeb7f113c85449f10",
+      "size": 21099
+    },
+    "pages/projet-graylog-syslog.html": {
+      "sha256": "eda556ba8b7709dbf7b04b3b399e953a52f2c60d653c1a68e9e7bc0401474aaf",
+      "size": 21129
+    },
+    "pages/dossier-technique-projet-fail2ban-ssh.html": {
+      "sha256": "5d10d8021826e14ce9b5fb9b588699b77eac6d6623bd879054449ec053fb3ffc",
+      "size": 70293
+    },
+    "pages/projet-linux-hardening-ansible.html": {
+      "sha256": "cbdf53bcdfc6dad5485bc43f01ef1aa98ecaaa8091c1860711b4a02b3c195492",
+      "size": 25614
+    },
+    "pages/analyser-objectifs.html": {
+      "sha256": "28bcb98db93cc41528ae59727d8afc84a37be0cec90bd69d6d229b04969dc711",
+      "size": 19467
+    },
+    "pages/verifier-continuite.html": {
+      "sha256": "3de8880b8602bf3c05f845302c5f19f09c7cd51339b663f2404823f05b514b77",
+      "size": 21118
+    },
+    "pages/projet-pipeline-cicd-securisee.html": {
+      "sha256": "494d57db00de933ba7244fcb0167da7a6fc7cfe039530faa91a643f87c6f9e06",
+      "size": 22228
+    },
+    "pages/vlan-routage.html": {
+      "sha256": "e069858a1a7a285d572ad451da76aaf4397bfb4cc315837f6d0ad1259c14465a",
+      "size": 20169
+    },
+    "pages/verifier-utilisation.html": {
+      "sha256": "40d4f6438a600a4da7f2eeca25068ca89233f7fade2e93042d91518ba8620d0d",
+      "size": 30424
+    },
+    "pages/projet-reseau-segmente-nftables.html": {
+      "sha256": "8c4a86fe9d5e720e89e5e4ed0d46bbe4e61ab845ca14a3d47c79212b06ed573a",
+      "size": 22037
+    },
+    "pages/referencier-mesurer.html": {
+      "sha256": "90301631fa0f06ab0e1fcacf1af12f1edfc9f025b398a9c3a63fd0168e4e73fb",
+      "size": 17741
+    },
+    "pages/valoriser-image.html": {
+      "sha256": "119f25b1c58d6e878b51d0ff77fe18e52d720e4c9ac59cc1a1f19739a5a5ea4d",
+      "size": 19119
+    },
+    "pages/traiter-demandes-services.html": {
+      "sha256": "6229954fdc140474a198fe6b99f5e0fc819ee6af9e0418b3658cbbb49d0a8b42",
+      "size": 25432
+    },
+    "pages/securite-ad.html": {
+      "sha256": "68f13701581daf771eb9c0f2cea38e1bcdde151bad357e95e183855e104631d8",
+      "size": 34214
+    },
+    "pages/mettre-environnement.html": {
+      "sha256": "10020db42486539b2a262ebef6eadbd874154c83936ebef346e73e460b128575",
+      "size": 20908
+    },
+    "pages/developper-projet.html": {
+      "sha256": "c0c01c6719d1d53ec02acbfa0debdf9c0aefdbb68671b1951b9efc8ffad095b0",
+      "size": 19252
+    },
+    "pages/linux-rocky-debian.html": {
+      "sha256": "99ebd5c19bca6aa98f2178183b8c0851039bc05e99e5ec53c63487faaee90bb5",
+      "size": 14900
+    },
+    "pages/windows-server-ad.html": {
+      "sha256": "5ca29457c03f777fa174954c92cc2e3f858828933126762c3bfe79d847df6d74",
+      "size": 17306
+    },
+    "pages/evaluer-indicateurs.html": {
+      "sha256": "9ebfefa9ae0f280c2c76c25b6c9c6cfb3b09729a2dbd917f37fc2b10db73b957",
+      "size": 18344
+    },
+    "pages/epreuve-e5.html": {
+      "sha256": "b86c285558417549d03053f531d9ab6b894809c2719558514e23e3c3d0212b0d",
+      "size": 83035
+    },
+    "pages/accompagner-utilisateurs.html": {
+      "sha256": "260c24cf3327f9f79b53d0c26d231bad65c407076856c310264baf52877030aa",
+      "size": 22231
+    },
+    "pages/dossier-technique-projet-ia-ollama.html": {
+      "sha256": "8dc69592540138a215ebada44cc68db77eb420ac32a0d10e39ffe54eb8a2fa9a",
+      "size": 44192
+    },
+    "pages/bloodhound-ad.html": {
+      "sha256": "6ab385e237292fff62fe05de68ef093e6014c2e9bbdd803a672eeb7d54c3081f",
+      "size": 10914
+    },
+    "pages/projet-hsrp-lacp.html": {
+      "sha256": "c09d6d6820d7009c8af687381359a97a691e9a8d1e2ee0a04b557369b6d62b78",
+      "size": 20801
+    },
+    "pages/projet-auchan-plan.html": {
+      "sha256": "7714885c1a16a5dfd9fa95bf22064ad3e4c2a9519e89ca495e3e022e10d129ac",
+      "size": 17975
+    },
+    "pages/dossier-technique-projet-alger-medilab.html": {
+      "sha256": "a977dcf4ecaa9c2fc1b5c36e1002a5c42b9e0e37e09bfd90175b056cfe11c263",
+      "size": 26674
+    },
+    "pages/mettre-veille.html": {
+      "sha256": "943e722b4c37376af2c9e7271e9e23af7d8ab55cf23b18fa3d27f0f08e6bb252",
+      "size": 18930
+    },
+    "pages/recenser-ressources.html": {
+      "sha256": "f53ce0a15c924efab95c33aa91efab34c12b283d6011535eddc99a6906adc56d",
+      "size": 20920
+    },
+    "pages/warren.html": {
+      "sha256": "3d313717f3ce533f1c50fb87542e86568c9033e2b8c1ed44d77b53bc3d8b096f",
+      "size": 18239
+    },
+    "pages/extreme-networks.html": {
+      "sha256": "eab86d8b38341a90aab79ae52999b4184658060ba5850332d02c76fa8148beef",
+      "size": 54690
+    },
+    "pages/dossier-technique-projet-homelab.html": {
+      "sha256": "354a8dad48e3e7b855c84f8be390405060700d8771884b2a87742bcbbba007c3",
+      "size": 19502
+    },
+    "pages/projet-ia-ollama.html": {
+      "sha256": "4df151d8d1d9d3169035e3791af21ebae94dd78e2c84f4682095dcfecdf38ebd",
+      "size": 23544
+    },
+    "pages/dns-dhcp.html": {
+      "sha256": "f43349d010fc3e8c72c72b0514dbcf0bf74bcf9f3288a4ee6669728fcaf7e559",
+      "size": 17237
+    },
+    "pages/traiter-demandes-applications.html": {
+      "sha256": "00c581265989c743dbe41c051b6497a22e4ddee3d37931056c3a453561799c75",
+      "size": 23711
+    },
+    "pages/projet-glpi.html": {
+      "sha256": "f86502128da47bba39a35eeb7acae6e2fbe690b81a29ec76f48db2e7619bf157",
+      "size": 48300
+    },
+    "pages/dossier-technique-projet-hsrp-lacp.html": {
+      "sha256": "9291b48702aa02fee4db379fd818f6cd74167e145a332cf5da0fe80b84cfd256",
+      "size": 21794
+    },
+    "pages/exploiter-referentiels.html": {
+      "sha256": "f13e4a5f7cd7cbe71c3b97301a4cee016200a738aaf8c38f2cda1c9f4474b21d",
+      "size": 18870
+    },
+    "pages/projet-r5-web-ha.html": {
+      "sha256": "2e7f2b5afa4171459a48bb6ac69291ede8507dc7666d4cd55a136037c85307fe",
+      "size": 43151
+    },
+    "pages/realiser-tests.html": {
+      "sha256": "8083e0ec5ec0022900e8d128b78eb3cef5fe60b94d48b6fb8171e8293c77c781",
+      "size": 21426
+    },
+    "pages/syslog-graylog.html": {
+      "sha256": "8f210e50c7cff5a6b9d3a95f3110bfca260a21004f048bfbd21f02d389bbc0b6",
+      "size": 15525
+    },
+    "pages/incident-vcenter-certificats.html": {
+      "sha256": "ae7895373179ec91f94e6773adba1cad974f338987eeaf9bb9d6f22e2747caf6",
+      "size": 21478
+    },
+    "pages/zabbix.html": {
+      "sha256": "fb0b638ad6bddc96b729045db23e781160b8d87cc186c251697a15bab9f29b64",
+      "size": 24384
+    },
+    "pages/gerer-identite.html": {
+      "sha256": "d623ff96768b99fdc6a48f0b0bd15ac8a0979641a04b46fa89b35504d61f20fc",
+      "size": 19680
+    },
+    "pages/epreuve-e4.html": {
+      "sha256": "7747ceb0645c8b2f52927db7d9d3c6ef17d2bc2dad374d56ba412b2c6bf555e2",
+      "size": 22691
+    },
+    "pages/planifier-activites.html": {
+      "sha256": "3a3998529da04443b30267977cb76301e6f2bdda223c26cde31911e4dc805524",
+      "size": 17938
+    },
+    "pages/projet-fail2ban-ssh.html": {
+      "sha256": "9a633a5087135cf79f729ced7dc1123bd4e4e99f6ad58993da400afc784628ea",
+      "size": 22949
+    },
+    "assets/editorial.css": {
+      "sha256": "95cdd344e3724f0a75878f603678a84c3a9f11cdbfc03fc3053ca178d396629c",
+      "size": 39553
+    },
+    "assets/editorial-tokens.css": {
+      "sha256": "8c93250975c94b166d06d6b9695e217d7a39783128b27e0a10c5b924454bd1c8",
+      "size": 1227
+    }
+  }
+}

@@ -1,0 +1,561 @@
+<!DOCTYPE html><html lang="fr"><head>
+
+  <meta charset="UTF-8">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Accompagner les utilisateurs | Portfolio</title>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&amp;family=Outfit:wght@300;400;500;600;700;800;900&amp;family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="../style.css">
+
+  <style>
+        /* Tooltips termes techniques */
+        .term {
+            border-bottom: 1px dashed var(--primary);
+            cursor: help;
+            position: relative;
+            display: inline;
+        }
+        .term::after {
+            content: attr(data-def);
+            position: absolute;
+            bottom: calc(100% + 8px);
+            left: 50%;
+            transform: translateX(-50%);
+            background: #1e293b;
+            color: #f8fafc;
+            font-size: 0.78rem;
+            line-height: 1.5;
+            padding: 0.6rem 0.9rem;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            white-space: normal;
+            width: 220px;
+            text-align: left;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.2s;
+            z-index: 100;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+        }
+        .term:hover::after { opacity: 1; }
+  </style>
+<meta name="theme-color" content="#111214"><link rel="stylesheet" href="/assets/legacy-unified.css?v=20260831-2"><meta name="description" content="Portfolio de Franck Raymond : projets en administration systèmes, réseaux, supervision et cybersécurité."><meta name="author" content="Franck Raymond"><meta name="robots" content="index,follow,max-image-preview:large"><meta property="og:type" content="website"><meta property="og:site_name" content="Portfolio de Franck Raymond"><meta property="og:title" content="Accompagner les utilisateurs | Portfolio"><meta property="og:description" content="Portfolio de Franck Raymond : projets en administration systèmes, réseaux, supervision et cybersécurité."><meta property="og:url" content="https://franckraymond.tech/pages/accompagner-utilisateurs.html"><meta property="og:image" content="https://franckraymond.tech/franck.webp"><meta property="og:image:alt" content="Portrait professionnel de Franck Raymond"><meta property="og:locale" content="fr_FR"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Accompagner les utilisateurs | Portfolio"><meta name="twitter:description" content="Portfolio de Franck Raymond : projets en administration systèmes, réseaux, supervision et cybersécurité."><meta name="twitter:image" content="https://franckraymond.tech/franck.webp"><link rel="canonical" href="https://franckraymond.tech/pages/accompagner-utilisateurs.html"><link rel="icon" href="/favicon-32x32.png" sizes="32x32" type="image/png"><link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180"><link rel="manifest" href="/site.webmanifest"><script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"Accompagner les utilisateurs | Portfolio","url":"https://franckraymond.tech/pages/accompagner-utilisateurs.html","description":"Portfolio de Franck Raymond : projets en administration systèmes, réseaux, supervision et cybersécurité.","isPartOf":{"@type":"WebSite","name":"Portfolio de Franck Raymond","url":"https://franckraymond.tech/"},"about":{"@type":"Person","name":"Franck Raymond","url":"https://franckraymond.tech/"}}</script>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,400&amp;family=Geist:wght@400;500;600&amp;display=swap">
+<link rel="stylesheet" href="/assets/editorial-tokens.css?v=20261106-modern">
+<link rel="stylesheet" href="/assets/editorial.css?v=20261106-modern">
+<script src="/assets/editorial-theme.js?v=20261028-1fe0ee8c9d"></script>
+</head>
+
+<body data-theme="light" class="portfolio-legacy editorial-site">
+
+  <div class="bg-mesh"></div>
+
+  <div class="noise-overlay"></div>
+
+  <div class="grid-lines"></div>
+
+
+
+  <header class="main-header" id="header">
+
+    <nav class="nav-container" aria-label="Navigation principale">
+
+      <div class="nav-brand">
+
+        <a href="../index.html" class="brand-logo">
+
+          <span class="logo-bracket">&lt;</span>
+
+          <span class="logo-text">FR</span>
+
+          <span class="logo-bracket">/&gt;</span>
+
+        </a>
+
+      </div>
+
+      <div class="nav-menu" id="navMenu">
+
+        <a href="../index.html" class="nav-link">
+
+          <i class="fas fa-home"></i>
+
+          <span class="nav-text">Accueil</span>
+
+        </a>
+
+        <a href="../index.html#skills" class="nav-link active">
+
+          <i class="fas fa-code"></i>
+
+          <span class="nav-text">Compétences</span>
+
+        </a>
+
+        <a href="../index.html#experience" class="nav-link">
+
+          <i class="fas fa-briefcase"></i>
+
+          <span class="nav-text">Expériences</span>
+
+        </a>
+
+        <a href="../index.html#contact" class="nav-link">
+
+          <i class="fas fa-envelope"></i>
+
+          <span class="nav-text">Contact</span>
+
+        </a>
+
+      
+<a class="nav-link" href="https://opengym.jsuisfray.blitz.cloud/"><span class="nav-text">FrayFit</span></a></div>
+
+      <div class="nav-controls">
+
+        <button class="theme-toggle" id="themeToggle" title="Changer le thème" aria-label="Basculer entre mode sombre et clair">
+
+          <i class="fas fa-moon"></i>
+
+        </button>
+
+        <button class="menu-toggle" id="menuToggle" aria-label="Ouvrir le menu mobile" aria-expanded="false">
+
+          <span></span><span></span><span></span>
+
+        </button>
+
+      </div>
+
+    </nav>
+
+  </header>
+
+
+
+  <main>
+
+    <section class="hero-section page-hero">
+
+      <div class="hero-glow"></div>
+
+      <div class="hero-glow-2"></div>
+
+      <div class="hero-container">
+
+        <div class="hero-content">
+
+          <div class="hero-greeting page-badge">Projet &amp; déploiement</div>
+
+          <h1 class="hero-name"><span class="name-gradient">Accompagner les utilisateurs</span></h1>
+
+          <p class="hero-description">
+
+            Assistance et accompagnement pour garantir une prise en main efficace.
+
+          </p>
+
+<div class="hero-buttons">
+
+            <a href="#validation" class="btn btn-primary"><i class="fas fa-link"></i> Validation</a>
+
+            <a href="#preuves" class="btn btn-secondary"><i class="fas fa-image"></i> Preuves</a>
+
+          </div>
+
+        </div>
+
+        <div class="hero-image-wrapper">
+
+          <div class="hero-image-container">
+
+            <div class="profile-image-frame">
+
+              <i class="fas fa-user-friends page-icon"></i>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+
+    <section id="validation" class="section">
+
+  <div class="section-container">
+
+    <div class="section-header">
+
+      <span class="section-number">01</span>
+
+      <h2 class="section-title">Comment je l'ai <span class="title-gradient">validée</span></h2>
+
+      <div class="section-line"></div>
+
+    </div>
+
+    <div class="about-content">
+
+      <div>
+
+        <p class="about-text">
+
+          <strong>J'ai validé cette compétence en faisant concrètement ceci :</strong> Durant mon alternance au <strong>Centre Hospitalier de Tourcoing</strong>, j'ai assuré un support utilisateur quotidien auprès du personnel médical et administratif : infirmiers, médecins, secrétaires médicales et agents administratifs. J'ai pris en charge les appels entrants du service informatique, ouvert les tickets dans <span class="term" data-def="Logiciel de gestion des tickets informatiques — les utilisateurs signalent leurs problèmes et les techniciens les traitent.">GLPI</span> et accompagné chaque utilisateur jusqu'à la résolution de son problème, en m'adaptant à leur niveau technique souvent très variable.
+
+        </p>
+
+        <p class="about-text" style="margin-top: 1rem;">
+
+          L'environnement hospitalier m'a appris que le support ne peut pas attendre : un poste de travail en panne dans un service de soins à un impact direct sur la prise en charge des patients. J'ai donc développé une vraie rigueur dans la gestion des priorités, une communication claire et calme, et l'habitude de toujours vérifier que l'utilisateur peut reprendre son activité avant de clôturer le ticket.
+
+        </p>
+
+        <div class="timeline-achievements">
+
+              <div class="achievement-item"><i class="fas fa-check-circle"></i><span>Prendre en charge les demandes et incidents dans <span class="term" data-def="Logiciel de gestion des tickets informatiques — les utilisateurs signalent leurs problèmes et les techniciens les traitent.">GLPI</span></span></div>
+
+      <div class="achievement-item"><i class="fas fa-check-circle"></i><span>Expliquer les manipulations ou les changements aux utilisateurs</span></div>
+
+      <div class="achievement-item"><i class="fas fa-check-circle"></i><span>Documenter les résolutions pour faciliter les prochains cas</span></div>
+
+      <div class="achievement-item"><i class="fas fa-check-circle"></i><span>Adapter le niveau d'explication selon le profil et l'aisance de l'utilisateur</span></div>
+
+      <div class="achievement-item"><i class="fas fa-check-circle"></i><span>Vérifier que la solution est comprise et réutilisable après l'intervention</span></div>
+
+        </div>
+
+      </div>
+
+      <div>
+
+        <div class="skill-category">
+
+          <h3 class="category-title"><i class="fas fa-diagram-project"></i> TP et projets reliés</h3>
+
+          <div class="timeline-tags">
+
+                <a href="projet-glpi.html" class="tag"><i class="fas fa-link"></i> <span class="term" data-def="Logiciel de gestion des tickets informatiques — les utilisateurs signalent leurs problèmes et les techniciens les traitent.">GLPI</span></a>
+
+        <a href="projet-ad-dhcp-dns-gpo.html" class="tag"><i class="fas fa-link"></i> <span class="term" data-def="Annuaire centralisé qui gère tous les utilisateurs et ordinateurs d'une entreprise. L'admin y crée les comptes et définit qui a accès à quoi.">AD</span> / <span class="term" data-def="Règles appliquées automatiquement à tous les ordinateurs d'une entreprise (ex: fond d'écran imposé, logiciels installés d'office).">GPO</span></a>
+
+          </div>
+
+        </div>
+
+        <div class="skill-category" style="margin-top: 1.5rem;">
+
+          <h3 class="category-title"><i class="fas fa-graduation-cap"></i> Ce que j'ai validé</h3>
+
+          <div class="timeline-tags">
+
+                <span class="tag">Support utilisateur</span>
+
+        <span class="tag">Pédagogie</span>
+
+        <span class="tag">Transmission d'information</span>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+
+    <section id="actions" class="section" style="background: var(--bg-card-solid);">
+
+      <div class="section-container">
+
+        <div class="section-header">
+
+          <span class="section-number">02</span>
+
+          <h2 class="section-title">Actions <span class="title-gradient">&amp; réalisations</span></h2>
+
+          <div class="section-line"></div>
+
+        </div>
+
+        <div class="about-content">
+
+          <div>
+
+            <p class="about-text">Support utilisateur au quotidien au Centre Hospitalier de Tourcoing.</p>
+
+            <div class="timeline-achievements">
+
+              <div class="achievement-item"><i class="fas fa-check-circle"></i><span>Prise d'appel téléphonique au service informatique de l'hôpital (premier point de contact)</span></div>
+
+              <div class="achievement-item"><i class="fas fa-check-circle"></i><span>Ouverture et suivi des tickets dans <span class="term" data-def="Logiciel de gestion des tickets informatiques — les utilisateurs signalent leurs problèmes et les techniciens les traitent.">GLPI</span> jusqu'à résolution complète</span></div>
+
+              <div class="achievement-item"><i class="fas fa-check-circle"></i><span>Support de proximité N1 auprès du personnel médical : connexion, impression, messagerie, logiciels métier</span></div>
+
+              <div class="achievement-item"><i class="fas fa-check-circle"></i><span>Gestion des priorités selon l'impact sur les services de soins (urgences, blocs, consultations)</span></div>
+
+              <div class="achievement-item"><i class="fas fa-check-circle"></i><span>Assistance téléphonique et prise en main à distance pour les services éloignés</span></div>
+
+              <div class="achievement-item"><i class="fas fa-check-circle"></i><span>Adaptation du discours selon le profil de l'utilisateur (médecin, infirmier, secrétaire médicale)</span></div>
+
+              <div class="achievement-item"><i class="fas fa-check-circle"></i><span>Accompagnement lors du déploiement de nouveaux postes dans les services</span></div>
+
+              <div class="achievement-item"><i class="fas fa-check-circle"></i><span>Vérification post-résolution que l'utilisateur peut reprendre son activité de soin</span></div>
+
+            </div>
+
+          </div>
+
+          <div>
+
+            <div class="skill-category">
+
+              <h3 class="category-title"><i class="fas fa-layer-group"></i> Outils et technologies</h3>
+
+              <div class="timeline-tags">
+
+                <span class="tag"><span class="term" data-def="Logiciel de gestion des tickets informatiques — les utilisateurs signalent leurs problèmes et les techniciens les traitent.">GLPI</span></span>
+
+                <span class="tag">TeamViewer</span>
+
+                <span class="tag">Documentation</span>
+
+                <span class="tag">Support N1</span>
+
+                <span class="tag">Formation</span>
+
+                <span class="tag">Helpdesk</span>
+
+              </div>
+
+            </div>
+
+            <div class="skill-category" style="margin-top: 1.5rem;">
+
+              <h3 class="category-title"><i class="fas fa-graduation-cap"></i> Compétences BTS SIO</h3>
+
+              <div class="timeline-tags">
+
+                <span class="tag">Accompagner les utilisateurs</span>
+
+                <span class="tag">Traiter les demandes</span>
+
+                <span class="tag">Communiquer efficacement</span>
+
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+
+    <section id="difficultes" class="section">
+
+      <div class="section-container">
+
+        <div class="section-header">
+
+          <span class="section-number">03</span>
+
+          <h2 class="section-title">Difficultés <span class="title-gradient">&amp; solutions</span></h2>
+
+          <div class="section-line"></div>
+
+        </div>
+
+        <div class="about-content">
+
+          <div>
+
+            <p class="about-text">L'enjeu de cette compétence n'est pas seulement de dépanner, mais de le faire sans perdre l'utilisateur en route. Il faut aller vite tout en restant clair, calme et pédagogique.</p>
+
+            <div class="timeline-achievements">
+
+              <div class="achievement-item"><i class="fas fa-exclamation-triangle" style="color: var(--accent-primary);"></i><span><strong>Problème :</strong> Utilisateur frustré qui n'arrive pas à expliquer son problème</span></div>
+
+              <div class="achievement-item"><i class="fas fa-lightbulb" style="color: var(--accent-secondary);"></i><span><strong>Solution :</strong> Poser des questions fermées, demander des captures d'écran, prise en main à distance</span></div>
+
+            </div>
+
+            <div class="timeline-achievements" style="margin-top: 1rem;">
+
+              <div class="achievement-item"><i class="fas fa-exclamation-triangle" style="color: var(--accent-primary);"></i><span><strong>Problème :</strong> Résistance au changement lors du déploiement d'un nouvel outil</span></div>
+
+              <div class="achievement-item"><i class="fas fa-lightbulb" style="color: var(--accent-secondary);"></i><span><strong>Solution :</strong> Accompagnement progressif, mise en avant des bénéfices, support renforcé</span></div>
+
+            </div>
+
+            <div class="timeline-achievements" style="margin-top: 1rem;">
+
+              <div class="achievement-item"><i class="fas fa-exclamation-triangle" style="color: var(--accent-primary);"></i><span><strong>Problème :</strong> Utilisateur dépanné sur le moment mais qui ne retient pas la manipulation</span></div>
+
+              <div class="achievement-item"><i class="fas fa-lightbulb" style="color: var(--accent-secondary);"></i><span><strong>Solution :</strong> Procédure courte, démonstration pas à pas puis validation en autonomie</span></div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+
+    <section id="bilan" class="section" style="background: var(--bg-card-solid);">
+
+      <div class="section-container">
+
+        <div class="section-header">
+
+          <span class="section-number">04</span>
+
+          <h2 class="section-title">Bilan <span class="title-gradient">personnel</span></h2>
+
+          <div class="section-line"></div>
+
+        </div>
+
+        <div class="about-content">
+
+          <div>
+
+            <p class="about-text">Mon alternance à l'hôpital de Tourcoing m'a confronté à un support utilisateur exigeant : les interlocuteurs sont des professionnels de santé qui ne peuvent pas se permettre d'attendre. J'ai appris à aller droit au but, à rassurer sans perdre de temps, et à prioriser selon l'impact réel sur les soins.</p>
+
+            <p class="about-text" style="margin-top: 1rem;">Personnellement, j'ai gagné énormément en patience, en écoute et en capacité d'adaptation. Travailler dans un milieu où chaque minute compte m'a donné des réflexes que j'applique maintenant à tous les contextes de support, qu'il s'agisse d'un incident simple ou d'une intervention critique.</p>
+
+          </div>
+
+          <div>
+
+            <div class="timeline-achievements">
+
+              <div class="achievement-item"><i class="fas fa-check-circle"></i><span>Pédagogie plus claire dans mes explications</span></div>
+
+              <div class="achievement-item"><i class="fas fa-check-circle"></i><span>Meilleure gestion des situations de stress côté utilisateur</span></div>
+
+              <div class="achievement-item"><i class="fas fa-check-circle"></i><span>Support plus utile car orienté usage et non seulement technique</span></div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+
+    <section id="preuves" class="section" style="background: var(--bg-card-solid);">
+
+      <div class="section-container">
+
+        <div class="section-header">
+
+          <span class="section-number">05</span>
+
+          <h2 class="section-title">Preuves <span class="title-gradient">&amp; captures</span></h2>
+
+          <div class="section-line"></div>
+
+        </div>
+
+        <p class="about-text">Cette page sert de synthèse. Les captures détaillées, configurations et resultats sont visibles dans les TP et projets reliés ci-dessus.</p>
+
+        <div class="gallery-grid">
+
+          <div class="gallery-item">
+
+            <img src="alternance_chdron/hopital5-optimized.webp" data-full-src="alternance_chdron/hopital5.jpg" alt="Intervention hardware terrain - composant connecteur identifie lors d une maintenance au CH Tourcoing" class="gallery-img" loading="lazy" width="1512" height="2016" decoding="async">
+
+          </div>
+
+          <div class="gallery-item">
+
+            <img src="alternance_chdron/hopital7-optimized.webp" data-full-src="alternance_chdron/hopital7.jpg" alt="Connexion physique d un composant lors d une intervention matérielle en service" class="gallery-img" loading="lazy" width="1512" height="2016" decoding="async">
+
+          </div>
+
+          <div class="gallery-item">
+
+            <img src="alternance_chdron/hopital8-optimized.webp" data-full-src="alternance_chdron/hopital8.jpg" alt="Piece hardware recuperee lors d une intervention de maintenance au CH Tourcoing" class="gallery-img" loading="lazy" width="1512" height="2016" decoding="async">
+
+          </div>
+
+          <div class="gallery-item">
+
+            <img src="glpi_photos_extracted/image3.png" alt="Ticket GLPI incident bourrage papier avec suivi et commentaires" class="gallery-img">
+
+          </div>
+
+          <div class="gallery-item">
+
+            <img src="projet-glpi_assets/image9.png" alt="Notifications de suivi envoyees depuis GLPI" class="gallery-img">
+
+          </div>
+
+        </div>
+
+        <div class="section-footer">
+
+          <a href="../index.html#skills" class="btn-more"><i class="fas fa-arrow-left"></i> Retour aux compétences</a>
+
+        </div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+
+
+  <footer class="main-footer" role="contentinfo">
+
+    <div class="footer-container">
+
+      <div class="footer-content">
+
+        <p class="footer-text">2026 <span class="footer-copyright">Franck Raymond</span> - Tous droits réservés.</p>
+
+      </div>
+
+    </div>
+
+  </footer>
+
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+
+  <script src="../script.js?v=20261028-b753f7964f"></script>
+
+
+
+
+
+<script src="/assets/portfolio-glossary.js?v=20260831-2" defer=""></script><script src="/assets/legacy-unified.js?v=20261028-8c422e514f" defer=""></script></body></html>

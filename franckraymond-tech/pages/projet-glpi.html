@@ -1,0 +1,1708 @@
+<!DOCTYPE html><html lang="fr"><head>
+
+  <meta charset="UTF-8">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta name="description" content="Projet GLPI - Gestion de parc informatique avec LDAP Active Directory et notifications Discord - Portfolio BTS SIO SISR">
+
+  <title>GLPI - Gestion de Parc IT | Portfolio</title>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&amp;family=Outfit:wght@300;400;500;600;700;800;900&amp;family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="../style.css">
+
+  <style>
+
+    .project-gallery {
+
+      display: grid;
+
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+
+      gap: 1.5rem;
+
+      margin-top: 2rem;
+
+    }
+
+    .gallery-item {
+
+      background: var(--bg-card);
+
+      border: 1px solid var(--border);
+
+      border-radius: 12px;
+
+      overflow: hidden;
+
+      transition: all 0.3s;
+
+    }
+
+    .gallery-item:hover {
+
+      border-color: var(--primary);
+
+      transform: translateY(-4px);
+
+      box-shadow: 0 12px 40px rgba(56, 189, 248, 0.12);
+
+    }
+
+    .gallery-item img {
+
+      width: 100%;
+
+      height: 200px;
+
+      object-fit: cover;
+
+      border-bottom: 1px solid var(--border);
+
+    }
+
+    .gallery-item-content {
+
+      padding: 1rem;
+
+    }
+
+    .gallery-item-title {
+
+      font-weight: 600;
+
+      color: var(--text-primary);
+
+      margin-bottom: 0.5rem;
+
+    }
+
+    .gallery-item-desc {
+
+      font-size: 0.85rem;
+
+      color: var(--text-muted);
+
+    }
+
+    .infra-table {
+
+      width: 100%;
+
+      border-collapse: collapse;
+
+      margin: 1.5rem 0;
+
+      background: var(--bg-card);
+
+      border-radius: 12px;
+
+      overflow: hidden;
+
+    }
+
+    .infra-table th, .infra-table td {
+
+      padding: 1rem;
+
+      text-align: left;
+
+      border-bottom: 1px solid var(--border);
+
+    }
+
+    .infra-table th {
+
+      background: rgba(56, 189, 248, 0.1);
+
+      color: var(--primary);
+
+      font-weight: 600;
+
+    }
+
+    .infra-table tr:last-child td {
+
+      border-bottom: none;
+
+    }
+
+    .tp-card {
+
+      background: var(--bg-card);
+
+      border: 1px solid var(--border);
+
+      border-radius: 16px;
+
+      padding: 2rem;
+
+      margin-bottom: 2rem;
+
+    }
+
+    .tp-card h3 {
+
+      color: var(--primary);
+
+      margin-bottom: 1rem;
+
+      display: flex;
+
+      align-items: center;
+
+      gap: 0.75rem;
+
+    }
+
+    .tp-card h3 i {
+
+      font-size: 1.2rem;
+
+    }
+
+    .code-block {
+
+      background: #1e1e2e;
+
+      border-radius: 8px;
+
+      padding: 1rem;
+
+      margin: 1rem 0;
+
+      overflow-x: auto;
+
+      font-family: 'JetBrains Mono', monospace;
+
+      font-size: 0.85rem;
+
+      color: #cdd6f4;
+
+    }
+
+    .validation-box {
+
+      background: rgba(134, 239, 172, 0.1);
+
+      border: 1px solid rgba(134, 239, 172, 0.3);
+
+      border-radius: 8px;
+
+      padding: 1rem;
+
+      margin: 1rem 0;
+
+    }
+
+    .validation-box h4 {
+
+      color: #86efac;
+
+      margin-bottom: 0.5rem;
+
+    }
+
+    .warning-box {
+
+      background: rgba(251, 191, 36, 0.1);
+
+      border: 1px solid rgba(251, 191, 36, 0.3);
+
+      border-radius: 8px;
+
+      padding: 1rem;
+
+      margin: 1rem 0;
+
+    }
+
+    .warning-box h4 {
+
+      color: #fbbf24;
+
+      margin-bottom: 0.5rem;
+
+    }
+
+    .architecture-visual {
+
+      display: flex;
+
+      flex-wrap: wrap;
+
+      justify-content: center;
+
+      align-items: center;
+
+      gap: 1rem;
+
+      padding: 2rem;
+
+      background: var(--bg-card);
+
+      border-radius: 12px;
+
+      margin: 2rem 0;
+
+    }
+
+    .arch-box {
+
+      background: linear-gradient(135deg, var(--primary), #8b5cf6);
+
+      color: white;
+
+      padding: 1.25rem 2rem;
+
+      border-radius: 12px;
+
+      text-align: center;
+
+      min-width: 150px;
+
+    }
+
+    .arch-box.ad { background: linear-gradient(135deg, #3b82f6, #1d4ed8); }
+
+    .arch-box.glpi { background: linear-gradient(135deg, #22c55e, #16a34a); }
+
+    .arch-box.discord { background: linear-gradient(135deg, #5865F2, #4752c4); }
+
+    .arch-arrow {
+
+      font-size: 1.5rem;
+
+      color: var(--text-muted);
+
+    }
+
+    @media (max-width: 768px) {
+
+      .architecture-visual { flex-direction: column; }
+
+      .arch-arrow { transform: rotate(90deg); }
+
+    }
+
+
+
+    /* Lightbox */
+
+    .gallery-item {
+
+      cursor: pointer;
+
+      position: relative;
+
+    }
+
+    .gallery-item::after {
+
+      content: '\f00e';
+
+      font-family: 'Font Awesome 6 Free';
+
+      font-weight: 900;
+
+      position: absolute;
+
+      top: 1rem;
+
+      right: 1rem;
+
+      background: rgba(0, 0, 0, 0.7);
+
+      color: white;
+
+      width: 36px;
+
+      height: 36px;
+
+      border-radius: 50%;
+
+      display: flex;
+
+      align-items: center;
+
+      justify-content: center;
+
+      opacity: 0;
+
+      transition: opacity 0.3s, transform 0.3s;
+
+      pointer-events: none;
+
+    }
+
+    .gallery-item:hover::after {
+
+      opacity: 1;
+
+      transform: scale(1.1);
+
+    }
+
+    .lightbox {
+
+      display: none;
+
+      position: fixed;
+
+      top: 0;
+
+      left: 0;
+
+      width: 100%;
+
+      height: 100%;
+
+      background: rgba(0, 0, 0, 0.95);
+
+      z-index: 9999;
+
+      justify-content: center;
+
+      align-items: center;
+
+      padding: 2rem;
+
+      opacity: 0;
+
+      transition: opacity 0.3s ease;
+
+    }
+
+    .lightbox.active {
+
+      display: flex;
+
+      opacity: 1;
+
+    }
+
+    .lightbox-content {
+
+      position: relative;
+
+      max-width: 90vw;
+
+      max-height: 90vh;
+
+      animation: lightboxZoom 0.3s ease;
+
+    }
+
+    @keyframes lightboxZoom {
+
+      from { transform: scale(0.8); opacity: 0; }
+
+      to { transform: scale(1); opacity: 1; }
+
+    }
+
+    .lightbox-content img {
+
+      max-width: 100%;
+
+      max-height: 85vh;
+
+      border-radius: 12px;
+
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+
+    }
+
+    .lightbox-caption {
+
+      text-align: center;
+
+      color: white;
+
+      margin-top: 1rem;
+
+      font-size: 1.1rem;
+
+    }
+
+    .lightbox-caption .title {
+
+      font-weight: 600;
+
+      color: var(--primary);
+
+    }
+
+    .lightbox-caption .desc {
+
+      color: rgba(255, 255, 255, 0.7);
+
+      font-size: 0.95rem;
+
+      margin-top: 0.25rem;
+
+    }
+
+    .lightbox-close {
+
+      position: absolute;
+
+      top: -40px;
+
+      right: 0;
+
+      background: none;
+
+      border: none;
+
+      color: white;
+
+      font-size: 2rem;
+
+      cursor: pointer;
+
+      transition: color 0.3s, transform 0.3s;
+
+      padding: 0.5rem;
+
+    }
+
+    .lightbox-close:hover {
+
+      color: var(--primary);
+
+      transform: rotate(90deg);
+
+    }
+
+    .lightbox-nav {
+
+      position: absolute;
+
+      top: 50%;
+
+      transform: translateY(-50%);
+
+      background: rgba(255, 255, 255, 0.1);
+
+      border: 1px solid rgba(255, 255, 255, 0.2);
+
+      color: white;
+
+      font-size: 1.5rem;
+
+      padding: 1rem 1.25rem;
+
+      cursor: pointer;
+
+      border-radius: 50%;
+
+      transition: all 0.3s;
+
+    }
+
+    .lightbox-nav:hover {
+
+      background: var(--primary);
+
+      border-color: var(--primary);
+
+    }
+
+    .lightbox-nav.prev { left: 2rem; }
+
+    .lightbox-nav.next { right: 2rem; }
+
+    .lightbox-counter {
+
+      position: absolute;
+
+      bottom: 1rem;
+
+      left: 50%;
+
+      transform: translateX(-50%);
+
+      color: rgba(255, 255, 255, 0.6);
+
+      font-family: 'JetBrains Mono', monospace;
+
+      font-size: 0.85rem;
+
+    }
+
+    @media (max-width: 768px) {
+
+      .lightbox-nav { display: none; }
+
+      .lightbox-content { max-width: 95vw; }
+
+    }
+
+  
+        /* Tooltips termes techniques */
+        .term {
+            border-bottom: 1px dashed var(--primary);
+            cursor: help;
+            position: relative;
+            display: inline;
+        }
+        .term::after {
+            content: attr(data-def);
+            position: absolute;
+            bottom: calc(100% + 8px);
+            left: 50%;
+            transform: translateX(-50%);
+            background: #1e293b;
+            color: #f8fafc;
+            font-size: 0.78rem;
+            line-height: 1.5;
+            padding: 0.6rem 0.9rem;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            white-space: normal;
+            width: 220px;
+            text-align: left;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.2s;
+            z-index: 100;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+        }
+        .term:hover::after { opacity: 1; }
+</style>
+
+<meta name="theme-color" content="#111214"><link rel="stylesheet" href="/assets/legacy-unified.css?v=20260831-2"><meta name="author" content="Franck Raymond"><meta name="robots" content="index,follow,max-image-preview:large"><meta property="og:type" content="website"><meta property="og:site_name" content="Portfolio de Franck Raymond"><meta property="og:title" content="GLPI - Gestion de Parc IT | Portfolio"><meta property="og:description" content="Projet GLPI - Gestion de parc informatique avec LDAP Active Directory et notifications Discord - Portfolio BTS SIO SISR"><meta property="og:url" content="https://franckraymond.tech/pages/projet-glpi.html"><meta property="og:image" content="https://franckraymond.tech/franck.webp"><meta property="og:image:alt" content="Portrait professionnel de Franck Raymond"><meta property="og:locale" content="fr_FR"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="GLPI - Gestion de Parc IT | Portfolio"><meta name="twitter:description" content="Projet GLPI - Gestion de parc informatique avec LDAP Active Directory et notifications Discord - Portfolio BTS SIO SISR"><meta name="twitter:image" content="https://franckraymond.tech/franck.webp"><link rel="canonical" href="https://franckraymond.tech/pages/projet-glpi.html"><link rel="icon" href="/favicon-32x32.png" sizes="32x32" type="image/png"><link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180"><link rel="manifest" href="/site.webmanifest"><script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"GLPI - Gestion de Parc IT | Portfolio","url":"https://franckraymond.tech/pages/projet-glpi.html","description":"Projet GLPI - Gestion de parc informatique avec LDAP Active Directory et notifications Discord - Portfolio BTS SIO SISR","isPartOf":{"@type":"WebSite","name":"Portfolio de Franck Raymond","url":"https://franckraymond.tech/"},"about":{"@type":"Person","name":"Franck Raymond","url":"https://franckraymond.tech/"}}</script>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,400&amp;family=Geist:wght@400;500;600&amp;display=swap">
+<link rel="stylesheet" href="/assets/editorial-tokens.css?v=20261106-modern">
+<link rel="stylesheet" href="/assets/editorial.css?v=20261106-modern">
+<script src="/assets/editorial-theme.js?v=20261028-1fe0ee8c9d"></script>
+</head>
+
+
+
+<body data-theme="light" class="portfolio-legacy editorial-site">
+
+  <div class="bg-mesh"></div>
+
+  <div class="noise-overlay"></div>
+
+  <div class="grid-lines"></div>
+
+
+
+  <header class="main-header" id="header">
+
+    <nav class="nav-container" aria-label="Navigation principale">
+
+      <div class="nav-brand">
+
+        <a href="../index.html" class="brand-logo">
+
+          <span class="logo-bracket">&lt;</span>
+
+          <span class="logo-text">FR</span>
+
+          <span class="logo-bracket">/&gt;</span>
+
+        </a>
+
+      </div>
+
+      <div class="nav-menu" id="navMenu">
+
+        <a href="../index.html" class="nav-link"><i class="fas fa-home"></i><span class="nav-text">Accueil</span></a>
+
+        <a href="../index.html#skills" class="nav-link"><i class="fas fa-server"></i><span class="nav-text">Compétences</span></a>
+
+        <a href="/projets.html" class="nav-link active"><i class="fas fa-project-diagram"></i><span class="nav-text">Projets</span></a>
+
+        <a href="epreuve-e5.html" class="nav-link"><i class="fas fa-graduation-cap"></i><span class="nav-text">épreuve E5</span></a>
+
+        <a href="../index.html#experience" class="nav-link"><i class="fas fa-briefcase"></i><span class="nav-text">Expériences</span></a>
+
+        <a href="../index.html#contact" class="nav-link"><i class="fas fa-envelope"></i><span class="nav-text">Contact</span></a>
+
+      
+<a class="nav-link" href="https://opengym.jsuisfray.blitz.cloud/"><span class="nav-text">FrayFit</span></a></div>
+
+      <div class="nav-controls">
+
+        <button class="theme-toggle" id="themeToggle" title="Changer le thème" aria-label="Basculer entre mode sombre et clair">
+
+          <i class="fas fa-moon"></i>
+
+        </button>
+
+        <button class="menu-toggle" id="menuToggle" aria-label="Ouvrir le menu mobile" aria-expanded="false">
+
+          <span></span><span></span><span></span>
+
+        </button>
+
+      </div>
+
+    </nav>
+
+  </header>
+
+
+
+  <main>
+
+    <!-- HERO -->
+
+    <section class="hero-section page-hero">
+
+      <div class="hero-glow"></div>
+
+      <div class="hero-glow-2"></div>
+
+      <div class="hero-container">
+
+        <div class="hero-content">
+
+          <div class="hero-greeting page-badge"><span class="term" data-def="Logiciel de gestion des tickets informatiques — les utilisateurs signalent leurs problèmes et les techniciens les traitent.">ITSM</span> &amp; Gestion de Parc</div>
+
+          <h1 class="hero-name"><span class="name-gradient"><span class="term" data-def="Logiciel de gestion des tickets informatiques — les utilisateurs signalent leurs problèmes et les techniciens les traitent.">GLPI</span> - Gestion de Parc IT</span></h1>
+
+          <p class="hero-description">
+
+            J'ai déployé <span class="term" data-def="Logiciel de gestion des tickets informatiques — les utilisateurs signalent leurs problèmes et les techniciens les traitent.">GLPI</span> sur Linux avec intégration LDAP <span class="term" data-def="Annuaire centralisé qui gère tous les utilisateurs et ordinateurs d'une entreprise. L'admin y crée les comptes et définit qui a accès à quoi.">Active Directory</span> et notifications Discord pour la gestion des tickets.
+
+          </p>
+
+<div class="hero-buttons">
+
+            <a href="#infrastructure" class="btn btn-primary"><i class="fas fa-network-wired"></i> Infrastructure</a>
+
+            <a href="#captures" class="btn btn-secondary"><i class="fas fa-image"></i> Captures</a>
+
+          </div>
+
+        </div>
+
+        <div class="hero-image-wrapper">
+
+          <div class="hero-image-container">
+
+            <div class="profile-image-frame">
+
+              <i class="fas fa-desktop page-icon"></i>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- CONTEXTE -->
+
+    <section id="contexte" class="section">
+
+      <div class="section-container">
+
+        <div class="section-header">
+
+          <span class="section-number">01</span>
+
+          <h2 class="section-title">Contexte <span class="title-gradient">du projet</span></h2>
+
+          <div class="section-line"></div>
+
+        </div>
+
+        <div class="about-content">
+
+          <div>
+
+            <p class="about-text">
+
+              Dans le cadre du TP5 du module R5, j'ai déployé <span class="term" data-def="Logiciel de gestion des tickets informatiques — les utilisateurs signalent leurs problèmes et les techniciens les traitent.">GLPI</span> (Gestionnaire Libre de Parc Informatique) sur un serveur Rocky Linux. Mon objectif etait de mettre en place une solution complète de gestion de parc IT avec authentification centralisée via <span class="term" data-def="Annuaire centralisé qui gère tous les utilisateurs et ordinateurs d'une entreprise. L'admin y crée les comptes et définit qui a accès à quoi.">Active Directory</span> et notifications automatiques via Discord.
+
+            </p>
+
+            <p class="about-text">
+
+              <strong>Cadre :</strong> Serveur <span class="term" data-def="Logiciel de gestion des tickets informatiques — les utilisateurs signalent leurs problèmes et les techniciens les traitent.">GLPI</span> Rocky Linux, contrôleur de domaine Windows Server <span class="term" data-def="Annuaire centralisé qui gère tous les utilisateurs et ordinateurs d'une entreprise. L'admin y crée les comptes et définit qui a accès à quoi.">Active Directory</span>, intégration webhook Discord pour les notifications de tickets.
+
+            </p>
+
+          </div>
+
+          <div>
+
+            <div class="skill-category">
+
+              <h3 class="category-title"><i class="fas fa-layer-group"></i> Technologies utilisées</h3>
+
+              <div class="timeline-tags">
+
+                <span class="tag">Rocky Linux</span>
+
+                <span class="tag"><span class="term" data-def="Logiciel de gestion des tickets informatiques — les utilisateurs signalent leurs problèmes et les techniciens les traitent.">GLPI</span> 11.0.5</span>
+
+                <span class="tag">Apache</span>
+
+                <span class="tag">PHP</span>
+
+                <span class="tag">MariaDB</span>
+
+                <span class="tag">LDAP</span>
+
+                <span class="tag"><span class="term" data-def="Annuaire centralisé qui gère tous les utilisateurs et ordinateurs d'une entreprise. L'admin y crée les comptes et définit qui a accès à quoi.">Active Directory</span></span>
+
+                <span class="tag">Discord Webhook</span>
+
+              </div>
+
+            </div>
+
+            <div class="skill-category" style="margin-top: 1.5rem;">
+
+              <h3 class="category-title"><i class="fas fa-file-signature"></i> Livrables</h3>
+
+              <div class="timeline-tags">
+
+                <span class="tag">Serveur <span class="term" data-def="Logiciel de gestion des tickets informatiques — les utilisateurs signalent leurs problèmes et les techniciens les traitent.">GLPI</span></span>
+
+                <span class="tag">SSO LDAP <span class="term" data-def="Annuaire centralisé qui gère tous les utilisateurs et ordinateurs d'une entreprise. L'admin y crée les comptes et définit qui a accès à quoi.">AD</span></span>
+
+                <span class="tag">Notifications Discord</span>
+
+                <span class="tag">Gestion de tickets</span>
+
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- POURQUOI CETTE SOLUTION -->
+
+    <section id="pourquoi" class="section" style="background: var(--bg-card-solid);">
+
+      <div class="section-container">
+
+        <div class="section-header">
+
+          <span class="section-number">02</span>
+
+          <h2 class="section-title">Pourquoi <span class="title-gradient">cette solution ?</span></h2>
+
+          <div class="section-line"></div>
+
+        </div>
+
+        <div class="info-box">
+
+          <h4><i class="fas fa-lightbulb"></i> Choix de <span class="term" data-def="Logiciel de gestion des tickets informatiques — les utilisateurs signalent leurs problèmes et les techniciens les traitent.">GLPI</span></h4>
+
+          <p style="color: var(--text-secondary); margin-top: 0.5rem;">
+
+            J'ai choisi <strong><span class="term" data-def="Logiciel de gestion des tickets informatiques — les utilisateurs signalent leurs problèmes et les techniciens les traitent.">GLPI</span></strong> plutôt que OCS Inventory ou WAPT pour sa <strong>polyvalence</strong> et son <strong>écosystème complet</strong>. GLPI combine gestion de parc, ticketing et inventaire dans une seule solution open source. L'intégration native avec <strong><span class="term" data-def="Annuaire centralisé qui gère tous les utilisateurs et ordinateurs d'une entreprise. L'admin y crée les comptes et définit qui a accès à quoi.">Active Directory</span> via LDAP</strong> permet une authentification centralisée, et les <strong>webhooks</strong> facilitent les notifications automatiques vers Discord. La communauté française active et les nombreux plugins disponibles en font un choix idéal pour un environnement de production.
+
+          </p>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- INFRASTRUCTURE -->
+
+    <section id="infrastructure" class="section">
+
+      <div class="section-container">
+
+        <div class="section-header">
+
+          <span class="section-number">03</span>
+
+          <h2 class="section-title">Infrastructure <span class="title-gradient">déployée</span></h2>
+
+          <div class="section-line"></div>
+
+        </div>
+
+
+
+        <table class="infra-table">
+
+          <thead>
+
+            <tr>
+
+              <th>Role</th>
+
+              <th>Hostname</th>
+
+              <th>IP</th>
+
+              <th>Description</th>
+
+            </tr>
+
+          </thead>
+
+          <tbody>
+
+            <tr><td><strong>Serveur <span class="term" data-def="Logiciel de gestion des tickets informatiques — les utilisateurs signalent leurs problèmes et les techniciens les traitent.">GLPI</span></strong></td><td>glpi</td><td>172.20.10.13</td><td>Rocky Linux + Apache + PHP + MariaDB + <span class="term" data-def="Logiciel de gestion des tickets informatiques — les utilisateurs signalent leurs problèmes et les techniciens les traitent.">GLPI</span> 11.0.5</td></tr>
+
+            <tr><td><strong>Contrôleur <span class="term" data-def="Annuaire centralisé qui gère tous les utilisateurs et ordinateurs d'une entreprise. L'admin y crée les comptes et définit qui a accès à quoi.">AD</span></strong></td><td>WIN-JBIDVUF39PM</td><td>172.20.10.12</td><td>Windows Server - <span class="term" data-def="Annuaire centralisé qui gère tous les utilisateurs et ordinateurs d'une entreprise. L'admin y crée les comptes et définit qui a accès à quoi.">Active Directory</span></td></tr>
+
+          </tbody>
+
+        </table>
+
+
+
+        <div class="architecture-visual">
+
+          <div class="arch-box ad">
+
+            <i class="fab fa-windows"></i>
+
+            <div><span class="term" data-def="Annuaire centralisé qui gère tous les utilisateurs et ordinateurs d'une entreprise. L'admin y crée les comptes et définit qui a accès à quoi.">Active Directory</span></div>
+
+            <small>172.20.10.12</small>
+
+          </div>
+
+          <span class="arch-arrow"><i class="fas fa-arrows-alt-h"></i></span>
+
+          <div class="arch-box glpi">
+
+            <i class="fas fa-desktop"></i>
+
+            <div><span class="term" data-def="Logiciel de gestion des tickets informatiques — les utilisateurs signalent leurs problèmes et les techniciens les traitent.">GLPI</span></div>
+
+            <small>172.20.10.13</small>
+
+          </div>
+
+          <span class="arch-arrow"><i class="fas fa-arrow-right"></i></span>
+
+          <div class="arch-box discord">
+
+            <i class="fab fa-discord"></i>
+
+            <div>Discord</div>
+
+            <small>Webhooks</small>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- INSTALLATION GLPI -->
+
+    <section id="installation" class="section">
+
+      <div class="section-container">
+
+        <div class="section-header">
+
+          <span class="section-number">04</span>
+
+          <h2 class="section-title">Installation <span class="title-gradient"><span class="term" data-def="Logiciel de gestion des tickets informatiques — les utilisateurs signalent leurs problèmes et les techniciens les traitent.">GLPI</span></span></h2>
+
+          <div class="section-line"></div>
+
+        </div>
+
+
+
+        <div class="tp-card">
+
+          <h3><i class="fas fa-download"></i> Déploiement de la stack</h3>
+
+          <p class="about-text">J'ai installe la stack web (Apache + PHP + MariaDB) et deploye <span class="term" data-def="Logiciel de gestion des tickets informatiques — les utilisateurs signalent leurs problèmes et les techniciens les traitent.">GLPI</span> 11.0.5 dans /var/www/html/glpi.</p>
+
+          <div class="timeline-achievements">
+
+            <div class="achievement-item"><i class="fas fa-check-circle"></i><span>J'ai installe Apache, PHP-FPM et MariaDB</span></div>
+
+            <div class="achievement-item"><i class="fas fa-check-circle"></i><span>J'ai déployé <span class="term" data-def="Logiciel de gestion des tickets informatiques — les utilisateurs signalent leurs problèmes et les techniciens les traitent.">GLPI</span> 11.0.5</span></div>
+
+            <div class="achievement-item"><i class="fas fa-check-circle"></i><span>J'ai créé la base de données glpi</span></div>
+
+            <div class="achievement-item"><i class="fas fa-check-circle"></i><span>J'ai configuré les services pour demarrer automatiquement</span></div>
+
+          </div>
+
+        </div>
+
+
+
+        <div class="project-gallery">
+
+          <div class="gallery-item">
+
+            <img src="projet-glpi_assets/image1.png" alt="Configuration réseau">
+
+            <div class="gallery-item-content">
+
+              <div class="gallery-item-title">Configuration réseau</div>
+
+              <div class="gallery-item-desc">Adresse IP 172.20.10.13 attribuee au serveur <span class="term" data-def="Logiciel de gestion des tickets informatiques — les utilisateurs signalent leurs problèmes et les techniciens les traitent.">GLPI</span></div>
+
+            </div>
+
+          </div>
+
+          <div class="gallery-item">
+
+            <img src="projet-glpi_assets/image2.png" alt="Services actifs">
+
+            <div class="gallery-item-content">
+
+              <div class="gallery-item-title">Services actifs</div>
+
+              <div class="gallery-item-desc">Apache (httpd) et MariaDB en etat "active (running)"</div>
+
+            </div>
+
+          </div>
+
+          <div class="gallery-item">
+
+            <img src="projet-glpi_assets/image3.png" alt="Base de données">
+
+            <div class="gallery-item-content">
+
+              <div class="gallery-item-title">Base de données <span class="term" data-def="Logiciel de gestion des tickets informatiques — les utilisateurs signalent leurs problèmes et les techniciens les traitent.">GLPI</span></div>
+
+              <div class="gallery-item-desc">Base "glpi" creee et visible dans MariaDB</div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- CORRECTION WEBROOT -->
+
+    <section id="webroot" class="section" style="background: var(--bg-card-solid);">
+
+      <div class="section-container">
+
+        <div class="section-header">
+
+          <span class="section-number">05</span>
+
+          <h2 class="section-title">Correction <span class="title-gradient">du Webroot</span></h2>
+
+          <div class="section-line"></div>
+
+        </div>
+
+
+
+        <div class="tp-card">
+
+          <h3><i class="fas fa-wrench"></i> Problème initial</h3>
+
+          <p class="about-text">Après l'installation, <span class="term" data-def="Logiciel de gestion des tickets informatiques — les utilisateurs signalent leurs problèmes et les techniciens les traitent.">GLPI</span> retournait une erreur 301 car Apache ne pointait pas vers le bon dossier. J'ai du configurer Apache pour pointer vers <code>/var/www/html/glpi/public</code> avec FallbackResource.</p>
+
+          <div class="code-block">
+
+# /etc/httpd/conf.d/glpi.conf
+
+DocumentRoot /var/www/html/glpi/public
+
+FallbackResource /index.php
+
+          </div>
+
+        </div>
+
+
+
+        <div class="tp-card">
+
+          <h3><i class="fas fa-shield-alt"></i> Configuration SELinux</h3>
+
+          <p class="about-text">J'ai également du configurer les contextes SELinux pour permettre à Apache d'ecrire dans les dossiers files et config.</p>
+
+          <div class="code-block">
+
+chcon -R -t httpd_sys_rw_content_t /var/www/html/glpi/files
+
+chcon -R -t httpd_sys_rw_content_t /var/www/html/glpi/config
+
+          </div>
+
+        </div>
+
+
+
+        <div class="project-gallery">
+
+          <div class="gallery-item">
+
+            <img src="projet-glpi_assets/image4.png" alt="Erreur 301">
+
+            <div class="gallery-item-content">
+
+              <div class="gallery-item-title">Erreur 301 initiale</div>
+
+              <div class="gallery-item-desc">Redirection avant correction du webroot</div>
+
+            </div>
+
+          </div>
+
+          <div class="gallery-item">
+
+            <img src="projet-glpi_assets/image5.png" alt="Contextes SELinux">
+
+            <div class="gallery-item-content">
+
+              <div class="gallery-item-title">Contextes SELinux</div>
+
+              <div class="gallery-item-desc">httpd_sys_rw_content_t applique sur files et config</div>
+
+            </div>
+
+          </div>
+
+          <div class="gallery-item">
+
+            <img src="projet-glpi_assets/image6.png" alt="HTTP 200 OK">
+
+            <div class="gallery-item-content">
+
+              <div class="gallery-item-title">Accès OK après correction</div>
+
+              <div class="gallery-item-desc">HTTP/1.1 200 OK - <span class="term" data-def="Logiciel de gestion des tickets informatiques — les utilisateurs signalent leurs problèmes et les techniciens les traitent.">GLPI</span> accessible</div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- LDAP AD -->
+
+    <section id="ldap" class="section">
+
+      <div class="section-container">
+
+        <div class="section-header">
+
+          <span class="section-number">06</span>
+
+          <h2 class="section-title">Intégration <span class="title-gradient">LDAP <span class="term" data-def="Annuaire centralisé qui gère tous les utilisateurs et ordinateurs d'une entreprise. L'admin y crée les comptes et définit qui a accès à quoi.">Active Directory</span></span></h2>
+
+          <div class="section-line"></div>
+
+        </div>
+
+
+
+        <div class="tp-card">
+
+          <h3><i class="fab fa-windows"></i> Configuration LDAP</h3>
+
+          <p class="about-text">J'ai configuré la liaison LDAP entre <span class="term" data-def="Logiciel de gestion des tickets informatiques — les utilisateurs signalent leurs problèmes et les techniciens les traitent.">GLPI</span> et le contrôleur de domaine <span class="term" data-def="Annuaire centralisé qui gère tous les utilisateurs et ordinateurs d'une entreprise. L'admin y crée les comptes et définit qui a accès à quoi.">Active Directory</span> pour permettre l'authentification centralisée des utilisateurs.</p>
+
+          <div class="timeline-achievements">
+
+            <div class="achievement-item"><i class="fas fa-check-circle"></i><span>J'ai créé le compte de service <span class="term" data-def="Annuaire centralisé qui gère tous les utilisateurs et ordinateurs d'une entreprise. L'admin y crée les comptes et définit qui a accès à quoi.">AD</span>: svc_glpi (OU ServiceAccounts)</span></div>
+
+            <div class="achievement-item"><i class="fas fa-check-circle"></i><span>J'ai configuré le serveur LDAP: <span class="term" data-def="Annuaire centralisé qui gère tous les utilisateurs et ordinateurs d'une entreprise. L'admin y crée les comptes et définit qui a accès à quoi.">AD</span>-ORDIGLOBAL</span></div>
+
+            <div class="achievement-item"><i class="fas fa-check-circle"></i><span>J'ai defini la base DN: OU=LAB,DC=ordiglobal,DC=local</span></div>
+
+            <div class="achievement-item"><i class="fas fa-check-circle"></i><span>J'ai configuré le login field: samaccountname</span></div>
+
+          </div>
+
+        </div>
+
+
+
+        <div class="warning-box">
+
+          <h4><i class="fas fa-exclamation-triangle"></i> Point d'attention</h4>
+
+          <p style="color: var(--text-secondary);">La connexion LDAP simple (port 389) est bloquee par l'exigence de signature LDAP côté <span class="term" data-def="Annuaire centralisé qui gère tous les utilisateurs et ordinateurs d'une entreprise. L'admin y crée les comptes et définit qui a accès à quoi.">AD</span>. La configuration LDAPS/StartTLS nécessité un certificat sur le contrôleur de domaine. Ce point reste à finaliser.</p>
+
+        </div>
+
+
+
+        <div class="project-gallery">
+
+          <div class="gallery-item" style="max-width: 600px; margin: 0 auto;">
+
+            <img src="projet-glpi_assets/image7.png" alt="Page de connexion GLPI">
+
+            <div class="gallery-item-content">
+
+              <div class="gallery-item-title">Page de connexion <span class="term" data-def="Logiciel de gestion des tickets informatiques — les utilisateurs signalent leurs problèmes et les techniciens les traitent.">GLPI</span></div>
+
+              <div class="gallery-item-desc">Source de connexion "<span class="term" data-def="Annuaire centralisé qui gère tous les utilisateurs et ordinateurs d'une entreprise. L'admin y crée les comptes et définit qui a accès à quoi.">AD</span>-ORDIGLOBAL" disponible dans la liste</div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- NOTIFICATIONS DISCORD -->
+
+    <section id="notifications" class="section" style="background: var(--bg-card-solid);">
+
+      <div class="section-container">
+
+        <div class="section-header">
+
+          <span class="section-number">07</span>
+
+          <h2 class="section-title">Notifications <span class="title-gradient">Discord</span></h2>
+
+          <div class="section-line"></div>
+
+        </div>
+
+
+
+        <div class="tp-card">
+
+          <h3><i class="fab fa-discord"></i> Webhook Discord</h3>
+
+          <p class="about-text">J'ai configuré un webhook <span class="term" data-def="Logiciel de gestion des tickets informatiques — les utilisateurs signalent leurs problèmes et les techniciens les traitent.">GLPI</span> pour envoyer des notifications automatiques sur Discord lors des événements Ticket. J'ai teste l'envoi via la ligne de commande PHP.</p>
+
+          <div class="code-block">
+
+# Test d'envoi webhook depuis le serveur GLPI
+
+cd /var/www/html/glpi
+
+php -r "require 'vendor/autoload.php'; (new Glpi\Kernel\Kernel())-&gt;boot();
+
+        var_dump(QueuedWebhook::sendById(1));"
+
+
+
+# Resultat: bool(true)
+
+# Vérification en base: last_status_code = 204 (Discord OK)
+
+          </div>
+
+        </div>
+
+
+
+        <div class="validation-box">
+
+          <h4><i class="fas fa-check-circle"></i> Webhook valide</h4>
+
+          <ul style="margin-left: 1.5rem; color: var(--text-secondary);">
+
+            <li>Webhook actif lie aux événements Ticket</li>
+
+            <li>Code retour 204 (No Content) = succès Discord</li>
+
+            <li>Messages bien recus dans le canal Discord</li>
+
+          </ul>
+
+        </div>
+
+
+
+        <div class="project-gallery">
+
+          <div class="gallery-item">
+
+            <img src="projet-glpi_assets/image8.png" alt="Test webhook CLI">
+
+            <div class="gallery-item-content">
+
+              <div class="gallery-item-title">Test webhook en CLI</div>
+
+              <div class="gallery-item-desc">QueuedWebhook::sendById(1) retourne bool(true), status 204</div>
+
+            </div>
+
+          </div>
+
+          <div class="gallery-item">
+
+            <img src="projet-glpi_assets/image9.png" alt="Messages Discord">
+
+            <div class="gallery-item-content">
+
+              <div class="gallery-item-title">Messages recus sur Discord</div>
+
+              <div class="gallery-item-desc">"[<span class="term" data-def="Logiciel de gestion des tickets informatiques — les utilisateurs signalent leurs problèmes et les techniciens les traitent.">GLPI</span>] Test webhook queue depuis le serveur GLPI 172.20.10.13"</div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- BILAN -->
+
+    <section id="captures" class="section">
+
+      <div class="section-container">
+
+        <div class="section-header">
+
+          <span class="section-number">08</span>
+
+          <h2 class="section-title">Bilan <span class="title-gradient">du projet</span></h2>
+
+          <div class="section-line"></div>
+
+        </div>
+
+
+
+        <div class="validation-box">
+
+          <h4><i class="fas fa-check-circle"></i> Ce que j'ai validé</h4>
+
+          <ul style="margin-left: 1.5rem; color: var(--text-secondary);">
+
+            <li><span class="term" data-def="Logiciel de gestion des tickets informatiques — les utilisateurs signalent leurs problèmes et les techniciens les traitent.">GLPI</span> accessible en HTTP (200 OK)</li>
+
+            <li>Correction du webroot /public effectuee</li>
+
+            <li>Configuration SELinux appliquee</li>
+
+            <li>Webhook Discord opérationnel (status 204)</li>
+
+            <li>Messages bien recus dans le canal Discord</li>
+
+            <li>Source de connexion <span class="term" data-def="Annuaire centralisé qui gère tous les utilisateurs et ordinateurs d'une entreprise. L'admin y crée les comptes et définit qui a accès à quoi.">AD</span>-ORDIGLOBAL configuree</li>
+
+          </ul>
+
+        </div>
+
+
+
+        <div class="warning-box">
+
+          <h4><i class="fas fa-clock"></i> Point restant</h4>
+
+          <p style="color: var(--text-secondary);">LDAP <span class="term" data-def="Annuaire centralisé qui gère tous les utilisateurs et ordinateurs d'une entreprise. L'admin y crée les comptes et définit qui a accès à quoi.">AD</span>: J'ai prepare la configuration mais la synchronisation n'est pas finalisee (blocage politique de sécurité/certificat LDAPS sur le DC).</p>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- INTERFACE GLPI -->
+
+    <section id="interface" class="section">
+
+      <div class="section-container">
+
+        <div class="section-header">
+
+          <span class="section-number">09</span>
+
+          <h2 class="section-title">Interface <span class="title-gradient"><span class="term" data-def="Logiciel de gestion des tickets informatiques — les utilisateurs signalent leurs problèmes et les techniciens les traitent.">GLPI</span> en utilisation</span></h2>
+
+          <div class="section-line"></div>
+
+        </div>
+
+        <p class="about-text">Captures de l'interface <span class="term" data-def="Logiciel de gestion des tickets informatiques — les utilisateurs signalent leurs problèmes et les techniciens les traitent.">GLPI</span> opérationnelle : gestion des assets, création et suivi des tickets.</p>
+
+
+
+        <div class="project-gallery">
+
+          <div class="gallery-item">
+
+            <img src="projet-glpi_assets/image10.png" alt="Dashboard GLPI - vue des assets (ordinateurs, moniteurs, licences)" loading="lazy">
+
+            <div class="gallery-item-content">
+
+              <div class="gallery-item-title">Dashboard <span class="term" data-def="Logiciel de gestion des tickets informatiques — les utilisateurs signalent leurs problèmes et les techniciens les traitent.">GLPI</span></div>
+
+              <div class="gallery-item-desc">Vue d'ensemble des assets inventoriés : ordinateurs, logiciels, matériel réseau, licences.</div>
+
+            </div>
+
+          </div>
+
+          <div class="gallery-item">
+
+            <img src="projet-glpi_assets/image11.png" alt="Formulaire de création d'un ticket GLPI" loading="lazy">
+
+            <div class="gallery-item-content">
+
+              <div class="gallery-item-title">Création d'un ticket</div>
+
+              <div class="gallery-item-desc">Formulaire de création de ticket avec catégorie, priorité, source de la demande et pièces jointes.</div>
+
+            </div>
+
+          </div>
+
+          <div class="gallery-item">
+
+            <img src="projet-glpi_assets/image12.png" alt="Ticket GLPI en cours - incident bourrage papier" loading="lazy">
+
+            <div class="gallery-item-content">
+
+              <div class="gallery-item-title">Suivi d'un ticket</div>
+
+              <div class="gallery-item-desc">Ticket incident en cours avec historique des échanges, statut et attribution à un technicien.</div>
+
+            </div>
+
+          </div>
+
+          <div class="gallery-item">
+
+            <img src="projet-glpi_assets/image13.png" alt="Inventaire des assets - liste des ordinateurs dans GLPI" loading="lazy">
+
+            <div class="gallery-item-content">
+
+              <div class="gallery-item-title">Inventaire des assets</div>
+
+              <div class="gallery-item-desc">Liste des ordinateurs recensés avec modèle, état, localisation et date d'entrée en parc.</div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- COMPETENCES -->
+
+    <section id="competences" class="section" style="background: var(--bg-card-solid);">
+
+      <div class="section-container">
+
+        <div class="section-header">
+
+          <span class="section-number">10</span>
+
+          <h2 class="section-title">Compétences <span class="title-gradient">mobilisees</span></h2>
+
+          <div class="section-line"></div>
+
+        </div>
+
+
+
+        <div class="skills-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem;">
+
+          <div class="skill-category">
+
+            <h3 class="category-title"><i class="fas fa-server"></i> Administration système</h3>
+
+            <p class="about-text">J'ai installe et configure un serveur Linux, gère les services Apache/PHP, et configure SELinux.</p>
+
+          </div>
+
+          <div class="skill-category">
+
+            <h3 class="category-title"><i class="fas fa-users"></i> Gestion des identités</h3>
+
+            <p class="about-text">J'ai intégré LDAP <span class="term" data-def="Annuaire centralisé qui gère tous les utilisateurs et ordinateurs d'une entreprise. L'admin y crée les comptes et définit qui a accès à quoi.">Active Directory</span>, cree des comptes de service et configure l'authentification centralisée.</p>
+
+          </div>
+
+          <div class="skill-category">
+
+            <h3 class="category-title"><i class="fas fa-desktop"></i> <span class="term" data-def="Logiciel de gestion des tickets informatiques — les utilisateurs signalent leurs problèmes et les techniciens les traitent.">ITSM</span></h3>
+
+            <p class="about-text">J'ai déployé <span class="term" data-def="Logiciel de gestion des tickets informatiques — les utilisateurs signalent leurs problèmes et les techniciens les traitent.">GLPI</span> pour la gestion de parc informatique et le suivi des tickets.</p>
+
+          </div>
+
+          <div class="skill-category">
+
+            <h3 class="category-title"><i class="fas fa-bell"></i> Automatisation</h3>
+
+            <p class="about-text">J'ai configuré des webhooks pour les notifications automatiques Discord et l'intégration d'outils.</p>
+
+          </div>
+
+        </div>
+
+
+
+        <div style="text-align: center; margin-top: 3rem;">
+
+          <a href="epreuve-e5.html" class="btn btn-primary"><i class="fas fa-graduation-cap"></i> Voir toutes les compétences E5</a>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+
+  </main>
+
+
+
+  <footer class="main-footer" role="contentinfo">
+
+    <div class="footer-container">
+
+      <div class="footer-content">
+
+        <p class="footer-text">© 2025 <span class="footer-copyright">Franck Raymond</span> - Tous droits réservés.</p>
+
+      </div>
+
+    </div>
+
+  </footer>
+
+
+
+  <!-- Lightbox -->
+
+  <div class="lightbox" id="lightbox">
+
+    <div class="lightbox-content">
+
+      <button class="lightbox-close" id="lightboxClose"><i class="fas fa-times"></i></button>
+
+      <img src="" alt="" id="lightboxImg">
+
+      <div class="lightbox-caption">
+
+        <div class="title" id="lightboxTitle"></div>
+
+        <div class="desc" id="lightboxDesc"></div>
+
+      </div>
+
+    </div>
+
+    <button class="lightbox-nav prev" id="lightboxPrev"><i class="fas fa-chevron-left"></i></button>
+
+    <button class="lightbox-nav next" id="lightboxNext"><i class="fas fa-chevron-right"></i></button>
+
+    <div class="lightbox-counter" id="lightboxCounter"></div>
+
+  </div>
+
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+
+  <script src="../script.js?v=20261028-b753f7964f"></script>
+
+  <script>
+
+    // Lightbox functionality
+
+    const lightbox = document.getElementById('lightbox');
+
+    const lightboxImg = document.getElementById('lightboxImg');
+
+    const lightboxTitle = document.getElementById('lightboxTitle');
+
+    const lightboxDesc = document.getElementById('lightboxDesc');
+
+    const lightboxCounter = document.getElementById('lightboxCounter');
+
+    const lightboxClose = document.getElementById('lightboxClose');
+
+    const lightboxPrev = document.getElementById('lightboxPrev');
+
+    const lightboxNext = document.getElementById('lightboxNext');
+
+
+
+    const galleryItems = document.querySelectorAll('.gallery-item');
+
+    let currentIndex = 0;
+
+    const images = [];
+
+
+
+    galleryItems.forEach((item, index) => {
+
+      const img = item.querySelector('img');
+
+      const title = item.querySelector('.gallery-item-title')?.textContent || '';
+
+      const desc = item.querySelector('.gallery-item-desc')?.textContent || '';
+
+
+
+      images.push({ src: img.src, title, desc });
+
+
+
+      item.addEventListener('click', () => {
+
+        currentIndex = index;
+
+        openLightbox();
+
+      });
+
+    });
+
+
+
+    function openLightbox() {
+
+      const image = images[currentIndex];
+
+      lightboxImg.src = image.src;
+
+      lightboxTitle.textContent = image.title;
+
+      lightboxDesc.textContent = image.desc;
+
+      lightboxCounter.textContent = `${currentIndex + 1} / ${images.length}`;
+
+      lightbox.classList.add('active');
+
+      document.body.style.overflow = 'hidden';
+
+    }
+
+
+
+    function closeLightbox() {
+
+      lightbox.classList.remove('active');
+
+      document.body.style.overflow = '';
+
+    }
+
+
+
+    function nextImage() {
+
+      currentIndex = (currentIndex + 1) % images.length;
+
+      openLightbox();
+
+    }
+
+
+
+    function prevImage() {
+
+      currentIndex = (currentIndex - 1 + images.length) % images.length;
+
+      openLightbox();
+
+    }
+
+
+
+    lightboxClose.addEventListener('click', closeLightbox);
+
+    lightboxNext.addEventListener('click', nextImage);
+
+    lightboxPrev.addEventListener('click', prevImage);
+
+
+
+    lightbox.addEventListener('click', (e) => {
+
+      if (e.target === lightbox) closeLightbox();
+
+    });
+
+
+
+    document.addEventListener('keydown', (e) => {
+
+      if (!lightbox.classList.contains('active')) return;
+
+      if (e.key === 'Escape') closeLightbox();
+
+      if (e.key === 'ArrowRight') nextImage();
+
+      if (e.key === 'ArrowLeft') prevImage();
+
+    });
+
+  </script>
+
+
+
+
+
+
+
+
+
+<script src="/assets/portfolio-glossary.js?v=20260831-2" defer=""></script><script src="/assets/legacy-unified.js?v=20261028-8c422e514f" defer=""></script></body></html>

@@ -1,0 +1,491 @@
+<!DOCTYPE html><html lang="fr"><head>
+
+  <meta charset="UTF-8">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Évaluer les indicateurs de suivi | Portfolio</title>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&amp;family=Outfit:wght@300;400;500;600;700;800;900&amp;family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="../style.css">
+
+  <style>
+        /* Tooltips termes techniques */
+        .term {
+            border-bottom: 1px dashed var(--primary);
+            cursor: help;
+            position: relative;
+            display: inline;
+        }
+        .term::after {
+            content: attr(data-def);
+            position: absolute;
+            bottom: calc(100% + 8px);
+            left: 50%;
+            transform: translateX(-50%);
+            background: #1e293b;
+            color: #f8fafc;
+            font-size: 0.78rem;
+            line-height: 1.5;
+            padding: 0.6rem 0.9rem;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            white-space: normal;
+            width: 220px;
+            text-align: left;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.2s;
+            z-index: 100;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+        }
+        .term:hover::after { opacity: 1; }
+  </style>
+<meta name="theme-color" content="#111214"><link rel="stylesheet" href="/assets/legacy-unified.css?v=20260831-2"><meta name="description" content="Portfolio de Franck Raymond : projets en administration systèmes, réseaux, supervision et cybersécurité."><meta name="author" content="Franck Raymond"><meta name="robots" content="index,follow,max-image-preview:large"><meta property="og:type" content="website"><meta property="og:site_name" content="Portfolio de Franck Raymond"><meta property="og:title" content="Évaluer les indicateurs de suivi | Portfolio"><meta property="og:description" content="Portfolio de Franck Raymond : projets en administration systèmes, réseaux, supervision et cybersécurité."><meta property="og:url" content="https://franckraymond.tech/pages/evaluer-indicateurs.html"><meta property="og:image" content="https://franckraymond.tech/franck.webp"><meta property="og:image:alt" content="Portrait professionnel de Franck Raymond"><meta property="og:locale" content="fr_FR"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Évaluer les indicateurs de suivi | Portfolio"><meta name="twitter:description" content="Portfolio de Franck Raymond : projets en administration systèmes, réseaux, supervision et cybersécurité."><meta name="twitter:image" content="https://franckraymond.tech/franck.webp"><link rel="canonical" href="https://franckraymond.tech/pages/evaluer-indicateurs.html"><link rel="icon" href="/favicon-32x32.png" sizes="32x32" type="image/png"><link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180"><link rel="manifest" href="/site.webmanifest"><script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"Évaluer les indicateurs de suivi | Portfolio","url":"https://franckraymond.tech/pages/evaluer-indicateurs.html","description":"Portfolio de Franck Raymond : projets en administration systèmes, réseaux, supervision et cybersécurité.","isPartOf":{"@type":"WebSite","name":"Portfolio de Franck Raymond","url":"https://franckraymond.tech/"},"about":{"@type":"Person","name":"Franck Raymond","url":"https://franckraymond.tech/"}}</script>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,400&amp;family=Geist:wght@400;500;600&amp;display=swap">
+<link rel="stylesheet" href="/assets/editorial-tokens.css?v=20261106-modern">
+<link rel="stylesheet" href="/assets/editorial.css?v=20261106-modern">
+<script src="/assets/editorial-theme.js?v=20261028-1fe0ee8c9d"></script>
+</head>
+
+<body data-theme="light" class="portfolio-legacy editorial-site">
+
+  <div class="bg-mesh"></div>
+
+  <div class="noise-overlay"></div>
+
+  <div class="grid-lines"></div>
+
+
+
+  <header class="main-header" id="header">
+
+    <nav class="nav-container" aria-label="Navigation principale">
+
+      <div class="nav-brand">
+
+        <a href="../index.html" class="brand-logo">
+
+          <span class="logo-bracket">&lt;</span>
+
+          <span class="logo-text">FR</span>
+
+          <span class="logo-bracket">/&gt;</span>
+
+        </a>
+
+      </div>
+
+      <div class="nav-menu" id="navMenu">
+
+        <a href="../index.html" class="nav-link">
+
+          <i class="fas fa-home"></i>
+
+          <span class="nav-text">Accueil</span>
+
+        </a>
+
+        <a href="../index.html#skills" class="nav-link active">
+
+          <i class="fas fa-code"></i>
+
+          <span class="nav-text">Compétences</span>
+
+        </a>
+
+        <a href="../index.html#experience" class="nav-link">
+
+          <i class="fas fa-briefcase"></i>
+
+          <span class="nav-text">Expériences</span>
+
+        </a>
+
+        <a href="../index.html#contact" class="nav-link">
+
+          <i class="fas fa-envelope"></i>
+
+          <span class="nav-text">Contact</span>
+
+        </a>
+
+      
+<a class="nav-link" href="https://opengym.jsuisfray.blitz.cloud/"><span class="nav-text">FrayFit</span></a></div>
+
+      <div class="nav-controls">
+
+        <button class="theme-toggle" id="themeToggle" title="Changer le thème" aria-label="Basculer entre mode sombre et clair">
+
+          <i class="fas fa-moon"></i>
+
+        </button>
+
+        <button class="menu-toggle" id="menuToggle" aria-label="Ouvrir le menu mobile" aria-expanded="false">
+
+          <span></span><span></span><span></span>
+
+        </button>
+
+      </div>
+
+    </nav>
+
+  </header>
+
+
+
+  <main>
+
+    <section class="hero-section page-hero">
+
+      <div class="hero-glow"></div>
+
+      <div class="hero-glow-2"></div>
+
+      <div class="hero-container">
+
+        <div class="hero-content">
+
+          <div class="hero-greeting page-badge">Projet &amp; déploiement</div>
+
+          <h1 class="hero-name"><span class="name-gradient">Évaluer les indicateurs de suivi</span></h1>
+
+          <p class="hero-description">
+
+            Mesure des resultats pour valider la qualité et analyser les écarts.
+
+          </p>
+
+<div class="hero-buttons">
+
+            <a href="#validation" class="btn btn-primary"><i class="fas fa-link"></i> Validation</a>
+
+            <a href="#preuves" class="btn btn-secondary"><i class="fas fa-image"></i> Preuves</a>
+
+          </div>
+
+        </div>
+
+        <div class="hero-image-wrapper">
+
+          <div class="hero-image-container">
+
+            <div class="profile-image-frame">
+
+              <i class="fas fa-tachometer-alt page-icon"></i>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+
+    <section id="validation" class="section">
+
+  <div class="section-container">
+
+    <div class="section-header">
+
+      <span class="section-number">01</span>
+
+      <h2 class="section-title">Comment je l'ai <span class="title-gradient">validée</span></h2>
+
+      <div class="section-line"></div>
+
+    </div>
+
+    <div class="about-content">
+
+      <div>
+
+        <p class="about-text">
+
+          <strong>J'ai validé cette compétence en faisant concrètement ceci :</strong> J'ai valide cette compétence en suivant des indicateurs concrets sur les services déployés : disponibilité, temps de réponse, charge, repartition du trafic ou temps de bascule. Ces mesures m'ont permis de comparer le resultat attendu au comportement réel de l'infrastructure.
+
+        </p>
+
+        <p class="about-text" style="margin-top: 1rem;">
+
+          Ce travail m'a permis de valider ma capacité à lire des indicateurs, analyser un ecart et ajuster un service ou un projet à partir de mesures réelles. J'ai pris l'habitude de m'appuyer sur des chiffres observables plutôt que sur une simple impression de bon fonctionnement.
+
+        </p>
+
+        <div class="timeline-achievements">
+
+              <div class="achievement-item"><i class="fas fa-check-circle"></i><span>Suivre l'uptime et les alertes dans <span class="term" data-def="Logiciel de surveillance qui vérifie en temps réel que les serveurs et équipements réseau fonctionnent correctement.">Zabbix</span></span></div>
+
+      <div class="achievement-item"><i class="fas fa-check-circle"></i><span>Mesurer la repartition et la réponse sur le service Web HA</span></div>
+
+      <div class="achievement-item"><i class="fas fa-check-circle"></i><span>Comparer les resultats obtenus avec l'objectif initial</span></div>
+
+      <div class="achievement-item"><i class="fas fa-check-circle"></i><span>Observer l'évolution des graphes avant et après une modification technique</span></div>
+
+      <div class="achievement-item"><i class="fas fa-check-circle"></i><span>Justifier un ajustement de configuration à partir d'un ecart mesure</span></div>
+
+        </div>
+
+      </div>
+
+      <div>
+
+        <div class="skill-category">
+
+          <h3 id="preuves" class="category-title"><i class="fas fa-diagram-project"></i> TP et projets reliés</h3>
+
+          <div class="timeline-tags">
+
+                <a href="projet-zabbix-r5.html" class="tag"><i class="fas fa-link"></i> <span class="term" data-def="Logiciel de surveillance qui vérifie en temps réel que les serveurs et équipements réseau fonctionnent correctement.">Zabbix</span></a>
+
+        <a href="projet-r5-web-ha.html" class="tag"><i class="fas fa-link"></i> Web HA</a>
+
+        <a href="projet-hsrp-lacp.html" class="tag"><i class="fas fa-link"></i> <span class="term" data-def="Protocole réseau qui permet à deux routeurs de fonctionner en duo : si l'un tombe, l'autre prend le relais automatiquement.">HSRP</span> / <span class="term" data-def="Technique qui regroupe plusieurs câbles réseau en un seul lien plus rapide et redondant.">LACP</span></a>
+
+          </div>
+
+        </div>
+
+        <div class="skill-category" style="margin-top: 1.5rem;">
+
+          <h3 class="category-title"><i class="fas fa-graduation-cap"></i> Ce que j'ai validé</h3>
+
+          <div class="timeline-tags">
+
+                <span class="tag">Indicateurs</span>
+
+        <span class="tag">Analyse des écarts</span>
+
+        <span class="tag">Amélioration continue</span>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+
+    <section id="actions" class="section" style="background: var(--bg-card-solid);">
+
+      <div class="section-container">
+
+        <div class="section-header">
+
+          <span class="section-number">02</span>
+
+          <h2 class="section-title">Actions <span class="title-gradient">&amp; réalisations</span></h2>
+
+          <div class="section-line"></div>
+
+        </div>
+
+        <div class="about-content">
+
+          <div>
+
+            <p class="about-text">Suivi et interpretation des indicateurs sur plusieurs services critiques.</p>
+
+            <div class="timeline-achievements">
+
+              <div class="achievement-item"><i class="fas fa-check-circle"></i><span>Lecture des graphes <span class="term" data-def="Logiciel de surveillance qui vérifie en temps réel que les serveurs et équipements réseau fonctionnent correctement.">Zabbix</span> pour suivre disponibilité, charge et temps de réponse</span></div>
+
+              <div class="achievement-item"><i class="fas fa-check-circle"></i><span>Vérification de la repartition du trafic sur l'infrastructure Web HA</span></div>
+
+              <div class="achievement-item"><i class="fas fa-check-circle"></i><span>Mesure du temps de bascule lors des tests de haute disponibilité</span></div>
+
+              <div class="achievement-item"><i class="fas fa-check-circle"></i><span>Comparaison entre resultat attendu, comportement réel et ressenti utilisateur</span></div>
+
+              <div class="achievement-item"><i class="fas fa-check-circle"></i><span>Ajustement des seuils, checks ou configurations selon les tendances observees</span></div>
+
+            </div>
+
+          </div>
+
+          <div>
+
+            <div class="skill-category">
+
+              <h3 class="category-title"><i class="fas fa-layer-group"></i> Indicateurs suivis</h3>
+
+              <div class="timeline-tags">
+
+                <span class="tag">Disponibilité</span>
+
+                <span class="tag">Temps de réponse</span>
+
+                <span class="tag">Charge système</span>
+
+                <span class="tag">Temps de bascule</span>
+
+                <span class="tag">Alertes</span>
+
+              </div>
+
+            </div>
+
+            <div class="skill-category" style="margin-top: 1.5rem;">
+
+              <h3 class="category-title"><i class="fas fa-graduation-cap"></i> Compétences BTS SIO</h3>
+
+              <div class="timeline-tags">
+
+                <span class="tag">Évaluer des indicateurs</span>
+
+                <span class="tag">Analyser un ecart</span>
+
+                <span class="tag">Améliorer un service</span>
+
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+
+    <section id="difficultes" class="section">
+
+      <div class="section-container">
+
+        <div class="section-header">
+
+          <span class="section-number">03</span>
+
+          <h2 class="section-title">Difficultés <span class="title-gradient">&amp; solutions</span></h2>
+
+          <div class="section-line"></div>
+
+        </div>
+
+        <div class="about-content">
+
+          <div>
+
+            <p class="about-text">Le plus difficile avec les indicateurs n'est pas de les afficher, mais de les interpreter correctement dans leur contexte.</p>
+
+            <div class="timeline-achievements">
+
+              <div class="achievement-item"><i class="fas fa-exclamation-triangle" style="color: var(--accent-primary);"></i><span><strong>Problème :</strong> Trop de données disponibles sans savoir lesquelles sont vraiment utiles</span></div>
+
+              <div class="achievement-item"><i class="fas fa-lightbulb" style="color: var(--accent-secondary);"></i><span><strong>Solution :</strong> Selection d'indicateurs prioritaires relies à l'objectif réel du service</span></div>
+
+            </div>
+
+            <div class="timeline-achievements" style="margin-top: 1rem;">
+
+              <div class="achievement-item"><i class="fas fa-exclamation-triangle" style="color: var(--accent-primary);"></i><span><strong>Problème :</strong> Risque d'interpreter un pic ponctuel comme un problème structurel</span></div>
+
+              <div class="achievement-item"><i class="fas fa-lightbulb" style="color: var(--accent-secondary);"></i><span><strong>Solution :</strong> Analyse sur la durée et comparaison avec plusieurs mesures ou événements</span></div>
+
+            </div>
+
+            <div class="timeline-achievements" style="margin-top: 1rem;">
+
+              <div class="achievement-item"><i class="fas fa-exclamation-triangle" style="color: var(--accent-primary);"></i><span><strong>Problème :</strong> Absence de valeur de reference pour savoir si le resultat est satisfaisant</span></div>
+
+              <div class="achievement-item"><i class="fas fa-lightbulb" style="color: var(--accent-secondary);"></i><span><strong>Solution :</strong> Définition d'objectifs simples et comparaison avant/après modification</span></div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+
+    <section id="bilan" class="section" style="background: var(--bg-card-solid);">
+
+      <div class="section-container">
+
+        <div class="section-header">
+
+          <span class="section-number">04</span>
+
+          <h2 class="section-title">Bilan <span class="title-gradient">personnel</span></h2>
+
+          <div class="section-line"></div>
+
+        </div>
+
+        <div class="about-content">
+
+          <div>
+
+            <p class="about-text">Cette compétence m'a appris a objectiver mes decisions techniques. Je raisonne plus facilement avec des mesures, des tendances et des écarts concrets, ce qui me permet de mieux justifier une correction ou une optimisation.</p>
+
+            <p class="about-text" style="margin-top: 1rem;">Personnellement, j'ai gagné en recul. Je me fie moins aux impressions et davantage aux preuves de fonctionnement, ce qui rend mes analyses plus solides en projet comme en soutenance.</p>
+
+          </div>
+
+          <div>
+
+            <div class="timeline-achievements">
+
+              <div class="achievement-item"><i class="fas fa-check-circle"></i><span>Analyse plus factuelle des performances et incidents</span></div>
+
+              <div class="achievement-item"><i class="fas fa-check-circle"></i><span>Meilleure capacité à argumenter une decision technique</span></div>
+
+              <div class="achievement-item"><i class="fas fa-check-circle"></i><span>Vision plus claire de l'amélioration continue d'un service</span></div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>  </main>
+
+
+
+  <footer class="main-footer" role="contentinfo">
+
+    <div class="footer-container">
+
+      <div class="footer-content">
+
+        <p class="footer-text">2026 <span class="footer-copyright">Franck Raymond</span> - Tous droits réservés.</p>
+
+      </div>
+
+    </div>
+
+  </footer>
+
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+
+  <script src="../script.js?v=20261028-b753f7964f"></script>
+
+
+
+
+
+<script src="/assets/portfolio-glossary.js?v=20260831-2" defer=""></script><script src="/assets/legacy-unified.js?v=20261028-8c422e514f" defer=""></script></body></html>

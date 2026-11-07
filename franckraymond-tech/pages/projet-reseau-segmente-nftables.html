@@ -1,0 +1,271 @@
+<!DOCTYPE html><html lang="fr" dir="ltr" data-theme="light"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Simulation d&amp;#39;un réseau d&amp;#39;entreprise avec zone externe, pare-feu, DMZ, LAN protégé et tests automatisés des flux.">
+  <meta name="author" content="Franck Raymond">
+  <meta name="robots" content="index,follow,max-image-preview:large">
+  <meta name="theme-color" content="#111214">
+  <title>Réseau segmenté avec nftables | Portfolio Franck Raymond</title>
+  <link rel="canonical" href="https://franckraymond.tech/pages/projet-reseau-segmente-nftables.html">
+  <link rel="alternate" hreflang="fr" href="https://franckraymond.tech/pages/projet-reseau-segmente-nftables.html">
+  <link rel="alternate" hreflang="en" href="https://franckraymond.tech/en/pages/projet-reseau-segmente-nftables.html">
+  <link rel="alternate" hreflang="x-default" href="https://franckraymond.tech/pages/projet-reseau-segmente-nftables.html">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Portfolio de Franck Raymond">
+  <meta property="og:title" content="Réseau segmenté avec nftables | Portfolio Franck Raymond">
+  <meta property="og:description" content="Simulation d&amp;#39;un réseau d&amp;#39;entreprise avec zone externe, pare-feu, DMZ, LAN protégé et tests automatisés des flux.">
+  <meta property="og:url" content="https://franckraymond.tech/pages/projet-reseau-segmente-nftables.html">
+  <meta property="og:image" content="https://franckraymond.tech/franck.webp">
+  <meta property="og:image:alt" content="Portrait professionnel de Franck Raymond">
+  <meta property="og:image:width" content="1024">
+  <meta property="og:image:height" content="1024">
+  <meta property="og:locale" content="fr_FR">
+  <meta property="og:locale:alternate" content="en_GB">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Réseau segmenté avec nftables | Portfolio Franck Raymond">
+  <meta name="twitter:description" content="Simulation d&amp;#39;un réseau d&amp;#39;entreprise avec zone externe, pare-feu, DMZ, LAN protégé et tests automatisés des flux.">
+  <meta name="twitter:image" content="https://franckraymond.tech/franck.webp">
+  <meta name="twitter:image:alt" content="Portrait professionnel de Franck Raymond">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Person",
+        "@id": "https://franckraymond.tech/#person",
+        "name": "Franck Raymond",
+        "url": "https://franckraymond.tech/",
+        "image": "https://franckraymond.tech/franck.webp",
+        "jobTitle": "Administrateur systèmes et réseaux",
+        "description": "Administrateur systèmes et réseaux chez Delannoy Dewailly, en alternance d’un an dans le cadre du Bachelor ASRBD à l’EPSI Lille.",
+        "email": "mailto:franckrmnd@gmail.com",
+        "sameAs": ["https://www.linkedin.com/in/franck-r-21a8a4184", "https://github.com/franckraymond"],
+        "knowsAbout": ["Administration systèmes", "Réseaux informatiques", "Cybersécurité", "Supervision", "Linux", "Windows Server"]
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://franckraymond.tech/#website",
+        "url": "https://franckraymond.tech/",
+        "name": "Portfolio de Franck Raymond",
+        "inLanguage": ["fr-FR", "en-GB"],
+        "publisher": { "@id": "https://franckraymond.tech/#person" }
+      },
+      {
+        "@type": "WebPage",
+        "@id": "https://franckraymond.tech/pages/projet-reseau-segmente-nftables.html#webpage",
+        "url": "https://franckraymond.tech/pages/projet-reseau-segmente-nftables.html",
+        "name": "Réseau segmenté avec nftables | Portfolio Franck Raymond",
+        "description": "Simulation d&#39;un réseau d&#39;entreprise avec zone externe, pare-feu, DMZ, LAN protégé et tests automatisés des flux.",
+        "isPartOf": { "@id": "https://franckraymond.tech/#website" },
+        "about": { "@id": "https://franckraymond.tech/#person" }
+      }
+    ]
+  }
+  </script>
+  <link rel="stylesheet" href="../tailwind-output.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&amp;family=Outfit:wght@400;500;600;700;800&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../style.css">
+  <link rel="stylesheet" href="../assets/portfolio-v2.css?v=20260831-2">
+  
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,400&amp;family=Geist:wght@400;500;600&amp;display=swap">
+<link rel="stylesheet" href="/assets/editorial-tokens.css?v=20261106-modern">
+<link rel="stylesheet" href="/assets/editorial.css?v=20261106-modern">
+<script src="/assets/editorial-theme.js?v=20261028-1fe0ee8c9d"></script>
+</head>
+<body data-theme="light" class="portfolio-v2 editorial-site">
+  
+  <a class="skip-link" href="#main-content">Aller au contenu principal</a>
+  <div class="bg-mesh" aria-hidden="true"></div>
+  <div class="noise-overlay" aria-hidden="true"></div>
+  <div class="grid-lines" aria-hidden="true"></div>
+
+  <header class="main-header" id="header">
+    <nav class="nav-container" aria-label="Navigation principale">
+      <a href="/index.html" class="brand-logo" aria-label="Accueil — Franck Raymond">
+        <span class="logo-bracket" aria-hidden="true">&lt;</span>
+        <span class="logo-text">FR</span>
+        <span class="logo-bracket" aria-hidden="true">/&gt;</span>
+      </a>
+      <div class="nav-menu" id="navMenu">
+        <a href="/index.html" class="nav-link"><i class="fas fa-home" aria-hidden="true"></i><span class="nav-text">Accueil</span></a>
+        <a href="/projets.html" class="nav-link"><i class="fas fa-diagram-project" aria-hidden="true"></i><span class="nav-text">Projets</span></a>
+        <a href="/index.html#skills" class="nav-link"><i class="fas fa-code" aria-hidden="true"></i><span class="nav-text">Compétences</span></a>
+        <a href="/index.html#experience" class="nav-link"><i class="fas fa-briefcase" aria-hidden="true"></i><span class="nav-text">Expériences</span></a>
+        <a href="/index.html#contact" class="nav-link"><i class="fas fa-envelope" aria-hidden="true"></i><span class="nav-text">Contact</span></a>
+      
+<a class="nav-link" href="https://opengym.jsuisfray.blitz.cloud/"><span class="nav-text">FrayFit</span></a></div>
+      <div class="nav-controls">
+        <div class="language-switcher">
+          <button class="language-toggle" id="languageToggle" type="button" aria-label="Choisir la langue" aria-controls="languageMenu" aria-expanded="false" data-open-label="Choisir la langue" data-close-label="Fermer le choix de langue">
+            <i class="fas fa-globe" aria-hidden="true"></i><span>FR</span>
+          </button>
+          <div class="language-menu" id="languageMenu" aria-label="Choix de la langue" hidden="">
+            <a href="/pages/projet-reseau-segmente-nftables.html" lang="fr" hreflang="fr" data-language="fr" aria-current="page">FR <span>Français</span></a>
+            <a href="/en/pages/projet-reseau-segmente-nftables.html" lang="en" hreflang="en" data-language="en">EN <span>English</span></a>
+          </div>
+        </div>
+        <button class="theme-toggle" id="themeToggle" type="button" aria-label="Activer le thème clair" data-light-label="Activer le thème clair" data-dark-label="Activer le thème sombre">
+          <i class="fas fa-sun" aria-hidden="true"></i>
+        </button>
+        <button class="menu-toggle" id="menuToggle" type="button" aria-label="Ouvrir le menu" aria-controls="navMenu" aria-expanded="false" data-open-label="Ouvrir le menu" data-close-label="Fermer le menu">
+          <span aria-hidden="true"></span><span aria-hidden="true"></span><span aria-hidden="true"></span>
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <main id="main-content">
+    
+<article class="case-study">
+  <header class="case-hero">
+    <div class="case-container case-hero-grid">
+      <div>
+        <p class="case-kicker"><i class="fas fa-diagram-project" aria-hidden="true"></i>Réseaux &amp; cybersécurité</p>
+        <h1>Réseau segmenté avec nftables</h1>
+        <p class="case-lead">Quatre espaces réseau Linux simulent Internet, un pare-feu, une DMZ et un LAN. Une politique nftables restrictive autorise seulement les flux nécessaires et prouve les blocages.</p>
+        <div class="case-tags" aria-label="Outils et technologies utilisés">
+          <span>Linux namespaces</span><span>nftables</span><span>veth</span><span>Bash</span><span>tcpdump</span><span>DMZ</span><span>IPv4</span>
+        </div>
+      </div>
+      <dl class="case-facts" aria-label="Informations principales">
+        
+        <div><dt>Topologie</dt><dd>4 zones Linux isolées</dd></div>
+        
+        <div><dt>Politique</dt><dd>DROP par défaut</dd></div>
+        
+        <div><dt>Validation</dt><dd>5 tests réussis</dd></div>
+        
+        <div><dt>Preuve</dt><dd>Capture PCAP HTTP</dd></div>
+        
+      </dl>
+    </div>
+  </header>
+
+  <nav class="case-nav" aria-label="Sommaire du projet">
+    <div class="case-container">
+      <a href="#analyse">Besoin</a>
+      <a href="#architecture">Solution</a>
+      <a href="#realisation">Réalisation</a>
+      <a href="#validation">Vérification</a>
+      <a href="#recul">Améliorations</a>
+      <a href="#preuves">Preuves</a>
+    </div>
+  </nav>
+
+  <section class="case-band" id="analyse">
+    <div class="case-container">
+      <div class="case-section-heading"><span>01</span><div><p>Avant de commencer</p><h2>Le besoin et mon rôle</h2></div></div>
+      <div class="case-two-columns">
+        <div class="case-copy"><h3>Le besoin</h3><p>Un réseau plat permet à une machine compromise d'atteindre trop facilement les ressources internes. Il fallait démontrer une segmentation avec une DMZ, des flux strictement nécessaires, des blocages observables et une preuve réseau exploitable.</p></div>
+        <div class="case-copy"><h3>Mon rôle</h3><p>J'ai conçu le plan d'adressage, créé les network namespaces et les liaisons veth, écrit la politique nftables, automatisé les cinq tests de flux et capturé une session HTTP avec tcpdump.</p></div>
+      </div>
+      <div class="case-list-grid">
+        <div class="case-list-item"><i class="fas fa-diamond" aria-hidden="true"></i><span>Tout simuler dans une seule VM sans ajouter de machine virtuelle.</span></div><div class="case-list-item"><i class="fas fa-diamond" aria-hidden="true"></i><span>Forcer chaque communication inter-zone à traverser le pare-feu Linux.</span></div><div class="case-list-item"><i class="fas fa-diamond" aria-hidden="true"></i><span>Ne pas modifier le réseau VMware ni le pare-feu principal de la VM.</span></div><div class="case-list-item"><i class="fas fa-diamond" aria-hidden="true"></i><span>Nettoyer uniquement les ressources créées par le laboratoire.</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="case-band case-band-alt" id="architecture">
+    <div class="case-container">
+      <div class="case-section-heading"><span>02</span><div><p>Pourquoi cette méthode</p><h2>La solution choisie</h2></div></div>
+      <div class="case-decision">
+        <h3>Quatre network namespaces et une politique default deny</h3>
+        <p>Les namespaces offrent de vrais espaces réseau isolés sans coût mémoire important. Trois paires veth imposent le passage par le namespace pare-feu. La chaîne forward nftables utilise une politique DROP et n'accepte que les flux décrits dans le besoin.</p>
+      </div>
+      <div class="case-list-grid case-list-grid-wide">
+        <div class="case-list-item"><i class="fas fa-arrow-right" aria-hidden="true"></i><span>La zone externe 10.10.10.0/24 simule un réseau non fiable.</span></div><div class="case-list-item"><i class="fas fa-arrow-right" aria-hidden="true"></i><span>Le namespace pare-feu possède une interface dans chaque sous-réseau.</span></div><div class="case-list-item"><i class="fas fa-arrow-right" aria-hidden="true"></i><span>La DMZ 172.16.10.0/24 héberge un service web sur TCP/8080.</span></div><div class="case-list-item"><i class="fas fa-arrow-right" aria-hidden="true"></i><span>Le LAN 192.168.50.0/24 représente le réseau interne protégé.</span></div><div class="case-list-item"><i class="fas fa-arrow-right" aria-hidden="true"></i><span>Le routage IPv4 est activé uniquement dans le namespace pare-feu.</span></div><div class="case-list-item"><i class="fas fa-arrow-right" aria-hidden="true"></i><span>Les règles stateful acceptent les réponses established/related et comptent chaque politique.</span></div><div class="case-list-item"><i class="fas fa-arrow-right" aria-hidden="true"></i><span>tcpdump conserve un fichier PCAP du flux HTTP autorisé.</span></div>
+      </div>
+      
+      <figure class="case-architecture">
+        <img src="projet-reseau-segmente-nftables_assets/05-architecture-reseau.png" alt="Schéma du réseau segmenté avec zone externe, pare-feu nftables, DMZ et LAN" loading="lazy">
+        <figcaption>Les trois sous-réseaux convergent vers un pare-feu dont la politique de transfert est DROP.</figcaption>
+      </figure>
+      
+    </div>
+  </section>
+
+  <section class="case-band" id="realisation">
+    <div class="case-container">
+      <div class="case-section-heading"><span>03</span><div><p>Passer du plan à la pratique</p><h2>Ce que j’ai réalisé</h2></div></div>
+      <ol class="case-steps">
+        <li><span>01</span><p>Création des namespaces external, firewall, DMZ et internal.</p></li><li><span>02</span><p>Création des trois liaisons veth et attribution des adresses IPv4.</p></li><li><span>03</span><p>Ajout des routes par défaut pour imposer le passage par le pare-feu.</p></li><li><span>04</span><p>Activation du forwarding IPv4 dans le namespace firewall.</p></li><li><span>05</span><p>Chargement atomique de la table nftables avec politique DROP.</p></li><li><span>06</span><p>Démarrage du service HTTP dans la DMZ et capture du trafic autorisé.</p></li><li><span>07</span><p>Exécution des tests positifs, négatifs et des contrôles de compteurs.</p></li>
+      </ol>
+      <p class="case-technical-link"><a href="../downloads/portfolio-projects-source.zip"><i class="fas fa-terminal" aria-hidden="true"></i>Consulter le dossier technique complet</a></p>
+    </div>
+  </section>
+
+  <section class="case-band case-band-alt" id="validation">
+    <div class="case-container">
+      <div class="case-section-heading"><span>04</span><div><p>Contrôler le fonctionnement</p><h2>Comment j’ai vérifié</h2></div></div>
+      <div class="case-two-columns">
+        <div><h3>Tests réalisés</h3><ul class="case-check-list"><li><i class="fas fa-check" aria-hidden="true"></i>Test du LAN vers le service web de la DMZ sur TCP/8080.</li><li><i class="fas fa-check" aria-hidden="true"></i>Test de la zone externe vers le service DMZ publié.</li><li><i class="fas fa-check" aria-hidden="true"></i>Test ICMP de diagnostic du LAN vers la zone externe.</li><li><i class="fas fa-check" aria-hidden="true"></i>Tentatives externes et DMZ vers le LAN, attendues comme bloquées.</li><li><i class="fas fa-check" aria-hidden="true"></i>Lecture des compteurs nftables et de la capture tcpdump.</li></ul></div>
+        <div><h3>Résultats observés</h3><ul class="case-check-list case-results"><li><i class="fas fa-circle-check" aria-hidden="true"></i>Les cinq scénarios de segmentation réussissent.</li><li><i class="fas fa-circle-check" aria-hidden="true"></i>La zone externe atteint le service publié sans atteindre le LAN.</li><li><i class="fas fa-circle-check" aria-hidden="true"></i>La DMZ ne peut pas initier de connexion vers le LAN protégé.</li><li><i class="fas fa-circle-check" aria-hidden="true"></i>Le compteur default deny augmente lors des tentatives interdites.</li><li><i class="fas fa-circle-check" aria-hidden="true"></i>Le PCAP montre la négociation TCP puis la requête HTTP GET vers la DMZ.</li></ul></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="case-band" id="recul">
+    <div class="case-container">
+      <div class="case-section-heading"><span>05</span><div><p>Prendre du recul</p><h2>Limites et améliorations</h2></div></div>
+      <div class="case-two-columns">
+        <div><h3>Sécurité et utilisation</h3><ul class="case-check-list"><li><i class="fas fa-shield-halved" aria-hidden="true"></i>Politique de transfert DROP avant l'ajout des exceptions nécessaires.</li><li><i class="fas fa-shield-halved" aria-hidden="true"></i>Suivi d'état pour limiter les retours aux connexions établies ou associées.</li><li><i class="fas fa-shield-halved" aria-hidden="true"></i>Aucune route directe entre les zones ne contourne le pare-feu.</li><li><i class="fas fa-shield-halved" aria-hidden="true"></i>Scripts limités aux namespaces préfixés `pnet-` pour protéger l'hôte.</li><li><i class="fas fa-shield-halved" aria-hidden="true"></i>Scan des secrets, syntaxe Bash et validation nftables automatisés.</li></ul></div>
+        <div><h3>Ce que j’améliorerais</h3><ul class="case-check-list case-limitations"><li><i class="fas fa-triangle-exclamation" aria-hidden="true"></i>Le laboratoire ne couvre que l'IPv4 et un unique service web en DMZ.</li><li><i class="fas fa-triangle-exclamation" aria-hidden="true"></i>La haute disponibilité du pare-feu, le NAT Internet réel et les VPN sont hors périmètre.</li><li><i class="fas fa-triangle-exclamation" aria-hidden="true"></i>Les namespaces simulent les zones mais ne remplacent pas une validation sur des équipements physiques.</li></ul></div>
+      </div>
+    </div>
+  </section>
+
+  
+  <section class="case-band case-band-alt" id="preuves">
+    <div class="case-container">
+      <div class="case-section-heading"><span>06</span><div><p>Éléments visibles</p><h2>Preuves du fonctionnement</h2></div></div>
+      <div class="case-gallery">
+        
+        <figure><button type="button" data-lightbox-src="projet-reseau-segmente-nftables_assets/06-tests-segmentation.png" data-lightbox-alt="Résultats des cinq tests réseau et compteurs nftables"><img src="projet-reseau-segmente-nftables_assets/06-tests-segmentation.png" alt="Résultats des cinq tests réseau et compteurs nftables" loading="lazy"></button><figcaption>Les flux nécessaires passent, les accès vers le LAN sont bloqués et comptabilisés.</figcaption></figure>
+        
+        <figure><button type="button" data-lightbox-src="projet-reseau-segmente-nftables_assets/07-capture-paquets.png" data-lightbox-alt="Capture tcpdump de la négociation TCP et de la requête HTTP vers la DMZ"><img src="projet-reseau-segmente-nftables_assets/07-capture-paquets.png" alt="Capture tcpdump de la négociation TCP et de la requête HTTP vers la DMZ" loading="lazy"></button><figcaption>Preuve du handshake TCP puis de la requête GET autorisée vers 172.16.10.10:8080.</figcaption></figure>
+        
+      </div>
+    </div>
+  </section>
+  
+
+  <section class="case-band case-sources">
+    <div class="case-container case-two-columns">
+      <div><h2>Compétences démontrées</h2><ul class="case-compact-list"><li>Concevoir un plan d'adressage et une segmentation avec DMZ.</li><li>Créer des réseaux isolés avec namespaces et interfaces veth.</li><li>Écrire une politique nftables stateful et restrictive.</li><li>Tester les flux et analyser une capture réseau avec tcpdump.</li></ul></div>
+      <div><h2>Sources utilisées</h2><ul class="case-compact-list"><li><a href="https://wiki.nftables.org/wiki-nftables/index.php/Main_Page" target="_blank" rel="noopener noreferrer">nftables — Guide du projet Netfilter</a></li><li><a href="https://man7.org/linux/man-pages/man8/ip-netns.8.html" target="_blank" rel="noopener noreferrer">Linux man-pages — ip-netns</a></li><li><a href="https://www.tcpdump.org/manpages/tcpdump.1.html" target="_blank" rel="noopener noreferrer">tcpdump — Manuel officiel</a></li></ul></div>
+    </div>
+  </section>
+</article>
+
+<dialog class="case-lightbox" id="caseLightbox" aria-label="Agrandissement de la preuve">
+  <button type="button" data-lightbox-close="" aria-label="Fermer l’image"><i class="fas fa-xmark" aria-hidden="true"></i></button>
+  <img src="" alt="">
+</dialog>
+
+  </main>
+
+  <footer class="main-footer">
+    <div class="footer-container">
+      <div class="footer-content">
+        <p class="footer-text">© 2026 <span class="footer-copyright">Franck Raymond</span>. Tous droits réservés.</p>
+        <div class="footer-socials" aria-label="Réseaux professionnels">
+          <a href="https://github.com/franckraymond" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><i class="fab fa-github" aria-hidden="true"></i></a>
+          <a href="https://www.linkedin.com/in/franck-r-21a8a4184" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fab fa-linkedin" aria-hidden="true"></i></a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../assets/portfolio-glossary.js?v=20260831-2" defer=""></script>
+  <script src="../assets/portfolio-v2.js?v=20261028-493b8041ab" defer=""></script>
+  
+
+
+</body></html>

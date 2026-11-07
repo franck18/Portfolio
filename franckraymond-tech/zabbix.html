@@ -1,0 +1,300 @@
+<!DOCTYPE html><html lang="fr"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Projet Zabbix - Supervision d'infrastructure à la Mairie de La Madeleine">
+    <title>Supervision informatique avec Zabbix | Franck Raymond</title>
+    
+    <link rel="stylesheet" href="tailwind-output.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&amp;family=Outfit:wght@300;400;500;600;700;800;900&amp;family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        .project-hero {
+            min-height: 70vh;
+            display: flex;
+            align-items: center;
+            padding-top: 8rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-hero::before {
+            content: '';
+            position: absolute;
+            top: 10%;
+            right: -10%;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(239, 68, 68, 0.15) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .project-icon-frame {
+            width: 200px;
+            height: 200px;
+            border-radius: 30px;
+            border: 3px solid #ef4444;
+            background: var(--bg-card);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 0 60px rgba(239, 68, 68, 0.3);
+        }
+
+        .project-icon-frame i {
+            font-size: 5rem;
+            color: #ef4444;
+        }
+
+        .tech-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            background: rgba(239, 68, 68, 0.1);
+            border: 1px solid rgba(239, 68, 68, 0.3);
+            border-radius: 50px;
+            font-size: 0.85rem;
+            color: #ef4444;
+            font-weight: 500;
+        }
+
+        .placeholder-img {
+            display: none;
+        }
+    </style>
+<meta name="theme-color" content="#111214"><link rel="stylesheet" href="/assets/legacy-unified.css?v=20260831-2"><meta name="author" content="Franck Raymond"><meta name="robots" content="index,follow,max-image-preview:large"><meta property="og:type" content="website"><meta property="og:site_name" content="Portfolio de Franck Raymond"><meta property="og:title" content="Supervision informatique avec Zabbix | Franck Raymond"><meta property="og:description" content="Projet Zabbix - Supervision d'infrastructure à la Mairie de La Madeleine"><meta property="og:url" content="https://franckraymond.tech/zabbix.html"><meta property="og:image" content="https://franckraymond.tech/franck.webp"><meta property="og:image:alt" content="Portrait professionnel de Franck Raymond"><meta property="og:locale" content="fr_FR"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Supervision informatique avec Zabbix | Franck Raymond"><meta name="twitter:description" content="Projet Zabbix - Supervision d'infrastructure à la Mairie de La Madeleine"><meta name="twitter:image" content="https://franckraymond.tech/franck.webp"><link rel="canonical" href="https://franckraymond.tech/zabbix.html"><link rel="icon" href="/favicon-32x32.png" sizes="32x32" type="image/png"><link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180"><link rel="manifest" href="/site.webmanifest"><script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"Supervision informatique avec Zabbix | Franck Raymond","url":"https://franckraymond.tech/zabbix.html","description":"Projet Zabbix - Supervision d'infrastructure à la Mairie de La Madeleine","isPartOf":{"@type":"WebSite","name":"Portfolio de Franck Raymond","url":"https://franckraymond.tech/"},"about":{"@type":"Person","name":"Franck Raymond","url":"https://franckraymond.tech/"}}</script>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,400&amp;family=Geist:wght@400;500;600&amp;display=swap">
+<link rel="stylesheet" href="/assets/editorial-tokens.css?v=20261106-modern">
+<link rel="stylesheet" href="/assets/editorial.css?v=20261106-modern">
+<script src="/assets/editorial-theme.js?v=20261028-1fe0ee8c9d"></script>
+</head>
+<body data-theme="light" class="portfolio-legacy editorial-site">
+
+    <div class="bg-mesh"></div>
+    <div class="noise-overlay"></div>
+    <div class="grid-lines"></div>
+
+    <header class="main-header" id="header">
+        <nav class="nav-container">
+            <a href="index.html" class="brand-logo">
+                <span class="logo-bracket">&lt;</span>
+                <span class="logo-text">FR</span>
+                <span class="logo-bracket">/&gt;</span>
+            </a>
+            <div class="nav-menu" id="navMenu">
+                <a href="index.html" class="nav-link"><i class="fas fa-home"></i> Accueil</a>
+                <a href="profil.html" class="nav-link"><i class="fas fa-user"></i> Profil</a>
+                <a href="index.html#skills" class="nav-link active"><i class="fas fa-code"></i> Compétences</a>
+                <a href="experience.html" class="nav-link"><i class="fas fa-briefcase"></i> Expériences</a>
+                <a href="/projets.html#veille" class="nav-link"><i class="fas fa-newspaper"></i> Veille</a>
+                <a href="index.html#contact" class="nav-link"><i class="fas fa-envelope"></i> Contact</a>
+            
+<a class="nav-link" href="https://opengym.jsuisfray.blitz.cloud/"><span class="nav-text">FrayFit</span></a></div>
+            <div class="nav-controls">
+                <button class="theme-toggle" id="themeToggle" aria-label="Changer le thème">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <button class="menu-toggle" id="menuToggle" aria-label="Menu">
+                    <span></span><span></span><span></span>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="project-hero">
+            <div class="section-container">
+                <div class="hero-container">
+                    <div class="hero-content">
+                        <div class="hero-greeting" style="color: #ef4444;">PROJET D'INFRASTRUCTURE</div>
+                        <h1 class="hero-name">
+                            Supervision <span class="name-value" style="background: linear-gradient(135deg, #ef4444, #f97316); -webkit-background-clip: text;">Zabbix</span>
+                        </h1>
+                        <p class="hero-description">
+                            Mise en œuvre d'une solution de monitoring proactive à la Mairie pour garantir la continuité de service du réseau et des serveurs de fichiers.
+                        </p>
+                        <div class="hero-buttons">
+                            <a href="#architecture" class="btn btn-primary" style="background: linear-gradient(135deg, #ef4444, #f97316);">
+                                <i class="fas fa-network-wired"></i> Architecture
+                            </a>
+                            <a href="#alerting" class="btn btn-secondary">
+                                <i class="fas fa-bell"></i> Alertes
+                            </a>
+                        </div>
+                    </div>
+                    <div class="hero-image-wrapper">
+                        <div class="project-icon-frame">
+                            <i class="fas fa-server"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contexte" class="section">
+            <div class="section-container">
+                <div class="section-header">
+                    <span class="section-number">01</span>
+                    <h2 class="section-title">Contexte <span class="title-gradient">&amp; Objectifs</span></h2>
+                    <div class="section-line"></div>
+                </div>
+                
+                <div class="about-content">
+                    <div>
+                        <p class="about-text">
+                            Au sein du service informatique de la Mairie, la surveillance des équipements critiques (Switchs de distribution, Serveurs de fichiers) devenait indispensable.
+                        </p>
+                        <p class="about-text">
+                            J'ai déployé <strong>Zabbix</strong> pour centraliser ces informations et prévenir les pannes avant qu'elles n'impactent les utilisateurs municipaux.
+                        </p>
+                        <div style="display: flex; flex-direction: column; gap: 1rem; margin-top: 1.5rem;">
+                            <div class="achievement-item">
+                                <i class="fas fa-check-circle"></i>
+                                <span>Monitorer l'état des Switchs (Ports, Trafic)</span>
+                            </div>
+                            <div class="achievement-item">
+                                <i class="fas fa-check-circle"></i>
+                                <span>Surveiller le Serveur de Fichiers (Espace disque, RAID)</span>
+                            </div>
+                            <div class="achievement-item">
+                                <i class="fas fa-check-circle"></i>
+                                <span>Alerter l'équipe technique par mail en temps réel</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="placeholder-img">
+                        <div>
+                            <i class="fas fa-image" style="font-size: 3rem; margin-bottom: 1rem; display: block;"></i>
+                            Schéma Visio/Draw.io de l'infrastructure<br>(Switchs ↔ Zabbix ↔ Serveur Fichiers)
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="architecture" class="section" style="background: var(--bg-card-solid);">
+            <div class="section-container">
+                <div class="section-header">
+                    <span class="section-number">02</span>
+                    <h2 class="section-title">Architecture <span class="title-gradient">&amp; Cibles</span></h2>
+                    <div class="section-line"></div>
+                </div>
+
+                <div class="skills-grid">
+                    <div class="skill-category">
+                        <h3 class="category-title"><i class="fas fa-hdd" style="margin-right: 0.5rem;"></i> Serveur de Fichiers</h3>
+                        <p style="margin-bottom: 1rem; font-size: 0.9rem; color: var(--text-secondary);">
+                            Surveillance critique de l'espace de stockage partagé des agents.
+                        </p>
+                        <div class="skill-items">
+                            <div class="skill-item"><i class="fas fa-hdd"></i> Espace Disque</div>
+                            <div class="skill-item"><i class="fab fa-windows"></i> Agent Zabbix</div>
+                            <div class="skill-item"><i class="fas fa-microchip"></i> Charge RAM/CPU</div>
+                        </div>
+                    </div>
+                    <div class="skill-category">
+                        <h3 class="category-title"><i class="fas fa-network-wired" style="margin-right: 0.5rem;"></i> Réseau (Switchs)</h3>
+                        <p style="margin-bottom: 1rem; font-size: 0.9rem; color: var(--text-secondary);">
+                            Interrogation des équipements actifs via le protocole SNMP v2/v3.
+                        </p>
+                        <div class="skill-items">
+                            <div class="skill-item"><i class="fas fa-network-wired"></i> SNMP</div>
+                            <div class="skill-item"><i class="fas fa-ethernet"></i> État des Ports</div>
+                            <div class="skill-item"><i class="fas fa-exchange-alt"></i> Bande Passante</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="timeline" style="margin-top: 3rem;">
+                    <div class="timeline-item">
+                        <div class="timeline-marker"></div>
+                        <div class="timeline-content">
+                            <h3 class="timeline-title">Focus : Le Serveur de Fichiers</h3>
+                            <p class="timeline-description">
+                                J'ai installé l'agent Zabbix sur notre serveur de fichiers principal. Cela me permet de générer des graphiques précis sur l'utilisation du stockage et d'anticiper la saturation des disques de données.
+                            </p>
+                            <div class="placeholder-img" style="margin-top: 1rem;">
+                                <div>
+                                    <i class="fas fa-chart-line" style="font-size: 2rem; margin-bottom: 0.5rem; display: block;"></i>
+                                    Capture d'écran Zabbix "Latest Data" ou "Graph"<br>du Serveur de Fichiers (Espace Disque)
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="alerting" class="section">
+            <div class="section-container">
+                <div class="section-header">
+                    <span class="section-number">03</span>
+                    <h2 class="section-title">Réseau <span class="title-gradient">&amp; Alerting</span></h2>
+                    <div class="section-line"></div>
+                </div>
+
+                <div class="about-content">
+                    <div>
+                        <h3 style="color: var(--primary); font-family: var(--font-code); margin-bottom: 1rem;">Supervision des Switchs</h3>
+                        <p class="about-text">
+                            J'ai configuré des templates SNMP pour remonter l'état de santé de nos switchs. Si un équipement ne répond plus (Ping down) ou si un port uplink est coupé, l'incident est immédiatement détecté.
+                        </p>
+                    </div>
+                    <div class="placeholder-img">
+                        <div>
+                            <i class="fas fa-list" style="font-size: 2rem; margin-bottom: 0.5rem; display: block;"></i>
+                            Liste des Switchs dans Zabbix<br>(Statut vert/disponible)
+                        </div>
+                    </div>
+                </div>
+
+                <div class="about-content" style="margin-top: 4rem;">
+                    <div class="placeholder-img">
+                        <div>
+                            <i class="fas fa-envelope" style="font-size: 2rem; margin-bottom: 0.5rem; display: block;"></i>
+                            Capture d'écran de la boite mail<br>montrant une alerte reçue
+                        </div>
+                    </div>
+                    <div>
+                        <h3 style="color: var(--primary); font-family: var(--font-code); margin-bottom: 1rem;">Notification Automatique</h3>
+                        <p class="about-text">
+                            Le point fort de cette mise en place est la réactivité. J'ai configuré les <strong>Actions</strong> Zabbix pour qu'en cas d'alerte critique (ex: "Switch Core Down"), un email soit envoyé automatiquement à l'équipe.
+                        </p>
+                        <div class="code-block" style="margin-top: 1rem;">
+                            <div class="code-line"><span class="code-keyword">Media Type</span>: Email HTML</div>
+                            <div class="code-line"><span class="code-keyword">Send to</span>: support-it@mairie-madeleine.fr</div>
+                            <div class="code-line"><span class="code-string">Subject: {PROBLEM.NAME} - {HOST.NAME}</span></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section-footer" style="margin-top: 4rem;">
+                    <a href="index.html#skills" class="btn-more">
+                        <i class="fas fa-arrow-left"></i> Retour aux compétences
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="main-footer">
+        <div class="footer-container">
+            <div class="footer-content">
+                <p class="footer-text">© 2025 <span class="footer-copyright">Franck Raymond</span> — Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        window.addEventListener('scroll', () => {
+            document.getElementById('header').classList.toggle('scrolled', window.scrollY > 50);
+        });
+        document.getElementById('menuToggle').addEventListener('click', () => {
+            document.getElementById('navMenu').classList.toggle('active');
+        });
+    </script>
+
+
+<script src="/assets/portfolio-glossary.js?v=20260831-2" defer=""></script><script src="/assets/legacy-unified.js?v=20261028-8c422e514f" defer=""></script></body></html>

@@ -1,0 +1,273 @@
+<!DOCTYPE html><html lang="en" dir="ltr" data-theme="light"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Case study of a complete network infrastructure for a fictional medical laboratory: segmentation, Windows and Linux services, high availability, monitoring and security.">
+  <meta name="author" content="Franck Raymond">
+  <meta name="robots" content="index,follow,max-image-preview:large">
+  <meta name="theme-color" content="#111214">
+  <title>Alger MEDILAB infrastructure | Franck Raymond Portfolio</title>
+  <link rel="canonical" href="https://franckraymond.tech/en/pages/projet-alger-medilab.html">
+  <link rel="alternate" hreflang="fr" href="https://franckraymond.tech/pages/projet-alger-medilab.html">
+  <link rel="alternate" hreflang="en" href="https://franckraymond.tech/en/pages/projet-alger-medilab.html">
+  <link rel="alternate" hreflang="x-default" href="https://franckraymond.tech/pages/projet-alger-medilab.html">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Franck Raymond Portfolio">
+  <meta property="og:title" content="Alger MEDILAB infrastructure | Franck Raymond Portfolio">
+  <meta property="og:description" content="Case study of a complete network infrastructure for a fictional medical laboratory: segmentation, Windows and Linux services, high availability, monitoring and security.">
+  <meta property="og:url" content="https://franckraymond.tech/en/pages/projet-alger-medilab.html">
+  <meta property="og:image" content="https://franckraymond.tech/franck.webp">
+  <meta property="og:image:alt" content="Professional portrait of Franck Raymond">
+  <meta property="og:image:width" content="1024">
+  <meta property="og:image:height" content="1024">
+  <meta property="og:locale" content="en_GB">
+  <meta property="og:locale:alternate" content="fr_FR">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Alger MEDILAB infrastructure | Franck Raymond Portfolio">
+  <meta name="twitter:description" content="Case study of a complete network infrastructure for a fictional medical laboratory: segmentation, Windows and Linux services, high availability, monitoring and security.">
+  <meta name="twitter:image" content="https://franckraymond.tech/franck.webp">
+  <meta name="twitter:image:alt" content="Professional portrait of Franck Raymond">
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Person",
+      "@id": "https://franckraymond.tech/#person",
+      "name": "Franck Raymond",
+      "url": "https://franckraymond.tech/",
+      "image": "https://franckraymond.tech/franck.webp",
+      "jobTitle": "Systems and Network Administrator",
+      "description": "Systems and Network Administrator at Delannoy Dewailly, studying for the Bachelor ASRBD at EPSI Lille on a one-year work-study placement.",
+      "email": "mailto:franckrmnd@gmail.com",
+      "sameAs": [
+        "https://www.linkedin.com/in/franck-r-21a8a4184",
+        "https://github.com/franckraymond"
+      ],
+      "knowsAbout": [
+        "Systems administration",
+        "Computer networks",
+        "Cybersecurity",
+        "Monitoring",
+        "Linux",
+        "Windows Server"
+      ]
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://franckraymond.tech/#website",
+      "url": "https://franckraymond.tech/",
+      "name": "Franck Raymond Portfolio",
+      "inLanguage": [
+        "fr-FR",
+        "en-GB"
+      ],
+      "publisher": {
+        "@id": "https://franckraymond.tech/#person"
+      }
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://franckraymond.tech/en/pages/projet-alger-medilab.html#webpage",
+      "url": "https://franckraymond.tech/en/pages/projet-alger-medilab.html",
+      "name": "Alger MEDILAB infrastructure | Franck Raymond Portfolio",
+      "description": "Case study of a complete network infrastructure for a fictional medical laboratory: segmentation, Windows and Linux services, high availability, monitoring and security.",
+      "isPartOf": {
+        "@id": "https://franckraymond.tech/#website"
+      },
+      "about": {
+        "@id": "https://franckraymond.tech/#person"
+      },
+      "inLanguage": "en-GB"
+    }
+  ]
+}
+</script>
+  <link rel="stylesheet" href="../../tailwind-output.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&amp;family=Outfit:wght@400;500;600;700;800&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../style.css">
+  <link rel="stylesheet" href="../../assets/portfolio-v2.css?v=20260831-2">
+  
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,400&amp;family=Geist:wght@400;500;600&amp;display=swap">
+<link rel="stylesheet" href="/assets/editorial-tokens.css?v=20261106-modern">
+<link rel="stylesheet" href="/assets/editorial.css?v=20261106-modern">
+<script src="/assets/editorial-theme.js?v=20261028-1fe0ee8c9d"></script>
+</head>
+<body data-theme="light" class="portfolio-v2 editorial-site">
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  <div class="bg-mesh" aria-hidden="true"></div>
+  <div class="noise-overlay" aria-hidden="true"></div>
+  <div class="grid-lines" aria-hidden="true"></div>
+
+  <header class="main-header" id="header">
+    <nav class="nav-container" aria-label="Main navigation">
+      <a href="/en/index.html" class="brand-logo" aria-label="Home — Franck Raymond">
+        <span class="logo-bracket" aria-hidden="true">&lt;</span>
+        <span class="logo-text">FR</span>
+        <span class="logo-bracket" aria-hidden="true">/&gt;</span>
+      </a>
+      <div class="nav-menu" id="navMenu">
+        <a href="/en/index.html" class="nav-link"><i class="fas fa-home" aria-hidden="true"></i><span class="nav-text">Home</span></a>
+        <a href="/en/projets.html" class="nav-link"><i class="fas fa-diagram-project" aria-hidden="true"></i><span class="nav-text">Projects</span></a>
+        <a href="/en/index.html#skills" class="nav-link"><i class="fas fa-code" aria-hidden="true"></i><span class="nav-text">Skills</span></a>
+        <a href="/en/index.html#experience" class="nav-link"><i class="fas fa-briefcase" aria-hidden="true"></i><span class="nav-text">Experience</span></a>
+        <a href="/en/index.html#contact" class="nav-link"><i class="fas fa-envelope" aria-hidden="true"></i><span class="nav-text">Contact</span></a>
+              <a class="nav-link" href="https://opengym.jsuisfray.blitz.cloud/"><span class="nav-text">FrayFit</span></a>
+      </div>
+      <div class="nav-controls">
+        <div class="language-switcher">
+          <button class="language-toggle" id="languageToggle" type="button" aria-label="Choose language" aria-controls="languageMenu" aria-expanded="false" data-open-label="Choose language" data-close-label="Close language menu">
+            <i class="fas fa-globe" aria-hidden="true"></i><span>EN</span>
+          </button>
+          <div class="language-menu" id="languageMenu" aria-label="Language selection" hidden="">
+            <a href="/pages/projet-alger-medilab.html" lang="fr" hreflang="fr" data-language="fr">FR <span>Français</span></a>
+            <a href="/en/pages/projet-alger-medilab.html" lang="en" hreflang="en" data-language="en" aria-current="page">EN <span>English</span></a>
+          </div>
+        </div>
+        <button class="theme-toggle" id="themeToggle" type="button" aria-label="Switch to light theme" data-light-label="Switch to light theme" data-dark-label="Switch to dark theme">
+          <i class="fas fa-sun" aria-hidden="true"></i>
+        </button>
+        <button class="menu-toggle" id="menuToggle" type="button" aria-label="Open menu" aria-controls="navMenu" aria-expanded="false" data-open-label="Open menu" data-close-label="Close menu">
+          <span aria-hidden="true"></span><span aria-hidden="true"></span><span aria-hidden="true"></span>
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <main id="main-content">
+    
+<article class="case-study">
+  <header class="case-hero">
+    <div class="case-container case-hero-grid">
+      <div>
+        <p class="case-kicker"><i class="fas fa-hospital" aria-hidden="true"></i>Systems and network architecture</p>
+        <h1>Alger MEDILAB</h1>
+        <p class="case-lead">Individual design and deployment of a multi-service infrastructure for a fictional medical laboratory, including network segmentation, critical services, monitoring and high-availability mechanisms.</p>
+        <div class="case-tags" aria-label="Tools and technologies used">
+          <span>Cisco IOS</span><span>Active Directory</span><span>DNS</span><span>DHCP</span><span>Zabbix</span><span>Graylog</span><span>HAProxy</span><span>ESXi</span>
+        </div>
+      </div>
+      <dl class="case-facts" aria-label="Key information">
+        
+        <div><dt>Context</dt><dd>Individual school project</dd></div>
+        
+        <div><dt>Scope</dt><dd>Design, deployment, tests and documentation</dd></div>
+        
+        <div><dt>Architecture</dt><dd>18 VLANs, Windows/Linux services and monitoring</dd></div>
+        
+        <div><dt>Deliverable</dt><dd>Lab infrastructure and technical presentation</dd></div>
+        
+      </dl>
+    </div>
+  </header>
+
+  <nav class="case-nav" aria-label="Project contents">
+    <div class="case-container">
+      <a href="#analyse">Need</a>
+      <a href="#architecture">Solution</a>
+      <a href="#realisation">Work completed</a>
+      <a href="#validation">Checks</a>
+      <a href="#recul">Improvements</a>
+      
+    </div>
+  </nav>
+
+  <section class="case-band" id="analyse">
+    <div class="case-container">
+      <div class="case-section-heading"><span>01</span><div><p>Before starting</p><h2>The need and my role</h2></div></div>
+      <div class="case-two-columns">
+        <div class="case-copy"><h3>The need</h3><p>Design a consistent infrastructure for a fictional medical environment where directory, addressing, name resolution, web publishing and monitoring services do not rely on a single component.</p></div>
+        <div class="case-copy"><h3>My role</h3><p>I completed the project individually from start to finish: requirements analysis, network architecture, IP addressing plan, service configuration, technical checks, documentation and final presentation.</p></div>
+      </div>
+      <div class="case-list-grid">
+        <div class="case-list-item"><i class="fas fa-diamond" aria-hidden="true"></i><span>Combine Windows and Linux services in a clear architecture.</span></div><div class="case-list-item"><i class="fas fa-diamond" aria-hidden="true"></i><span>Separate uses with VLANs and organise the related routing.</span></div><div class="case-list-item"><i class="fas fa-diamond" aria-hidden="true"></i><span>Plan continuity for DHCP and web services within the laboratory.</span></div><div class="case-list-item"><i class="fas fa-diamond" aria-hidden="true"></i><span>Centralise monitoring, logs and the technical inventory.</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="case-band case-band-alt" id="architecture">
+    <div class="case-container">
+      <div class="case-section-heading"><span>02</span><div><p>Why I chose this approach</p><h2>The chosen solution</h2></div></div>
+      <div class="case-decision">
+        <h3>Segmented architecture with specialised services</h3>
+        <p>The selected approach separates network and system functions: VLANs for logical isolation, Active Directory with DNS and DHCP for infrastructure services, web servers behind a load balancer, then Zabbix, Graylog and GLPI for operations. A formal comparison with other architectures was not documented in the initial project.</p>
+      </div>
+      <div class="case-list-grid case-list-grid-wide">
+        <div class="case-list-item"><i class="fas fa-arrow-right" aria-hidden="true"></i><span>Eighteen VLANs organise the different uses within the laboratory.</span></div><div class="case-list-item"><i class="fas fa-arrow-right" aria-hidden="true"></i><span>Active Directory provides the directory, with DNS and DHCP services.</span></div><div class="case-list-item"><i class="fas fa-arrow-right" aria-hidden="true"></i><span>Two HTTPS web servers sit behind a load balancer.</span></div><div class="case-list-item"><i class="fas fa-arrow-right" aria-hidden="true"></i><span>LACP combines network links in the laboratory.</span></div><div class="case-list-item"><i class="fas fa-arrow-right" aria-hidden="true"></i><span>Zabbix monitors resources and Graylog centralises logs.</span></div><div class="case-list-item"><i class="fas fa-arrow-right" aria-hidden="true"></i><span>GLPI manages the inventory and equipment tracking within the project scope.</span></div>
+      </div>
+      
+    </div>
+  </section>
+
+  <section class="case-band" id="realisation">
+    <div class="case-container">
+      <div class="case-section-heading"><span>03</span><div><p>From plan to practice</p><h2>What I completed</h2></div></div>
+      <ol class="case-steps">
+        <li><span>01</span><p>Analysed the requirements and translated them into technical services.</p></li><li><span>02</span><p>Designed the topology, VLANs and IP addressing plan.</p></li><li><span>03</span><p>Deployed Active Directory, DNS, DHCP and file-sharing services.</p></li><li><span>04</span><p>Set up two HTTPS web servers and the load balancer.</p></li><li><span>05</span><p>Added monitoring, centralised logs and the inventory.</p></li><li><span>06</span><p>Documented the full solution and prepared the final presentation.</p></li>
+      </ol>
+      <p class="case-technical-link"><a href="../../pages/dossier-technique-projet-alger-medilab.html" hreflang="fr"><i class="fas fa-terminal" aria-hidden="true"></i>Full technical document — French</a></p>
+    </div>
+  </section>
+
+  <section class="case-band case-band-alt" id="validation">
+    <div class="case-container">
+      <div class="case-section-heading"><span>04</span><div><p>Checking that it works</p><h2>How I checked my work</h2></div></div>
+      <div class="case-two-columns">
+        <div><h3>Tests performed</h3><ul class="case-check-list"><li><i class="fas fa-check" aria-hidden="true"></i>Checked that every requested service was present and configured.</li><li><i class="fas fa-check" aria-hidden="true"></i>Performed functional tests in the laboratory environment.</li><li><i class="fas fa-check" aria-hidden="true"></i>Documented and presented the complete architecture.</li><li><i class="fas fa-check" aria-hidden="true"></i>Detailed recovery times and failure scenarios still need to be measured.</li></ul></div>
+        <div><h3>Observed results</h3><ul class="case-check-list case-results"><li><i class="fas fa-circle-check" aria-hidden="true"></i>A complete multi-service infrastructure was designed and deployed.</li><li><i class="fas fa-circle-check" aria-hidden="true"></i>Network, system, monitoring and inventory functions are combined in one laboratory.</li><li><i class="fas fa-circle-check" aria-hidden="true"></i>The work covers the announced scope from analysis through documentation.</li></ul></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="case-band" id="recul">
+    <div class="case-container">
+      <div class="case-section-heading"><span>05</span><div><p>Looking back</p><h2>Limits and improvements</h2></div></div>
+      <div class="case-two-columns">
+        <div><h3>Security and operation</h3><ul class="case-check-list"><li><i class="fas fa-shield-halved" aria-hidden="true"></i>Logical segmentation with VLANs.</li><li><i class="fas fa-shield-halved" aria-hidden="true"></i>Web publishing protected with HTTPS/TLS.</li><li><i class="fas fa-shield-halved" aria-hidden="true"></i>Logs centralised in Graylog.</li><li><i class="fas fa-shield-halved" aria-hidden="true"></i>Central directory for identity management.</li></ul></div>
+        <div><h3>What I would improve</h3><ul class="case-check-list case-limitations"><li><i class="fas fa-triangle-exclamation" aria-hidden="true"></i>The context is fictional and does not reproduce every constraint of a real medical organisation.</li><li><i class="fas fa-triangle-exclamation" aria-hidden="true"></i>RPO/RTO objectives and failover times have not yet been recorded as measurements.</li><li><i class="fas fa-triangle-exclamation" aria-hidden="true"></i>A flow diagram and filtering matrix still need to be added to the public report.</li></ul></div>
+      </div>
+    </div>
+  </section>
+
+  
+
+  <section class="case-band case-sources">
+    <div class="case-container case-two-columns">
+      <div><h2>Skills demonstrated</h2><ul class="case-compact-list"><li>Design a multi-service systems and network architecture.</li><li>Deploy and integrate Windows and Linux services.</li><li>Organise monitoring, logs and documentation.</li><li>Manage a technical project independently.</li></ul></div>
+      <div><h2>Sources used</h2><ul class="case-compact-list"><li><a href="https://learn.microsoft.com/en-us/windows-server/networking/technologies/dhcp/dhcp-failover" target="_blank" rel="noopener noreferrer">Microsoft — DHCP failover</a></li><li><a href="https://www.cisco.com/c/en/us/td/docs/switches/lan/c9000/lyr2-fwd/etherchannel/etherchannel-configuration-guide/etherchannels.html" target="_blank" rel="noopener noreferrer">Cisco — EtherChannel and LACP</a></li><li><a href="https://www.zabbix.com/documentation/7.0/en" target="_blank" rel="noopener noreferrer">Zabbix — 7.0 documentation</a></li></ul></div>
+    </div>
+  </section>
+</article>
+
+<dialog class="case-lightbox" id="caseLightbox" aria-label="Enlarged evidence image">
+  <button type="button" data-lightbox-close="" aria-label="Close image"><i class="fas fa-xmark" aria-hidden="true"></i></button>
+  <img src="" alt="">
+</dialog>
+
+  </main>
+
+  <footer class="main-footer">
+    <div class="footer-container">
+      <div class="footer-content">
+        <p class="footer-text">© 2026 <span class="footer-copyright">Franck Raymond</span>. All rights reserved.</p>
+        <div class="footer-socials" aria-label="Professional profiles">
+          <a href="https://github.com/franckraymond" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><i class="fab fa-github" aria-hidden="true"></i></a>
+          <a href="https://www.linkedin.com/in/franck-r-21a8a4184" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fab fa-linkedin" aria-hidden="true"></i></a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../../assets/portfolio-glossary.js?v=20260831-2" defer=""></script>
+  <script src="../../assets/portfolio-v2.js?v=20261028-493b8041ab" defer=""></script>
+  
+
+
+</body></html>
